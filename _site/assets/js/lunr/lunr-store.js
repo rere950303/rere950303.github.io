@@ -4,4 +4,10 @@ var store = [{
         "tags": ["Daily"],
         "url": "https://rere950303.github.io/daily/firstposting/",
         "teaser": null
+      },{
+        "title": "commit 수정하기",
+        "excerpt":"push 하지 않은 경우 가장 최근 commit 수정 git commit --amend 과거 commit 또는 한 번에 여러개의 commit 수정 git log 로 수정하고자 하는 commit 확인 git rebase -i HEAD~n 수정하고자 하는 commit의 개수를 입력 수정하고 싶은 커밋 옆에 pick 을 reword 로 수정 :wq 로 커밋 리스트를 저장하고 순서대로...","categories": ["Git"],
+        "tags": ["Git","amend","rebase"],
+        "url": "https://rere950303.github.io/git/git(amend)/",
+        "teaser": null
       }]
