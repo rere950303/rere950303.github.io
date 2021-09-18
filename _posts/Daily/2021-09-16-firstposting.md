@@ -1,5 +1,5 @@
 ---
-title: "개발 공부를 기록하고 공유하기 위한 첫 발걸음"
+title: "[Daily] 개발 공부를 기록하고 공유하기 위한 첫 발걸음"
 last\_modified\_at: 2021-09-16T10:31 +09:00
 header:
   overlay\_color: "#333"
