@@ -10,4 +10,10 @@ var store = [{
         "tags": ["Git","amend","rebase"],
         "url": "https://rere950303.github.io/git/git(amend)/",
         "teaser": null
+      },{
+        "title": "[JAVA] equals()&hashCode() 오버라이딩",
+        "excerpt":"해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다. 동일한 객체에 대해 여러 번 hashCode()를 호출해도 동일한 값을 반환해야 한다. equals()가 참인 두 객체의 hashCode()...","categories": ["JAVA"],
+        "tags": ["JAVA","equals","hashCode"],
+        "url": "https://rere950303.github.io/java/equals()&hashCode()/",
+        "teaser": null
       }]
