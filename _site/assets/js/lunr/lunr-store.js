@@ -16,4 +16,10 @@ var store = [{
         "tags": ["JAVA","equals","hashCode"],
         "url": "https://rere950303.github.io/java/equals()&hashCode()/",
         "teaser": null
+      },{
+        "title": "[SQL] on절과 where절의 차이",
+        "excerpt":"ON절 ON절을 사용하면 조인 대상을 필터링 하고 조인할 수 있다. SELECT d.deptno, sum(e.sal) FROM dept d LEFT OUTER JOIN emp e ON d.deptno = e.deptno AND e.sal &gt; 2000 GROUP BY d.deptno ORDER BY d.deptno 급여가 2000이 넘는 직원만 dept 테이블과 조인하여 select절을 실행시킬 수 있다. ON절은 조인조건이므로 부서에 직원이...","categories": ["SQL"],
+        "tags": ["SQL","ON","where"],
+        "url": "https://rere950303.github.io/sql/on&where/",
+        "teaser": null
       }]
