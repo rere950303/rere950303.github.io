@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-09-18T21:36:07+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[JAVA] equals()&amp;amp;hashCode() 오버라이딩</title><link href="https://rere950303.github.io/java/equals()&hashCode()/" rel="alternate" type="text/html" title="[JAVA] equals()&amp;amp;hashCode() 오버라이딩" /><published>2021-09-18T00:00:00+09:00</published><updated>2021-09-18T00:00:00+09:00</updated><id>https://rere950303.github.io/java/equals()&amp;hashCode()</id><content type="html" xml:base="https://rere950303.github.io/java/equals()&amp;hashCode()/">&lt;p&gt;해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-09-19T17:10:16+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[SQL] WHERE과 HAVING의 차이</title><link href="https://rere950303.github.io/sql/where&having/" rel="alternate" type="text/html" title="[SQL] WHERE과 HAVING의 차이" /><published>2021-09-19T00:00:00+09:00</published><updated>2021-09-19T00:00:00+09:00</updated><id>https://rere950303.github.io/sql/where&amp;having</id><content type="html" xml:base="https://rere950303.github.io/sql/where&amp;having/">&lt;h2 id=&quot;where절&quot;&gt;where절&lt;/h2&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;테이블&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From절의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;having절&quot;&gt;HAVING절&lt;/h2&gt;
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;테이블&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;having&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From절의 테이블에서 먼저 그룹화를 진행하고 having 절에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count(*) &amp;gt; 1&lt;/code&gt; 과 같은 조건으로 그룹 걸러낸다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;즉 요약하면 where절은 그룹화 전에 having절은 그룹화 후에 실행된다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="SQL" /><category term="SQL" /><category term="HAVING" /><category term="WHERE" /><category term="GROUP BY" /></entry><entry><title type="html">[JAVA] equals()&amp;amp;hashCode() 오버라이딩</title><link href="https://rere950303.github.io/java/equals()&hashCode()/" rel="alternate" type="text/html" title="[JAVA] equals()&amp;amp;hashCode() 오버라이딩" /><published>2021-09-18T00:00:00+09:00</published><updated>2021-09-18T00:00:00+09:00</updated><id>https://rere950303.github.io/java/equals()&amp;hashCode()</id><content type="html" xml:base="https://rere950303.github.io/java/equals()&amp;hashCode()/">&lt;p&gt;해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다.&lt;br /&gt;
 해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. 
 Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다.&lt;/p&gt;
 

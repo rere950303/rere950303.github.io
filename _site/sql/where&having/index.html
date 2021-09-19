@@ -9,19 +9,21 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[SQL] WHERE과 HAVING의 차이 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
   <meta name="author" content="yhw">
   
+  <meta property="article:author" content="yhw">
+  
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="YHW Blog">
-<meta property="og:url" content="https://rere950303.github.io/">
+<meta property="og:title" content="[SQL] WHERE과 HAVING의 차이">
+<meta property="og:url" content="https://rere950303.github.io/sql/where&having/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -32,6 +34,8 @@
 
 
 
+  <meta property="article:published_time" content="2021-09-19T00:00:00+09:00">
+
 
 
 
@@ -41,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/">
+<link rel="canonical" href="https://rere950303.github.io/sql/where&having/">
 
 
 
@@ -109,7 +113,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--single">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -163,6 +167,42 @@
     <div class="initial-content">
       
 
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#sql" itemprop="item"><span itemprop="name">Sql</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[SQL] WHERE과 HAVING의 차이</li>
+      
+    
+  </ol>
+</nav>
+
+  
 
 
 <div id="main" role="main">
@@ -286,33 +326,18 @@
 
 
 
-  <div class="archive">
-    
-      <h1 id="page-title" class="page__title"></h1>
-    
-    
-
-<h3 class="archive__subtitle">최근 포스트</h3>
-
-
-
-
-<div class="entries-list">
-  
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[SQL] WHERE과 HAVING의 차이">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-09-19T00:00:00+09:00">
     
 
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <div class="page__inner-wrap">
       
-        <a href="/sql/where&having/" rel="permalink">[SQL] WHERE과 HAVING의 차이
-</a>
-      
-    </h2>
-    
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[SQL] WHERE과 HAVING의 차이
+</h1>
+          
 
   <p class="page__meta">
     
@@ -339,17 +364,138 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="where절">where절</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
+<span class="k">FROM</span> <span class="err">테이블</span>
+<span class="k">where</span> <span class="o">~</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
+</code></pre></div></div>
+
+<p>From절의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다.</p>
+
+<h2 id="having절">HAVING절</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
+<span class="k">FROM</span> <span class="err">테이블</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
+<span class="k">having</span> <span class="o">~</span>
+</code></pre></div></div>
+
+<p>From절의 테이블에서 먼저 그룹화를 진행하고 having 절에서 <code class="language-plaintext highlighter-rouge">count(*) &gt; 1</code> 과 같은 조건으로 그룹 걸러낸다.</p>
+
+<hr />
+
+<p>즉 요약하면 where절은 그룹화 전에 having절은 그룹화 후에 실행된다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
 
   
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
     
+      
+      
+      <a href="/tags/#group-by" class="page__taxonomy-item" rel="tag">GROUP BY</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#having" class="page__taxonomy-item" rel="tag">HAVING</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#sql" class="page__taxonomy-item" rel="tag">SQL</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#where" class="page__taxonomy-item" rel="tag">WHERE</a>
+    
+    </span>
+  </p>
 
 
 
-<div class="list__item">
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#sql" class="page__taxonomy-item" rel="tag">SQL</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-19T00:00:00+09:00">September 19, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSQL%5D+WHERE%EA%B3%BC+HAVING%EC%9D%98+%EC%B0%A8%EC%9D%B4%20https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/sql/on&where/" class="pagination--pager" title="[SQL] on절과 where절의 차이
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -364,7 +510,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-09-18T00:00:00+09:00">September 18, 2021</time>
       </span>
     
@@ -376,7 +522,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           최대 1 분 소요
         
@@ -390,12 +536,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -410,7 +556,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-09-18T00:00:00+09:00">September 18, 2021</time>
       </span>
     
@@ -422,7 +568,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           최대 1 분 소요
         
@@ -436,12 +582,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -456,7 +602,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-09-16T00:00:00+09:00">September 16, 2021</time>
       </span>
     
@@ -468,7 +614,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           최대 1 분 소요
         
@@ -482,12 +628,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -502,7 +648,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-09-16T00:00:00+09:00">September 16, 2021</time>
       </span>
     
@@ -514,7 +660,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           최대 1 분 소요
         
@@ -528,14 +674,13 @@
   </article>
 </div>
 
+        
+      </div>
+    </div>
+  
   
 </div>
 
-
-
-
-  </div>
-</div>
     </div>
 
     
@@ -596,6 +741,30 @@
 <script src="/assets/js/lunr/lunr-en.js"></script>
 
 
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
 
 
 
