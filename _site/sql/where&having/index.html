@@ -369,27 +369,27 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="where절">where절</h2>
+        <h2 id="where절">WHERE절</h2>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
 <span class="k">FROM</span> <span class="err">테이블</span>
-<span class="k">where</span> <span class="o">~</span>
+<span class="k">WHERE</span> <span class="o">~</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
 </code></pre></div></div>
 
-<p>From절의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다.</p>
+<p>FROM의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다.</p>
 
 <h2 id="having절">HAVING절</h2>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
 <span class="k">FROM</span> <span class="err">테이블</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
-<span class="k">having</span> <span class="o">~</span>
+<span class="k">HAVING</span> <span class="o">~</span>
 </code></pre></div></div>
 
-<p>From절의 테이블에서 먼저 그룹화를 진행하고 having 절에서 <code class="language-plaintext highlighter-rouge">count(*) &gt; 1</code> 과 같은 조건으로 그룹 걸러낸다.</p>
+<p>FROM의 테이블에서 먼저 그룹화를 진행하고 HAVING 절에서 <code class="language-plaintext highlighter-rouge">count(*) &gt; 1</code> 과 같은 조건으로 그룹 걸러낸다.</p>
 
 <hr />
 
-<p>즉 요약하면 where절은 그룹화 전에 having절은 그룹화 후에 실행된다.</p>
+<p>즉 요약하면 WHERE은 그룹화 전에 HAVING은 그룹화 후에 실행된다.</p>
 
 
         
@@ -472,7 +472,7 @@
       
   <nav class="pagination">
     
-      <a href="/sql/on&where/" class="pagination--pager" title="[SQL] on절과 where절의 차이
+      <a href="/sql/on&where/" class="pagination--pager" title="[SQL] ON과 WHERE의 차이
 ">이전</a>
     
     
@@ -500,7 +500,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/sql/on&where/" rel="permalink">[SQL] on절과 where절의 차이
+        <a href="/sql/on&where/" rel="permalink">[SQL] ON과 WHERE의 차이
 </a>
       
     </h2>

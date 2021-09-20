@@ -17,14 +17,14 @@ var store = [{
         "url": "https://rere950303.github.io/java/equals()&hashCode()/",
         "teaser": null
       },{
-        "title": "[SQL] on절과 where절의 차이",
-        "excerpt":"ON절 ON절을 사용하면 조인 대상을 필터링 하고 조인할 수 있다. SELECT d.deptno, sum(e.sal) FROM dept d LEFT OUTER JOIN emp e ON d.deptno = e.deptno AND e.sal &gt; 2000 GROUP BY d.deptno ORDER BY d.deptno 급여가 2000이 넘는 직원만 dept 테이블과 조인하여 select절을 실행시킬 수 있다. ON절은 조인조건이므로 부서에 직원이...","categories": ["SQL"],
-        "tags": ["SQL","ON","where"],
+        "title": "[SQL] ON과 WHERE의 차이",
+        "excerpt":"ON ON을 사용하면 조인 대상을 필터링 하고 조인할 수 있다. SELECT d.deptno, sum(e.sal) FROM dept d LEFT OUTER JOIN emp e ON d.deptno = e.deptno AND e.sal &gt; 2000 GROUP BY d.deptno ORDER BY d.deptno 급여가 2000이 넘는 직원만 dept 테이블과 조인하여 SELECT절을 실행시킬 수 있다. ON은 조인조건이므로 부서에 직원이...","categories": ["SQL"],
+        "tags": ["SQL","ON","WHERE"],
         "url": "https://rere950303.github.io/sql/on&where/",
         "teaser": null
       },{
         "title": "[SQL] WHERE과 HAVING의 차이",
-        "excerpt":"where절 SELECT ~ FROM 테이블 where ~ GROUP BY ~ From절의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다. HAVING절 SELECT ~ FROM 테이블 GROUP BY ~ having ~ From절의 테이블에서 먼저 그룹화를 진행하고 having 절에서 count(*) &gt; 1 과 같은 조건으로 그룹 걸러낸다. 즉 요약하면 where절은 그룹화 전에...","categories": ["SQL"],
+        "excerpt":"WHERE절 SELECT ~ FROM 테이블 WHERE ~ GROUP BY ~ FROM의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다. HAVING절 SELECT ~ FROM 테이블 GROUP BY ~ HAVING ~ FROM의 테이블에서 먼저 그룹화를 진행하고 HAVING 절에서 count(*) &gt; 1 과 같은 조건으로 그룹 걸러낸다. 즉 요약하면 WHERE은 그룹화 전에...","categories": ["SQL"],
         "tags": ["SQL","HAVING","WHERE","GROUP BY"],
         "url": "https://rere950303.github.io/sql/where&having/",
         "teaser": null
