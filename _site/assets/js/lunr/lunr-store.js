@@ -24,8 +24,14 @@ var store = [{
         "teaser": null
       },{
         "title": "[SQL] WHERE과 HAVING의 차이",
-        "excerpt":"WHERE절 SELECT ~ FROM 테이블 WHERE ~ GROUP BY ~ FROM의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다. HAVING절 SELECT ~ FROM 테이블 GROUP BY ~ HAVING ~ FROM의 테이블에서 먼저 그룹화를 진행하고 HAVING 절에서 count(*) &gt; 1 과 같은 조건으로 그룹 걸러낸다. 즉 요약하면 WHERE은 그룹화 전에...","categories": ["SQL"],
+        "excerpt":"WHERE SELECT ~ FROM 테이블 WHERE ~ GROUP BY ~ FROM의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다. HAVING SELECT ~ FROM 테이블 GROUP BY ~ HAVING ~ FROM의 테이블에서 먼저 그룹화를 진행하고 HAVING 절에서 count(*) &gt; 1 과 같은 조건으로 그룹 걸러낸다. 즉 요약하면 WHERE은 그룹화 전에...","categories": ["SQL"],
         "tags": ["SQL","HAVING","WHERE","GROUP BY"],
         "url": "https://rere950303.github.io/sql/where&having/",
+        "teaser": null
+      },{
+        "title": "[Spring] 객체 지향 설계와 스프링",
+        "excerpt":"좋은 객체 지향 프로그래밍 스프링은 객체 지향 언어가 가진 강력한 특징을 살려내는 프레임워크 객체 지향 언어의 특징: 캡슐화, 다형성, 추상화, 상속 역할과 구현의 분리 -&gt; 인터페이스와 구현클래스 다형성으로 인터페이스를 구현한 객체(서버 기능 구현)를 실행 시점에 유연하게 변경 확장 가능한 설계, 클라이언트에 영향을 주지 않는 구현클래스의 변경 스프링에서 이야기하는 제어의 역전,...","categories": ["Spring"],
+        "tags": ["Object-oriented","Spring"],
+        "url": "https://rere950303.github.io/spring/Object-oriented-design-and-spring/",
         "teaser": null
       }]
