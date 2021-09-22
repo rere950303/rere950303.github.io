@@ -29,9 +29,9 @@ var store = [{
         "url": "https://rere950303.github.io/sql/where&having/",
         "teaser": null
       },{
-        "title": "[Spring] 객체 지향 설계와 스프링",
-        "excerpt":"좋은 객체 지향 프로그래밍 스프링은 객체 지향 언어가 가진 강력한 특징을 살려내는 프레임워크 객체 지향 언어의 특징: 캡슐화, 다형성, 추상화, 상속 역할과 구현의 분리 -&gt; 인터페이스와 구현클래스 다형성으로 인터페이스를 구현한 객체(서버 기능 구현)를 실행 시점에 유연하게 변경 확장 가능한 설계, 클라이언트에 영향을 주지 않는 구현클래스의 변경 스프링에서 이야기하는 제어의 역전,...","categories": ["Spring"],
+        "title": "[Spring][Core] 스프링 핵심 원리",
+        "excerpt":"객체 지향 설계와 스프링 좋은 객체 지향 프로그래밍 스프링은 객체 지향 언어가 가진 강력한 특징을 살려내는 프레임워크 객체 지향 언어의 특징: 캡슐화, 다형성, 추상화, 상속 역할과 구현의 분리 -&gt; 인터페이스와 구현클래스 다형성으로 인터페이스를 구현한 객체(서버 기능 구현)를 실행 시점에 유연하게 변경 확장 가능한 설계, 클라이언트에 영향을 주지 않는 구현클래스의 변경...","categories": ["Spring","Core"],
         "tags": ["Object-oriented","Spring"],
-        "url": "https://rere950303.github.io/spring/Object-oriented-design-and-spring/",
+        "url": "https://rere950303.github.io/spring/core/SpringCore/",
         "teaser": null
       }]
