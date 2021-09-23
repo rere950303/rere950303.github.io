@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-09-22T22:29:29+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Core] 스프링 핵심 원리</title><link href="https://rere950303.github.io/spring/core/SpringCore/" rel="alternate" type="text/html" title="[Spring][Core] 스프링 핵심 원리" /><published>2021-09-22T00:00:00+09:00</published><updated>2021-09-22T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/core/SpringCore</id><content type="html" xml:base="https://rere950303.github.io/spring/core/SpringCore/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-09-23T12:42:45+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Core] 스프링 핵심 원리</title><link href="https://rere950303.github.io/spring/core/SpringCore/" rel="alternate" type="text/html" title="[Spring][Core] 스프링 핵심 원리" /><published>2021-09-22T00:00:00+09:00</published><updated>2021-09-22T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/core/SpringCore</id><content type="html" xml:base="https://rere950303.github.io/spring/core/SpringCore/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 김영한 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/스프링-핵심-원리-기본편/dashboard&quot;&gt;스프링 핵심 원리 - 기본편&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 &lt;h2 id=&quot;객체-지향-설계와-스프링&quot;&gt;객체 지향 설계와 스프링&lt;/h2&gt;
 &lt;h3 id=&quot;좋은-객체-지향-프로그래밍&quot;&gt;좋은 객체 지향 프로그래밍&lt;/h3&gt;
@@ -247,7 +247,7 @@
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Bean&lt;/code&gt;의 destroyMethod는 기본값이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(inferred)&lt;/code&gt; 으로 등록되어 있다. 이 추론 기능은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;close&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutdown&lt;/code&gt; 라는 이름의 메서드를 자동으로 호출해준다. 이름 그대로 종료 메서드를 추론해서 호출해준다. 따라서 직접 스프링 빈으로 등록하면 종료 메서드는 따로 적어주지 않아도 잘 동작한다. 추론 기능을 사용하기 싫으면&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destroyMethod=&quot;&quot;&lt;/code&gt; 처럼 빈 공백을 지정하면 된다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;애노테이션-postconstruct-predestory&quot;&gt;애노테이션 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PostConstruct&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PreDestory&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;애노테이션-postconstruct-predestroy&quot;&gt;애노테이션 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PostConstruct&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PreDestroy&lt;/code&gt;&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;가장 편리하며 자바 표준 기술이다. 따라서 스프링이 아닌 다른 컨테이너에서도 동작한다.&lt;/li&gt;
   &lt;li&gt;외부 라이브러리에는 적용하지 못하므로 이 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Bean&lt;/code&gt; 기능을 사용하자.&lt;/li&gt;
@@ -341,7 +341,7 @@
 &lt;h3 id=&quot;웹-스코프&quot;&gt;웹 스코프&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;웹 스코프는 웹 환경에서만 동작한다.&lt;/li&gt;
-  &lt;li&gt;스프링이 해다 스코프의 종료시점까지 관리한다. 따라서 종료 메서드가 호출된다.&lt;/li&gt;
+  &lt;li&gt;스프링이 해당 스코프의 빈 종료시점까지 관리한다. 따라서 종료 메서드가 호출된다.&lt;/li&gt;
   &lt;li&gt;웹 스코프 종류
     &lt;ol&gt;
       &lt;li&gt;request: HTTP 요청 하나가 들어오고 나갈 때 까지 유지되는 스코프로써 각각의 요청마다 별도의 빈 인스턴스가 생성되고 관리된다.&lt;/li&gt;
