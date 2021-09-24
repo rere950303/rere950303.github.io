@@ -4,8 +4,7 @@ last\_modified\_at: 2021-09-22T 12:06 +09:00
 header:
   overlay\_color: "#333"
 categories:
-  - Spring
-  - Core
+  - Spring/Core
 tags:
   - Object-oriented
   - Spring
