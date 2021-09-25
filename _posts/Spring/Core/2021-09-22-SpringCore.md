@@ -224,13 +224,12 @@ public @interface MainDiscountPolicy {
 ```java
 @Autowired
 private ApplicationContext ac;
-
 public int logic() {
- 	PrototypeBean prototypeBean = ac.getBean(PrototypeBean.class);
+    PrototypeBean prototypeBean = ac.getBean(PrototypeBean.class);
 
-	prototypeBean.addCount();
-	int count = prototypeBean.getCount();
-	return count;
+    prototypeBean.addCount();
+    int count = prototypeBean.getCount();
+    return count;
 }
 ```
 
@@ -245,10 +244,10 @@ public int logic() {
 private ObjectProvider<PrototypeBean> prototypeBeanProvider; 
 
 public int logic() {
-	PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
-	prototypeBean.addCount();
-	int count = prototypeBean.getCount();
-	return count;
+    PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+    prototypeBean.addCount();
+    int count = prototypeBean.getCount();
+    return count;
 }
 ```
 
@@ -264,10 +263,10 @@ public int logic() {
 private Provider<PrototypeBean> provider;
 
 public int logic() {
-	PrototypeBean prototypeBean = provider.get();
-	prototypeBean.addCount();
-	int count = prototypeBean.getCount();
-	return count;
+    PrototypeBean prototypeBean = provider.get();
+    prototypeBean.addCount();
+    int count = prototypeBean.getCount();
+    return count;
 }
 ```
 
@@ -288,19 +287,19 @@ public int logic() {
 @Controller
 @RequiredArgsConstructor
 public class LogDemoController {
-	private final LogDemoService logDemoService;
-	private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final LogDemoService logDemoService;
+    private final ObjectProvider<MyLogger> myLoggerProvider;
 
-	@RequestMapping("log-demo")
-	@ResponseBody
-	public String logDemo(HttpServletRequest request) {
-		String requestURL = request.getRequestURL().toString();
-		MyLogger myLogger = myLoggerProvider.getObject();
-		myLogger.setRequestURL(requestURL);
-		myLogger.log("controller test");
-		logDemoService.logic("testId");
-		return "OK";
-	}
+    @RequestMapping("log-demo")
+    @ResponseBody
+    public String logDemo(HttpServletRequest request) {
+        String requestURL = request.getRequestURL().toString();
+        MyLogger myLogger = myLoggerProvider.getObject();
+        myLogger.setRequestURL(requestURL);
+        myLogger.log("controller test");
+        logDemoService.logic("testId");
+        return "OK";
+    }
 }
 ```
 

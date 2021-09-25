@@ -45,8 +45,7 @@ tags:
 ---
 ## 들어가며 
 해당 게시글은 인프런 김영한 강사님의 [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
-][1] 강의를 바탕으로 쓰였음을  
-미리 밝힙니다.
+][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.
 
 ## 웹 애플리케이션 이해
 
@@ -76,14 +75,14 @@ tags:
 {% include gallery id="MVC_2" %}
 
 - 서블릿 컨테이너를 통해 우리는 의미있는 비즈니스 로직만 개발하면 된다.
+
 ```java
 @WebServlet(name = "helloServlet", urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
-
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response){
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response){
 	//애플리케이션 로직
-	} 
+    } 
 }
 ```
 - HTTP 요청 정보를 편리하게 사용할 수 있는 HttpServletRequest
@@ -149,9 +148,9 @@ public class HelloServlet extends HttpServlet {
 @ServletComponentScan //서블릿 자동 등록 
 @SpringBootApplication
 public class ServletApplication {
-      public static void main(String[] args) {
-          SpringApplication.run(ServletApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ServletApplication.class, args);
+    }
 }
 ```
 
@@ -159,17 +158,17 @@ public class ServletApplication {
 @WebServlet(name = "helloServlet", urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
 
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          System.out.println("HelloServlet.service");
-          System.out.println("request = " + request);
-          System.out.println("response = " + response);
-          String username = request.getParameter("username");
-          System.out.println("username = " + username);
-          response.setContentType("text/plain");
-          response.setCharacterEncoding("utf-8");
-          response.getWriter().write("hello " + username);
-	} 
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("HelloServlet.service");
+        System.out.println("request = " + request);
+        System.out.println("response = " + response);
+        String username = request.getParameter("username");
+        System.out.println("username = " + username);
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().write("hello " + username);
+    } 
 }
 ```
 - HTTP 요청을 통해 매핑된 URL이 호출되면 서블릿 컨테이너는 다음 메서드를 실행한다. <br> `protected void service(HttpServletRequest request, HttpServletResponse response)`
@@ -197,6 +196,7 @@ public class HelloServlet extends HttpServlet {
     
 ### HTTP 요청 데이터 - GET 쿼리 파라미터
 - 서버에서는 `HttpServletRequest` 가 제공하는 다음 메서드를 통해 쿼리 파라미터를 편리하게 조회할 수 있다.
+
 ```java
 String username = request.getParameter("username"); //단일 파라미터 조회
 Enumeration<String> parameterNames = request.getParameterNames(); //파라미터 이름들 모두 조회
@@ -216,6 +216,7 @@ String[] usernames = request.getParameterValues("username"); //복수 파라미�
 ### HTTP 요청 데이터 - API 메시지 바디(단순 텍스트)
 - HTTP message body에 데이터를 직접 담아서 요청
 - HTTP 메시지 바디의 데이터를 InputStream을 사용해서 직접 읽을 수 있다.
+
 ```java
 ServletInputStream inputStream = request.getInputStream();
 String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
@@ -226,6 +227,7 @@ String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_
 ### HTTP 요청 데이터 - API 메시지 바디(JSON)
 - content-type: application/json
 - message body: {"username": "hello", "age": 20}
+
 ```java
 private ObjectMapper objectMapper = new ObjectMapper();
 ServletInputStream inputStream = request.getInputStream();
@@ -238,11 +240,12 @@ HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
 ### HttpServletResponse - 기본 사용법
 - HTTP 응답 메시지 생성
 - 편의 기능 제공(Content-Type, 쿠키, Redirect)
+
 ```java
 response.setStatus(HttpServletResponse.SC_OK); //200
 response.setHeader("Content-Type", "text/plain;charset=utf-8");
-response.setHeader("Cache-Control", "no-cache, no-store, must-
-revalidate");
+response.setHeader("Cache-Control", "no-cache, no-store, 
+must-revalidate");
 response.setHeader("Pragma", "no-cache");
 response.setHeader("my-header","hello");
 response.setContentType("text/plain");
@@ -260,6 +263,7 @@ writer.println("ok");
 - 단순 텍스트 응답: 앞에서 살펴봄 `writer.println("ok");`
 - HTML 응답: HTTP 응답으로 HTML을 반환할 때는 content-type을 text/html 로 지정해야 한다.
 - HTTP API: MessageBody JSON 응답(HTTP 응답으로 JSON을 반환할 때는 content-type을 application/json 로 지정해야 한다. Jackson 라이브러리가 제공하는 `objectMapper.writeValueAsString()` 를 사용하면 객체를 JSON 문자로 변경할 수 있다.)
+
 ```java
 HelloData data = new HelloData();
 data.setUsername("kim");
@@ -308,6 +312,7 @@ MVC 패턴은 하나의 서블릿이나, JSP로 처리하던 것을 컨트롤러
 ### MVC 패턴 - 적용
 서블릿을 컨트롤러로 사용하고, JSP를 뷰로 사용하며 HttpServletRequest 객체를 Model
 로 사용하여 MVC 패턴을 적용해보자.
+
 ```java
 String viewPath = "/WEB-INF/views/new-form.jsp";
 RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
@@ -323,6 +328,7 @@ dispatcher.forward(request, response);
 
 ### MVC 패턴 - 한계
 - 포워드 중복: View로 이동하는 코드가 항상 중복 호출되어야 한다.
+
 ```java
 RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
 dispatcher.forward(request, response);
@@ -413,12 +419,14 @@ dispatcher.forward(request, response);
 
 ### 핸들러 매핑과 핸들러 어댑터
 - HandlerMapping
+
 ```yaml
 0 = RequestMappingHandlerMapping : 애노테이션 기반의 컨트롤러인 @RequestMapping 에서 사용
 1 = BeanNameUrlHandlerMapping : 스프링 빈의 이름으로 핸들러를 찾는다.
 ```
 
 - HandlerAdapter
+
 ```yaml
 0 = RequestMappingHandlerAdapter : 애노테이션 기반의 컨트롤러인@RequestMapping 에서 사용
 1 = HttpRequestHandlerAdapter : HttpRequestHandler 처리
@@ -429,6 +437,7 @@ dispatcher.forward(request, response);
 ### 뷰 리졸버
 스프링 부트는 `InternalResourceViewResolver` 라는 뷰 리졸버를 자동으로 등록하는데, 이때 `application.properties` 에 등록한`spring.mvc.view.prefix` , `spring.mvc.view.suffix` 설정 정보를 사용해서 등록한다.
 - 스프링 부트가 자동 등록하는 뷰 리졸버
+
 ```yaml
 1 = BeanNameViewResolver : 빈 이름으로 뷰를 찾아서 반환한다.
 2 = InternalResourceViewResolver : JSP 를 처리할 수 있는 뷰를 반환한다.
@@ -453,6 +462,7 @@ dispatcher.forward(request, response);
     
 ### 스프링 MVC - 컨트롤러 통합
 `@RequestMapping` 을 잘 보면 클래스 단위가 아니라 메서드 단위에 적용된 것을 확인할 수 있다. 따라서 컨트롤러 클래스를 유연하게 하나로 통합할 수 있다.
+
 ```java
 @Controller
 @RequestMapping("/springmvc/v2/members")
@@ -481,28 +491,31 @@ public class SpringMemberControllerV2 {
 
 
 - PathVariable 사용(변수명이 같으면 생략 가능)
+
 ```java
 @GetMapping("/mapping/{userId}")
 public String mappingPath(@PathVariable("userId") String data) {
-	log.info("mappingPath userId={}", data);
-	return "ok";
+    log.info("mappingPath userId={}", data);
+    return "ok";
 }
 ```
 
 - 미디어 타입 조건 매핑 - HTTP 요청 Content-Type, consume
+
 ```java
 @PostMapping(value = "/mapping-consume", consumes = "application/json")
 public String mappingConsumes() {
-	log.info("mappingConsumes");
-	return "ok";
+    log.info("mappingConsumes");
+    return "ok";
 }
 ```
 - 미디어 타입 조건 매핑 - HTTP 요청 Accept, produce
+
 ```java
 @PostMapping(value = "/mapping-produce", produces = "text/html")
 public String mappingProduces() {
-	log.info("mappingProduces");
-	return "ok";
+    log.info("mappingProduces");
+    return "ok";
 }
 ```
 
@@ -510,37 +523,40 @@ public String mappingProduces() {
 ### HTTP 요청 파라미터 - @RequestParam
 - GET 쿼리 파리미터 전송 방식이든, POST HTML Form 전송 방식이든 둘다 형식이 같으므로 구분없이 조회할 수 있다. 이것을 간단히 요청 파라미터(request parameter) 조회라 한다.
 - `String` , `int` , `Integer` 등의 단순 타입이면 `@RequestParam` 도 생략 가능
+
 ```java
 @ResponseBody
 @RequestMapping("/request-param-v4")
 public String requestParamV4(String username, int age) {
-	log.info("username={}, age={}", username, age);
-	return "ok";
+    log.info("username={}, age={}", username, age);
+    return "ok";
 }
 ```
 - `@RequestParam.required`: 파라미터 필수 여부, 기본값 `true`
 -  파라미터 이름만 있고 값이 없는 경우 -\> 빈문자로 통과
 - 기본형(primitive)에 null 입력: `@RequestParam(required = false) int age` -\> `null` 을 `int` 에 입력하는 것은 불가능(500 예외 발생) 하므로 `Integer` 로 변경하거나, 또는 다음에 나오는 `defaultValue` 사용
 - 파라미터를 Map으로 조회하기 - requestParamMap
+
 ```java
 @ResponseBody
 @RequestMapping("/request-param-map")
 public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
-	log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
-	return "ok";
+    log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
+    return "ok";
 }
 ```
 - 파라미터를 Map, MultiValueMap으로 조회할 수 있다.
 
 
 ### HTTP 요청 파라미터 - @ModelAttribute
+
 ```java
 @ResponseBody
 @RequestMapping("/model-attribute-v1")
 public String modelAttributeV1(@ModelAttribute HelloData helloData) {
-	log.info("username={}, age={}", helloData.getUsername(),
-	helloData.getAge());
-	return "ok";
+    log.info("username={}, age={}", helloData.getUsername(),
+    helloData.getAge());
+    return "ok";
 }
 ```
 - `HelloData` 객체를 생성한다.
@@ -555,12 +571,13 @@ public String modelAttributeV1(@ModelAttribute HelloData helloData) {
 - InputStream(Reader): HTTP 요청 메시지 바디의 내용을 직접 조회
 - OutputStream(Writer): HTTP 응답 메시지의 바디에 직접 결과 출력
 - `HttpEntity`
+
 ```java
 @PostMapping("/request-body-string-v3")
 public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) {
-	String messageBody = httpEntity.getBody();
-	log.info("messageBody={}", messageBody);
-	return new HttpEntity<>("ok");
+    String messageBody = httpEntity.getBody();
+    log.info("messageBody={}", messageBody);
+    return new HttpEntity<>("ok");
 }
 ```
 1. 메시지 바디 정보를 직접 조회
@@ -570,44 +587,48 @@ public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) {
         - `ResponseEntity`: HTTP 상태 코드 설정 가능, 응답에서 사용
         
 - `@RequestBody`
+
 ```java
 @ResponseBody
 @PostMapping("/request-body-string-v4")
 public String requestBodyStringV4(@RequestBody String messageBody) {
-	log.info("messageBody={}", messageBody);
-	return "ok";
+    log.info("messageBody={}", messageBody);
+    return "ok";
 }
 ```
 
 
 ### HTTP 요청 메시지 - JSON
 - `@RequestBody` 문자 변환
+
 ```java
 @ResponseBody
 @PostMapping("/request-body-json-v2")
 public String requestBodyJsonV2(@RequestBody String messageBody) throws IOException {
-	HelloData data = objectMapper.readValue(messageBody, HelloData.class);
-	log.info("username={}, age={}", data.getUsername(), data.getAge());
-	return "ok";
+    HelloData data = objectMapper.readValue(messageBody, HelloData.class);
+    log.info("username={}, age={}", data.getUsername(), data.getAge());
+    return "ok";
 }
 ```
 - `@RequestBody` 객체 변환
+
 ```java
 @ResponseBody
 @PostMapping("/request-body-json-v3")
 public String requestBodyJsonV3(@RequestBody HelloData data) {
-	log.info("username={}, age={}", data.getUsername(), data.getAge());
-return "ok";
+    log.info("username={}, age={}", data.getUsername(), data.getAge());
+    return "ok";
 }
 ```
 - `HttpEntity`
+
 ```java
 @ResponseBody
 @PostMapping("/request-body-json-v4")
 public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) {
-	HelloData data = httpEntity.getBody();
-	log.info("username={}, age={}", data.getUsername(), data.getAge());
-	return "ok";
+    HelloData data = httpEntity.getBody();
+    log.info("username={}, age={}", data.getUsername(), data.getAge());
+    return "ok";
 }
 ```
 - `HttpEntity` , `@RequestBody` 를 사용하면 HTTP 메시지 컨버터가 HTTP 메시지 바디의 내용을 우리가 원하는 문자나 객체 등으로 변환해준다.
@@ -615,12 +636,13 @@ public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) {
 {% include  gallery id="MVC_10"  type="center"  %}
 
 - `@RequestBody`는 생략 불가능: `@RequestBody` 를 생략하면`@ModelAttribute` 가 적용되어 버린다. 따라서 생략하면 HTTP 메시지 바디가 아니라 요청 파라미터를 처리하게 된다.
+
 ```java
 @ResponseBody
 @PostMapping("/request-body-json-v5")
 public HelloData requestBodyJsonV5(@RequestBody HelloData data) {
-	log.info("username={}, age={}", data.getUsername(), data.getAge());
-	return data;
+    log.info("username={}, age={}", data.getUsername(), data.getAge());
+    return data;
 }
 ```
 - `@RequestBody` 요청: JSON 요청 -\> HTTP 메시지 컨버터 -\> 객체
@@ -631,10 +653,12 @@ public HelloData requestBodyJsonV5(@RequestBody HelloData data) {
 1. 정적 리소스: 웹 브라우저에 정적인 HTML, css, js을 제공할 때는, 정적 리소스를 사용한다.
 2. 뷰 템플릿 사용: 웹 브라우저에 동적인 HTML을 제공할 때는 뷰 템플릿을 사용한다.
 3. HTTP 메시지 사용: HTTP API를 제공하는 경우에는 HTML이 아니라 데이터를 전달해야 하므로, HTTP 메시지 바디에 JSON 같은 형식으로 데이터를 실어 보낸다.
-```xml
+
+```yaml
 implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 ```
 - 스프링 부트가 자동으로 `ThymeleafViewResolver` 와 필요한 스프링 빈들을 등록한다. 그리고 다음 설정도 사용한다. 이 설정은 기본 값 이기 때문에 변경이 필요할 때만 설정하면 된다.
+
 ```yaml
 spring.thymeleaf.prefix=classpath:/templates/
 spring.thymeleaf.suffix=.html
@@ -643,24 +667,27 @@ spring.thymeleaf.suffix=.html
 
 ### HTTP 응답 - HTTP API, 메시지 바디에 직접 입력
 1. `ResponseEntity`
+
 ```java
 @GetMapping("/response-body-string-v2")
 public ResponseEntity<String> responseBodyV2() {
-	return new ResponseEntity<>("ok", HttpStatus.OK);
+    return new ResponseEntity<>("ok", HttpStatus.OK);
 }
 ```
+
 ```java
 @GetMapping("/response-body-json-v1")
 public ResponseEntity<HelloData> responseBodyJsonV1() {
-	HelloData helloData = new HelloData();
-	helloData.setUsername("userA");
-	helloData.setAge(20);
-	return new ResponseEntity<>(helloData, HttpStatus.OK);
+    HelloData helloData = new HelloData();
+    helloData.setUsername("userA");
+    helloData.setAge(20);
+    return new ResponseEntity<>(helloData, HttpStatus.OK);
 }
 ```
 `ResponseEntity` 를 반환한다. **HTTP 메시지 컨버터**를 통해서 JSON 형식으로 변환되어서 반환된다.
 
 2. `@ResponseBody`
+
 ```java
 @ResponseBody
 @GetMapping("/response-body-string-v3")
@@ -668,6 +695,7 @@ public String responseBodyV3() {
     return "ok";
 }
 ```
+
 ```java
 @ResponseStatus(HttpStatus.OK)
 @ResponseBody
@@ -719,10 +747,10 @@ public HelloData responseBodyJsonV2() {
 ```java
 @PostMapping("/add")
 public String addItemV6(Item item, RedirectAttributes redirectAttributes) {
-	Item savedItem = itemRepository.save(item);
-	redirectAttributes.addAttribute("itemId", 	savedItem.getId());
-	redirectAttributes.addAttribute("status", true);
-	return "redirect:/basic/items/{itemId}";
+    Item savedItem = itemRepository.save(item);
+    redirectAttributes.addAttribute("itemId", savedItem.getId());
+    redirectAttributes.addAttribute("status", true);
+    return "redirect:/basic/items/{itemId}";
 }
 ```
 `RedirectAttributes` 를 사용하면 URL 인코딩도 해주고, `pathVarible` , 쿼리 파라미터까지 처리해준다.

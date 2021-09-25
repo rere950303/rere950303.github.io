@@ -46,4 +46,10 @@ var store = [{
         "tags": ["WEB"],
         "url": "https://rere950303.github.io/web/Relative-path&-Absolute-path/",
         "teaser": null
+      },{
+        "title": "[Spring][Thymeleaf] Thymeleaf 네츄럴 템플릿",
+        "excerpt":"타임리프 - 기본 기능 타임리프 소개 서버 사이드 HTML 렌더링 (SSR): 타임리프는 백엔드 서버에서 HTML을 동적으로 렌더링 하는 용도로 사용된다. 네츄럴 템플릿: 타임리프는 순수 HTML을 최대한 유지하는 특징이 있다. 타임리프로 작성된 파일은 해당 파일을 그대로 웹 브라우저에서 열어도 정상적인 HTML 결과를 확인할 수 있다. 스프링 통합 지원: 타임리프는 스프링과 자연스럽게...","categories": ["Spring/Thymeleaf"],
+        "tags": ["Thymeleaf","Spring"],
+        "url": "https://rere950303.github.io/spring/thymeleaf/Thymeleaf/",
+        "teaser": null
       }]
