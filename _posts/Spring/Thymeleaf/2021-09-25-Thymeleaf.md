@@ -9,6 +9,9 @@ tags:
   - Thymeleaf
   - Spring
 ---
+## 들어가며 
+해당 게시글은 인프런 김영한 강사님의 [스프링 MVC 2편 - 백엔드 웹 개발 활용 기술][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.
+
 ## 타임리프 - 기본 기능
 
 
@@ -740,10 +743,9 @@ public ItemType[] itemTypes() {
 <!-- radio button -->
 <div>
     <div>상품 종류</div>
-        <div th:each="type : ${itemTypes}" class="form-check form-check-inline">
+    <div th:each="type : ${itemTypes}" class="form-check form-check-inline">
         <input type="radio" th:field="*{itemType}" th:value="${type.name()}" class="form-check-input">
-        <label th:for="${#ids.prev('itemType')}" th:text="${type.description}" class="form-check-label"> BOOK
-        </label>
+        <label th:for="${#ids.prev('itemType')}" th:text="${type.description}" class="form-check-label"> BOOK </label>
     </div>
 </div>
 ```
@@ -808,3 +810,5 @@ public List<DeliveryCode> deliveryCodes() {
     </select>
 </div>
 ```
+
+[1]: https://www.inflearn.com/course/스프링-mvc-2/dashboard
