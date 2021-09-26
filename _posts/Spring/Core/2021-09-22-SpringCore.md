@@ -224,9 +224,9 @@ public @interface MainDiscountPolicy {
 ```java
 @Autowired
 private ApplicationContext ac;
+
 public int logic() {
     PrototypeBean prototypeBean = ac.getBean(PrototypeBean.class);
-
     prototypeBean.addCount();
     int count = prototypeBean.getCount();
     return count;

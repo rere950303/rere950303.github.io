@@ -80,7 +80,7 @@ tags:
 public class HelloServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response){
-	//애플리케이션 로직
+	// 애플리케이션 로직
     } 
 }
 ```
@@ -563,6 +563,11 @@ public String modelAttributeV1(@ModelAttribute HelloData helloData) {
 - `@ModelAttribute` 는 생략할 수 있다. 그런데 `@RequestParam` 도 생략할 수 있으니 혼란이 발생할 수 있다.
 	 1. ` String` , `int` , `Integer` 같은 단순 타입 = `@RequestParam`
 	2. 나머지 = `@ModelAttribute` (argument resolver 로 지정해둔 타입 외)
+- 다음과 같은 코드를 자동으로 넣어준다
+
+```java
+model.addAttribute("helloData", hdlloData);
+```
     
     
 ### HTTP 요청 메시지 - 단순 텍스트

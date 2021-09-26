@@ -48,8 +48,20 @@ var store = [{
         "teaser": null
       },{
         "title": "[Spring][Thymeleaf] Thymeleaf 네츄럴 템플릿",
-        "excerpt":"타임리프 - 기본 기능 타임리프 소개 서버 사이드 HTML 렌더링 (SSR): 타임리프는 백엔드 서버에서 HTML을 동적으로 렌더링 하는 용도로 사용된다. 네츄럴 템플릿: 타임리프는 순수 HTML을 최대한 유지하는 특징이 있다. 타임리프로 작성된 파일은 해당 파일을 그대로 웹 브라우저에서 열어도 정상적인 HTML 결과를 확인할 수 있다. 스프링 통합 지원: 타임리프는 스프링과 자연스럽게...","categories": ["Spring/Thymeleaf"],
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 MVC 2편 - 백엔드 웹 개발 활용 기술 강의를 바탕으로 쓰였음을 미리 밝힙니다. 타임리프 - 기본 기능 타임리프 소개 서버 사이드 HTML 렌더링 (SSR): 타임리프는 백엔드 서버에서 HTML을 동적으로 렌더링 하는 용도로 사용된다. 네츄럴 템플릿: 타임리프는 순수 HTML을 최대한 유지하는 특징이 있다. 타임리프로...","categories": ["Spring/Thymeleaf"],
         "tags": ["Thymeleaf","Spring"],
         "url": "https://rere950303.github.io/spring/thymeleaf/Thymeleaf/",
+        "teaser": null
+      },{
+        "title": "[Spring][MVC] SpringMVC-part2” last modified at: 2021-09-26T 12:06 +09:00 header: overlay color: ",
+        "excerpt":"메시지, 국제화 메시지, 국제화 소개 메시지: 여러 화면에 보이는 상품명, 가격, 수량 등 label 에 있는 단어를 변경하려면 다음 화면들을 다 찾아가면서 모두 변경해야 한다. 화면 수가 적으면 문제가 되지 않지만 화면이 수십개 이상이라면 수십개의 파일을 모두 고쳐야 한다. 왜냐하면 해당 HTML 파일에 메시지가 하드코딩 되어 있기 때문이다. —&gt; 이런...","categories": ["Spring/MVC"],
+        "tags": ["MVC","Spring"],
+        "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part2/",
+        "teaser": null
+      },{
+        "title": "[JAVA] Optional 클래스의 filter()메서드",
+        "excerpt":"public Optional&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate) { Objects.requireNonNull(predicate); if (!isPresent()) { return this; } else { return predicate.test(value) ? this : empty(); } } public static&lt;T&gt; Optional&lt;T&gt; empty() { @SuppressWarnings(\"unchecked\") Optional&lt;T&gt; t = (Optional&lt;T&gt;) EMPTY; return t; } private static final Optional&lt;?&gt; EMPTY = new Optional&lt;&gt;(); private Optional() { this.value...","categories": ["JAVA"],
+        "tags": ["JAVA","Optional","filter"],
+        "url": "https://rere950303.github.io/java/Optional-T-.filter()/",
         "teaser": null
       }]

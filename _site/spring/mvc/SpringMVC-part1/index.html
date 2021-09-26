@@ -471,8 +471,7 @@
           </aside>
         
         <h2 id="들어가며">들어가며</h2>
-<p>해당 게시글은 인프런 김영한 강사님의 <a href="https://www.inflearn.com/course/스프링-mvc-1/dashboard">스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
-</a> 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
+<p>해당 게시글은 인프런 김영한 강사님의 <a href="https://www.inflearn.com/course/스프링-mvc-1/dashboard">스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술</a> 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
 
 <h2 id="웹-애플리케이션-이해">웹 애플리케이션 이해</h2>
 
@@ -530,7 +529,7 @@
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloServlet</span> <span class="kd">extends</span> <span class="nc">HttpServlet</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">service</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">){</span>
-	<span class="c1">//애플리케이션 로직</span>
+	<span class="c1">// 애플리케이션 로직</span>
     <span class="o">}</span> 
 <span class="o">}</span>
 </code></pre></div></div>
@@ -1163,7 +1162,11 @@ must-revalidate"</span><span class="o">);</span>
       <li>나머지 = <code class="language-plaintext highlighter-rouge">@ModelAttribute</code> (argument resolver 로 지정해둔 타입 외)</li>
     </ol>
   </li>
+  <li>다음과 같은 코드를 자동으로 넣어준다</li>
 </ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"helloData"</span><span class="o">,</span> <span class="n">hdlloData</span><span class="o">);</span>
+</code></pre></div></div>
 
 <h3 id="http-요청-메시지---단순-텍스트">HTTP 요청 메시지 - 단순 텍스트</h3>
 <ul>
@@ -1488,6 +1491,98 @@ must-revalidate"</span><span class="o">);</span>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/java/Optional-T-.filter()/" rel="permalink">[JAVA] Optional 클래스의 filter()메서드
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-27T00:00:00+09:00">September 27, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/mvc/SpringMVC-part2/" rel="permalink">[Spring][MVC] SpringMVC-part2” last modified at: 2021-09-26T 12:06 +09:00 header: overlay color:
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-26T00:00:00+09:00">September 26, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          15 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
         <a href="/spring/thymeleaf/Thymeleaf/" rel="permalink">[Spring][Thymeleaf] Thymeleaf 네츄럴 템플릿
 </a>
       
@@ -1546,98 +1641,6 @@ must-revalidate"</span><span class="o">);</span>
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-09-24T00:00:00+09:00">September 24, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          최대 1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/core/SpringCore/" rel="permalink">[Spring][Core] 스프링 핵심 원리
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-09-22T00:00:00+09:00">September 22, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          7 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/sql/where&having/" rel="permalink">[SQL] WHERE과 HAVING의 차이
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-09-19T00:00:00+09:00">September 19, 2021</time>
       </span>
     
 
