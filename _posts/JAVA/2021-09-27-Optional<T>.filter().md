@@ -9,6 +9,7 @@ tags:
   - JAVA
   - Optional
   - filter
+toc: false
 ---
 ```java
 public Optional<T> filter(Predicate<? super T> predicate) {

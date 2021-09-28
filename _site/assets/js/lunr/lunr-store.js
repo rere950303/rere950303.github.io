@@ -53,15 +53,21 @@ var store = [{
         "url": "https://rere950303.github.io/spring/thymeleaf/Thymeleaf/",
         "teaser": null
       },{
-        "title": "[Spring][MVC] SpringMVC-part2",
-        "excerpt":"메시지, 국제화 메시지, 국제화 소개 메시지: 여러 화면에 보이는 상품명, 가격, 수량 등 label 에 있는 단어를 변경하려면 다음 화면들을 다 찾아가면서 모두 변경해야 한다. 화면 수가 적으면 문제가 되지 않지만 화면이 수십개 이상이라면 수십개의 파일을 모두 고쳐야 한다. 왜냐하면 해당 HTML 파일에 메시지가 하드코딩 되어 있기 때문이다. —&gt; 이런...","categories": ["Spring/MVC"],
-        "tags": ["MVC","Spring"],
-        "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part2/",
-        "teaser": null
-      },{
         "title": "[JAVA] Optional 클래스의 filter()메서드",
         "excerpt":"public Optional&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate) { Objects.requireNonNull(predicate); if (!isPresent()) { return this; } else { return predicate.test(value) ? this : empty(); } } public static&lt;T&gt; Optional&lt;T&gt; empty() { @SuppressWarnings(\"unchecked\") Optional&lt;T&gt; t = (Optional&lt;T&gt;) EMPTY; return t; } private static final Optional&lt;?&gt; EMPTY = new Optional&lt;&gt;(); private Optional() { this.value...","categories": ["JAVA"],
         "tags": ["JAVA","Optional","filter"],
         "url": "https://rere950303.github.io/java/Optional-T-.filter()/",
+        "teaser": null
+      },{
+        "title": "[Spring][JPA] 자바 ORM 표준 JPA",
+        "excerpt":"들어가며 JPA 소개 SQL 중심적인 개발의 문제점 객체 지향 언어 관계형 데이터베이스 객체를 관계형 데이터베이스에 관리 CRUD(객체를 SQL로, SQL을 자바 객체로) public class Member { private String memberId; private String name; ... } INSERT INTO MEMBER(MEMBER_ID, NAME) VALUES SELECT MEMBER_ID, NAME FROM MEMBER M UPDATE MEMBER SET ... 필드 수정시...","categories": ["Spring/JPA"],
+        "tags": ["JPA","Spring"],
+        "url": "https://rere950303.github.io/spring/jpa/JPA/",
+        "teaser": null
+      },{
+        "title": "[Spring][MVC] SpringMVC-part2",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 MVC 2편 - 백엔드 웹 개발 활용 기술 강의를 바탕으로 쓰였음을 미리 밝힙니다. 메시지, 국제화 메시지, 국제화 소개 메시지: 여러 화면에 보이는 상품명, 가격, 수량 등 label 에 있는 단어를 변경하려면 다음 화면들을 다 찾아가면서 모두 변경해야 한다. 화면 수가 적으면 문제가 되지...","categories": ["Spring/MVC"],
+        "tags": ["MVC","Spring"],
+        "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part2/",
         "teaser": null
       }]
