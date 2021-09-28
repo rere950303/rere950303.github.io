@@ -473,7 +473,7 @@ public class SpringMemberControllerV2 {
 ### 스프링 MVC - 실용적인 방식
 - ViewName 직접 반환: 뷰의 논리 이름을 반환할 수 있다.
 - Model 파라미터: `Model` 객체를 파라미터로 받을 수 있다.
-- @RequestParam 사용: 스프링은 HTTP 요청 파라미터를 `@RequestParam` 으로 받을 수 있다. GET 쿼리 파라미터, POST Form 방식을 모두 지원한다.
+- `@RequestParam` 사용: 스프링은 HTTP 요청 파라미터를 `@RequestParam` 으로 받을 수 있다. GET 쿼리 파라미터, POST Form 방식을 모두 지원한다.
 - `@RequestMapping` -\> `@GetMapping`, `@PostMapping`
 
 
@@ -519,7 +519,7 @@ public String mappingProduces() {
 ```
 
 
-### HTTP 요청 파라미터 - @RequestParam
+### HTTP 요청 파라미터 - `@RequestParam`
 - GET 쿼리 파리미터 전송 방식이든, POST HTML Form 전송 방식이든 둘다 형식이 같으므로 구분없이 조회할 수 있다. 이것을 간단히 요청 파라미터(request parameter) 조회라 한다.
 - `String` , `int` , `Integer` 등의 단순 타입이면 `@RequestParam` 도 생략 가능
 

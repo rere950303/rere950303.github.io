@@ -384,12 +384,13 @@
         
         <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">filter</span><span class="o">(</span><span class="nc">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="no">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">Objects</span><span class="o">.</span><span class="na">requireNonNull</span><span class="o">(</span><span class="n">predicate</span><span class="o">);</span>
+    
     <span class="k">if</span> <span class="o">(!</span><span class="n">isPresent</span><span class="o">())</span> <span class="o">{</span>
         <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="o">?</span> <span class="k">this</span> <span class="o">:</span> <span class="n">empty</span><span class="o">();</span>
     <span class="o">}</span>
-<span class="o">}</span>
+<span class="o">}</span> 
 </code></pre></div></div>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">empty</span><span class="o">()</span> <span class="o">{</span>
@@ -404,7 +405,7 @@
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nf">Optional</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="o">}</span>
+<span class="o">}</span>     
 </code></pre></div></div>
 
 <p>함수형 인터페이스인 <code class="language-plaintext highlighter-rouge">Predicate</code>의 <code class="language-plaintext highlighter-rouge">test()</code>를 구현한 익명 클래스 객체를 람다식으로 하여 매개변수로 넘겨주게 된다.
@@ -486,7 +487,7 @@
       
   <nav class="pagination">
     
-      <a href="/spring/mvc/SpringMVC-part2/" class="pagination--pager" title="[Spring][MVC] SpringMVC-part2” last modified at: 2021-09-26T 12:06 +09:00 header: overlay color:
+      <a href="/spring/mvc/SpringMVC-part2/" class="pagination--pager" title="[Spring][MVC] SpringMVC-part2
 ">이전</a>
     
     
@@ -514,7 +515,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/spring/mvc/SpringMVC-part2/" rel="permalink">[Spring][MVC] SpringMVC-part2” last modified at: 2021-09-26T 12:06 +09:00 header: overlay color:
+        <a href="/spring/mvc/SpringMVC-part2/" rel="permalink">[Spring][MVC] SpringMVC-part2
 </a>
       
     </h2>
@@ -538,7 +539,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          21 분 소요
+          49 분 소요
         
       </span>
     

@@ -43,19 +43,22 @@ tags:
 ```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
-<h1>컨텐츠에 데이터 출력하기</h1>
-<ul>
-    <li>th:text 사용 <span th:text="${data}"></span></li> 
-    <li>컨텐츠 안에서 직접 출력하기 = [[${data}]]</li>
-</ul>
+    <h1>컨텐츠에 데이터 출력하기</h1>
+    <ul>
+        <li>th:text 사용 <span th:text="${data}"></span></li>
+        <li>컨텐츠 안에서 직접 출력하기 = [[${data}]]</li>
+    </ul>
 
 </body>
+
 </html>
 ```
 - Escape: HTML문서는 \<,\> 같은 특수문자를 기반으로 정의된다. 따라서 뷰 템플릿 으로 HTML 화면을 생성할 때는 출력하는 데이터에 이러한 특수 문자가 있는 것을 주의해서 사용해야 한다.<br>
@@ -70,23 +73,26 @@ tags:
 ```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
-<h1>text vs utext</h1>
+    <h1>text vs utext</h1>
     <ul>
         <li>th:text = <span th:text="${data}"></span></li>
         <li>th:utext = <span th:utext="${data}"></span></li>
     </ul>
-<h1><span th:inline="none">[[...]] vs [(...)]</span></h1>  
+    <h1><span th:inline="none">[[...]] vs [(...)]</span></h1>
     <ul>
         <li><span th:inline="none">[[...]] = </span>[[${data}]]</li>
         <li><span th:inline="none">[(...)] = </span>[(${data})]</li>
     </ul>
 </body>
+
 </html>
 ```
 - escape를 기본으로 하고, 꼭 필요한 때만 unescape를 사용하자.
@@ -110,7 +116,7 @@ tags:
 </ul>
 
 <ul>Map
-    <li>${userMap['userA'].username} =  <span th:text="${userMap['userA'].username}"></span></li>
+    <li>${userMap['userA'].username} = <span th:text="${userMap['userA'].username}"></span></li>
     <li>${userMap['userA']['username']} = <span th:text="${userMap['userA']['username']}"></span></li>
     <li>${userMap['userA'].getUsername()} = <span th:text="${userMap['userA'].getUsername()}"></span></li>
 </ul>
@@ -120,9 +126,9 @@ tags:
 
 ```html
 <h1>지역 변수 - (th:with)</h1>
-    <div th:with="first=${users[0]}">
-        <p>처음 사람의 이름은 <span th:text="${first.username}"></span></p>
-    </div>
+<div th:with="first=${users[0]}">
+    <p>처음 사람의 이름은 <span th:text="${first.username}"></span></p>
+</div>
 ```
 
 
@@ -295,14 +301,14 @@ HTML안에서 사용하기 때문에 HTML 엔티티(escape)를 사용하는 부�
 
 ```html
 <tr th:each="user, userStat : ${users}">
-	<td th:text="${userStat.count}">1</td>
-	<td th:text="${user.username}">username</td>
-	<td th:switch="${user.age}">
-		<span th:case="10">10살</span> 
-		<span th:case="20">20살</span> 
-		<span th:case="*">기타</span>
-	</td>
- </tr>
+    <td th:text="${userStat.count}">1</td>
+    <td th:text="${user.username}">username</td>
+    <td th:switch="${user.age}">
+        <span th:case="10">10살</span>
+        <span th:case="20">20살</span>
+        <span th:case="*">기타</span>
+    </td>
+</tr>
 ```
 
 
@@ -334,12 +340,12 @@ HTML안에서 사용하기 때문에 HTML 엔티티(escape)를 사용하는 부�
 
 ```html
 <script th:inline="javascript">
-	var username = [[${user.username}]];
-	var age = [[${user.age}]];
-	//자바스크립트 내추럴 템플릿
-	var username2 = /*[[${user.username}]]*/ "test username";
-	//객체
-	var user = [[${user}]];
+    var username = [[${ user.username }]];
+    var age = [[${ user.age }]];
+    //자바스크립트 내추럴 템플릿
+    var username2 = /*[[${user.username}]]*/ "test username";
+    //객체
+    var user = [[${ user }]];
 </script>
 ```
 - 인라인 사용 전 `var username = userA;`
@@ -355,9 +361,9 @@ HTML안에서 사용하기 때문에 HTML 엔티티(escape)를 사용하는 부�
 
 ```html
 <script th:inline="javascript">
-	  [# th:each="user, stat : ${users}"]
-	  var user[[${stat.count}]] = [[${user}]];
-	  [/]
+    [# th: each = "user, stat : ${users}"]
+    var user[[${ stat.count }]] = [[${ user }]];
+    [/]
 </script>
 ```
 
@@ -367,60 +373,65 @@ HTML안에서 사용하기 때문에 HTML 엔티티(escape)를 사용하는 부�
 ```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
-<footer th:fragment="copy"> 푸터 자리 입니다.
-</footer>
-<footer th:fragment="copyParam (param1, param2)">
-	<p>파라미터 자리 입니다.</p>
-	<p th:text="${param1}"></p>
-	<p th:text="${param2}"></p>
-</footer>
+    <footer th:fragment="copy"> 푸터 자리 입니다.
+    </footer>
+    <footer th:fragment="copyParam (param1, param2)">
+        <p>파라미터 자리 입니다.</p>
+        <p th:text="${param1}"></p>
+        <p th:text="${param2}"></p>
+    </footer>
 </body>
+
 </html>
 ```
 
 ```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
+
 <body>
-	<h1>부분 포함</h1>
-		<h2>부분 포함 insert</h2>
-			<div th:insert="~{template/fragment/footer :: copy}">
-			</div>
-		<h2>부분 포함 replace</h2>
-			<div th:replace="~{template/fragment/footer :: copy}">
-			</div>
-		<h2>부분 포함 단순 표현식</h2>
-			<div th:replace="template/fragment/footer :: copy">
-			</div>
-	<h1>파라미터 사용</h1>
-		<div th:replace="~{template/fragment/footer :: copyParam ('데이터1', '데이터 2')}">
-		</div>
+    <h1>부분 포함</h1>
+    <h2>부분 포함 insert</h2>
+    <div th:insert="~{template/fragment/footer :: copy}">
+    </div>
+    <h2>부분 포함 replace</h2>
+    <div th:replace="~{template/fragment/footer :: copy}">
+    </div>
+    <h2>부분 포함 단순 표현식</h2>
+    <div th:replace="template/fragment/footer :: copy">
+    </div>
+    <h1>파라미터 사용</h1>
+    <div th:replace="~{template/fragment/footer :: copyParam ('데이터1', '데이터 2')}">
+    </div>
 </body>
+
 </html>
 ```
 
 - `th:insert` 를 사용하면 현재 태그( `div` ) 내부에 추가한다.
 
 ```html
-<h2>부분 포함 insert</h2> 
+<h2>부분 포함 insert</h2>
 <div>
-<footer>
-푸터 자리 입니다.
-</footer>
+    <footer>
+        푸터 자리 입니다.
+    </footer>
 </div>
 ```
 
 - `th:replace` 를 사용하면 현재 태그( `div` )를 대체한다.
 
 ```html
-<h2>부분 포함 replace</h2> 
+<h2>부분 포함 replace</h2>
 <footer>
-푸터 자리 입니다.
+    푸터 자리 입니다.
 </footer>
 ```
 - 부분 포함 단순 표현식: `~{...}` 를 사용하는 것이 원칙이지만 템플릿 조각을 사용하는 코드가 단순하면 이 부분을 생략할 수 있다.
@@ -428,17 +439,17 @@ HTML안에서 사용하기 때문에 HTML 엔티티(escape)를 사용하는 부�
 ```html
 <h2>부분 포함 단순 표현식</h2>
 <footer>
-푸터 자리 입니다. 
+    푸터 자리 입니다.
 </footer>
 ```
 - 파라미터 사용
 
 ```html
-<h1>파라미터 사용</h1> 
+<h1>파라미터 사용</h1>
 <footer>
-<p>파라미터 자리 입니다.</p> 
-<p>데이터1</p> 
-<p>데이터2</p>
+    <p>파라미터 자리 입니다.</p>
+    <p>데이터1</p>
+    <p>데이터2</p>
 </footer>
 ```
 
@@ -447,43 +458,50 @@ HTML안에서 사용하기 때문에 HTML 엔티티(escape)를 사용하는 부�
 `<head>` 에 공통으로 사용하는 `css` , `javascript` 같은 정보들이 있는데, 이러한 공통 정보들을 한 곳에 모아두고, 공통으로 사용하지만, 각 페이지마다 필요한 정보를 더 추가해서 사용하고 싶다면 다음과 같이 사용하면 된다.
 ```html
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="common_header(title,links)">
-	<title th:replace="${title}">레이아웃 타이틀</title>
-	<!-- 공통 -->
-	<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/awesomeapp.css}">
-	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
-	<script type="text/javascript" th:src="@{/sh/scripts/codebase.js}"></script>
-<!-- 추가 -->
-	<th:block th:replace="${links}" />
+    <title th:replace="${title}">레이아웃 타이틀</title>
+    <!-- 공통 -->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/awesomeapp.css}">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+    <script type="text/javascript" th:src="@{/sh/scripts/codebase.js}"></script>
+    <!-- 추가 -->
+    <th:block th:replace="${links}" />
 </head>
 ```
 
 ```html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="template/layout/base :: common_header(~{::title},~{::link})">
-	<title>메인 타이틀</title>
-	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/themes/smoothness/jquery-ui.css}">
-</head> 
-<body> 메인 컨텐츠 </body> 
+    <title>메인 타이틀</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/themes/smoothness/jquery-ui.css}">
+</head>
+
+<body> 메인 컨텐츠 </body>
+
 </html>
 ```
 
 ```html
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>메인 타이틀</title> 
-	<!-- 공통 -->
-	<link rel="stylesheet" type="text/css" media="all" href="/css/awesomeapp.css">
-	<link rel="shortcut icon" href="/images/favicon.ico">
-	<script type="text/javascript" src="/sh/scripts/codebase.js"></script>
-	<!-- 추가 -->
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/themes/smoothness/jquery-ui.css">
-</head> 
-<body> 메인 컨텐츠</body> 
+    <title>메인 타이틀</title>
+    <!-- 공통 -->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/awesomeapp.css">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <script type="text/javascript" src="/sh/scripts/codebase.js"></script>
+    <!-- 추가 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/themes/smoothness/jquery-ui.css">
+</head>
+
+<body> 메인 컨텐츠</body>
+
 </html>
 ```
 
@@ -495,51 +513,61 @@ HTML안에서 사용하기 때문에 HTML 엔티티(escape)를 사용하는 부�
 <!DOCTYPE html>
 <html th:fragment="layout (title, content)" xmlns:th="http://
   www.thymeleaf.org">
+
 <head>
-	<title th:replace="${title}">레이아웃 타이틀</title> 
+    <title th:replace="${title}">레이아웃 타이틀</title>
 </head>
+
 <body>
-<h1>레이아웃 H1</h1>
-<div th:replace="${content}">
-	<p>레이아웃 컨텐츠</p>
-</div>
-<footer> 레이아웃 푸터</footer>
+    <h1>레이아웃 H1</h1>
+    <div th:replace="${content}">
+        <p>레이아웃 컨텐츠</p>
+    </div>
+    <footer> 레이아웃 푸터</footer>
 </body>
+
 </html>
 ```
 
 ```html
 <!DOCTYPE html>
-<html th:replace="~{template/layoutExtend/layoutFile :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{template/layoutExtend/layoutFile :: layout(~{::title}, ~{::section})}"
+    xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<title>메인 페이지 타이틀</title> 
+    <title>메인 페이지 타이틀</title>
 </head>
+
 <body>
-<section>
-	<p>메인 페이지 컨텐츠</p>
-	<div>메인 페이지 포함 내용</div> 
-</section>
+    <section>
+        <p>메인 페이지 컨텐츠</p>
+        <div>메인 페이지 포함 내용</div>
+    </section>
 </body>
+
 </html>
 ```
 
 ```html
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>메인 페이지 타이틀</title> 
+    <title>메인 페이지 타이틀</title>
 </head>
+
 <body>
     <h1>레이아웃 H1</h1>
 
     <section>
-        <p>메인 페이지 컨텐츠</p> 
-        <div>메인 페이지 포함 내용</div> 
+        <p>메인 페이지 컨텐츠</p>
+        <div>메인 페이지 포함 내용</div>
     </section>
-<footer> 
-레이아웃 푸터
-</footer>
+    <footer>
+        레이아웃 푸터
+    </footer>
 </body>
+
 </html>
 ```
 
@@ -689,9 +717,8 @@ public Map<String, String> regions() {
 <div>
     <div>등록 지역</div>
     <div th:each="region : ${regions}" class="form-check form-check-inline">
-            <input type="checkbox" th:field="*{regions}" th:value="${region.key}" class="form-check-input">
-            <label th:for="${#ids.prev('regions')}" th:text="${region.value}" class="form-check-label">서울
-            </label>
+        <input type="checkbox" th:field="*{regions}" th:value="${region.key}" class="form-check-input">
+        <label th:for="${#ids.prev('regions')}" th:text="${region.value}" class="form-check-label">서울</label>
     </div>
 </div>
 ```
@@ -787,12 +814,13 @@ public List<DeliveryCode> deliveryCodes() {
 <!-- SELECT -->
 <div>
     <div>배송 방식</div>
-    <select th:field="*{deliveryCode}" class="form-select"> 
+    <select th:field="*{deliveryCode}" class="form-select">
         <option value="">==배송 방식 선택==</option>
-        <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}" th:text="${deliveryCode.displayName}">FAST</option>
+        <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}"
+            th:text="${deliveryCode.displayName}">FAST</option>
     </select>
 </div>
-  
+
 <hr class="my-4">
 ```
 <br>

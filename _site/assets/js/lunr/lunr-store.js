@@ -53,7 +53,7 @@ var store = [{
         "url": "https://rere950303.github.io/spring/thymeleaf/Thymeleaf/",
         "teaser": null
       },{
-        "title": "[Spring][MVC] SpringMVC-part2” last modified at: 2021-09-26T 12:06 +09:00 header: overlay color: ",
+        "title": "[Spring][MVC] SpringMVC-part2",
         "excerpt":"메시지, 국제화 메시지, 국제화 소개 메시지: 여러 화면에 보이는 상품명, 가격, 수량 등 label 에 있는 단어를 변경하려면 다음 화면들을 다 찾아가면서 모두 변경해야 한다. 화면 수가 적으면 문제가 되지 않지만 화면이 수십개 이상이라면 수십개의 파일을 모두 고쳐야 한다. 왜냐하면 해당 HTML 파일에 메시지가 하드코딩 되어 있기 때문이다. —&gt; 이런...","categories": ["Spring/MVC"],
         "tags": ["MVC","Spring"],
         "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part2/",

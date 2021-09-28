@@ -13,12 +13,13 @@ tags:
 ```java
 public Optional<T> filter(Predicate<? super T> predicate) {
     Objects.requireNonNull(predicate);
+    
     if (!isPresent()) {
         return this;
     } else {
         return predicate.test(value) ? this : empty();
     }
-}
+} 
 ```
 
 ```java
@@ -36,7 +37,7 @@ private static final Optional<?> EMPTY = new Optional<>();
 ```java
 private Optional() {
     this.value = null;
-}
+}     
 ```
 
 함수형 인터페이스인 `Predicate`의 `test()`를 구현한 익명 클래스 객체를 람다식으로 하여 매개변수로 넘겨주게 된다.
