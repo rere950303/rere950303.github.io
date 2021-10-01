@@ -60,7 +60,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[Spring][JPA] 자바 ORM 표준 JPA",
-        "excerpt":"들어가며 JPA 소개 SQL 중심적인 개발의 문제점 객체 지향 언어 관계형 데이터베이스 객체를 관계형 데이터베이스에 관리 CRUD(객체를 SQL로, SQL을 자바 객체로) public class Member { private String memberId; private String name; ... } INSERT INTO MEMBER(MEMBER_ID, NAME) VALUES SELECT MEMBER_ID, NAME FROM MEMBER M UPDATE MEMBER SET ... 필드 수정시...","categories": ["Spring/JPA"],
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 자바 ORM 표준 JPA 프로그래밍 - 기본편 강의와 도서를 바탕으로 쓰였음을 미리 밝힙니다. JPA 소개 SQL 중심적인 개발의 문제점 객체 지향 언어 관계형 데이터베이스 객체를 관계형 데이터베이스에 관리 CRUD(객체를 SQL로, SQL을 자바 객체로) public class Member { private String memberId; private String name; ......","categories": ["Spring/JPA"],
         "tags": ["JPA","Spring"],
         "url": "https://rere950303.github.io/spring/jpa/JPA/",
         "teaser": null

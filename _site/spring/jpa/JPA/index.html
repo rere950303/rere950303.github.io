@@ -1,0 +1,2676 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Spring][JPA] 자바 ORM 표준 JPA - YHW Blog</title>
+<meta name="description" content="새로운 배움을 기록하고 공유합니다">
+
+
+  <meta name="author" content="yhw">
+  
+  <meta property="article:author" content="yhw">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="YHW Blog">
+<meta property="og:title" content="[Spring][JPA] 자바 ORM 표준 JPA">
+<meta property="og:url" content="https://rere950303.github.io/spring/jpa/JPA/">
+
+
+  <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-09-28T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://rere950303.github.io/spring/jpa/JPA/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "yhw",
+      "url": "https://rere950303.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="YHW Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          YHW Blog
+          <span class="site-subtitle">새로운 배움을 기록하고 공유합니다</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#jpa" itemprop="item"><span itemprop="name">Jpa</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Spring][JPA] 자바 ORM 표준 JPA</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio/photo.png" alt="yhw" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">yhw</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>어제와 다른 오늘, 오늘 같은 내일</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:yhwjjang1995@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Spring][JPA] 자바 ORM 표준 JPA">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-09-28T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][JPA] 자바 ORM 표준 JPA
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-28T00:00:00+09:00">September 28, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          22 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#jpa-소개">JPA 소개</a>
+    <ul>
+      <li><a href="#sql-중심적인-개발의-문제점">SQL 중심적인 개발의 문제점</a></li>
+      <li><a href="#jpajava-persistence-api-소개">JPA(Java Persistence API) 소개</a></li>
+    </ul>
+  </li>
+  <li><a href="#jpa-시작하기애플리케이션-개발">JPA 시작하기(애플리케이션 개발)</a>
+    <ul>
+      <li><a href="#jpa-구동-방식">JPA 구동 방식</a></li>
+      <li><a href="#jpql">JPQL</a></li>
+    </ul>
+  </li>
+  <li><a href="#영속성-관리---내부-동작-방식">영속성 관리 - 내부 동작 방식</a>
+    <ul>
+      <li><a href="#영속성-컨텍스트-1">영속성 컨텍스트 1</a></li>
+      <li><a href="#영속성-컨텍스트-2">영속성 컨텍스트 2</a></li>
+    </ul>
+  </li>
+  <li><a href="#엔티티-매핑">엔티티 매핑</a>
+    <ul>
+      <li><a href="#객체와-테이블-매핑">객체와 테이블 매핑</a></li>
+      <li><a href="#데이터베이스-스키마-자동-생성">데이터베이스 스키마 자동 생성</a></li>
+      <li><a href="#필드와-컬럼-매핑">필드와 컬럼 매핑</a></li>
+      <li><a href="#기본-키-매핑">기본 키 매핑</a></li>
+    </ul>
+  </li>
+  <li><a href="#연관관계-매핑-기초">연관관계 매핑 기초</a>
+    <ul>
+      <li><a href="#연관관계가-필요한-이유">연관관계가 필요한 이유</a></li>
+      <li><a href="#단방향-연관관계">단방향 연관관계</a></li>
+      <li><a href="#양방향-연관관계와-연관관계의-주인1---기본">양방향 연관관계와 연관관계의 주인1 - 기본</a></li>
+      <li><a href="#양방향-연관관계와-연관관계의-주인2---주의점">양방향 연관관계와 연관관계의 주인2 - 주의점</a></li>
+    </ul>
+  </li>
+  <li><a href="#다양한-연관관계-매핑">다양한 연관관계 매핑</a>
+    <ul>
+      <li><a href="#연관관계-매핑시-고려사항-3가지">연관관계 매핑시 고려사항 3가지</a></li>
+      <li><a href="#다대일-n1">다대일 [N:1]</a></li>
+      <li><a href="#일대다-1n">일대다 [1:N]</a></li>
+      <li><a href="#일대일-11">일대일 [1:1]</a></li>
+      <li><a href="#다대다-nm">다대다 [N:M]</a></li>
+    </ul>
+  </li>
+  <li><a href="#고급-매핑">고급 매핑</a>
+    <ul>
+      <li><a href="#상속관계-매핑">상속관계 매핑</a></li>
+      <li><a href="#mappedsuperclass---매핑-정보-상속">@MappedSuperclass - 매핑 정보 상속</a></li>
+    </ul>
+  </li>
+  <li><a href="#프록시와-연관관계-관리">프록시와 연관관계 관리</a>
+    <ul>
+      <li><a href="#프록시">프록시</a></li>
+      <li><a href="#즉시-로딩과-지연-로딩">즉시 로딩과 지연 로딩</a></li>
+      <li><a href="#영속성-전이-cascade">영속성 전이: CASCADE</a></li>
+      <li><a href="#고아-객체">고아 객체</a></li>
+    </ul>
+  </li>
+  <li><a href="#값-타입">값 타입</a>
+    <ul>
+      <li><a href="#기본값-타입">기본값 타입</a></li>
+      <li><a href="#임베디드-타입">임베디드 타입</a></li>
+      <li><a href="#값-타입과-불변-객체">값 타입과 불변 객체</a></li>
+      <li><a href="#값-타입의-비교">값 타입의 비교</a></li>
+      <li><a href="#값-타입-컬렉션권장하지-않음">값 타입 컬렉션(권장하지 않음)</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향-쿼리-언어1---기본-문법">객체지향 쿼리 언어1 - 기본 문법</a>
+    <ul>
+      <li><a href="#소개">소개</a></li>
+      <li><a href="#기본-문법과-쿼리-api">기본 문법과 쿼리 API</a></li>
+      <li><a href="#프로젝션select">프로젝션(SELECT)</a></li>
+      <li><a href="#페이징-api">페이징 API</a></li>
+      <li><a href="#조인">조인</a></li>
+      <li><a href="#서브-쿼리">서브 쿼리</a></li>
+      <li><a href="#조건식---case-식">조건식 - CASE 식</a></li>
+      <li><a href="#jpql-사용자-정의-함수">JPQL 사용자 정의 함수</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향-쿼리-언어2---중급-문법">객체지향 쿼리 언어2 - 중급 문법</a>
+    <ul>
+      <li><a href="#경로-표현식">경로 표현식</a></li>
+      <li><a href="#페치-조인-1---기본">페치 조인 1 - 기본</a></li>
+      <li><a href="#페치-조인-2---한계">페치 조인 2 - 한계</a></li>
+      <li><a href="#엔티티-직접-사용">엔티티 직접 사용</a></li>
+      <li><a href="#벌크-연산">벌크 연산</a></li>
+    </ul>
+  </li>
+</ul>
+
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="들어가며">들어가며</h2>
+<p>해당 게시글은 인프런 김영한 강사님의 <a href="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard">자바 ORM 표준 JPA 프로그래밍 - 기본편</a> 강의와 도서를 바탕으로 쓰였음을 미리 밝힙니다.</p>
+
+<h2 id="jpa-소개">JPA 소개</h2>
+<h3 id="sql-중심적인-개발의-문제점">SQL 중심적인 개발의 문제점</h3>
+<ul>
+  <li>객체 지향 언어</li>
+  <li>관계형 데이터베이스</li>
+  <li>객체를 관계형 데이터베이스에 관리</li>
+  <li>CRUD(객체를 SQL로, SQL을 자바 객체로)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">memberId</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">MEMBER</span><span class="p">(</span><span class="n">MEMBER_ID</span><span class="p">,</span> <span class="n">NAME</span><span class="p">)</span> <span class="k">VALUES</span> 
+<span class="k">SELECT</span> <span class="n">MEMBER_ID</span><span class="p">,</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">MEMBER</span> <span class="n">M</span>
+<span class="k">UPDATE</span> <span class="n">MEMBER</span> <span class="k">SET</span> <span class="p">...</span>
+</code></pre></div></div>
+<ul>
+  <li>필드 수정시 SQL을 모두 수정해야함.</li>
+  <li>패러다임의 불일치(객체 vs 관계형 데이터베이스)</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/1.png">
+          <img src="/assets/images/post/Spring/JPA/basic/1.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>객체와 관계형 데이터베이스의 차이
+    <ul>
+      <li>상속</li>
+      <li>연관관계</li>
+      <li>데이터 타입</li>
+      <li>데이터 식별 방법</li>
+    </ul>
+  </li>
+  <li>상속</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/2.png">
+          <img src="/assets/images/post/Spring/JPA/basic/2.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>INSERT 쿼리를 두 번 생성해야 한다.</li>
+  <li>
+    <p>각각의 테이블에 따른 조인 SQL 작성</p>
+  </li>
+  <li>연관관계</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/3.png">
+          <img src="/assets/images/post/Spring/JPA/basic/3.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>객체는 참조를 사용: <code class="language-plaintext highlighter-rouge">member.getTeam()</code></li>
+  <li>테이블은 외래 키를 사용: <code class="language-plaintext highlighter-rouge">JOIN ON M.TEAM_ID = T.TEAM_ID</code></li>
+  <li>객체를 테이블에 맞추어 모델링 하는 경우 객체 지향 언어의 장점이 사라진다.</li>
+  <li>객체 모델링 저장을 하는 경우 조회시에 모든 데이터를 끌고 와서 객체를 생성한 후 참조관계를 설정해주어야 한다.</li>
+  <li>객체 그래프 탐색시 처음 실행하는 SQL에 따라 탐색 범위가 결정된다.</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/4.png">
+          <img src="/assets/images/post/Spring/JPA/basic/4.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<p>–&gt; 객체답게 모델링 할수록 매핑 작업만 늘어난다.</p>
+
+<h3 id="jpajava-persistence-api-소개">JPA(Java Persistence API) 소개</h3>
+<ul>
+  <li>자바 진영의 ORM 기술 표준</li>
+  <li>Object-relational mapping(객체 관계 매핑)</li>
+  <li>객체는 객체대로 설계</li>
+  <li>관계형 데이터베이스는 관계형 데이터베이스대로 설계</li>
+  <li>ORM 프레임워크가 중간에서 매핑</li>
+  <li>JPA는 애플리케이션과 JDBC 사이에서 동작</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/5.png">
+          <img src="/assets/images/post/Spring/JPA/basic/5.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/6.png">
+          <img src="/assets/images/post/Spring/JPA/basic/6.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/7.png">
+          <img src="/assets/images/post/Spring/JPA/basic/7.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>JPA는 표준 명세</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/8.png">
+          <img src="/assets/images/post/Spring/JPA/basic/8.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>JPA를 왜 사용해야 하는가?
+    <ul>
+      <li>SQL 중심적인 개발에서 객체 중심으로 개발</li>
+      <li>생산성</li>
+      <li>유지보수</li>
+      <li>패러다임의 불일치 해결</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>생산성 - JPA와 CRUD
+    <ul>
+      <li>저장: <code class="language-plaintext highlighter-rouge">jpa.persist(member)</code></li>
+      <li>조회: <code class="language-plaintext highlighter-rouge">Member member = jpa.find(memberId)</code></li>
+      <li>수정: <code class="language-plaintext highlighter-rouge">member.setName(“변경할 이름”)</code></li>
+      <li>삭제: <code class="language-plaintext highlighter-rouge">jpa.remove(member)</code></li>
+    </ul>
+  </li>
+  <li>유지보수(기존: 필드 변경시 모든 SQL 수정)
+    <ul>
+      <li>JPA 사용시 필드만 추가하면 됨</li>
+    </ul>
+  </li>
+  <li>JPA와 패러다임의 불일치 해결
+    <ul>
+      <li>JPA와 상속: 여러 개의 INSERT 쿼리 자동생성, 여러 개의 테이블을 조인해서 SELECT 쿼리 자동생성</li>
+      <li>JPA와 연관관계, 객체 그래프 탐색: 서로 다른 두 객체를 연관관계 설정시 적절한 INSERT SELECT 쿼리 자동생성</li>
+      <li>JPA와 비교하기: 동일한 트랜잭션에서 조회한 엔티티는 같음을 보장(== 동등성 비교)
+     - JPA의 성능 최적화 기능
+       - 1차 캐시와 동일성(identity) 보장
+       - 트랜잭션을 지원하는 쓰기 지연(transactional write-behind)
+       - 지연 로딩(Lazy Loading)</li>
+    </ul>
+  </li>
+  <li>1차 캐시와 동일성 보장: 같은 트랜잭션 안에서는 같은 엔티티를 반환(약간의 조회 성능 향상)</li>
+  <li>트랜잭션을 지원하는 쓰기 지연(INSERT): 트랜잭션을 커밋할 때까지 INSERT SQL을 모음, JDBC BATCH SQL 기능을 사용해서 한번에 SQL 전송</li>
+  <li>트랜잭션을 지원하는 쓰기 지연(UPDATE): UPDATE, DELETE로 인한 로우(ROW)락 시간 최소화, 트랜잭션 커밋 시 UPDATE, DELETE SQL 실행하고, 바로 커밋</li>
+  <li>지연 로딩과 즉시 로딩
+    <ul>
+      <li>지연로딩:객체가 실제 사용될 때 로딩</li>
+      <li>즉시 로딩: JOIN SQL로 한번에 연관된 객체까지 미리 조회</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="jpa-시작하기애플리케이션-개발">JPA 시작하기(애플리케이션 개발)</h2>
+<h3 id="jpa-구동-방식">JPA 구동 방식</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/9.png">
+          <img src="/assets/images/post/Spring/JPA/basic/9.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>엔티티 매니저 팩토리는 하나만 생성해서 애플리케이션 전체에서 공유</li>
+  <li>엔티티 매니저는 쓰레드간에 공유X (사용하고 버려야 한다).</li>
+  <li>JPA의 모든 데이터 변경은 트랜잭션 안에서 실행</li>
+</ul>
+
+<h3 id="jpql">JPQL</h3>
+<ul>
+  <li>애플리케이션이 필요한 데이터만 DB에서 불러오려면 결국 검색 조건이 포함된 SQL이 필요</li>
+  <li>JPA는 SQL을 추상화한 JPQL이라는 객체 지향 쿼리 언어 제공</li>
+  <li>JPQL은 엔티티 객체를 대상으로 쿼리</li>
+  <li>SQL은 데이터베이스 테이블을 대상으로 쿼리</li>
+  <li>SQL을 추상화해서 특정 데이터베이스 SQL에 의존X</li>
+  <li>JPQL을 한마디로 정의하면 객체 지향 SQL</li>
+</ul>
+
+<h2 id="영속성-관리---내부-동작-방식">영속성 관리 - 내부 동작 방식</h2>
+<h3 id="영속성-컨텍스트-1">영속성 컨텍스트 1</h3>
+<ul>
+  <li>엔티티 매니저 팩토리와 엔티티 매니저</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/10.png">
+          <img src="/assets/images/post/Spring/JPA/basic/10.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>영속성 컨텍스트는 논리적인 개념(눈에 보이지 않음)</li>
+  <li>엔티티 매니저를 통해서 영속성 컨텍스트에 접근</li>
+  <li>엔티티의 생명주기
+    <ul>
+      <li>비영속 (new/transient): 영속성 컨텍스트와 전혀 관계가 없는 새로운 상태</li>
+      <li>영속 (managed): 영속성 컨텍스트에 관리되는 상태</li>
+      <li>준영속 (detached): 영속성 컨텍스트에 저장되었다가 분리된 상태</li>
+      <li>삭제 (removed): 삭제된 상태</li>
+    </ul>
+  </li>
+  <li>영속</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/11.png">
+          <img src="/assets/images/post/Spring/JPA/basic/11.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//객체를 생성한 상태(비영속)</span>
+<span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+<span class="n">member</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+<span class="n">member</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="err">“</span><span class="n">회원1</span><span class="err">”</span><span class="o">);</span>
+<span class="nc">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+<span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">().</span><span class="na">begin</span><span class="o">();</span>
+<span class="c1">//객체를 저장한 상태(영속)</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+</code></pre></div></div>
+<ul>
+  <li>준영속, 삭제</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태</span>
+<span class="n">em</span><span class="o">.</span><span class="na">detach</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+
+<span class="c1">//객체를 삭제한 상태(삭제)</span>
+<span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="영속성-컨텍스트-2">영속성 컨텍스트 2</h3>
+<ul>
+  <li>엔티티 조회, 1차 캐시에서 조회(1차 캐시에 없는 경우 쿼리 생성)</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/12.png">
+          <img src="/assets/images/post/Spring/JPA/basic/12.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/13.png">
+          <img src="/assets/images/post/Spring/JPA/basic/13.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>1차 캐시로 반복 가능한 읽기(REPEATABLE READ) 등급의 트랜잭션 격리 수준을 데이터베이스가 아닌 애플리케이션 차원에서 제공</li>
+  <li>트랜잭션을 지원하는 쓰기 지연</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/14.png">
+          <img src="/assets/images/post/Spring/JPA/basic/14.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/15.png">
+          <img src="/assets/images/post/Spring/JPA/basic/15.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>엔티티 수정(변경 감지)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 영속 엔티티 조회</span>
+<span class="nc">Member</span> <span class="n">memberA</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"memberA"</span><span class="o">);</span>
+<span class="c1">// 영속 엔티티 데이터 수정</span>
+<span class="n">memberA</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"hi"</span><span class="o">);</span>
+<span class="n">memberA</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="c1">//em.update(member) 이런 코드가 있어야 하지 않을까?</span>
+<span class="n">transaction</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span> <span class="c1">// [트랜잭션] 커밋</span>
+</code></pre></div></div>
+<ul>
+  <li>flush 시점에 영속성 컨텍스트 내에서 스냅샷과 Entity를 비교하여 UPDATE 쿼리를 생성한 후에 함께 flush 한다. 이후 commit를 한다.</li>
+  <li>플러시: 영속성 컨텍스트의 변경내용을 데이터베이스에 반영(1차 캐시 내용이 없어지는 것은 아니고 단지 컨텍스트와 데이터베이스 동기화 작업이라고 보면됨)</li>
+  <li>플러시 발생
+    <ul>
+      <li>변경 감지</li>
+      <li>수정된 엔티티를 쓰기 지연 SQL 저장소에 등록</li>
+      <li>쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송(등록, 수정, 삭제 쿼리)</li>
+    </ul>
+  </li>
+  <li>플러시 방법
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">em.flush()</code> - 직접 호출</li>
+      <li>트랜잭션 커밋 - 플러시 자동 호출</li>
+      <li>JPQL 쿼리 실행 - 플러시 자동 호출</li>
+    </ul>
+  </li>
+  <li>JPQL 쿼리 실행시 플러시가 자동으로 호출되는 이유: JPQL, 즉 SQL를 데이터베이스에 날려 원하는 결과를 얻기 위해서는 영속성 컨텍스트와 데이터베이스가 동기화 되어있어야 한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">memberA</span><span class="o">);</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">memberB</span><span class="o">);</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">memberC</span><span class="o">);</span>
+<span class="c1">//중간에 JPQL 실행</span>
+<span class="n">query</span> <span class="o">=</span><span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">"select m from Member m"</span><span class="o">,</span><span class="nc">Member</span> <span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+<ul>
+  <li>준영속 상태
+    <ul>
+      <li>영속 상태의 엔티티가 영속성 컨텍스트에서 분리(detached)</li>
+      <li>영속성 컨텍스트가 제공하는 기능을 사용 못함</li>
+    </ul>
+  </li>
+  <li>준영속 상태로 만드는 방법
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">em.detach(entity)</code>: 특정 엔티티만 준영속 상태로 전환</li>
+      <li><code class="language-plaintext highlighter-rouge">em.clear()</code>: 영속성 컨텍스트를 완전히 초기화</li>
+      <li><code class="language-plaintext highlighter-rouge">em.close()</code>: 영속성 컨텍스트를 종료</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="엔티티-매핑">엔티티 매핑</h2>
+<h3 id="객체와-테이블-매핑">객체와 테이블 매핑</h3>
+<ul>
+  <li>엔티티 매핑 소개
+    <ul>
+      <li>객체와 테이블 매핑: <code class="language-plaintext highlighter-rouge">@Entity</code>, <code class="language-plaintext highlighter-rouge">@Table</code></li>
+      <li>필드와 컬럼 매핑: <code class="language-plaintext highlighter-rouge">@Column</code></li>
+      <li>기본 키 매핑: <code class="language-plaintext highlighter-rouge">@Id</code></li>
+      <li>연관관계 매핑: <code class="language-plaintext highlighter-rouge">@ManyToOne</code>, <code class="language-plaintext highlighter-rouge">@JoinColumn</code>(외래키를 매핑할때 사용한다.)</li>
+    </ul>
+  </li>
+  <li>객체와 테이블 매핑
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@Entity</code>: <code class="language-plaintext highlighter-rouge">@Entity</code>가 붙은 클래스는 JPA가 관리, 엔티티라 한다.
+        <ul>
+          <li>기본 생성자 필수(파라미터가 없는 <code class="language-plaintext highlighter-rouge">public</code> 또는 <code class="language-plaintext highlighter-rouge">protected</code> 생성자)</li>
+          <li>저장할 필드에 <code class="language-plaintext highlighter-rouge">final</code> 사용 X</li>
+          <li><code class="language-plaintext highlighter-rouge">final</code> 클래스, <code class="language-plaintext highlighter-rouge">enum</code>, <code class="language-plaintext highlighter-rouge">interface</code>, <code class="language-plaintext highlighter-rouge">inner</code> 클래스 사용X</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">@Entity</code> 속성 정리
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">name</code>: JPA에서 사용할 엔티티 이름을 지정한다. 기본값: 클래스 이름을 그대로 사용(예: Member). 같은 클래스 이름이 없으면 가급적 기본값을 사용한다.</li>
+          <li><code class="language-plaintext highlighter-rouge">@Table</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성</th>
+      <th style="text-align: center">기능</th>
+      <th style="text-align: center">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">name</td>
+      <td style="text-align: center">매핑할 테이블 이름</td>
+      <td style="text-align: center">엔티티 이름을 사용</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">catalog</td>
+      <td style="text-align: center">데이터베이스 catalog 매핑</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">schema</td>
+      <td style="text-align: center">데이터베이스 schema 매핑</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">uniqueConstraints (DDL)</td>
+      <td style="text-align: center">DDL 생성 시에 유니크 제약 조건 생성</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="데이터베이스-스키마-자동-생성">데이터베이스 스키마 자동 생성</h3>
+<ul>
+  <li>DDL을 애플리케이션 실행 시점에 자동 생성</li>
+  <li>테이블중심 -&gt; 객체중심</li>
+  <li>데이터베이스 방언을 활용해서 데이터베이스에 맞는 적절한 DDL 생성</li>
+  <li>이렇게 생성된 DDL은 개발 장비에서만 사용</li>
+  <li>생성된 DDL은 운영서버에서는 사용하지 않거나, 적절히 다듬은 후 사용</li>
+  <li>데이터베이스 스키마 자동 생성 - 속성</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">옵션</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">create</td>
+      <td style="text-align: center">기존테이블 삭제 후 다시 생성 (DROP + CREATE)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">create-drop</td>
+      <td style="text-align: center">create와 같으나 종료시점에 테이블 DROP</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">update</td>
+      <td style="text-align: center">변경분만 반영(운영DB에는 사용하면 안됨)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">validate</td>
+      <td style="text-align: center">엔티티와 테이블이 정상 매핑되었는지만 확인</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">none</td>
+      <td style="text-align: center">사용하지 않음</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>데이터베이스 스키마 자동 생성 - 주의
+    <ul>
+      <li>운영 장비에는 절대 create, create-drop, update 사용하면 안된다.</li>
+      <li>개발 초기 단계는 create 또는 update</li>
+      <li>테스트 서버는 update 또는 validate</li>
+      <li>스테이징과 운영 서버는 validate 또는 none</li>
+    </ul>
+  </li>
+  <li>DDL 생성 기능
+    <ul>
+      <li>제약조건 추가: 회원 이름은 필수, 10자 초과X -&gt; <code class="language-plaintext highlighter-rouge">@Column(nullable = false, length = 10)</code></li>
+      <li>유니크 제약조건 추가 -&gt; <code class="language-plaintext highlighter-rouge">@Table(uniqueConstraints = {@UniqueConstraint( name = "NAME_AGE_UNIQUE", columnNames = {"NAME", "AGE"})})</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="필드와-컬럼-매핑">필드와 컬럼 매핑</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"name"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">age</span><span class="o">;</span>
+    <span class="nd">@Enumerated</span><span class="o">(</span><span class="nc">EnumType</span><span class="o">.</span><span class="na">STRING</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">RoleType</span> <span class="n">roleType</span><span class="o">;</span>
+    <span class="nd">@Temporal</span><span class="o">(</span><span class="nc">TemporalType</span><span class="o">.</span><span class="na">TIMESTAMP</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">createdDate</span><span class="o">;</span>
+    <span class="nd">@Temporal</span><span class="o">(</span><span class="nc">TemporalType</span><span class="o">.</span><span class="na">TIMESTAMP</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">lastModifiedDate</span><span class="o">;</span>
+    <span class="nd">@Lob</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">description</span><span class="o">;</span>
+    <span class="c1">//Getter, Setter</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">어노테이션</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">@Column</td>
+      <td style="text-align: center">컬럼 매핑</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">@Temporal</td>
+      <td style="text-align: center">날짜 타입 매핑</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">@Enumerated</td>
+      <td style="text-align: center">enum 타입 매핑</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">@Lob</td>
+      <td style="text-align: center">BLOB, CLOB 매핑</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">@Transient</td>
+      <td style="text-align: center">특정 필드를 컬럼에 매핑하지 않음(매핑 무시)</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>@Column</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성</th>
+      <th style="text-align: center">설명</th>
+      <th style="text-align: center">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">name</td>
+      <td style="text-align: center">필드와 매핑할 테이블의 컬럼 이름</td>
+      <td style="text-align: center">객체의 필드 이름</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">insertable, updatable</td>
+      <td style="text-align: center">등록, 변경 가능 여부</td>
+      <td style="text-align: center">TRUE</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">nullable(DDL)</td>
+      <td style="text-align: center">null 값의 허용 여부를 설정한다. false로 설정하면 DDL 생성 시에 not null 제약조건이 붙는다.</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">unique(DDL)</td>
+      <td style="text-align: center">@Table의 uniqueConstraints와 같지만 한 컬럼에 간단히 유니크 제약조건을 걸 때 사용한다.</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">columnDefinition (DDL)</td>
+      <td style="text-align: center">데이터베이스 컬럼 정보를 직접 줄 수 있다.  ex) varchar(100) default ‘EMPTY’</td>
+      <td style="text-align: center">필드의 자바 타입과 방언 정보를 사용해</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">length(DDL)</td>
+      <td style="text-align: center">문자 길이 제약조건, String 타입에만 사용한다.</td>
+      <td style="text-align: center">255</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">precision, scale(DDL)</td>
+      <td style="text-align: center">BigDecimal 타입에서 사용한다(BigInteger도 사용할 수 있다). precision은 소수점을 포함한 전체 자릿수를, scale은 소수의 자릿수 다. 참고로 double, float 타입에는 적용되지 않는다. 아주 큰 숫자나 정밀한 소수를 다루어야 할 때만 사용한다.</td>
+      <td style="text-align: center">precision=19, scale=2</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Enumerated</code>: 자바 enum 타입을 매핑할 때 사용(<code class="language-plaintext highlighter-rouge">EnumType.STRING</code> 사용권장)</li>
+  <li><code class="language-plaintext highlighter-rouge">@Temporal</code>: <code class="language-plaintext highlighter-rouge">LocalDate</code>, <code class="language-plaintext highlighter-rouge">LocalDateTime</code>을 사용할 때는 생략 가능(최신 하이버네이트 지원)</li>
+  <li><code class="language-plaintext highlighter-rouge">@Lob</code>: <code class="language-plaintext highlighter-rouge">@Lob</code>에는 지정할 수 있는 속성이 없다. 매핑하는 필드 타입이 문자면 <code class="language-plaintext highlighter-rouge">CLOB</code> 매핑, 나머지는 <code class="language-plaintext highlighter-rouge">BLOB</code> 매핑</li>
+</ul>
+
+<h3 id="기본-키-매핑">기본 키 매핑</h3>
+<ul>
+  <li>기본 키 매핑 어노테이션: <code class="language-plaintext highlighter-rouge">@Id</code>, <code class="language-plaintext highlighter-rouge">@GeneratedValue</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Id</span> <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span> 
+<span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+</code></pre></div></div>
+<ul>
+  <li>기본 키 매핑 방법
+    <ul>
+      <li>직접 할당: <code class="language-plaintext highlighter-rouge">@Id</code>만 사용</li>
+      <li>자동 생성(<code class="language-plaintext highlighter-rouge">@GeneratedValue</code>)
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">IDENTITY</code>: 데이터베이스에 위임, MYSQL</li>
+          <li><code class="language-plaintext highlighter-rouge">SEQUENCE</code>: 데이터베이스 시퀀스 오브젝트 사용, ORACLE(<code class="language-plaintext highlighter-rouge">@SequenceGenerator</code> 필요)</li>
+          <li><code class="language-plaintext highlighter-rouge">TABLE</code>: 키 생성용 테이블 사용, 모든 DB에서 사용(<code class="language-plaintext highlighter-rouge">@TableGenerator</code> 필요)</li>
+          <li><code class="language-plaintext highlighter-rouge">AUTO</code>: 방언에 따라 자동 지정, 기본값</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>IDENTITY 전략 - 특징
+    <ul>
+      <li>기본 키 생성을 데이터베이스에 위임</li>
+      <li>주로 MySQL, PostgreSQL, SQL Server, DB2에서 사용(예: MySQL의 <code class="language-plaintext highlighter-rouge">AUTO_ INCREMENT</code>)</li>
+      <li>JPA는 보통 트랜잭션 커밋 시점에 INSERT SQL 실행</li>
+      <li><code class="language-plaintext highlighter-rouge">AUTO_ INCREMENT</code>는 데이터베이스에 INSERT SQL을 실행한 이후에 ID 값을 알 수 있음</li>
+      <li><code class="language-plaintext highlighter-rouge">IDENTITY</code> 전략은 <code class="language-plaintext highlighter-rouge">em.persist()</code> 시점에 즉시 INSERT SQL 실행하고 DB에서 식별자를 조회</li>
+    </ul>
+  </li>
+  <li>SEQUENCE 전략 - 특징
+    <ul>
+      <li>데이터베이스 시퀀스는 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트(예: 오라클 시퀀스)</li>
+      <li>오라클, PostgreSQL, DB2, H2 데이터베이스에서 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="nd">@SequenceGenerator</span><span class="o">(</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="err">“</span><span class="no">MEMBER_SEQ_GENERATOR</span><span class="s">",
+        sequenceName= “MEMBER_SEQ"</span><span class="o">,</span> <span class="c1">//매핑할 데이터베이스 시퀀스 이름</span>
+        <span class="n">initialValue</span><span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">allocationSize</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">SEQUENCE</span><span class="o">,</span>
+            <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">속성</th>
+      <th style="text-align: center">설명</th>
+      <th style="text-align: center">기본값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">name</td>
+      <td style="text-align: center">식별자 생성기 이름</td>
+      <td style="text-align: center">필수</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">sequenceName</td>
+      <td style="text-align: center">데이터베이스에 등록되어 있는 시퀀스 이름</td>
+      <td style="text-align: center">hibernate_sequence</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">initialValue</td>
+      <td style="text-align: center">DDL 생성시에만 사용됨, 시퀀스 DDL을 생성할 때 처음 시작하는 수를 지정한다.</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">allocationSize</td>
+      <td style="text-align: center">시퀀스 한 번 호출에 증가하는 수(성능 최적화에 사용됨 데이터베이스 시퀀스 값이 하나씩 증가하도록 설정되어 있으면 이 값을 반드시 1로 설정해야 한다</td>
+      <td style="text-align: center">50</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">catalog, schema</td>
+      <td style="text-align: center">데이터베이스 catalog, schema 이름</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>TABLE 전략
+    <ul>
+      <li>키 생성 전용 테이블을 하나 만들어서 데이터베이스 시퀀스를 흉내내는 전략</li>
+      <li>장점: 모든 데이터베이스에 적용 가능</li>
+      <li>단점: 성능</li>
+    </ul>
+  </li>
+  <li>권장하는 식별자 전략
+    <ul>
+      <li>기본 키 제약 조건: <code class="language-plaintext highlighter-rouge">null</code> 아님, 유일, 변하면 안된다.</li>
+      <li>미래까지 이 조건을 만족하는 자연키는 찾기 어렵다. <strong>대리키</strong>(대체키)를 사용하자.</li>
+      <li>예를 들어 주민등록번호도 기본키로 적절하기 않다.</li>
+      <li>권장: Long형 + 대체키 + 키 생성전략 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="연관관계-매핑-기초">연관관계 매핑 기초</h2>
+<h3 id="연관관계가-필요한-이유">연관관계가 필요한 이유</h3>
+<ul>
+  <li>객체를 테이블에 맞추어 데이터 중심으로 모델링하면, 협력 관계를 만들 수 없다.</li>
+  <li>객체는 참조를 사용해서 연관된 객체를 찾는다.</li>
+</ul>
+
+<h3 id="단방향-연관관계">단방향 연관관계</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/16.png">
+          <img src="/assets/images/post/Spring/JPA/basic/16.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span> <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"USERNAME"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+<span class="c1">//    @Column(name = "TEAM_ID")</span>
+<span class="c1">//    private Long teamId;</span>
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"TEAM_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/17.png">
+          <img src="/assets/images/post/Spring/JPA/basic/17.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<h3 id="양방향-연관관계와-연관관계의-주인1---기본">양방향 연관관계와 연관관계의 주인1 - 기본</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/18.png">
+          <img src="/assets/images/post/Spring/JPA/basic/18.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"USERNAME"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"TEAM_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>연관관계의 주인과 <code class="language-plaintext highlighter-rouge">mappedBy</code>: 객체와 테이블간에 연관관계를 맺는 차이를 이해해야 한다.</li>
+  <li>객체와 테이블이 관계를 맺는 차이
+    <ul>
+      <li>객체 연관관계 = 2개: 회원 -&gt; 팀 연관관계 1개(단방향) + 팀 -&gt; 회원 연관관계 1개(단방향)</li>
+      <li>테이블 연관관계 = 1개: 회원 &lt;-&gt; 팀의 연관관계 1개(양방향)</li>
+    </ul>
+  </li>
+  <li>객체의 양방향 관계는 사실 양방향 관계가 아니라 서로 다른 단뱡향 관계 2개다.</li>
+  <li>테이블은 외래키 하나로 두 테이블의 연관관계를 관리, <code class="language-plaintext highlighter-rouge">MEMBER.TEAM_ID</code> 외래키 하나로 양방향 연관관계 가짐 (양쪽으로 조인할 수 있다.)</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">MEMBER</span> <span class="n">M</span>
+<span class="k">JOIN</span> <span class="n">TEAM</span> <span class="n">T</span> <span class="k">ON</span> <span class="n">M</span><span class="p">.</span><span class="n">TEAM_ID</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">TEAM_ID</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">TEAM</span> <span class="n">T</span>
+<span class="k">JOIN</span> <span class="n">MEMBER</span> <span class="n">M</span> <span class="k">ON</span> <span class="n">T</span><span class="p">.</span><span class="n">TEAM_ID</span> <span class="o">=</span> <span class="n">M</span><span class="p">.</span><span class="n">TEAM_ID</span>
+</code></pre></div></div>
+<ul>
+  <li>둘 중 하나로 외래키를 관리해야 한다.</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/19.png">
+          <img src="/assets/images/post/Spring/JPA/basic/19.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>연관관계의 주인(Owner)
+    <ul>
+      <li>객체의 두 관계중 하나를 연관관계의 주인으로 지정</li>
+      <li>연관관계의 주인만이 외래키를 관리(등록, 수정)</li>
+      <li>주인이 아닌쪽은 읽기만 가능</li>
+      <li>주인은 <code class="language-plaintext highlighter-rouge">mappedBy</code> 속성 사용X</li>
+      <li>주인이 아니면 <code class="language-plaintext highlighter-rouge">mappedBy</code> 속성으로 주인 지정</li>
+    </ul>
+  </li>
+  <li>누구를 주인으로? -&gt; 외래 키가 있는 있는 곳을 주인으로 정해라</li>
+  <li>양방향 매핑시 가장 많이 하는 실수</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Team</span> <span class="n">team</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Team</span><span class="o">();</span> 
+<span class="n">team</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"TeamA"</span><span class="o">);</span> 
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">team</span><span class="o">);</span>
+
+<span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+<span class="n">member</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+
+<span class="c1">//역방향(주인이 아닌 방향)만 연관관계 설정</span>
+<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+<span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+</code></pre></div></div>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/20.png">
+          <img src="/assets/images/post/Spring/JPA/basic/20.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<h3 id="양방향-연관관계와-연관관계의-주인2---주의점">양방향 연관관계와 연관관계의 주인2 - 주의점</h3>
+<ul>
+  <li>순수 객체 상태를 고려해서 항상 양쪽에 값을 설정하자
+    <ul>
+      <li>연관관계 설정 후 데이터베이스에서 객체를 가져오면 괜찮으나 1차 캐시에서 값을 가져오는 경우 NPE가 발생할 수 있다.</li>
+      <li>테스트 케이스 작성시 NPE 또는 빈 객체가 조회될 수도 있다.</li>
+    </ul>
+  </li>
+  <li>연관관계 편의 메소드를 생성하자</li>
+  <li>양방향 매핑시에 무한 루프를 조심하자(<code class="language-plaintext highlighter-rouge">toString()</code>, lombok, JSON 생성 라이브러리)</li>
+  <li>양방향 매핑 정리
+    <ul>
+      <li>단방향 매핑만으로도 이미 연관관계 매핑은 완료</li>
+      <li>양방향 매핑은 반대 방향으로 조회(객체 그래프 탐색) 기능이 추가된 것 뿐</li>
+      <li>JPQL에서 역방향으로 탐색할 일이 많음</li>
+      <li>단방향 매핑을 잘 하고 양방향은 필요할 때 추가해도 됨 (테이블에 영향을 주지 않음)</li>
+    </ul>
+  </li>
+  <li>연관관계의 주인을 정하는 기준
+    <ul>
+      <li>비즈니스 로직을 기준으로 연관관계의 주인을 선택하면 안됨</li>
+      <li>연관관계의 주인은 외래키의 위치를 기준으로 정해야함</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="다양한-연관관계-매핑">다양한 연관관계 매핑</h2>
+<h3 id="연관관계-매핑시-고려사항-3가지">연관관계 매핑시 고려사항 3가지</h3>
+<ul>
+  <li>다중성(<code class="language-plaintext highlighter-rouge">@ManyToOne</code>, <code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@OneToOne</code>, <code class="language-plaintext highlighter-rouge">@ManyToMany</code>)</li>
+  <li>단방향, 양방향</li>
+  <li>연관관계의 주인</li>
+</ul>
+
+<h3 id="다대일-n1">다대일 [N:1]</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/21.png">
+          <img src="/assets/images/post/Spring/JPA/basic/21.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>가장 많이 사용하는 연관관계</li>
+  <li>외래키가 있는 쪽이 연관관계의 주인</li>
+</ul>
+
+<h3 id="일대다-1n">일대다 [1:N]</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/22.png">
+          <img src="/assets/images/post/Spring/JPA/basic/22.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>테이블 일대다 관계는 항상 다(N)쪽에 외래키가 있음</li>
+  <li>객체와 테이블의 차이 때문에 반대편 테이블의 외래키를 관리하는 특이한 구조</li>
+  <li><code class="language-plaintext highlighter-rouge">@JoinColumn</code>을 꼭 사용해야 함. 그렇지 않으면 조인 테이블 방식을 사용함(중간에 테이블을 하나 추가함)</li>
+  <li>일대다 단방향 매핑의 단점
+    <ul>
+      <li>엔티티가 관리하는 외래키가 다른 테이블에 있음</li>
+      <li>연관관계 관리를 위해 추가로 외래키와 관련하여 UPDATE SQL 실행</li>
+    </ul>
+  </li>
+  <li>일대다 양방향의 경우 공식적인 표준스펙은 아니며 권장하지 않는다.</li>
+</ul>
+
+<h3 id="일대일-11">일대일 [1:1]</h3>
+<ul>
+  <li>일대일 관계는 그 반대도 일대일</li>
+  <li>주테이블이나 대상테이블 중에 외래키 선택 가능</li>
+  <li>외래 키에 데이터베이스 유니크(UNI) 제약조건 추가</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/23.png">
+          <img src="/assets/images/post/Spring/JPA/basic/23.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>주테이블에 외래키
+    <ul>
+      <li>주 객체가 대상 객체의 참조를 가지는 것처럼 주 테이블에 외래키를 두고 대상 테이블을 찾음</li>
+      <li>객체지향 개발자 선호</li>
+      <li>JPA 매핑 편리(주테이블이므로 단방향 연관관계만 설정)</li>
+      <li>장점: 주 테이블만 조회해도 대상 테이블에 데이터가 있는지 확인 가능</li>
+      <li>단점: 값이 없으면 외래 키에 <code class="language-plaintext highlighter-rouge">null</code> 허용</li>
+    </ul>
+  </li>
+  <li>대상테이블에 외래키
+    <ul>
+      <li>대상 테이블에 외래 키가 존재</li>
+      <li>전통적인 데이터베이스 개발자 선호</li>
+      <li>장점: 주 테이블과 대상 테이블을 일대일에서 일대다 관계로 변경할 때 테이블 구조 유지</li>
+      <li>단점: 프록시 기능의 한계로 지연 로딩으로 설정해도 항상 즉시 로딩됨 -&gt; 대상테이블에 외래키가 존재하는 경우 주객체를 로딩할때 대상객체가 존재하는지 아닌지를 주테이블 만으로는 알수가 없기에 어차피 JOIN 쿼리가 나가게 된다.</li>
+      <li>단점: 대상테이블에 외래키가 있으므로 양방향 연관관계 설정 필요</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="다대다-nm">다대다 [N:M]</h3>
+<ul>
+  <li>관계형 데이터베이스는 정규화된 테이블 2개로 다대다 관계를 표현할 수 없음</li>
+  <li>연결 테이블을 추가해서 일대다, 다대일 관계로 풀어내야함</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/24.png">
+          <img src="/assets/images/post/Spring/JPA/basic/24.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>다대다 매핑의 한계
+    <ul>
+      <li>편리해 보이지만 실무에서 사용X</li>
+      <li>연결 테이블이 단순히 연결만 하고 끝나지 않음</li>
+      <li>주문시간, 수량 같은 데이터가 들어올 수 있음</li>
+    </ul>
+  </li>
+  <li>다대다 한계 극복
+    <ul>
+      <li>연결 테이블용 엔티티 추가(연결 테이블을 엔티티로 승격)</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/25.png">
+          <img src="/assets/images/post/Spring/JPA/basic/25.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<h2 id="고급-매핑">고급 매핑</h2>
+<h3 id="상속관계-매핑">상속관계 매핑</h3>
+<ul>
+  <li>관계형 데이터베이스는 상속 관계X</li>
+  <li>슈퍼타입 서브타입 관계라는 모델링 기법이 객체 상속과 유사</li>
+  <li>상속관계 매핑: 객체의 상속과 구조와 DB의 슈퍼타입 서브타입 관계를 매핑</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/26.png">
+          <img src="/assets/images/post/Spring/JPA/basic/26.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>각각 테이블로 변환 -&gt; 조인전략(<code class="language-plaintext highlighter-rouge">JOINED</code>)
+    <ul>
+      <li>테이블 정규화</li>
+      <li>외래 키 참조 무결성 제약조건 활용가능</li>
+      <li>저장공간 효율화</li>
+      <li>조회시 조인을 많이 사용, 성능저하</li>
+      <li>데이터 저장시 INSERT SQL 2번 호출</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/27.png">
+          <img src="/assets/images/post/Spring/JPA/basic/27.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>통합 테이블로 변환 -&gt; 단일 테이블 전략(<code class="language-plaintext highlighter-rouge">SINGLE_TABLE</code>)
+    <ul>
+      <li>조인이 필요 없으므로 일반적으로 조회 성능이 빠름</li>
+      <li>조회 쿼리가 단순함</li>
+      <li>자식 엔티티가 매핑한 컬럼은 모두 <code class="language-plaintext highlighter-rouge">null</code> 허용</li>
+      <li>단일 테이블에 모든 것을 저장하므로 테이블이 커질 수 있다. 상황에 따라서 조회 성능이 오히려 느려질 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/28.png">
+          <img src="/assets/images/post/Spring/JPA/basic/28.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>서브타입 테이블로 변환 -&gt; 구현 클래스마다 테이블 전략(<code class="language-plaintext highlighter-rouge">TABLE_PER_CLASS</code>)
+    <ul>
+      <li>이 전략은 데이터베이스 설계자와 ORM 전문가 둘 다 추천X</li>
+      <li>여러 자식 테이블을 함께 조회할 때 성능이 느림(UNION SQL 필요)</li>
+      <li>자식 테이블을 통합해서 쿼리하기 어려움</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/29.png">
+          <img src="/assets/images/post/Spring/JPA/basic/29.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>주요 어노테이션
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@Inheritance(strategy=InheritanceType.XXX)</code></li>
+      <li><code class="language-plaintext highlighter-rouge">@DiscriminatorColumn(name=“DTYPE”)</code></li>
+      <li><code class="language-plaintext highlighter-rouge">@DiscriminatorValue(“XXX”)</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="mappedsuperclass---매핑-정보-상속">@MappedSuperclass - 매핑 정보 상속</h3>
+<ul>
+  <li>공통 매핑 정보가 필요할 때 사용(id, name)</li>
+  <li>상속관계 매핑X</li>
+  <li>엔티티X, 테이블과 매핑X</li>
+  <li>부모 클래스를 상속 받는 자식 클래스에 매핑 정보만 제공</li>
+  <li>조회, 검색 불가(<code class="language-plaintext highlighter-rouge">em.find(BaseEntity</code>) 불가)</li>
+  <li>직접 생성해서 사용할 일이 없으므로 추상 클래스 권장</li>
+  <li><code class="language-plaintext highlighter-rouge">@MappedSuperclass</code>
+    <ul>
+      <li>테이블과 관계 없고, 단순히 엔티티가 공통으로 사용하는 매핑 정보를 모으는 역할</li>
+      <li>주로 등록일, 수정일, 등록자, 수정자 같은 전체 엔티티에서 공통으로 적용하는 정보를 모을 때 사용</li>
+      <li><code class="language-plaintext highlighter-rouge">@Entity</code> 클래스는 엔티티나 <code class="language-plaintext highlighter-rouge">@MappedSuperclass</code>로 지정한 클래스만 상속 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="프록시와-연관관계-관리">프록시와 연관관계 관리</h2>
+<h3 id="프록시">프록시</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/30.png">
+          <img src="/assets/images/post/Spring/JPA/basic/30.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">em.find()</code> vs <code class="language-plaintext highlighter-rouge">em.getReference()</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">em.find()</code>: 데이터베이스를 통해서 실제 엔티티 객체 조회</li>
+      <li><code class="language-plaintext highlighter-rouge">em.getReference()</code>: 데이터베이스 조회를 미루는 가짜(프록시) 엔티티 객체 조회</li>
+    </ul>
+  </li>
+  <li>프록시 특징
+    <ul>
+      <li>실제 클래스를 상속 받아서 만들어짐</li>
+      <li>실제 클래스와 겉모양이 같다.</li>
+      <li>사용하는 입장에서는 진짜 객체인지 프록시 객체인지 구분하지 않고 사용하면 됨(이론상)</li>
+      <li>프록시 객체는 실제 객체의 참조(target)를 보관</li>
+      <li>프록시 객체를 호출하면 프록시 객체는 실제 객체의 메소드 호출</li>
+      <li>프록시 객체는 처음 사용할때 한 번만 초기화</li>
+      <li>초기화되면 프록시 객체를 통해서 실제 엔티티에 접근 가능</li>
+      <li>프록시 객체는 원본 엔티티를 상속받음, 따라서 타입 체크시 주의해야함 (== 비교 실패, 대신 instance of 사용)</li>
+      <li>영속성 컨텍스트에 찾는 엔티티가 이미 있으면 <code class="language-plaintext highlighter-rouge">em.getReference()</code>를 호출해도 실제 엔티티 반환</li>
+      <li>영속성 컨텍스트의 도움을 받을 수 없는 준영속 상태일 때, 프록시를 초기화하면 문제 발생(하이버네이트는 org.hibernate.LazyInitializationException 예외를 터트림)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="즉시-로딩과-지연-로딩">즉시 로딩과 지연 로딩</h3>
+<ul>
+  <li>엔티티 참고관계에서 참조하는 객체의 필드값을 이용할 때까지 프록시 객체로 지연로딩을 구현(사용하는 시점에 쿼리가 나감)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@Id</span> <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"USERNAME"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    
+    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span> <span class="c1">//**</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"TEAM_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>프록시와 즉시로딩 주의
+    <ul>
+      <li>가급적 지연 로딩만 사용(특히 실무에서)</li>
+      <li>즉시 로딩을 적용하면 예상하지 못한 SQL이 발생</li>
+      <li>즉시 로딩은 JPQL에서 N+1 문제를 일으킨다.</li>
+      <li><code class="language-plaintext highlighter-rouge">@ManyToOne</code>, <code class="language-plaintext highlighter-rouge">@OneToOne은</code> 기본이 즉시 로딩 -&gt; <code class="language-plaintext highlighter-rouge">LAZY</code>로 설정</li>
+      <li><code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@ManyToMany</code>는 기본이 지연 로딩</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="영속성-전이-cascade">영속성 전이: CASCADE</h3>
+<ul>
+  <li>특정 엔티티를 영속 상태로 만들 때 연관된 엔티티도 함께 영속 상태로 만들도 싶을 때</li>
+  <li>엔티티를 영속화할 때 연관된 엔티티도 함께 영속화하는 편리함을 제공할 뿐</li>
+  <li><code class="language-plaintext highlighter-rouge">ALL</code>: 모두 적용</li>
+  <li><code class="language-plaintext highlighter-rouge">PERSIST</code>: 영속</li>
+  <li><code class="language-plaintext highlighter-rouge">REMOVE</code>: 삭제</li>
+</ul>
+
+<h3 id="고아-객체">고아 객체</h3>
+<ul>
+  <li>고아 객체 제거: 부모 엔티티와 연관관계가 끊어진 자식 엔티티를 자동으로 삭제</li>
+  <li><code class="language-plaintext highlighter-rouge">orphanRemoval = true</code></li>
+  <li>참조가 제거된 엔티티는 다른 곳에서 참조하지 않는 고아 객체로 보고 삭제하는 기능</li>
+  <li>참조하는 곳이 하나일 때 사용해야함!</li>
+  <li><code class="language-plaintext highlighter-rouge">@OneToOne</code>, <code class="language-plaintext highlighter-rouge">@OneToMany</code>만 가능</li>
+  <li>개념적으로 부모를 제거하면 자식은 고아가 된다. 따라서 고아 객체 제거 기능을 활성화 하면, 부모를 제거할 때 자식도 함께 제거된다. 이것은 <code class="language-plaintext highlighter-rouge">CascadeType.REMOVE</code>처럼 동작한다.</li>
+  <li>영속성 전이 + 고아 객체, 생명주기(<code class="language-plaintext highlighter-rouge">CascadeType.ALL + orphanRemovel=true</code>)
+    <ul>
+      <li>스스로 생명주기를 관리하는 엔티티는 <code class="language-plaintext highlighter-rouge">em.persist()</code>로 영속화, <code class="language-plaintext highlighter-rouge">em.remove()</code>로 제거</li>
+      <li>두 옵션을 모두 활성화하면 부모 엔티티를 통해서 자식의 생명 주기를 관리할 수 있음</li>
+      <li>도메인 주도 설계(DDD)의 Aggregate Root개념을 구현할 때 유용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="값-타입">값 타입</h2>
+<h3 id="기본값-타입">기본값 타입</h3>
+<ol>
+  <li>엔티티 타입
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@Entity</code>로 정의하는 객체</li>
+      <li>데이터가 변해도 식별자로 지속해서 추적 가능</li>
+      <li>예)회원 엔티티의 키나 나이값을 변경해도 식별자로 인식 가능</li>
+    </ul>
+  </li>
+  <li>값 타입
+    <ul>
+      <li>int, Integer, String처럼 단순히 값으로 사용하는 자바 기본 타입이나 객체</li>
+      <li>식별자가 없고 값만 있으므로 변경시 추적 불가</li>
+      <li>예) 숫자 100을 200으로 변경하면 완전히 다른 값으로 대체
+     - 값 타입 분류
+       - 기본값 타입(int, double, Integer, Long, String): 생명주기를 엔티티의 의존, 값 타입은 공유하면 X
+       - 임베디드 타입(embedded type, 복합 값 타입)
+       - 컬렉션 값 타입(collection value type)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="임베디드-타입">임베디드 타입</h3>
+<ul>
+  <li>임베디드 타입
+    <ul>
+      <li>새로운 값 타입을 직접 정의할 수 있음</li>
+      <li>JPA는 임베디드 타입(embedded type)이라 함</li>
+      <li>주로 기본 값 타입을 모아서 만들어서 복합 값 타입이라고도 함</li>
+      <li><code class="language-plaintext highlighter-rouge">@Embeddable</code>: 값 타입을 정의하는 곳에 표시</li>
+      <li><code class="language-plaintext highlighter-rouge">@Embedded</code>: 값 타입을 사용하는 곳에 표시</li>
+      <li>기본 생성자 필수</li>
+      <li>재사용</li>
+      <li>높은 응집도</li>
+      <li>임베디드 타입을 포함한 모든 값 타입은, 값 타입을 소유한 엔티티에 생명주기를 의존함</li>
+    </ul>
+  </li>
+  <li>임베디드 타입과 테이블 매핑
+    <ul>
+      <li>임베디드 타입은 엔티티의 값일 뿐이다.</li>
+      <li>임베디드 타입을 사용하기 전과 후에 매핑하는 테이블은 같다.</li>
+      <li>잘 설계한 ORM 애플리케이션은 매핑한 테이블의 수보다 클래스의 수가 더 많음</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">@AttributeOverride</code>: 속성 재정의
+    <ul>
+      <li>한 엔티티에서 같은 값 타입을 사용하면 컬럼명이 중복됨</li>
+      <li><code class="language-plaintext highlighter-rouge">@AttributeOverrides</code>, <code class="language-plaintext highlighter-rouge">@AttributeOverride</code>를 사용해서 컬럼명 속성을 재정의</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="값-타입과-불변-객체">값 타입과 불변 객체</h3>
+<ul>
+  <li>값 타입은 복잡한 객체 세상을 조금이라도 단순화하려고 만든 개념이다. 따라서 값 타입은 단순하고 안전하게 다룰 수 있어야 한다.</li>
+  <li>값 타입 공유 참조
+    <ul>
+      <li>임베디드 타입 같은 값 타입을 여러 엔티티에서 공유하면 위험함</li>
+      <li>임베디드 타입처럼 직접 정의한 값 타입은 자바의 기본 타입이 아니라 객체 타입이다.</li>
+      <li>객체 타입은 참조 값을 직접 대입하는 것을 막을 방법이 없다.</li>
+      <li>객체의 공유 참조는 피할 수 없다.</li>
+    </ul>
+  </li>
+  <li>불변 객체
+    <ul>
+      <li>객체 타입을 수정할 수 없게 만들면 부작용을 원천 차단</li>
+      <li>값 타입은 불변 객체(immutable object)로 설계해야함</li>
+      <li>불변 객체: 생성 시점 이후 절대 값을 변경할 수 없는 객체</li>
+      <li>생성자로만 값을 설정하고 수정자(Setter)를 만들지 않으면 됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="값-타입의-비교">값 타입의 비교</h3>
+<ul>
+  <li>동일성(identity) 비교: 인스턴스의 참조 값을 비교, <code class="language-plaintext highlighter-rouge">==</code> 사용</li>
+  <li>동등성(equivalence) 비교: 인스턴스의 값을 비교, <code class="language-plaintext highlighter-rouge">equals()</code>사용</li>
+  <li>값 타입의 <code class="language-plaintext highlighter-rouge">equals()</code> 메소드를 적절하게 재정의(주로 모든 필드 사용)</li>
+</ul>
+
+<h3 id="값-타입-컬렉션권장하지-않음">값 타입 컬렉션(권장하지 않음)</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/31.png">
+          <img src="/assets/images/post/Spring/JPA/basic/31.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>값 타입을 하나 이상 저장할 때 사용</li>
+  <li><code class="language-plaintext highlighter-rouge">@ElementCollection</code>, <code class="language-plaintext highlighter-rouge">@CollectionTable</code> 사용</li>
+  <li>데이터베이스는 컬렉션을 같은 테이블에 저장할 수 없다.</li>
+  <li>컬렉션을 저장하기 위한 별도의 테이블이 필요함</li>
+  <li>값 타입 컬렉션도 <strong>지연 로딩</strong> 전략 사용</li>
+  <li>값 타입 수정시 필드 수정이 아닌 값 타입 단위로 교체해주어야 한다.(부작용 방지)</li>
+  <li>값 타입 컬렉션의 제약사항
+    <ul>
+      <li>값 타입은 엔티티와 다르게 식별자 개념이 없다.</li>
+      <li>값은 변경하면 추적이 어렵다.</li>
+      <li>값 타입 컬렉션에 변경 사항이 발생하면, 주인 엔티티와 연관된 모든 데이터를 삭제하고, 값 타입 컬렉션에 있는 현재 값을 모두 다시 저장한다.</li>
+      <li>값 타입 컬렉션을 매핑하는 테이블은 모든 컬럼을 묶어서 기본 키를 구성해야 함: <code class="language-plaintext highlighter-rouge">null</code> 입력X, 중복 저장X</li>
+    </ul>
+  </li>
+  <li>값 타입 컬렉션 대안
+    <ul>
+      <li>값 타입 컬렉션 대신에 일대다 관계를 고려</li>
+      <li>일대다 관계를 위한 엔티티를 만들고, 여기에서 값 타입을 사용</li>
+      <li>영속성 전이(<code class="language-plaintext highlighter-rouge">Cascade</code>) + 고아 객체 제거를 사용해서 값 타입 컬렉션 처럼 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<p>–&gt; 값 타입은 정말 값 타입이라 판단될 때만 사용, 엔티티와 값 타입을 혼동해서 엔티티를 값 타입으로 만들면 안됨, 식별자가 필요하고 지속해서 값을 추적 / 변경해야 한다면 그것은 값 타입이 아닌 엔티티</p>
+
+<h2 id="객체지향-쿼리-언어1---기본-문법">객체지향 쿼리 언어1 - 기본 문법</h2>
+<h3 id="소개">소개</h3>
+<ul>
+  <li>JPQL</li>
+  <li>QueryDSL</li>
+  <li>
+    <p>네이티브 SQL</p>
+  </li>
+  <li>JPQL
+    <ul>
+      <li>검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색</li>
+      <li>애플리케이션이 필요한 데이터만 DB에서 불러오려면 결국 검색 조건이 포함된 SQL이 필요</li>
+      <li>JPA는 SQL을 추상화한 JPQL이라는 객체 지향 쿼리 언어 제공</li>
+      <li>JPQL은 엔티티 객체를 대상으로 쿼리</li>
+      <li>SQL은 데이터베이스 테이블을 대상으로 쿼리</li>
+      <li>SQL을 추상화해서 특정 데이터베이스 SQL에 의존X</li>
+      <li>JPQL을 한마디로 정의하면 객체 지향 SQL</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">jpql</span> <span class="o">=</span> <span class="s">"select m from Member m where m.age &gt; 18"</span><span class="o">;</span> 
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">jpql</span><span class="o">,</span> <span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">id</span> <span class="k">as</span> <span class="n">id</span><span class="p">,</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">age</span> <span class="k">as</span> <span class="n">age</span><span class="p">,</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">USERNAME</span> <span class="k">as</span> <span class="n">USERNAME</span><span class="p">,</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">TEAM_ID</span> <span class="k">as</span> <span class="n">TEAM_ID</span>
+<span class="k">from</span>
+    <span class="n">Member</span> <span class="n">m</span>
+<span class="k">where</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">age</span> <span class="o">&gt;</span> <span class="mi">18</span>
+</code></pre></div></div>
+<ul>
+  <li>queryDSL
+    <ul>
+      <li>문자가 아닌 자바코드로 JPQL을 작성할 수 있음</li>
+      <li>JPQL 빌더 역할</li>
+      <li>컴파일 시점에 문법 오류를 찾을 수 있음</li>
+      <li>동적쿼리 작성 편리함</li>
+      <li>단순하고 쉬움</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//JPQL</span>
+<span class="c1">//select m from Member m where m.age &gt; 18</span>
+<span class="nc">JPAFactoryQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPAQueryFactory</span><span class="o">(</span><span class="n">em</span><span class="o">);</span>
+<span class="nc">QMember</span> <span class="n">m</span> <span class="o">=</span> <span class="nc">QMember</span><span class="o">.</span><span class="na">member</span><span class="o">;</span>
+
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> 
+        <span class="n">query</span><span class="o">.</span><span class="na">selectFrom</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">age</span><span class="o">.</span><span class="na">gt</span><span class="o">(</span><span class="mi">18</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">orderBy</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">desc</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">fetch</span><span class="o">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li>네이티브 SQL
+    <ul>
+      <li>JPA가 제공하는 SQL을 직접 사용하는 기능</li>
+      <li>JPQL로 해결할 수 없는 특정 데이터베이스에 의존적인 기능</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT ID, AGE, TEAM_ID, NAMEFROM MEMBERWHERE NAME = ‘kim’"</span><span class="o">;</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createNativeQuery</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+<ul>
+  <li>JDBC 직접 사용, SpringJdbcTemplate 등
+    <ul>
+      <li>JPA를 사용하면서 JDBC 커넥션을 직접 사용하거나, 스프링 JdbcTemplate, 마이바티스등을 함께 사용 가능</li>
+      <li>단 영속성 컨텍스트를 적절한 시점에 강제로 플러시 필요</li>
+      <li>예) JPA를 우회해서 SQL을 실행하기 직전에 영속성 컨텍스트 수동 플러시</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="기본-문법과-쿼리-api">기본 문법과 쿼리 API</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">m</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">as</span> <span class="n">m</span> <span class="n">where</span> <span class="n">m</span><span class="o">.</span><span class="na">age</span> <span class="o">&gt;</span> <span class="mi">18</span>
+</code></pre></div></div>
+<ul>
+  <li>엔티티 이름 사용, 테이블 이름이 아님(Member)</li>
+  <li>별칭은 필수(m) (as는 생략가능)</li>
+  <li>집합과 정렬</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span>
+    <span class="nf">COUNT</span><span class="o">(</span><span class="n">m</span><span class="o">),</span> <span class="c1">//회원수</span>
+    <span class="no">SUM</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">age</span><span class="o">),</span> <span class="c1">//나이 합</span>
+    <span class="no">AVG</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">age</span><span class="o">),</span> <span class="c1">//평균 나이 </span>
+    <span class="no">MAX</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">age</span><span class="o">),</span> <span class="c1">//최대 나이 </span>
+    <span class="no">MIN</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">age</span><span class="o">)</span> <span class="c1">//최소 나이</span>
+<span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+</code></pre></div></div>
+<ul>
+  <li>GROUP BY, HAVING, ORDER BY</li>
+  <li>TypeQuery, Query
+    <ul>
+      <li>TypeQuery: 반환 타입이 명확할 때 사용</li>
+      <li>Query: 반환 타입이 명확하지 않을 때 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">TypedQuery</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">query</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">"SELECT m FROM Member m"</span><span class="o">,</span> <span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Query</span> <span class="n">query</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">"SELECT m.username, m.age from Member m"</span><span class="o">);</span>
+</code></pre></div></div>
+<ul>
+  <li>결과 조회 API
+    <ul>
+      <li>query.getResultList(): 결과가 하나 이상일 때, 리스트 반환, 결과가 없으면 빈 리스트 반환</li>
+      <li>query.getSingleResult(): 결과가 정확히 하나, 단일 객체 반환
+        <ul>
+          <li>결과가 없으면: <code class="language-plaintext highlighter-rouge">javax.persistence.NoResultException</code></li>
+          <li>둘 이상이면: <code class="language-plaintext highlighter-rouge">javax.persistence.NonUniqueResultException</code></li>
+          <li>스프링 데이터 JPA 사용시 <code class="language-plaintext highlighter-rouge">try ~ catch</code>를 통해 <code class="language-plaintext highlighter-rouge">null</code>이나 <code class="language-plaintext highlighter-rouge">Optional</code> 객체를 반환</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>파라미터 바인딩 - 이름 기준</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">SELECT</span> <span class="n">m</span> <span class="no">FROM</span> <span class="nc">Member</span> <span class="n">m</span> <span class="n">where</span> <span class="n">m</span><span class="o">.</span><span class="na">username</span><span class="o">=:</span><span class="n">username</span> 
+<span class="n">query</span><span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="n">usernameParam</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="프로젝션select">프로젝션(SELECT)</h3>
+<ul>
+  <li>SELECT 절에 조회할 대상을 지정하는 것</li>
+  <li>프로젝션 대상: 엔티티, 임베디드 타입, 스칼라 타입(숫자, 문자등 기본 데이터 타입)
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">SELECT m FROM Member m</code> -&gt; 엔티티 프로젝션</li>
+      <li><code class="language-plaintext highlighter-rouge">SELECT m.team FROM Member m</code> -&gt; 엔티티 프로젝션</li>
+      <li><code class="language-plaintext highlighter-rouge">SELECT m.address FROM Member m</code> -&gt; 임베디드 타입 프로젝션</li>
+      <li><code class="language-plaintext highlighter-rouge">SELECT m.username, m.age FROM Member m</code> -&gt; 스칼라 타입 프로젝션</li>
+      <li>DISTINCT로 중복 제거</li>
+    </ul>
+  </li>
+  <li>프로젝션 - 여러 값 조회
+    <ul>
+      <li>Query 타입으로 조회</li>
+      <li>Object[] 타입으로 조회</li>
+      <li>new 명령어로 조회
+        <ul>
+          <li>단순 값을 DTO로 바로 조회(<code class="language-plaintext highlighter-rouge">SELECT new jpabook.jpql.UserDTO(m.username, m.age) FROM Member m</code>)</li>
+          <li>패키지명을 포함한 전체 클래스명 입력</li>
+          <li>순서와 타입이 일치하는 생성자 필요</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="페이징-api">페이징 API</h3>
+<ul>
+  <li>JPA는 페이징을 다음 두 API로 추상화
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">setFirstResult(int startPosition)</code> : 조회 시작 위치(0부터 시작)</li>
+      <li><code class="language-plaintext highlighter-rouge">setMaxResults(int maxResult)</code> : 조회할 데이터 수</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">jpql</span> <span class="o">=</span> <span class="s">"select m from Member m order by m.name desc"</span><span class="o">;</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">jpql</span><span class="o">,</span> <span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">setFirstResult</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">setMaxResults</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+<h3 id="조인">조인</h3>
+<ul>
+  <li>내부 조인: <code class="language-plaintext highlighter-rouge">SELECT m FROM Member m [INNER] JOIN m.team t</code></li>
+  <li>외부 조인: <code class="language-plaintext highlighter-rouge">SELECT m FROM Member m LEFT [OUTER] JOIN m.team t</code></li>
+  <li>세타 조인: <code class="language-plaintext highlighter-rouge">select count(m) from Member m, Team t where m.username = t.name</code></li>
+  <li>조인 - ON 절
+    <ul>
+      <li>조인 대상 필터링( 예) 회원과 팀을 조인하면서, 팀 이름이 A인 팀만 조인 )</li>
+      <li>연관관계 없는 엔티티 외부 조인(하이버네이트 5.1부터)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="서브-쿼리">서브 쿼리</h3>
+<ul>
+  <li>나이가 평균보다 많은 회원</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">m</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+<span class="n">where</span> <span class="n">m</span><span class="o">.</span><span class="na">age</span> <span class="o">&gt;</span> <span class="o">(</span><span class="n">select</span> <span class="nf">avg</span><span class="o">(</span><span class="n">m2</span><span class="o">.</span><span class="na">age</span><span class="o">)</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m2</span><span class="o">)</span>
+</code></pre></div></div>
+<ul>
+  <li>한 건이라도 주문한 고객</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">m</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+<span class="nf">where</span> <span class="o">(</span><span class="n">select</span> <span class="nf">count</span><span class="o">(</span><span class="n">o</span><span class="o">)</span> <span class="n">from</span> <span class="nc">Order</span> <span class="n">o</span> <span class="n">where</span> <span class="n">m</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="na">member</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</code></pre></div></div>
+<ul>
+  <li>서브 쿼리 지원 함수
+    <ul>
+      <li>[NOT] EXISTS (subquery): 서브쿼리에 결과가 존재하면 참</li>
+      <li>ALL 모두 만족하면 참</li>
+      <li>ANY, SOME: 같은 의미, 조건을 하나라도 만족하면 참</li>
+      <li>[NOT] IN (subquery): 서브쿼리의 결과 중 하나라도 같은 것이 있으면 참</li>
+    </ul>
+  </li>
+  <li>JPA 서브 쿼리 한계
+    <ul>
+      <li>JPA는 WHERE, HAVING 절에서만 서브 쿼리 사용 가능</li>
+      <li>SELECT 절도 가능(하이버네이트에서 지원)</li>
+      <li>FROM 절의 서브 쿼리는 현재 JPQL에서 불가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="조건식---case-식">조건식 - CASE 식</h3>
+<ul>
+  <li>기본 CASE 식</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span>
+    <span class="k">case</span> <span class="n">when</span> <span class="n">m</span><span class="o">.</span><span class="na">age</span> <span class="o">&lt;=</span> <span class="mi">10</span> <span class="n">then</span> <span class="err">'</span><span class="n">학생요금</span><span class="err">'</span> 
+         <span class="n">when</span> <span class="n">m</span><span class="o">.</span><span class="na">age</span> <span class="o">&gt;=</span> <span class="mi">60</span> <span class="n">then</span> <span class="err">'</span><span class="n">경로요금</span><span class="err">'</span>
+         <span class="k">else</span> <span class="err">'</span><span class="n">일반요금</span><span class="err">'</span>
+    <span class="n">end</span>
+<span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+</code></pre></div></div>
+<ul>
+  <li>단순 CASE 식</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span>
+    <span class="k">case</span> <span class="n">t</span><span class="o">.</span><span class="na">name</span>
+        <span class="n">when</span> <span class="err">'</span><span class="n">팀A</span><span class="err">'</span> <span class="n">then</span> <span class="err">'</span><span class="n">인센티브110</span><span class="o">%</span><span class="err">'</span> 
+        <span class="n">when</span> <span class="err">'</span><span class="n">팀B</span><span class="err">'</span> <span class="n">then</span> <span class="err">'</span><span class="n">인센티브120</span><span class="o">%</span><span class="err">'</span>
+        <span class="k">else</span> <span class="err">'</span><span class="n">인센티브105</span><span class="o">%</span><span class="err">'</span>
+    <span class="n">end</span>
+<span class="n">from</span> <span class="nc">Team</span> <span class="n">t</span>
+</code></pre></div></div>
+<ul>
+  <li>COALESCE: 하나씩 조회해서 null이 아니면 반환</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="nf">coalesce</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">username</span><span class="o">,</span><span class="err">'</span><span class="n">이름</span> <span class="n">없는</span> <span class="n">회원</span><span class="err">'</span><span class="o">)</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+</code></pre></div></div>
+<ul>
+  <li>사용자 이름이 ‘관리자’면 null을 반환하고 나머지는 본인의 이름을 반환</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="nf">NULLIF</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">username</span><span class="o">,</span> <span class="err">'</span><span class="n">관리자</span><span class="err">'</span><span class="o">)</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+</code></pre></div></div>
+
+<h3 id="jpql-사용자-정의-함수">JPQL 사용자 정의 함수</h3>
+<ul>
+  <li>사용하는 DB 방언을 상속받고, 사용자 정의 함수를 등록한다.</li>
+  <li>하이버네이트는 사용전 방언에 추가해야 한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="nf">function</span><span class="o">(</span><span class="err">'</span><span class="n">group_concat</span><span class="err">'</span><span class="o">,</span> <span class="n">i</span><span class="o">.</span><span class="na">name</span><span class="o">)</span> <span class="n">from</span> <span class="nc">Item</span> <span class="n">i</span>
+</code></pre></div></div>
+
+<h2 id="객체지향-쿼리-언어2---중급-문법">객체지향 쿼리 언어2 - 중급 문법</h2>
+<h3 id="경로-표현식">경로 표현식</h3>
+<ul>
+  <li>.(점)을 찍어 객체 그래프를 탐색하는 것</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">m</span><span class="o">.</span><span class="na">username</span> <span class="o">-&gt;</span> <span class="n">상태</span> <span class="n">필드</span> 
+<span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+<span class="n">join</span> <span class="n">m</span><span class="o">.</span><span class="na">team</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">단일</span> <span class="n">값</span> <span class="n">연관</span> <span class="n">필드</span>
+<span class="n">join</span> <span class="n">m</span><span class="o">.</span><span class="na">orders</span> <span class="n">o</span> <span class="o">-&gt;</span> <span class="n">컬렉션</span> <span class="n">값</span> <span class="n">연관</span> <span class="n">필드</span> 
+<span class="n">where</span> <span class="n">t</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="err">'</span><span class="n">팀A</span><span class="err">'</span>
+</code></pre></div></div>
+<ul>
+  <li>상태 필드(state field): 단순히 값을 저장하기 위한 필드 (ex: m.username)</li>
+  <li>연관 필드(association field): 연관관계를 위한 필드
+    <ul>
+      <li>단일 값 연관 필드: <code class="language-plaintext highlighter-rouge">@ManyToOne</code>, <code class="language-plaintext highlighter-rouge">@OneToOne</code>, 대상이 엔티티(ex: m.team)</li>
+      <li>컬렉션 값 연관 필드: <code class="language-plaintext highlighter-rouge">@OneToMany</code>, <code class="language-plaintext highlighter-rouge">@ManyToMany</code>, 대상이 컬렉션(ex: m.orders)</li>
+    </ul>
+  </li>
+  <li>상태 필드(state field): 경로 탐색의 끝, 탐색X</li>
+  <li>단일 값 연관 경로: 묵시적 내부 조인(inner join) 발생, 탐색O, 권장하지 않음</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">o</span><span class="o">.</span><span class="na">member</span> <span class="n">from</span> <span class="nc">Order</span> <span class="n">o</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">m</span><span class="p">.</span><span class="o">*</span> 
+<span class="k">from</span> <span class="n">Orders</span> <span class="n">o</span> 
+<span class="k">inner</span> <span class="k">join</span> <span class="n">Member</span> <span class="n">m</span> <span class="k">on</span> <span class="n">o</span><span class="p">.</span><span class="n">member_id</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">id</span>
+</code></pre></div></div>
+<ul>
+  <li>컬렉션 값 연관 경로: 묵시적 내부 조인 발생, 탐색X, FROM 절에서 명시적 조인을 통해 별칭을 얻으면 별칭을 통해 탐색 가능</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">m</span><span class="o">.</span><span class="na">username</span> <span class="n">from</span> <span class="nc">Team</span> <span class="n">t</span> <span class="n">join</span> <span class="n">t</span><span class="o">.</span><span class="na">members</span> <span class="n">m</span>
+</code></pre></div></div>
+<ul>
+  <li>명시적 조인: join 키워드 직접 사용</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">m</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span> <span class="n">join</span> <span class="n">m</span><span class="o">.</span><span class="na">team</span> <span class="n">t</span>
+</code></pre></div></div>
+<ul>
+  <li>묵시적 조인: 경로 표현식에 의해 묵시적으로 SQL 조인 발생 (내부 조인만 가능)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">m</span><span class="o">.</span><span class="na">team</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span>
+</code></pre></div></div>
+<ul>
+  <li>실무 조언
+    <ul>
+      <li>가급적 묵시적 조인 대신에 명시적 조인 사용</li>
+      <li>조인은 SQL 튜닝에 중요 포인트</li>
+      <li>묵시적 조인은 조인이 일어나는 상황을 한눈에 파악하기 어려움</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="페치-조인-1---기본">페치 조인 1 - 기본</h3>
+<ul>
+  <li>N + 1 문제는 즉시로딩이든 지연로딩이든 발생한다.</li>
+  <li>SQL 조인 종류X</li>
+  <li>JPQL에서 성능 최적화를 위해 제공하는 기능</li>
+  <li>연관된 엔티티나 컬렉션을 SQL 한 번에 함께 조회하는 기능</li>
+  <li>join fetch 명령어 사용</li>
+  <li>엔티티 페치 조인
+    <ul>
+      <li>회원을 조회하면서 연관된 팀도 함께 조회(SQL 한 번에)</li>
+      <li>JPQL: <code class="language-plaintext highlighter-rouge">select m from Member m join fetch m.team</code></li>
+      <li>SQL: <code class="language-plaintext highlighter-rouge">SELECT M.*, T.* FROM MEMBER M INNER JOIN TEAM T ON M.TEAM_ID=T.ID</code></li>
+    </ul>
+  </li>
+  <li>컬렉션 페치 조인(일대다 관계)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">t</span>
+<span class="n">from</span> <span class="nc">Team</span> <span class="n">t</span> <span class="n">join</span> <span class="n">fetch</span> <span class="n">t</span><span class="o">.</span><span class="na">members</span>
+<span class="n">where</span> <span class="n">t</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="err">‘</span><span class="n">팀A</span><span class="err">'</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">T</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">M</span><span class="p">.</span><span class="o">*</span>
+<span class="k">FROM</span> <span class="n">TEAM</span> <span class="n">T</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">MEMBER</span> <span class="n">M</span> <span class="k">ON</span> <span class="n">T</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="n">M</span><span class="p">.</span><span class="n">TEAM_ID</span> 
+<span class="k">WHERE</span> <span class="n">T</span><span class="p">.</span><span class="n">NAME</span> <span class="o">=</span> <span class="s1">'팀A'</span>
+</code></pre></div></div>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/JPA/basic/32.png">
+          <img src="/assets/images/post/Spring/JPA/basic/32.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>페치 조인과 DISTINCT
+    <ul>
+      <li>SQL에 DISTINCT를 추가</li>
+      <li>애플리케이션에서 엔티티 중복 제거</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="n">distinct</span> <span class="n">t</span>
+<span class="n">from</span> <span class="nc">Team</span> <span class="n">t</span> <span class="n">join</span> <span class="n">fetch</span> <span class="n">t</span><span class="o">.</span><span class="na">members</span>
+<span class="n">where</span> <span class="n">t</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="err">‘</span><span class="n">팀A</span><span class="err">’</span>
+</code></pre></div></div>
+<ul>
+  <li>SQL에 <code class="language-plaintext highlighter-rouge">DISTINCT</code>를 추가하지만 데이터가 다르므로 SQL 결과에서 중복제거 실패</li>
+  <li><code class="language-plaintext highlighter-rouge">DISTINCT</code>가 추가로 애플리케이션에서 중복 제거시도</li>
+  <li>같은 식별자를 가진 Team 엔티티 제거</li>
+  <li>페치 조인과 일반 조인의 차이
+    <ul>
+      <li>일반 조인 실행시 연관된 엔티티를 함께 조회하지 않음</li>
+      <li>JPQL은 결과를 반환할 때 연관관계 고려X, 단지 SELECT 절에 지정한 엔티티만 조회할 뿐</li>
+      <li>페치 조인을 사용할 때만 연관된 엔티티도 함께 조회(즉시 로딩)</li>
+      <li>페치 조인은 객체 그래프를 SQL 한번에 조회하는 개념</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="페치-조인-2---한계">페치 조인 2 - 한계</h3>
+<ul>
+  <li>페치 조인 대상에는 별칭을 줄 수 없다.(하이버네이트는 가능, 가급적 사용X)</li>
+  <li>둘 이상의 컬렉션은 페치 조인 할 수 없다.</li>
+  <li>컬렉션을 페치 조인하면 페이징 API(<code class="language-plaintext highlighter-rouge">setFirstResult</code>, <code class="language-plaintext highlighter-rouge">setMaxResults</code>)를 사용할 수 없다.
+    <ul>
+      <li>일대일, 다대일 같은 단일 값 연관 필드들은 페치 조인해도 페이징 가능</li>
+      <li>하이버네이트는 경고 로그를 남기고 메모리에서 페이징(매우 위험) -&gt; 데이터베이스에서 모든 데이터를 가져와서 객체 만든 후 애플리케이션에서 페이징 처리</li>
+      <li><code class="language-plaintext highlighter-rouge">@BatchSize</code>: 일대다 조인에서 지연로딩시 IN 쿼리를 통해 한번에 연관 필드 객체를 가져와서 1 + N 문제를 1 + 1문제로 완화(글로벌 세팅도 가능)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="엔티티-직접-사용">엔티티 직접 사용</h3>
+<ul>
+  <li>JPQL에서 엔티티를 직접 사용하면 SQL에서 해당 엔티티의 기본 키 값을 사용</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">select</span> <span class="nf">count</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">id</span><span class="o">)</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span> <span class="c1">//엔티티의 아이디를 사용</span>
+<span class="n">select</span> <span class="nf">count</span><span class="o">(</span><span class="n">m</span><span class="o">)</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span> <span class="c1">//엔티티를 직접 사용</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">as</span> <span class="n">cnt</span> <span class="k">from</span> <span class="n">Member</span> <span class="n">m</span>
+</code></pre></div></div>
+<ul>
+  <li>엔티티를 파라미터로 전달</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">jpql</span> <span class="o">=</span> <span class="err">“</span><span class="n">select</span> <span class="n">m</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span> <span class="n">where</span> <span class="n">m</span> <span class="o">=</span> <span class="o">:</span><span class="n">member</span><span class="err">”</span><span class="o">;</span> 
+<span class="nc">List</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">jpql</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">"member"</span><span class="o">,</span> <span class="n">member</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">m</span><span class="p">.</span><span class="o">*</span> <span class="k">from</span> <span class="n">Member</span> <span class="n">m</span> <span class="k">where</span> <span class="n">m</span><span class="p">.</span><span class="n">id</span><span class="o">=?</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Team</span> <span class="n">team</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Team</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">qlString</span> <span class="o">=</span> <span class="err">“</span><span class="n">select</span> <span class="n">m</span> <span class="n">from</span> <span class="nc">Member</span> <span class="n">m</span> <span class="n">where</span> <span class="n">m</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="o">:</span><span class="n">team</span><span class="err">”</span><span class="o">;</span> 
+<span class="nc">List</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">qlString</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">"team"</span><span class="o">,</span> <span class="n">team</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">m</span><span class="p">.</span><span class="o">*</span> <span class="k">from</span> <span class="n">Member</span> <span class="n">m</span> <span class="k">where</span> <span class="n">m</span><span class="p">.</span><span class="n">team_id</span><span class="o">=?</span>
+</code></pre></div></div>
+
+<h3 id="벌크-연산">벌크 연산</h3>
+<ul>
+  <li>JPA 변경 감지 기능으로 실행하려면 너무 많은 SQL 실행 -&gt; 변경된 데이터가 100건이라면 100번의 UPDATE SQL 실행</li>
+  <li>쿼리 한 번으로 여러 테이블 로우 변경(엔티티)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">qlString</span> <span class="o">=</span> <span class="s">"update Product p "</span> <span class="o">+</span>
+                  <span class="s">"set p.price = p.price * 1.1 "</span> <span class="o">+</span>
+                  <span class="s">"where p.stockAmount &lt; :stockAmount"</span><span class="o">;</span>
+
+<span class="kt">int</span> <span class="n">resultCount</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">qlString</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">"stockAmount"</span><span class="o">,</span> <span class="mi">10</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">executeUpdate</span><span class="o">();</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">executeUpdate()</code>의 결과는 영향받은 엔티티 수 반환</li>
+  <li>UPDATE, DELETE 지원</li>
+  <li>벌크 연산은 영속성 컨텍스트를 무시하고 데이터베이스에 직접 쿼리(데이터베이스와 영속성 컨텍스트의 동기화 문제)
+    <ol>
+      <li>벌크 연산을 먼저 실행</li>
+      <li>벌크 연산 수행 후 영속성 컨텍스트 초기화</li>
+    </ol>
+  </li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#jpa" class="page__taxonomy-item" rel="tag">JPA</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#spring-jpa" class="page__taxonomy-item" rel="tag">Spring/JPA</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-28T00:00:00+09:00">September 28, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BJPA%5D+%EC%9E%90%EB%B0%94+ORM+%ED%91%9C%EC%A4%80+JPA%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2FJPA%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2FJPA%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2FJPA%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/Optional-T-.filter()/" class="pagination--pager" title="[JAVA] Optional 클래스의 filter()메서드
+">이전</a>
+    
+    
+      <a href="/spring/mvc/SpringMVC-part2/" class="pagination--pager" title="[Spring][MVC] SpringMVC-part2
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/mvc/SpringMVC-part2/" rel="permalink">[Spring][MVC] SpringMVC-part2
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-28T00:00:00+09:00">September 28, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          43 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/Optional-T-.filter()/" rel="permalink">[JAVA] Optional 클래스의 filter()메서드
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-27T00:00:00+09:00">September 27, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/thymeleaf/Thymeleaf/" rel="permalink">[Spring][Thymeleaf] Thymeleaf 네츄럴 템플릿
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-25T00:00:00+09:00">September 25, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          12 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/web/Relative-path&-Absolute-path/" rel="permalink">[WEB] 절대경로와 상대경로
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-24T00:00:00+09:00">September 24, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 yhw. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>
