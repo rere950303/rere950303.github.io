@@ -59,15 +59,21 @@ var store = [{
         "url": "https://rere950303.github.io/java/Optional-T-.filter()/",
         "teaser": null
       },{
+        "title": "[Spring][MVC] SpringMVC-part2",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 MVC 2편 - 백엔드 웹 개발 활용 기술 강의를 바탕으로 쓰였음을 미리 밝힙니다. 메시지, 국제화 메시지, 국제화 소개 메시지: 여러 화면에 보이는 상품명, 가격, 수량 등 label 에 있는 단어를 변경하려면 다음 화면들을 다 찾아가면서 모두 변경해야 한다. 화면 수가 적으면 문제가 되지...","categories": ["Spring/MVC"],
+        "tags": ["MVC","Spring"],
+        "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part2/",
+        "teaser": null
+      },{
         "title": "[Spring][JPA] 자바 ORM 표준 JPA",
         "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 자바 ORM 표준 JPA 프로그래밍 - 기본편 강의와 도서를 바탕으로 쓰였음을 미리 밝힙니다. JPA 소개 SQL 중심적인 개발의 문제점 객체 지향 언어 관계형 데이터베이스 객체를 관계형 데이터베이스에 관리 CRUD(객체를 SQL로, SQL을 자바 객체로) public class Member { private String memberId; private String name; ......","categories": ["Spring/JPA"],
         "tags": ["JPA","Spring"],
         "url": "https://rere950303.github.io/spring/jpa/JPA/",
         "teaser": null
       },{
-        "title": "[Spring][MVC] SpringMVC-part2",
-        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 MVC 2편 - 백엔드 웹 개발 활용 기술 강의를 바탕으로 쓰였음을 미리 밝힙니다. 메시지, 국제화 메시지, 국제화 소개 메시지: 여러 화면에 보이는 상품명, 가격, 수량 등 label 에 있는 단어를 변경하려면 다음 화면들을 다 찾아가면서 모두 변경해야 한다. 화면 수가 적으면 문제가 되지...","categories": ["Spring/MVC"],
-        "tags": ["MVC","Spring"],
-        "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part2/",
+        "title": "[Spring][JPA] OSIV",
+        "excerpt":"OSIV Open Session In View 의 약자로써 영속성 컨텍스트를 뷰까지 열어둔다는 뜻이다. 영속성 컨텍스트가 살아있으면 엔티티는 영속 상태로 유지된다. 따라서 뷰에서도 지연 로딩을 사용할 수 있다. spring.jpa.open-in-view: false, spring.jpa.open-in-view : true(기본값) 요청 당 트랜잭션 방식의 OSIV 문제점 컨트롤러나 뷰 같은 프리젠테이션 계층이 엔티티를 변경할 수 있다. 요청이 끝나고 트랜잭션이 커밋되면서...","categories": ["Spring/JPA"],
+        "tags": ["JPA","Spring","OSIV"],
+        "url": "https://rere950303.github.io/spring/jpa/OSIV/",
         "teaser": null
       }]

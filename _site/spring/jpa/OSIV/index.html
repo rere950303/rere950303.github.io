@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[JAVA] Optional 클래스의 filter()메서드 - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Spring][JPA] OSIV - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[JAVA] Optional 클래스의 filter()메서드">
-<meta property="og:url" content="https://rere950303.github.io/java/Optional-T-.filter()/">
+<meta property="og:title" content="[Spring][JPA] OSIV">
+<meta property="og:url" content="https://rere950303.github.io/spring/jpa/OSIV/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-09-27T00:00:00+09:00">
+  <meta property="article:published_time" content="2021-10-20T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/java/Optional-T-.filter()/">
+<link rel="canonical" href="https://rere950303.github.io/spring/jpa/OSIV/">
 
 
 
@@ -188,7 +188,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#java" itemprop="item"><span itemprop="name">Java</span></a>
+          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -196,7 +196,17 @@
     
       
       
-        <li class="current">[JAVA] Optional 클래스의 filter()메서드</li>
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#jpa" itemprop="item"><span itemprop="name">Jpa</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Spring][JPA] OSIV</li>
       
     
   </ol>
@@ -327,15 +337,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[JAVA] Optional 클래스의 filter()메서드">
+    <meta itemprop="headline" content="[Spring][JPA] OSIV">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-09-27T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2021-10-20T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[JAVA] Optional 클래스의 filter()메서드
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][JPA] OSIV
 </h1>
           
 
@@ -344,7 +354,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-09-27T00:00:00+09:00">September 27, 2021</time>
+        <time datetime="2021-10-20T00:00:00+09:00">October 20, 2021</time>
       </span>
     
 
@@ -369,34 +379,41 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">filter</span><span class="o">(</span><span class="nc">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="no">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">Objects</span><span class="o">.</span><span class="na">requireNonNull</span><span class="o">(</span><span class="n">predicate</span><span class="o">);</span>
-    
-    <span class="k">if</span> <span class="o">(!</span><span class="n">isPresent</span><span class="o">())</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="o">?</span> <span class="k">this</span> <span class="o">:</span> <span class="n">empty</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span> 
-</code></pre></div></div>
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#osiv">OSIV</a></li>
+  <li><a href="#요청-당-트랜잭션-방식의-osiv-문제점">요청 당 트랜잭션 방식의 OSIV 문제점</a></li>
+  <li><a href="#스프링-osiv-비즈니스-계층-트랜잭션">스프링 OSIV: 비즈니스 계층 트랜잭션</a></li>
+  <li><a href="#정리">정리</a></li>
+</ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">empty</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"unchecked"</span><span class="o">)</span>
-    <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;)</span> <span class="no">EMPTY</span><span class="o">;</span>
-    <span class="k">return</span> <span class="n">t</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="osiv">OSIV</h2>
+<p><code class="language-plaintext highlighter-rouge">Open Session In View</code> 의 약자로써 영속성 컨텍스트를 뷰까지 열어둔다는 뜻이다. 영속성 컨텍스트가 살아있으면 엔티티는 영속 상태로 유지된다. 따라서 뷰에서도 지연 로딩을 사용할 수 있다. <br />
+<code class="language-plaintext highlighter-rouge">spring.jpa.open-in-view: false</code>, <code class="language-plaintext highlighter-rouge">spring.jpa.open-in-view : true(기본값)</code></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;?&gt;</span> <span class="no">EMPTY</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Optional</span><span class="o">&lt;&gt;();</span>
-</code></pre></div></div>
+<h2 id="요청-당-트랜잭션-방식의-osiv-문제점">요청 당 트랜잭션 방식의 OSIV 문제점</h2>
+<p>컨트롤러나 뷰 같은 프리젠테이션 계층이 엔티티를 변경할 수 있다. 요청이 끝나고 트랜잭션이 커밋되면서 영속성 컨텍스트가 플러쉬 된다면 데이터베이스의 내용이 의도치 않게 변경되게 된다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nf">Optional</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="o">}</span>     
-</code></pre></div></div>
+<h2 id="스프링-osiv-비즈니스-계층-트랜잭션">스프링 OSIV: 비즈니스 계층 트랜잭션</h2>
+<ul>
+  <li>스프링 프레임워크가 제공하는 OSIV는 비즈니스 계층에서 트랜잭션을 사용하는 OSIV을 말한다. 즉 트랜잭션의 범위는 비즈니스 로직이 존재하는 계층까지만을 포함하지만 영속성 컨텍스트의 범위는 뷰까지 확장시켜주는 개념이다.</li>
+  <li>엔티티를 변경하지 않고 조회만 하는 경우에는 트랜잭션 단위가 아니어도 되므로 트랙잭션 없이 읽기가 가능하고 따라서 뷰 로직 단계에서도 지연로딩 및 프록시 초기화가 가능하다.</li>
+  <li>요청이 끝나고 영속성 컨텍스트가 종료될때 플러쉬가 호출되지 않는다.</li>
+  <li>단, 프리젠테이션 계층에서 엔티티 변경후 다시 트랜잭션 범위의 비즈니스 로직을 호출하는 경우 의도치 않은 플러쉬가 발생할 수 있는바 이를 주의해야 한다.</li>
+</ul>
 
-<p>함수형 인터페이스인 <code class="language-plaintext highlighter-rouge">Predicate</code>의 <code class="language-plaintext highlighter-rouge">test()</code>를 구현한 익명 클래스 객체를 람다식으로 하여 매개변수로 넘겨주게 된다.
-참인 경우 그대로 <code class="language-plaintext highlighter-rouge">Optional</code>객체를 반환하고 거짓인 경우 값으로 null을 가지고 있는 빈 <code class="language-plaintext highlighter-rouge">Opional</code>객체를 넘겨주게 된다.</p>
+<h2 id="정리">정리</h2>
+<p>이 전략은 너무 오랜 시간동안 데이터베이스 커넥션 리소스를 사용하기 때문에, 실시간 트래픽이 중요한 애플리케이션에서는 커넥션이 모자랄 수 있다. 따라서 고객 서비스의 실시간 API는 OSIV를 끄고, ADMIN 처럼 커넥션을 많이 사용하지 않는 곳에서는 OSIV를 키는 것이 바람직하다.</p>
 
         
       </section>
@@ -417,15 +434,15 @@
     
       
       
-      <a href="/tags/#filter" class="page__taxonomy-item" rel="tag">filter</a><span class="sep">, </span>
+      <a href="/tags/#jpa" class="page__taxonomy-item" rel="tag">JPA</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">JAVA</a><span class="sep">, </span>
+      <a href="/tags/#osiv" class="page__taxonomy-item" rel="tag">OSIV</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#optional" class="page__taxonomy-item" rel="tag">Optional</a>
+      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -446,14 +463,14 @@
     
       
       
-      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">JAVA</a>
+      <a href="/categories/#spring-jpa" class="page__taxonomy-item" rel="tag">Spring/JPA</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-27T00:00:00+09:00">September 27, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-10-20T00:00:00+09:00">October 20, 2021</time></p>
 
 
       </footer>
@@ -463,23 +480,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BJAVA%5D+Optional+%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9D%98+filter%28%29%EB%A9%94%EC%84%9C%EB%93%9C%20https%3A%2F%2Frere950303.github.io%2Fjava%2FOptional-T-.filter%28%29%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BJPA%5D+OSIV%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2FOSIV%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fjava%2FOptional-T-.filter%28%29%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2FOSIV%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fjava%2FOptional-T-.filter%28%29%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2FOSIV%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/thymeleaf/Thymeleaf/" class="pagination--pager" title="[Spring][Thymeleaf] Thymeleaf 네츄럴 템플릿
+      <a href="/spring/jpa/JPA/" class="pagination--pager" title="[Spring][JPA] 자바 ORM 표준 JPA
 ">이전</a>
     
     
-      <a href="/spring/mvc/SpringMVC-part2/" class="pagination--pager" title="[Spring][MVC] SpringMVC-part2
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -493,52 +509,6 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/jpa/OSIV/" rel="permalink">[Spring][JPA] OSIV
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-10-20T00:00:00+09:00">October 20, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          최대 1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -573,7 +543,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          25 분 소요
+          22 분 소요
         
       </span>
     
@@ -619,7 +589,53 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          43 분 소요
+          49 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/Optional-T-.filter()/" rel="permalink">[JAVA] Optional 클래스의 filter()메서드
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-09-27T00:00:00+09:00">September 27, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
         
       </span>
     

@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-10-02T01:23:27+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][JPA] 자바 ORM 표준 JPA</title><link href="https://rere950303.github.io/spring/jpa/JPA/" rel="alternate" type="text/html" title="[Spring][JPA] 자바 ORM 표준 JPA" /><published>2021-09-28T00:00:00+09:00</published><updated>2021-09-28T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/JPA</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/JPA/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-10-20T23:26:02+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][JPA] OSIV</title><link href="https://rere950303.github.io/spring/jpa/OSIV/" rel="alternate" type="text/html" title="[Spring][JPA] OSIV" /><published>2021-10-20T00:00:00+09:00</published><updated>2021-10-20T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/OSIV</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/OSIV/">&lt;h2 id=&quot;osiv&quot;&gt;OSIV&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Open Session In View&lt;/code&gt; 의 약자로써 영속성 컨텍스트를 뷰까지 열어둔다는 뜻이다. 영속성 컨텍스트가 살아있으면 엔티티는 영속 상태로 유지된다. 따라서 뷰에서도 지연 로딩을 사용할 수 있다. &lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring.jpa.open-in-view: false&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring.jpa.open-in-view : true(기본값)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;요청-당-트랜잭션-방식의-osiv-문제점&quot;&gt;요청 당 트랜잭션 방식의 OSIV 문제점&lt;/h2&gt;
+&lt;p&gt;컨트롤러나 뷰 같은 프리젠테이션 계층이 엔티티를 변경할 수 있다. 요청이 끝나고 트랜잭션이 커밋되면서 영속성 컨텍스트가 플러쉬 된다면 데이터베이스의 내용이 의도치 않게 변경되게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;스프링-osiv-비즈니스-계층-트랜잭션&quot;&gt;스프링 OSIV: 비즈니스 계층 트랜잭션&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;스프링 프레임워크가 제공하는 OSIV는 비즈니스 계층에서 트랜잭션을 사용하는 OSIV을 말한다. 즉 트랜잭션의 범위는 비즈니스 로직이 존재하는 계층까지만을 포함하지만 영속성 컨텍스트의 범위는 뷰까지 확장시켜주는 개념이다.&lt;/li&gt;
+  &lt;li&gt;엔티티를 변경하지 않고 조회만 하는 경우에는 트랜잭션 단위가 아니어도 되므로 트랙잭션 없이 읽기가 가능하고 따라서 뷰 로직 단계에서도 지연로딩 및 프록시 초기화가 가능하다.&lt;/li&gt;
+  &lt;li&gt;요청이 끝나고 영속성 컨텍스트가 종료될때 플러쉬가 호출되지 않는다.&lt;/li&gt;
+  &lt;li&gt;단, 프리젠테이션 계층에서 엔티티 변경후 다시 트랜잭션 범위의 비즈니스 로직을 호출하는 경우 의도치 않은 플러쉬가 발생할 수 있는바 이를 주의해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이 전략은 너무 오랜 시간동안 데이터베이스 커넥션 리소스를 사용하기 때문에, 실시간 트래픽이 중요한 애플리케이션에서는 커넥션이 모자랄 수 있다. 따라서 고객 서비스의 실시간 API는 OSIV를 끄고, ADMIN 처럼 커넥션을 많이 사용하지 않는 곳에서는 OSIV를 키는 것이 바람직하다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /><category term="OSIV" /></entry><entry><title type="html">[Spring][JPA] 자바 ORM 표준 JPA</title><link href="https://rere950303.github.io/spring/jpa/JPA/" rel="alternate" type="text/html" title="[Spring][JPA] 자바 ORM 표준 JPA" /><published>2021-10-02T00:00:00+09:00</published><updated>2021-10-02T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/JPA</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/JPA/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 김영한 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&quot;&gt;자바 ORM 표준 JPA 프로그래밍 - 기본편&lt;/a&gt; 강의와 도서를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;jpa-소개&quot;&gt;JPA 소개&lt;/h2&gt;
@@ -6672,22 +6688,4 @@ ON은 조인조건이므로 부서에 직원이 없거나 급여가 2000이 넘�
 &lt;span class=&quot;k&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deptno&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;직원이 없거나 급여가 2000이 넘는 직원이 한명도 없는 경우 해당 부서에 대한 데이터는
-조인테이블에서 걸러진다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="SQL" /><category term="SQL" /><category term="ON" /><category term="WHERE" /></entry><entry><title type="html">[JAVA] equals()&amp;amp;hashCode() 오버라이딩</title><link href="https://rere950303.github.io/java/equals()&hashCode()/" rel="alternate" type="text/html" title="[JAVA] equals()&amp;amp;hashCode() 오버라이딩" /><published>2021-09-18T00:00:00+09:00</published><updated>2021-09-18T00:00:00+09:00</updated><id>https://rere950303.github.io/java/equals()&amp;hashCode()</id><content type="html" xml:base="https://rere950303.github.io/java/equals()&amp;hashCode()/">&lt;p&gt;해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다.&lt;br /&gt;
-해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. 
-Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;ol&gt;
-  &lt;li&gt;동일한 객체에 대해 여러 번 hashCode()를 호출해도 동일한 값을 반환해야 한다.&lt;/li&gt;
-  &lt;li&gt;equals()가 참인 두 객체의 hashCode() 결과는 반드시 같아야 한다.&lt;/li&gt;
-  &lt;li&gt;equals()가 거짓인 두 객체의 hashCode() 결과가 같을 수 있지만 HastMap등에서 검색 속도가 떨어져 성능이 저하될 수 있으므로 서로 다른 값을 반환하도록 적절히 오버라이딩 해야한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hashCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Objects&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;위와 같은 방식으로 오버라이딩 할 수 있다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="JAVA" /><category term="JAVA" /><category term="equals" /><category term="hashCode" /></entry></feed>
+조인테이블에서 걸러진다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="SQL" /><category term="SQL" /><category term="ON" /><category term="WHERE" /></entry></feed>
