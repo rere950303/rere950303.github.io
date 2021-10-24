@@ -76,4 +76,16 @@ var store = [{
         "tags": ["JPA","Spring","OSIV"],
         "url": "https://rere950303.github.io/spring/jpa/OSIV/",
         "teaser": null
+      },{
+        "title": "[Spring][JPA] 스프링 데이터 JPA",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 실전! 스프링 데이터 JPA 강의를 바탕으로 쓰였음을 미리 밝힙니다. 공통 인터페이스 기능 공통 인터페이스 설정 org.springframework.data.repository.Repository 를 구현한 클래스는 스캔 대상 Spring Data JPA가 인터페이스를 구현한 프록시 객체를 생성한다. @Repository 애노테이션 생략 가능 Spring Data JPA가 컴포넌트 스캔을 자동으로 처리하여 Spring Context에서 관리하고 의존관계를...","categories": ["Spring/JPA"],
+        "tags": ["JPA","Spring"],
+        "url": "https://rere950303.github.io/spring/jpa/SpringDataJPA/",
+        "teaser": null
+      },{
+        "title": "[Spring][JPA] 변경 감지와 병합",
+        "excerpt":"준영속 엔티티 식별자(ID)를 가지고 있는 엔티티로써 영속성 컨텍스트가 더는 관리하지 않는것을 말한다. 따라서 해당 엔티티의 속성을 변경해도 변경감지를 통한 update쿼리가 생성되지 않는다. 준영속 엔티티를 수정하는 2가지 방법 변경 감지 기능 사용 영속성 컨텍스트에서 영속상태인 엔티티를 조회한 후에 트랜잭션 안에서 속성을 변경하고 변경 감지 기능을 통해 트랜잭션 시점의 플러쉬로 데이터베이스 UPDATE...","categories": ["Spring/JPA"],
+        "tags": ["JPA","Spring","save","merge"],
+        "url": "https://rere950303.github.io/spring/jpa/save&merge/",
+        "teaser": null
       }]
