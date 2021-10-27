@@ -88,4 +88,10 @@ var store = [{
         "tags": ["JPA","Spring","save","merge"],
         "url": "https://rere950303.github.io/spring/jpa/save&merge/",
         "teaser": null
+      },{
+        "title": "[Spring][JPA][Querydsl] Querydsl",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 실전! Querydsl 강의를 바탕으로 쓰였음을 미리 밝힙니다. 기본 문법 시작 - JPQL vs Querydsl public void startJPQL() { //member1을 찾아라. String qlString = \"select m from Member m \" + \"where m.username = :username\"; Member findMember = em.createQuery(qlString, Member.class) .setParameter(\"username\", \"member1\") .getSingleResult(); assertThat(findMember.getUsername()).isEqualTo(\"member1\"); }...","categories": ["Spring/JPA/Querydsl"],
+        "tags": ["JPA","Spring","Querydsl"],
+        "url": "https://rere950303.github.io/spring/jpa/querydsl/Querydsl/",
+        "teaser": null
       }]
