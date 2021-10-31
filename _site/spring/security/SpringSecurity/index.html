@@ -1,0 +1,2087 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Spring][Security] 스프링 시큐리티 - YHW Blog</title>
+<meta name="description" content="새로운 배움을 기록하고 공유합니다">
+
+
+  <meta name="author" content="yhw">
+  
+  <meta property="article:author" content="yhw">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="YHW Blog">
+<meta property="og:title" content="[Spring][Security] 스프링 시큐리티">
+<meta property="og:url" content="https://rere950303.github.io/spring/security/SpringSecurity/">
+
+
+  <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-27T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://rere950303.github.io/spring/security/SpringSecurity/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "yhw",
+      "url": "https://rere950303.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="YHW Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          YHW Blog
+          <span class="site-subtitle">새로운 배움을 기록하고 공유합니다</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#security" itemprop="item"><span itemprop="name">Security</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Spring][Security] 스프링 시큐리티</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio/photo.png" alt="yhw" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">yhw</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>어제와 다른 오늘, 오늘 같은 내일</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:yhwjjang1995@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Spring][Security] 스프링 시큐리티">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-10-27T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][Security] 스프링 시큐리티
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-27T00:00:00+09:00">October 27, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#스프링-시큐리티-폼-인증">스프링 시큐리티: 폼 인증</a>
+    <ul>
+      <li><a href="#스프링-시큐리티-연동">스프링 시큐리티 연동</a></li>
+      <li><a href="#스프링-시큐리티-설정하기">스프링 시큐리티 설정하기</a></li>
+      <li><a href="#스프링-시큐리티-커스터마이징-인메모리-유저-추가">스프링 시큐리티 커스터마이징: 인메모리 유저 추가</a></li>
+      <li><a href="#스프링-시큐리티-커스터마이징-jpa-연동">스프링 시큐리티 커스터마이징: JPA 연동</a></li>
+      <li><a href="#스프링-시큐리티-커스터마이징-passwordencoder">스프링 시큐리티 커스터마이징: PasswordEncoder</a></li>
+      <li><a href="#스프링-시큐리티-테스트">스프링 시큐리티 테스트</a></li>
+    </ul>
+  </li>
+  <li><a href="#스프링-시큐리티-아키텍처">스프링 시큐리티: 아키텍처</a>
+    <ul>
+      <li><a href="#securitycontextholder와-authentication">SecurityContextHolder와 Authentication</a></li>
+      <li><a href="#authenticationmanager와-authentication">AuthenticationManager와 Authentication</a></li>
+      <li><a href="#threadlocal">ThreadLocal</a></li>
+      <li><a href="#authencation과-securitycontexthodler">Authencation과 SecurityContextHodler</a></li>
+      <li><a href="#스프링-시큐리티-filter와-filterchainproxy">스프링 시큐리티 Filter와 FilterChainProxy</a></li>
+      <li><a href="#delegatingfilterproxy와-filterchainproxy">DelegatingFilterProxy와 FilterChainProxy</a></li>
+      <li><a href="#accessdecisionmanager-1부">AccessDecisionManager 1부</a></li>
+      <li><a href="#accessdecisionmanager-2부">AccessDecisionManager 2부</a></li>
+      <li><a href="#filtersecurityinterceptor">FilterSecurityInterceptor</a></li>
+      <li><a href="#exceptiontranslationfilter">ExceptionTranslationFilter</a></li>
+      <li><a href="#스프링-시큐리티-아키텍처-정리">스프링 시큐리티 아키텍처 정리</a></li>
+    </ul>
+  </li>
+  <li><a href="#웹-애플리케이션-시큐리티">웹 애플리케이션 시큐리티</a>
+    <ul>
+      <li><a href="#스프링-시큐리티-ignoring-1부">스프링 시큐리티 ignoring() 1부</a></li>
+      <li><a href="#스프링-시큐리티-ignoring-2부">스프링 시큐리티 ignoring() 2부</a></li>
+      <li><a href="#async-웹-mvc를-지원하는-필터-webasyncmanagerintegrationfilter">Async 웹 MVC를 지원하는 필터: WebAsyncManagerIntegrationFilter</a></li>
+      <li><a href="#스프링-시큐리티와-async">스프링 시큐리티와 @Async</a></li>
+      <li><a href="#securitycontext-영속화-필터-securitycontextpersistencefilter">SecurityContext 영속화 필터: SecurityContextPersistenceFilter</a></li>
+      <li><a href="#csrf-어택-방지-필터-csrffilter">CSRF 어택 방지 필터: CsrfFilter</a></li>
+      <li><a href="#로그아웃-처리-필터-logoutfilter">로그아웃 처리 필터: LogoutFilter</a></li>
+      <li><a href="#폼-인증-처리-필터-usernamepasswordauthenticationfilter">폼 인증 처리 필터: UsernamePasswordAuthenticationFilter</a></li>
+      <li><a href="#로그인로그아웃-폼-커스터마이징">로그인/로그아웃 폼 커스터마이징</a></li>
+      <li><a href="#basic-인증-처리-필터-basicauthenticationfilter">Basic 인증 처리 필터: BasicAuthenticationFilter</a></li>
+      <li><a href="#요청-캐시-필터-requestcacheawarefilter">요청 캐시 필터: RequestCacheAwareFilter</a></li>
+      <li><a href="#익명-인증-필터-anonymousauthenticationfilter">익명 인증 필터: AnonymousAuthenticationFilter</a></li>
+      <li><a href="#세션-관리-필터-sessionmanagementfilter">세션 관리 필터: SessionManagementFilter</a></li>
+      <li><a href="#인증인가-예외-처리-필터-exceptiontranslationfilter">인증/인가 예외 처리 필터: ExceptionTranslationFilter</a></li>
+      <li><a href="#토큰-기반-인증-필터--remembermeauthenticationfilter">토큰 기반 인증 필터 : RememberMeAuthenticationFilter</a></li>
+      <li><a href="#커스텀-필터-추가하기">커스텀 필터 추가하기</a></li>
+    </ul>
+  </li>
+  <li><a href="#스프링-시큐리티-그밖에">스프링 시큐리티 그밖에</a>
+    <ul>
+      <li><a href="#타임리프-스프링-시큐리티-확장팩">타임리프 스프링 시큐리티 확장팩</a></li>
+      <li><a href="#sec-네임스페이스">sec 네임스페이스</a></li>
+      <li><a href="#메소드-시큐리티">메소드 시큐리티</a></li>
+      <li><a href="#authenticationprincipal">@AuthenticationPrincipal</a></li>
+      <li><a href="#스프링-데이터-연동">스프링 데이터 연동</a></li>
+    </ul>
+  </li>
+</ul>
+
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="들어가며">들어가며</h2>
+<p>해당 게시글은 인프런 백기선 강사님의 <a href="https://www.inflearn.com/course/백기선-스프링-시큐리티/dashboard">스프링 시큐리티</a> 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
+
+<h2 id="스프링-시큐리티-폼-인증">스프링 시큐리티: 폼 인증</h2>
+<h3 id="스프링-시큐리티-연동">스프링 시큐리티 연동</h3>
+<ul>
+  <li>gradle 설정</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">implementation 'org.springframework.boot:spring-boot-starter-security'</span>
+</code></pre></div></div>
+<ul>
+  <li>기본 유저가 생성됨(ID: user)</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Using generated security password</span><span class="pi">:</span> <span class="s">114284e0-656a-4fdf-b623-9b552a85b6c8</span>
+</code></pre></div></div>
+<ul>
+  <li>모든 요청은 인증을 필요로함</li>
+</ul>
+
+<h3 id="스프링-시큐리티-설정하기">스프링 시큐리티 설정하기</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="kd">extends</span> <span class="nc">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">mvcMatchers</span><span class="o">(</span><span class="s">"/"</span><span class="o">,</span> <span class="s">"/info"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">mvcMatchers</span><span class="o">(</span><span class="s">"/admin"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"ADMIN"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">();</span>
+
+        <span class="n">http</span><span class="o">.</span><span class="na">formLogin</span><span class="o">();</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>요청 URL별 인증 설정</li>
+</ul>
+
+<h3 id="스프링-시큐리티-커스터마이징-인메모리-유저-추가">스프링 시큐리티 커스터마이징: 인메모리 유저 추가</h3>
+<ul>
+  <li>UserDetailsServiceAutoConfiguration(클래스)에서 기본 유저를 추가</li>
+  <li>SecurityProperties(클래스)에서 기본 유저의 정보 변경 가능</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">AuthenticationManagerBuilder</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="n">auth</span><span class="o">.</span><span class="na">inMemoryAuthentication</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">"keesun"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"{noop}123"</span><span class="o">).</span><span class="na">roles</span><span class="o">(</span><span class="s">"USER"</span><span class="o">).</span><span class="na">and</span><span class="o">()</span> <span class="c1">// 패스워드의 데이터베이스 저장용 인코딩 방식을 말한다.</span>
+            <span class="o">.</span><span class="na">withUser</span><span class="o">(</span><span class="s">"admin"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"{noop}!@#"</span><span class="o">).</span><span class="na">roles</span><span class="o">(</span><span class="s">"ADMIN"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Bean</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">AuthenticationManager</span> <span class="nf">authenticationManagerBean</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">authenticationManagerBean</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>인메모리 사용자 추가</li>
+  <li>로컬 AuthenticationManager를 빈으로 노출</li>
+</ul>
+
+<h3 id="스프링-시큐리티-커스터마이징-jpa-연동">스프링 시큐리티 커스터마이징: JPA 연동</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Account</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">;</span>
+    
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">unique</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+    
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">role</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AccountService</span> <span class="kd">implements</span> <span class="nc">UserDetailsService</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="nc">AccountRepository</span> <span class="n">accountRepository</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="nc">String</span> <span class="n">username</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UsernameNotFoundException</span> <span class="o">{</span>
+        <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">account</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">UsernameNotFoundException</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nc">User</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">username</span><span class="o">(</span><span class="n">account</span><span class="o">.</span><span class="na">getUsername</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="n">account</span><span class="o">.</span><span class="na">getPassword</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">roles</span><span class="o">(</span><span class="n">account</span><span class="o">.</span><span class="na">getRole</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">User</code>클래스를 통해 <code class="language-plaintext highlighter-rouge">UserDetails</code>인퍼테이스의 구현체를 간단히 생성 가능</li>
+</ul>
+
+<h3 id="스프링-시큐리티-커스터마이징-passwordencoder">스프링 시큐리티 커스터마이징: PasswordEncoder</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">PasswordEncoder</span> <span class="nf">passwordEncoder</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">PasswordEncoderFactories</span><span class="o">.</span><span class="na">createDelegatingPasswordEncoder</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@AllArgsConstructor</span>
+<span class="nd">@Entity</span>
+<span class="nd">@Data</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Account</span> <span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">encodePassword</span><span class="o">(</span><span class="nc">PasswordEncoder</span> <span class="n">passwordEncoder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">password</span> <span class="o">=</span> <span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">password</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>스프링 시큐리티가 제공하는 <code class="language-plaintext highlighter-rouge">PasswordEndoer</code>는 특정한 포맷으로 동작함.</li>
+  <li><code class="language-plaintext highlighter-rouge">{id}encodedPassword</code>: 각 패스워드에 맞는 인코더를 활용해 회원의 패스워드를 암호화</li>
+  <li>다양한 해싱 전략의 패스워드를 지원할 수 있다는 장점이 있습니다.</li>
+  <li>기본 전략인 <code class="language-plaintext highlighter-rouge">bcrypt</code>로 암호화 해서 저장하며 비교할 때는 {id}를 확인해서 다양한 인코딩을 지원합니다.</li>
+</ul>
+
+<h3 id="스프링-시큐리티-테스트">스프링 시큐리티 테스트</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@AutoConfigureMockMvc</span>
+<span class="nd">@Transactional</span>
+<span class="nd">@Rollback</span>
+<span class="kd">class</span> <span class="nc">AccountControllerTest</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="nc">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="nc">AccountService</span> <span class="n">accountService</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@WithAnonymousUser</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">index_anonymous</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@WithUser</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">index_user</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@WithUser</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">admin_user</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/admin"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isForbidden</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@WithMockUser</span><span class="o">(</span><span class="n">username</span> <span class="o">=</span> <span class="s">"yhw"</span><span class="o">,</span> <span class="n">roles</span> <span class="o">=</span> <span class="s">"ADMIN"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">admin_admin</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/admin"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">login_success1</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">();</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">);</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">"123"</span><span class="o">);</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setRole</span><span class="o">(</span><span class="s">"USER"</span><span class="o">);</span>
+        <span class="n">accountService</span><span class="o">.</span><span class="na">createNew</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">formLogin</span><span class="o">().</span><span class="na">user</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"123"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">authenticated</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">login_fail</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">();</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">);</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">"123"</span><span class="o">);</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setRole</span><span class="o">(</span><span class="s">"USER"</span><span class="o">);</span>
+        <span class="n">accountService</span><span class="o">.</span><span class="na">createNew</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">formLogin</span><span class="o">().</span><span class="na">user</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"12345"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">unauthenticated</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">login_success2</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">();</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">);</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">"123"</span><span class="o">);</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setRole</span><span class="o">(</span><span class="s">"USER"</span><span class="o">);</span>
+        <span class="n">accountService</span><span class="o">.</span><span class="na">createNew</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">formLogin</span><span class="o">().</span><span class="na">user</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"123"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">authenticated</span><span class="o">());</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@WithMockUser</span><span class="o">(</span><span class="n">username</span> <span class="o">=</span> <span class="s">"yhw"</span><span class="o">,</span> <span class="n">roles</span> <span class="o">=</span> <span class="s">"USER"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">WithUser</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@WithUser</code>라는 애노테이션 직접 생성</li>
+  <li><code class="language-plaintext highlighter-rouge">@With~</code> 애노테이션은 이미 그러한 사용자로 로그인한 상황을 가정함</li>
+  <li>응답 유형 확인
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">authenticated()</code></li>
+      <li><code class="language-plaintext highlighter-rouge">unauthenticated()</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="스프링-시큐리티-아키텍처">스프링 시큐리티: 아키텍처</h2>
+<h3 id="securitycontextholder와-authentication">SecurityContextHolder와 Authentication</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/Security/1.png">
+          <img src="/assets/images/post/Spring/Security/1.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SecurityContextHolder</code>: <code class="language-plaintext highlighter-rouge">SecurityContext</code> 제공, 기본적으로 ThreadLocal을 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">SecuuryContext</code>: <code class="language-plaintext highlighter-rouge">Authentication</code> 제공.</li>
+  <li><code class="language-plaintext highlighter-rouge">Authentication</code>: Principal과 GrantAuthority 제공.(<code class="language-plaintext highlighter-rouge">UsernamePasswordAuthenticationToken</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">Principal</code>: “누구”에 해당하는 정보. <code class="language-plaintext highlighter-rouge">UserDetailsService</code>에서 리턴한 그 객체.(<code class="language-plaintext highlighter-rouge">User</code>클래스), 객체는 <code class="language-plaintext highlighter-rouge">UserDetails</code>(인퍼테이스) 타입.</li>
+  <li><code class="language-plaintext highlighter-rouge">UserDetails</code>: 애플리케이션이 가지고 있는 유저 정보와 스프링 시큐리티가 사용하는 <code class="language-plaintext highlighter-rouge">Authentication</code>객체 사이의 어댑터.</li>
+  <li><code class="language-plaintext highlighter-rouge">UserDetailsService</code>: 유저 정보를 <code class="language-plaintext highlighter-rouge">UserDetails</code> 타입으로 가져오는 DAO (Data Access Object) 인터페이스.</li>
+  <li><code class="language-plaintext highlighter-rouge">SecurityContextHolder</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">if</span> <span class="o">(!</span><span class="nc">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">strategyName</span><span class="o">))</span> <span class="o">{</span>
+			<span class="c1">// Set default</span>
+			<span class="n">strategyName</span> <span class="o">=</span> <span class="no">MODE_THREADLOCAL</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_THREADLOCAL</span><span class="o">))</span> <span class="o">{</span>
+			<span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadLocalSecurityContextHolderStrategy</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_INHERITABLETHREADLOCAL</span><span class="o">))</span> <span class="o">{</span>
+			<span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InheritableThreadLocalSecurityContextHolderStrategy</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_GLOBAL</span><span class="o">))</span> <span class="o">{</span>
+			<span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GlobalSecurityContextHolderStrategy</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">else</span> <span class="o">{</span>
+			<span class="c1">// Try to load a custom strategy</span>
+			<span class="k">try</span> <span class="o">{</span>
+				<span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">strategyName</span><span class="o">);</span>
+				<span class="nc">Constructor</span><span class="o">&lt;?&gt;</span> <span class="n">customStrategy</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">();</span>
+				<span class="n">strategy</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SecurityContextHolderStrategy</span><span class="o">)</span> <span class="n">customStrategy</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+			<span class="o">}</span>
+			<span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+				<span class="nc">ReflectionUtils</span><span class="o">.</span><span class="na">handleReflectionException</span><span class="o">(</span><span class="n">ex</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="n">initializeCount</span><span class="o">++;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ThreadLocalSecurityContextHolderStrategy</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="nc">ThreadLocalSecurityContextHolderStrategy</span> <span class="kd">implements</span> <span class="nc">SecurityContextHolderStrategy</span> <span class="o">{</span>
+
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ThreadLocal</span><span class="o">&lt;</span><span class="nc">SecurityContext</span><span class="o">&gt;</span> <span class="n">contextHolder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadLocal</span><span class="o">&lt;&gt;();</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">clearContext</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">contextHolder</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">SecurityContext</span> <span class="nf">getContext</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">SecurityContext</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">contextHolder</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">ctx</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">ctx</span> <span class="o">=</span> <span class="n">createEmptyContext</span><span class="o">();</span>
+			<span class="n">contextHolder</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">ctx</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setContext</span><span class="o">(</span><span class="nc">SecurityContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">"Only non-null SecurityContext instances are permitted"</span><span class="o">);</span>
+		<span class="n">contextHolder</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">SecurityContext</span> <span class="nf">createEmptyContext</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nf">SecurityContextImpl</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>http 요청이 들어오면 <code class="language-plaintext highlighter-rouge">setContext</code> 메소드에서 인증된 <code class="language-plaintext highlighter-rouge">SecuiryContext</code> 객체를 매개변수로 받아 TLS 변수로 저장한다. 이후 같은 쓰레드에서 <code class="language-plaintext highlighter-rouge">SecuiryContext</code> 에 접근하면 항상 같은 <code class="language-plaintext highlighter-rouge">SecuiryContext</code> 객체를 얻을수 있게 된다.</li>
+</ul>
+
+<h3 id="authenticationmanager와-authentication">AuthenticationManager와 Authentication</h3>
+<ul>
+  <li>스프링 시큐리티에서 인증(Authentication)은 <code class="language-plaintext highlighter-rouge">AuthenticationManager</code>(인터페이스)가 한다.(구현체는 <code class="language-plaintext highlighter-rouge">ProviderManager</code>)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Authentication</span> <span class="nf">authenticate</span><span class="o">(</span><span class="nc">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">AuthenticationException</span>
+</code></pre></div></div>
+<ul>
+  <li>인자로 받은 <code class="language-plaintext highlighter-rouge">Authentication</code>이 유효한 인증인지 확인하고 <code class="language-plaintext highlighter-rouge">UserDetailService</code>에서 반환한 <code class="language-plaintext highlighter-rouge">UserDetails</code>를 담은 <code class="language-plaintext highlighter-rouge">Authetication</code> 객체를 리턴한다.</li>
+  <li>인자로 받은 Authentication
+    <ul>
+      <li>사용자가 입력한 인증에 필요한 정보(username, password)로 만든 객체. (폼 인증인 경우)</li>
+    </ul>
+  </li>
+  <li>Authentication
+    <ul>
+      <li>Principal: “yhw”</li>
+      <li>Credentials: “123”</li>
+    </ul>
+  </li>
+  <li>유효한 인증인지 확인
+    <ul>
+      <li>사용자가 입력한 password가 <code class="language-plaintext highlighter-rouge">UserDetailsService</code>를 통해 읽어온 <code class="language-plaintext highlighter-rouge">UserDetails</code> 객체에 들어있는 password와 일치하는지 확인</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Authentication</code> 객체를 리턴
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Principal</code>: UserDetailsService에서 리턴한 그 객체 (<code class="language-plaintext highlighter-rouge">User</code>)</li>
+      <li>Credentials:</li>
+      <li><code class="language-plaintext highlighter-rouge">GrantedAuthorities</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="threadlocal">ThreadLocal</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Java.lang</code> 패키지에서 제공하는 쓰레드 범위 변수. static 변수와 비슷한 개념으로써 메소드 상관없이 쓰레드 단위로 접근, 변경 가능하다.
+    <ul>
+      <li>같은 쓰레드 내에서만 공유.</li>
+      <li>따라서 같은 쓰레드라면 해당 데이터를 메소드 매개변수로 넘겨줄 필요 없음.</li>
+      <li><code class="language-plaintext highlighter-rouge">SecurityContextHolder</code>의 기본 전략.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="authencation과-securitycontexthodler">Authencation과 SecurityContextHodler</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">UsernamePasswordAuthenticationFilter</code>
+    <ul>
+      <li>폼 인증을 처리하는 시큐리티 필터</li>
+      <li><code class="language-plaintext highlighter-rouge">ProviderManager</code>에서 인증, 반환된 <code class="language-plaintext highlighter-rouge">Authentication</code> 객체(<code class="language-plaintext highlighter-rouge">UserDetails</code>를 담음)를 <code class="language-plaintext highlighter-rouge">SecurityContext</code>에 넣어주는 필터</li>
+      <li><code class="language-plaintext highlighter-rouge">SecurityContextHolder.getContext().setAuthentication(authentication)</code>(추상 부모 클래스에서)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">SecurityContextPersistenceFilter</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">SecurityContext</code>를 HTTP session에 캐시(기본 전략)하여 여러 요청에서 <code class="language-plaintext highlighter-rouge">Authentication</code>을 공유할수 있는 필터.</li>
+      <li>매 요청마다 세션에 저장된 <code class="language-plaintext highlighter-rouge">SecurityContext</code>가 있는지 확인하고 요청이 끝나고 나갈때 해당 쓰레드의 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 비우고 세션에 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 저장한다. 따라서 같은 HTTP session의 경우 같은 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 공유하게 된다.</li>
+      <li><code class="language-plaintext highlighter-rouge">SecurityContextRepository</code>를 교체하여 세션을 HTTP session이 아닌 다른 곳에 저장하는 것도 가능하다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+    <span class="o">...</span>
+    
+    <span class="nc">HttpRequestResponseHolder</span> <span class="n">holder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HttpRequestResponseHolder</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="nc">SecurityContext</span> <span class="n">contextBeforeChainExecution</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">repo</span><span class="o">.</span><span class="na">loadContext</span><span class="o">(</span><span class="n">holder</span><span class="o">);</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">contextBeforeChainExecution</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">contextBeforeChainExecution</span><span class="o">.</span><span class="na">getAuthentication</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Set SecurityContextHolder to empty SecurityContext"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">logger</span>
+                        <span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Set SecurityContextHolder to %s"</span><span class="o">,</span> <span class="n">contextBeforeChainExecution</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">holder</span><span class="o">.</span><span class="na">getRequest</span><span class="o">(),</span> <span class="n">holder</span><span class="o">.</span><span class="na">getResponse</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="k">finally</span> <span class="o">{</span>
+        <span class="nc">SecurityContext</span> <span class="n">contextAfterChainExecution</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">();</span>
+        <span class="c1">// Crucial removal of SecurityContextHolder contents before anything else.</span>
+        <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">clearContext</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">repo</span><span class="o">.</span><span class="na">saveContext</span><span class="o">(</span><span class="n">contextAfterChainExecution</span><span class="o">,</span> <span class="n">holder</span><span class="o">.</span><span class="na">getRequest</span><span class="o">(),</span> <span class="n">holder</span><span class="o">.</span><span class="na">getResponse</span><span class="o">());</span>
+        <span class="n">request</span><span class="o">.</span><span class="na">removeAttribute</span><span class="o">(</span><span class="no">FILTER_APPLIED</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Cleared SecurityContextHolder to complete request"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="스프링-시큐리티-filter와-filterchainproxy">스프링 시큐리티 Filter와 FilterChainProxy</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/Security/2.png">
+          <img src="/assets/images/post/Spring/Security/2.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ol>
+  <li>WebAsyncManagerIntergrationFilter</li>
+  <li><strong>SecurityContextPersistenceFilter</strong></li>
+  <li>HeaderWriterFilter</li>
+  <li>CsrfFilter</li>
+  <li>LogoutFilter</li>
+  <li><strong>UsernamePasswordAuthenticationFilter</strong></li>
+  <li>DefaultLoginPageGeneratingFilter</li>
+  <li>DefaultLogoutPageGeneratingFilter</li>
+  <li>BasicAuthenticationFilter</li>
+  <li>RequestCacheAwareFtiler</li>
+  <li>SecurityContextHolderAwareReqeustFilter</li>
+  <li>AnonymouseAuthenticationFilter</li>
+  <li>SessionManagementFilter</li>
+  <li>ExeptionTranslationFilter</li>
+  <li>FilterSecurityInterceptor</li>
+</ol>
+
+<ul>
+  <li>이 모든 필터는 <code class="language-plaintext highlighter-rouge">FilterChainProxy</code>가 호출한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Filter</span><span class="o">&gt;</span> <span class="nf">getFilters</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">SecurityFilterChain</span> <span class="n">chain</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">filterChains</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Trying to match request against %s (%d/%d)"</span><span class="o">,</span> <span class="n">chain</span><span class="o">,</span> <span class="o">++</span><span class="n">count</span><span class="o">,</span>
+                    <span class="k">this</span><span class="o">.</span><span class="na">filterChains</span><span class="o">.</span><span class="na">size</span><span class="o">()));</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">chain</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">request</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">chain</span><span class="o">.</span><span class="na">getFilters</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>여러개의 필터체인에서 <code class="language-plaintext highlighter-rouge">antMatcher</code>에 상응하는 체인을 가져오고 이를 토대로 여러개의 필터를 순서대로 거친다.</li>
+</ul>
+
+<h3 id="delegatingfilterproxy와-filterchainproxy">DelegatingFilterProxy와 FilterChainProxy</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/Security/3.png">
+          <img src="/assets/images/post/Spring/Security/3.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DelegatingFilterProxy</code>
+    <ul>
+      <li>일반적인 서블릿 필터.</li>
+      <li>서블릿 필터 처리를 스프링에 들어있는 빈으로 위임하고 싶을 때 사용하는 서블릿 필터.</li>
+      <li>타겟 빈 이름을 설정한다.</li>
+      <li>스프링 부트를 사용할 때는 자동으로 등록 된다. (<code class="language-plaintext highlighter-rouge">SecurityFilterAutoConfiguration</code>)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">FilterChainProxy</code>
+    <ul>
+      <li>“springSecurityFilterChain” 이라는 이름의 빈으로 등록된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="accessdecisionmanager-1부">AccessDecisionManager 1부</h3>
+<ul>
+  <li>인증이 아닌 인가</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="nd">@SuppressWarnings</span><span class="o">({</span><span class="s">"rawtypes"</span><span class="o">,</span> <span class="s">"unchecked"</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">decide</span><span class="o">(</span><span class="nc">Authentication</span> <span class="n">authentication</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">object</span><span class="o">,</span> <span class="nc">Collection</span><span class="o">&lt;</span><span class="nc">ConfigAttribute</span><span class="o">&gt;</span> <span class="n">configAttributes</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">AccessDeniedException</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">deny</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    
+    <span class="k">for</span> <span class="o">(</span><span class="nc">AccessDecisionVoter</span> <span class="n">voter</span> <span class="o">:</span> <span class="n">getDecisionVoters</span><span class="o">())</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">voter</span><span class="o">.</span><span class="na">vote</span><span class="o">(</span><span class="n">authentication</span><span class="o">,</span> <span class="n">object</span><span class="o">,</span> <span class="n">configAttributes</span><span class="o">);</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="nc">AccessDecisionVoter</span><span class="o">.</span><span class="na">ACCESS_GRANTED</span><span class="o">:</span>
+                <span class="k">return</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nc">AccessDecisionVoter</span><span class="o">.</span><span class="na">ACCESS_DENIED</span><span class="o">:</span>
+                <span class="n">deny</span><span class="o">++;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">default</span><span class="o">:</span>
+                <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">deny</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">AccessDeniedException</span><span class="o">(</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">messages</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s">"AbstractAccessDecisionManager.accessDenied"</span><span class="o">,</span> <span class="s">"Access is denied"</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="c1">// To get this far, every AccessDecisionVoter abstained</span>
+    <span class="n">checkAllowIfAllAbstainDecisions</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>Access Control 결정을 내리는 인터페이스로, 구현체 3가지를 기본으로 제공한다.
+    <ul>
+      <li>AffirmativeBased: 여러 Voter중에 한명이라도 허용하면 허용. 기본 전략.</li>
+      <li>ConsensusBased: 다수결</li>
+      <li>UnanimousBased: 만장일치</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">AccessDecisionVoter</code>(인터페이스)
+    <ul>
+      <li>해당 Authentication이 특정한 Object에 접근할 때 필요한 ConfigAttributes를 만족하는지 확인한다.</li>
+      <li>WebExpressionVoter: 웹 시큐리티에서 사용하는 기본 구현체, ROLE_Xxxx가 매치하는지 확인.</li>
+      <li>RoleHierarchyVoter: 계층형 ROLE 지원. ADMIN &gt; MANAGER &gt; USER</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="accessdecisionmanager-2부">AccessDecisionManager 2부</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">AccessDecisionManager</code> 또는 Voter를 커스터마이징 하는 방법</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="kd">extends</span> <span class="nc">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">SecurityExpressionHandler</span> <span class="nf">expressionHandler</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">RoleHierarchyImpl</span> <span class="n">roleHierarchy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RoleHierarchyImpl</span><span class="o">();</span>
+        <span class="n">roleHierarchy</span><span class="o">.</span><span class="na">setHierarchy</span><span class="o">(</span><span class="s">"ROLE_ADMIN &gt; ROLE_USER"</span><span class="o">);</span>
+        <span class="nc">DefaultWebSecurityExpressionHandler</span> <span class="n">handler</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultWebSecurityExpressionHandler</span><span class="o">();</span>
+        <span class="n">handler</span><span class="o">.</span><span class="na">setRoleHierarchy</span><span class="o">(</span><span class="n">roleHierarchy</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">handler</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">mvcMatchers</span><span class="o">(</span><span class="s">"/"</span><span class="o">,</span> <span class="s">"/info"</span><span class="o">,</span> <span class="s">"/account/**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">mvcMatchers</span><span class="o">(</span><span class="s">"/admin"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"ADMIN"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">mvcMatchers</span><span class="o">(</span><span class="s">"/user"</span><span class="o">).</span><span class="na">hasRole</span><span class="o">(</span><span class="s">"USER"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">expressionHandler</span><span class="o">(</span><span class="n">expressionHandler</span><span class="o">());</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">formLogin</span><span class="o">();</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">httpBasic</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">WebExpressionVoter</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">SecurityExpressionHandler</span><span class="o">&lt;</span><span class="nc">FilterInvocation</span><span class="o">&gt;</span> <span class="n">expressionHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultWebSecurityExpressionHandler</span><span class="o">();</span>
+
+<span class="o">...</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setExpressionHandler</span><span class="o">(</span><span class="nc">SecurityExpressionHandler</span><span class="o">&lt;</span><span class="nc">FilterInvocation</span><span class="o">&gt;</span> <span class="n">expressionHandler</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">expressionHandler</span> <span class="o">=</span> <span class="n">expressionHandler</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>위계를 이해할 수 있는 handler를 <code class="language-plaintext highlighter-rouge">AffirmativeBased</code> 의 <code class="language-plaintext highlighter-rouge">WebExpressionVoter</code>에 주입한다.</li>
+</ul>
+
+<h3 id="filtersecurityinterceptor">FilterSecurityInterceptor</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">AccessDecisionManager</code>를 사용하여 Access Control 또는 예외 처리 하는 필터. 대부분의 경우 <code class="language-plaintext highlighter-rouge">FilterChainProxy</code>에 제일 마지막 필터로 들어있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">attemptAuthorization</span><span class="o">(</span><span class="nc">Object</span> <span class="n">object</span><span class="o">,</span> <span class="nc">Collection</span><span class="o">&lt;</span><span class="nc">ConfigAttribute</span><span class="o">&gt;</span> <span class="n">attributes</span><span class="o">,</span> <span class="nc">Authentication</span> <span class="n">authenticated</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">accessDecisionManager</span><span class="o">.</span><span class="na">decide</span><span class="o">(</span><span class="n">authenticated</span><span class="o">,</span> <span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">AccessDeniedException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Failed to authorize %s with attributes %s using %s"</span><span class="o">,</span> <span class="n">object</span><span class="o">,</span>
+                    <span class="n">attributes</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">accessDecisionManager</span><span class="o">));</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Failed to authorize %s with attributes %s"</span><span class="o">,</span> <span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="n">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">AuthorizationFailureEvent</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">,</span> <span class="n">authenticated</span><span class="o">,</span> <span class="n">ex</span><span class="o">));</span>
+        <span class="k">throw</span> <span class="n">ex</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exceptiontranslationfilter">ExceptionTranslationFilter</h3>
+<ul>
+  <li>필터 체인에서 발생하는 <code class="language-plaintext highlighter-rouge">AccessDeniedException</code>과 <code class="language-plaintext highlighter-rouge">AuthenticationException</code>을 처리하는 필터</li>
+  <li><code class="language-plaintext highlighter-rouge">AuthenticationException</code> 발생 시
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">AuthenticationEntryPoint</code> 실행</li>
+      <li><code class="language-plaintext highlighter-rouge">AbstractSecurityInterceptor</code> 하위 클래스(예, <code class="language-plaintext highlighter-rouge">FilterSecurityInterceptor</code>)에서 발생하는 예외만 처리.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">AccessDeniedException</code> 발생 시
+    <ul>
+      <li>익명 사용자라면 <code class="language-plaintext highlighter-rouge">AuthenticationEntryPoint</code> 실행</li>
+      <li>익명 사용자가 아니면 <code class="language-plaintext highlighter-rouge">AccessDeniedHandler</code>에게 위임</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ExceptionTranslationFilter</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleAuthenticationException</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                                           <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">,</span> <span class="nc">AuthenticationException</span> <span class="n">exception</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">"Sending to authentication entry point since authentication failed"</span><span class="o">,</span> <span class="n">exception</span><span class="o">);</span>
+    <span class="n">sendStartAuthentication</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">chain</span><span class="o">,</span> <span class="n">exception</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleAccessDeniedException</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                                         <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">,</span> <span class="nc">AccessDeniedException</span> <span class="n">exception</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ServletException</span><span class="o">,</span> <span class="nc">IOException</span> <span class="o">{</span>
+    <span class="nc">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+    <span class="kt">boolean</span> <span class="n">isAnonymous</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">authenticationTrustResolver</span><span class="o">.</span><span class="na">isAnonymous</span><span class="o">(</span><span class="n">authentication</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">isAnonymous</span> <span class="o">||</span> <span class="k">this</span><span class="o">.</span><span class="na">authenticationTrustResolver</span><span class="o">.</span><span class="na">isRememberMe</span><span class="o">(</span><span class="n">authentication</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Sending %s to authentication entry point since access is denied"</span><span class="o">,</span>
+                    <span class="n">authentication</span><span class="o">),</span> <span class="n">exception</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">sendStartAuthentication</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">chain</span><span class="o">,</span>
+                <span class="k">new</span> <span class="nf">InsufficientAuthenticationException</span><span class="o">(</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">messages</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s">"ExceptionTranslationFilter.insufficientAuthentication"</span><span class="o">,</span>
+                                <span class="s">"Full authentication is required to access this resource"</span><span class="o">)));</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span>
+                    <span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Sending %s to access denied handler since access is denied"</span><span class="o">,</span> <span class="n">authentication</span><span class="o">),</span>
+                    <span class="n">exception</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">accessDeniedHandler</span><span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">exception</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">UsernamePasswordAuthenticationFilter</code>에서 발생한 인증 에러(<code class="language-plaintext highlighter-rouge">AbstractAuthenticationProcessingFilter</code>에서 처리)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
+
+<span class="k">catch</span> <span class="o">(</span><span class="nc">AuthenticationException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+<span class="c1">// Authentication failed</span>
+<span class="n">unsuccessfulAuthentication</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">...</span>
+
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">unsuccessfulAuthentication</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                                          <span class="nc">AuthenticationException</span> <span class="n">failed</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+    <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">clearContext</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">"Failed to process authentication request"</span><span class="o">,</span> <span class="n">failed</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">"Cleared SecurityContextHolder"</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">"Handling authentication failure"</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">rememberMeServices</span><span class="o">.</span><span class="na">loginFail</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">failureHandler</span><span class="o">.</span><span class="na">onAuthenticationFailure</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">failed</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="o">...</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SimpleUrlAuthenticationFailureHandler</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAuthenticationFailure</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span>
+                                    <span class="nc">AuthenticationException</span> <span class="n">exception</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">defaultFailureUrl</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">"Sending 401 Unauthorized error since no failure URL is set"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Sending 401 Unauthorized error"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">response</span><span class="o">.</span><span class="na">sendError</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">UNAUTHORIZED</span><span class="o">.</span><span class="na">value</span><span class="o">(),</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">UNAUTHORIZED</span><span class="o">.</span><span class="na">getReasonPhrase</span><span class="o">());</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">saveException</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">exception</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">forwardToDestination</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Forwarding to "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">defaultFailureUrl</span><span class="o">);</span>
+        <span class="n">request</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">defaultFailureUrl</span><span class="o">).</span><span class="na">forward</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">redirectStrategy</span><span class="o">.</span><span class="na">sendRedirect</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">defaultFailureUrl</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="스프링-시큐리티-아키텍처-정리">스프링 시큐리티 아키텍처 정리</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/Security/4.png">
+          <img src="/assets/images/post/Spring/Security/4.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>https://spring.io/guides/topicals/spring-security-architecture</li>
+  <li>https://docs.spring.io/spring-security/site/docs/5.1.5.RELEASE/reference/htmlsingle/#overall-architecture</li>
+</ul>
+
+<h2 id="웹-애플리케이션-시큐리티">웹 애플리케이션 시큐리티</h2>
+<h3 id="스프링-시큐리티-ignoring-1부">스프링 시큐리티 ignoring() 1부</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">WebSecurity</code>의 <code class="language-plaintext highlighter-rouge">ignoring()</code>을 사용해서 시큐리티 필터 적용을 제외할 요청을 설정할 수 있다.</li>
+  <li>스프링 부트가 제공하는 PathRequest를 사용해서 정적 자원 요청을 스프링 시큐리티 필터를 적용하지 않도록 설정.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">WebSecurity</span> <span class="n">web</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="n">web</span><span class="o">.</span><span class="na">ignoring</span><span class="o">().</span><span class="na">requestMatchers</span><span class="o">(</span><span class="nc">PathRequest</span><span class="o">.</span><span class="na">toStaticResources</span><span class="o">().</span><span class="na">atCommonLocations</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>favicon.ico 리다이렉트의 경우 필터의 목록이 0이다. 즉 시큐리티 필터를 거치지 않는다. 따라서 /login 으로 redirect 되지도 않는다.</li>
+</ul>
+
+<h3 id="스프링-시큐리티-ignoring-2부">스프링 시큐리티 ignoring() 2부</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">authorizeRequests</span><span class="o">()</span>
+<span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="nc">PathRequest</span><span class="o">.</span><span class="na">toStaticResources</span><span class="o">().</span><span class="na">atCommonLocations</span><span class="o">()).</span><span class="na">permitAll</span><span class="o">()</span>
+</code></pre></div></div>
+<ul>
+  <li>이런 설정으로도 같은 결과를 볼 수는 있지만 스프링 시큐리티 필터가 적용된다는 차이가 있다.
+    <ul>
+      <li>필터가 그대로 적용되고 마지막 <code class="language-plaintext highlighter-rouge">FilterSecurityInterceptor</code>에서 <code class="language-plaintext highlighter-rouge">AccessDecisionManager</code>를 통해 요청이 허가된다.</li>
+      <li>동적 리소스는 http.authorizeRequests()에서 처리하는 것을 권장</li>
+      <li>정적 리소스는 WebSecurity.ignore()를 권장하며 예외적인 정적 자원 (인증이 필요한 정적자원이 있는 경우)는 http.authorizeRequests()를 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="async-웹-mvc를-지원하는-필터-webasyncmanagerintegrationfilter">Async 웹 MVC를 지원하는 필터: WebAsyncManagerIntegrationFilter</h3>
+<ul>
+  <li>스프링 MVC의 Async 기능(핸들러에서 <code class="language-plaintext highlighter-rouge">Callable</code>을 리턴할 수 있는 기능)을 사용할 때에도 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 공유하도록 도와주는 필터.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">PreProcess</code>: <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 설정한다.</li>
+      <li><code class="language-plaintext highlighter-rouge">Callable</code>: 비록 다른 쓰레드지만 그 안에서는 동일한 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 참조할 수 있다.</li>
+      <li><code class="language-plaintext highlighter-rouge">PostProcess</code>: <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 정리(clean up)한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="스프링-시큐리티와-async">스프링 시큐리티와 @Async</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Async</code>를 사용한 서비스를 호출하는 경우 쓰레드가 다르기 때문에 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 공유받지 못한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">setStrategyName</span><span class="o">(</span><span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">MODE_INHERITABLETHREADLOCAL</span><span class="o">);</span>
+
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableAsync</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoSpringSecurityFormApplication</span> <span class="o">{</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SecurityContext</code>를 자식 쓰레드에도 공유하는 전략.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Async</code>를 처리하는 쓰레드에서도 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 공유받을 수 있다.</li>
+</ul>
+
+<h3 id="securitycontext-영속화-필터-securitycontextpersistencefilter">SecurityContext 영속화 필터: SecurityContextPersistenceFilter</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SecurityContextRepository</code>를 사용해서 기존의 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 읽어오거나 초기화 한다.(구현제 <code class="language-plaintext highlighter-rouge">HttpSessionSecurityContextRepository</code>)
+    <ul>
+      <li>첫 요청이어서 세션 저장소에 저장된 <code class="language-plaintext highlighter-rouge">SecurityContext</code>가 없는 경우 <code class="language-plaintext highlighter-rouge">null</code>값을 가지는 <code class="language-plaintext highlighter-rouge">Authentication</code>을 담은 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 반환한다.</li>
+      <li>기본으로 사용하는 전략은 HTTP Session을 사용한다.</li>
+      <li>Spring-Session과 연동하여 세션 클러스터를 구현할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="csrf-어택-방지-필터-csrffilter">CSRF 어택 방지 필터: CsrfFilter</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/Security/5.png">
+          <img src="/assets/images/post/Spring/Security/5.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>form 기반 웹 페이지의 경우 인증된 유저의 계정을 사용해 악의적인 변경 요청을 막아내기 위한 기법</li>
+  <li>서버에서 form 보낼때 csrf 토큰을 생성하여 hidden 필드로 보내고 요청이 들어올때 실제 csrf 토큰과 일치하는지 여부를 검사</li>
+</ul>
+
+<h3 id="로그아웃-처리-필터-logoutfilter">로그아웃 처리 필터: LogoutFilter</h3>
+<ul>
+  <li>여러 <code class="language-plaintext highlighter-rouge">LogoutHandler</code>를 사용하여 로그아웃시 필요한 처리를 하며 이후에는 <code class="language-plaintext highlighter-rouge">LogoutSuccessHandler</code>를 사용하여 로그아웃 후처리를 한다.</li>
+  <li>LogoutHandler
+    <ul>
+      <li>CsrfLogoutHandler</li>
+      <li>SecurityContextLogoutHandler</li>
+    </ul>
+  </li>
+  <li>LogoutSuccessHandler
+    <ul>
+      <li>SimplUrlLogoutSuccessHandler</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">LogoutFilter</code>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span>
+      <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">requiresLogout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">))</span> <span class="o">{</span>
+      <span class="nc">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Logging out [%s]"</span><span class="o">,</span> <span class="n">auth</span><span class="o">));</span>
+      <span class="o">}</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">handler</span><span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">logoutSuccessHandler</span><span class="o">.</span><span class="na">onLogoutSuccess</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
+      <span class="k">return</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">CompositeLogoutHandler</code>(<code class="language-plaintext highlighter-rouge">LogoutHandler</code> 구현체로 여러 종류의 <code class="language-plaintext highlighter-rouge">LogoutHandler</code>를 가지고 있음.)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">logout</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">LogoutHandler</span> <span class="n">handler</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">logoutHandlers</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">handler</span><span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">authentication</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>로그아웃 필터 설정</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">logout</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">logoutUrl</span><span class="o">(</span><span class="s">"/logout"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span> 
+        <span class="o">.</span><span class="na">logoutRequestMatcher</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">invalidateHttpSession</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">deleteCookies</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">addLogoutHandler</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">logoutSuccessHandler</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h3 id="폼-인증-처리-필터-usernamepasswordauthenticationfilter">폼 인증 처리 필터: UsernamePasswordAuthenticationFilter</h3>
+<ul>
+  <li>폼 로그인을 처리하는 인증 필터
+    <ul>
+      <li>사용자가 폼에 입력한 username과 password로 <code class="language-plaintext highlighter-rouge">Authentcation</code>을 만들고 <code class="language-plaintext highlighter-rouge">AuthenticationManager</code>(<code class="language-plaintext highlighter-rouge">ProviderManager</code>)를 사용하여 인증을 시도한다.</li>
+      <li><code class="language-plaintext highlighter-rouge">AuthenticationManager</code> (<code class="language-plaintext highlighter-rouge">ProviderManager</code>)는 여러 <code class="language-plaintext highlighter-rouge">AuthenticationProvider</code>를 사용하여 인증을 시도하는데, 그 중에 <code class="language-plaintext highlighter-rouge">DaoAuthenticationProvider</code>는 <code class="language-plaintext highlighter-rouge">UserDetailsServivce</code>를 사용하여 <code class="language-plaintext highlighter-rouge">UserDetails</code> 정보를 가져와 사용자가 입력한 password와 비교한다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">UsernamePasswordAuthenticationFilter</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">Authentication</span> <span class="nf">attemptAuthentication</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="nc">AuthenticationException</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">postOnly</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">request</span><span class="o">.</span><span class="na">getMethod</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"POST"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">AuthenticationServiceException</span><span class="o">(</span><span class="s">"Authentication method not supported: "</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="na">getMethod</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">obtainUsername</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="o">(</span><span class="n">username</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">username</span> <span class="o">:</span> <span class="s">""</span><span class="o">;</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">username</span><span class="o">.</span><span class="na">trim</span><span class="o">();</span>
+    <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">obtainPassword</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="o">(</span><span class="n">password</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">password</span> <span class="o">:</span> <span class="s">""</span><span class="o">;</span>
+    <span class="nc">UsernamePasswordAuthenticationToken</span> <span class="n">authRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UsernamePasswordAuthenticationToken</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+    <span class="c1">// Allow subclasses to set the "details" property</span>
+    <span class="n">setDetails</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">authRequest</span><span class="o">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">getAuthenticationManager</span><span class="o">().</span><span class="na">authenticate</span><span class="o">(</span><span class="n">authRequest</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ProviderManager</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">Authentication</span> <span class="nf">authenticate</span><span class="o">(</span><span class="nc">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">AuthenticationException</span> <span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="nc">AuthenticationProvider</span> <span class="n">provider</span> <span class="o">:</span> <span class="n">getProviders</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">provider</span><span class="o">.</span><span class="na">supports</span><span class="o">(</span><span class="n">toTest</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">continue</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Authenticating request with %s (%d/%d)"</span><span class="o">,</span>
+                    <span class="n">provider</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">(),</span> <span class="o">++</span><span class="n">currentPosition</span><span class="o">,</span> <span class="n">size</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">authentication</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">copyDetails</span><span class="o">(</span><span class="n">authentication</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DaoAuthenticationProvider</code>는 인증 완료 후 <code class="language-plaintext highlighter-rouge">UserDetails</code>를 포함하는 <code class="language-plaintext highlighter-rouge">Authentication</code>을 반환하고 이후 <code class="language-plaintext highlighter-rouge">UsernamePasswordAuthenticationFilter</code>의 추상 부모 클래스에서 쓰레드 변수로 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 저장한다.</li>
+</ul>
+
+<h3 id="로그인로그아웃-폼-커스터마이징">로그인/로그아웃 폼 커스터마이징</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DefaultLoginPageGeneratingFilter</code>, <code class="language-plaintext highlighter-rouge">DefaultLogoutPageGeneratingFilter</code>가 빠짐(기본 로그인, 로그아웃 폼 페이지를 생성해주는 필터), <code class="language-plaintext highlighter-rouge">LogoutFilter</code>는 그대로 있음</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">formLogin</span><span class="o">().</span><span class="na">loginPage</span><span class="o">(</span><span class="s">"/login"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">();</span>
+<span class="n">http</span><span class="o">.</span><span class="na">logout</span><span class="o">().</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">"/"</span><span class="o">);</span>
+</code></pre></div></div>
+<ul>
+  <li>/login 처리하는 핸들러 코딩해야 하며 직접 로그인 폼을 만들어야 한다. 마찬가지로 /logout 처리하는 핸들러와 로그아웃 폼을 만들어야 한다.</li>
+</ul>
+
+<h3 id="basic-인증-처리-필터-basicauthenticationfilter">Basic 인증 처리 필터: BasicAuthenticationFilter</h3>
+<ul>
+  <li><strong>요청 헤더</strong>에 username와 password를 실어 보내면 브라우저 또는 서버가 그 값을 읽어서 인증하는 방식. 예) Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
+(keesun:123 을 BASE 64)</li>
+  <li>보통, 브라우저 기반 요청이 클라이언트의 요청을 처리할 때 자주 사용.</li>
+  <li>보안에 취약하기 때문에 반드시 HTTPS를 사용할 것을 권장.</li>
+</ul>
+
+<h3 id="요청-캐시-필터-requestcacheawarefilter">요청 캐시 필터: RequestCacheAwareFilter</h3>
+<ul>
+  <li>현재 요청과 관련 있는 캐시된 요청이 있는지 찾아서 적용하는 필터.
+    <ul>
+      <li>캐시된 요청이 없다면, 현재 요청 처리</li>
+      <li>캐시된 요청이 있다면, 해당 캐시된 요청 처리, 즉 /dashboard 요청 후 로그인 페이지로 redirect되서 로그인을 진행하면 관련 있는 과거 요청인 /dashboard로 다시 redirect 시켜준다</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="익명-인증-필터-anonymousauthenticationfilter">익명 인증 필터: AnonymousAuthenticationFilter</h3>
+<ul>
+  <li>현재 <code class="language-plaintext highlighter-rouge">SecurityContext</code>에 <code class="language-plaintext highlighter-rouge">Authentication</code>이 <code class="language-plaintext highlighter-rouge">null</code>이면 “익명 Authentication”(<code class="language-plaintext highlighter-rouge">AnonymousAuthenticationToken</code>)을 만들어 넣어주고, <code class="language-plaintext highlighter-rouge">null</code>이 아니면 아무일도 하지 않는다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">ServletRequest</span> <span class="n">req</span><span class="o">,</span> <span class="nc">ServletResponse</span> <span class="n">res</span><span class="o">,</span> <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">createAuthentication</span><span class="o">((</span><span class="nc">HttpServletRequest</span><span class="o">)</span> <span class="n">req</span><span class="o">));</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">of</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="s">"Set SecurityContextHolder to "</span>
+                    <span class="o">+</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">()));</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Set SecurityContextHolder to anonymous SecurityContext"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isTraceEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">of</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="s">"Did not set SecurityContextHolder since already authenticated "</span>
+                    <span class="o">+</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">()));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">req</span><span class="o">,</span> <span class="n">res</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">protected</span> <span class="nc">Authentication</span> <span class="nf">createAuthentication</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">AnonymousAuthenticationToken</span> <span class="n">token</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AnonymousAuthenticationToken</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">key</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">principal</span><span class="o">,</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">authorities</span><span class="o">);</span>
+    <span class="n">token</span><span class="o">.</span><span class="na">setDetails</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">authenticationDetailsSource</span><span class="o">.</span><span class="na">buildDetails</span><span class="o">(</span><span class="n">request</span><span class="o">));</span>
+    <span class="k">return</span> <span class="n">token</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="세션-관리-필터-sessionmanagementfilter">세션 관리 필터: SessionManagementFilter</h3>
+<ul>
+  <li>세션 변조 방지 전략 설정: sessionFixation
+    <ul>
+      <li>migrateSession (서블릿 3.0- 컨테이너 사용시 기본값)</li>
+      <li><strong>changeSessionId</strong> (서브릿 3.1+ 컨테이너 사용시 기본값)</li>
+    </ul>
+  </li>
+  <li>유효하지 않은 세션을 리다이렉트 시킬 URL 설정: <code class="language-plaintext highlighter-rouge">invalidSessionUrl</code></li>
+  <li>동시성 제어: maximumSessions
+    <ul>
+      <li>추가 로그인을 막을지 여부 설정 (기본값, false)</li>
+    </ul>
+  </li>
+  <li>세션 생성 전략: sessionCreationPolicy
+    <ul>
+      <li>IF_REQUIRED</li>
+      <li>NEVER</li>
+      <li>STATELESS</li>
+      <li>ALWAYS</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="인증인가-예외-처리-필터-exceptiontranslationfilter">인증/인가 예외 처리 필터: ExceptionTranslationFilter</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ExceptionTranslatorFilter</code> -&gt; <code class="language-plaintext highlighter-rouge">FilterSecurityInterceptor</code>(<code class="language-plaintext highlighter-rouge">AccessDecisionManager</code>, <code class="language-plaintext highlighter-rouge">AffrimativeBased</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">AuthenticationException</code> -&gt; <code class="language-plaintext highlighter-rouge">AuthenticationEntryPoint</code></li>
+  <li><code class="language-plaintext highlighter-rouge">AccessDeniedException</code> -&gt; <code class="language-plaintext highlighter-rouge">AccessDeniedHandler</code></li>
+  <li><code class="language-plaintext highlighter-rouge">AccessDeniedHandler</code> 커스터 마이징</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">exceptionHandling</span><span class="o">().</span><span class="na">accessDeniedHandler</span><span class="o">(</span><span class="k">new</span> <span class="nc">AccessDeniedHandler</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">AccessDeniedException</span> <span class="n">accessDeniedException</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+        <span class="nc">UserDetails</span> <span class="n">principal</span> <span class="o">=</span> <span class="o">(</span><span class="nc">UserDetails</span><span class="o">)</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">().</span><span class="na">getPrincipal</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">principal</span><span class="o">.</span><span class="na">getUsername</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">username</span> <span class="o">+</span> <span class="s">" is denied to access "</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">());</span>
+        <span class="n">response</span><span class="o">.</span><span class="na">sendRedirect</span><span class="o">(</span><span class="s">"/access-denied"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</code></pre></div></div>
+
+<h3 id="토큰-기반-인증-필터--remembermeauthenticationfilter">토큰 기반 인증 필터 : RememberMeAuthenticationFilter</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Spring/Security/6.png">
+          <img src="/assets/images/post/Spring/Security/6.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">RememberMeAuthenticationFilter</code>: 세션이 사라지거나 만료가 되더라도 쿠키 또는 DB를 사용하여 저장된 토큰 기반으로 인증을 지원하는 필터</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+   <span class="o">...</span>
+    
+    <span class="nc">Authentication</span> <span class="n">rememberMeAuth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">rememberMeServices</span><span class="o">.</span><span class="na">autoLogin</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">rememberMeAuth</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Attempt authenticaton via AuthenticationManager</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">rememberMeAuth</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">authenticationManager</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">rememberMeAuth</span><span class="o">);</span>
+            <span class="c1">// Store to SecurityContextHolder</span>
+            <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">rememberMeAuth</span><span class="o">);</span>
+            <span class="n">onSuccessfulAuthentication</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">rememberMeAuth</span><span class="o">);</span>
+           <span class="o">...</span>
+        <span class="o">}</span>
+        
+        <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">RememberMeAuthenticationFilter</code>에서 쿠키를 이용하여 <code class="language-plaintext highlighter-rouge">RememberMeAuthenticationToken</code>을 반환, 특유의 hashcode를 가지고 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">authenticationManager</code>: <code class="language-plaintext highlighter-rouge">PoviderManager</code></li>
+  <li><code class="language-plaintext highlighter-rouge">AuthenticationProvider</code>: <code class="language-plaintext highlighter-rouge">RememberMeAuthenticationProvider</code>(특유의 hashcode를 비교하여 인증을 처리한다.), <code class="language-plaintext highlighter-rouge">DaoAuthenticationProvider</code>의 경우는 <code class="language-plaintext highlighter-rouge">UserDetailsService</code>에서 반환한 <code class="language-plaintext highlighter-rouge">UserDetails</code>의 패스워드를 기준으로 인증한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">SecurityContext</code>에 <code class="language-plaintext highlighter-rouge">RememberMeAuthenticationToken</code>을 쓰레드 변수로 저장</li>
+  <li><code class="language-plaintext highlighter-rouge">RememberMeAuthenticationProvider</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">Authentication</span> <span class="nf">authenticate</span><span class="o">(</span><span class="nc">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">AuthenticationException</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">supports</span><span class="o">(</span><span class="n">authentication</span><span class="o">.</span><span class="na">getClass</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">key</span><span class="o">.</span><span class="na">hashCode</span><span class="o">()</span> <span class="o">!=</span> <span class="o">((</span><span class="nc">RememberMeAuthenticationToken</span><span class="o">)</span> <span class="n">authentication</span><span class="o">).</span><span class="na">getKeyHash</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">BadCredentialsException</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">messages</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s">"RememberMeAuthenticationProvider.incorrectKey"</span><span class="o">,</span>
+                <span class="s">"The presented RememberMeAuthenticationToken does not contain the expected key"</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">authentication</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>설정</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">rememberMe</span><span class="o">()</span> 
+    <span class="o">.</span><span class="na">userDetailsService</span><span class="o">(</span><span class="n">accountService</span><span class="o">)</span> 
+    <span class="o">.</span><span class="na">key</span><span class="o">(</span><span class="s">"remember-me-sample"</span><span class="o">);</span> <span class="c1">// 리멤버미 기능으로 사용할 쿠키의 이름</span>
+</code></pre></div></div>
+
+<h3 id="커스텀-필터-추가하기">커스텀 필터 추가하기</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoggingFilter</span> <span class="kd">extends</span> <span class="nc">GenericFilterBean</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">ServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">ServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">http</span><span class="o">.</span><span class="na">addFilterAfter</span><span class="o">(</span><span class="k">new</span> <span class="nc">LoggingFilter</span><span class="o">(),</span> <span class="nc">UsernamePasswordAuthenticationFilter</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="스프링-시큐리티-그밖에">스프링 시큐리티 그밖에</h2>
+<h3 id="타임리프-스프링-시큐리티-확장팩">타임리프 스프링 시큐리티 확장팩</h3>
+<ul>
+  <li>Authentication 과 Authorization 참조</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">implementation group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">org.thymeleaf.extras'</span><span class="err">,</span> <span class="na">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">thymeleaf-extras-springsecurity5'</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${#authorization.expr('isAuthenticated()')}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2</span> <span class="na">th:text=</span><span class="s">"${#authentication.name}"</span><span class="nt">&gt;&lt;/h2&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/logout"</span> <span class="na">th:href=</span><span class="s">"@{/logout}"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">th:unless=</span><span class="s">"${#authorization.expr('isAuthenticated()')}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/login"</span> <span class="na">th:href=</span><span class="s">"@{/login}"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h3 id="sec-네임스페이스">sec 네임스페이스</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">sec:authorize=</span><span class="s">"isAuthenticated()"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2</span> <span class="na">sec:authentication=</span><span class="s">"name"</span><span class="nt">&gt;</span>Name<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/logout"</span> <span class="na">th:href=</span><span class="s">"@{/logout}"</span><span class="nt">&gt;</span>Logout<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">sec:authorize=</span><span class="s">"!isAuthenticated()"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/login"</span> <span class="na">th:href=</span><span class="s">"@{/login}"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h3 id="메소드-시큐리티">메소드 시큐리티</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableGlobalMethodSecurity</span><span class="o">(</span><span class="n">securedEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">prePostEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">jsr250Enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodSecurityConfig</span> <span class="kd">extends</span> <span class="nc">GlobalMethodSecurityConfiguration</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">AccessDecisionManager</span> <span class="nf">accessDecisionManager</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">RoleHierarchyImpl</span> <span class="n">roleHierarchy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RoleHierarchyImpl</span><span class="o">();</span>
+        <span class="n">roleHierarchy</span><span class="o">.</span><span class="na">setHierarchy</span><span class="o">(</span><span class="s">"ROLE_ADMIN &gt; ROLE_USER"</span><span class="o">);</span>
+        <span class="nc">AffirmativeBased</span> <span class="n">accessDecisionManager</span> <span class="o">=</span> <span class="o">(</span><span class="nc">AffirmativeBased</span><span class="o">)</span>
+                <span class="kd">super</span><span class="o">.</span><span class="na">accessDecisionManager</span><span class="o">();</span>
+        <span class="n">accessDecisionManager</span><span class="o">.</span><span class="na">getDecisionVoters</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">new</span>
+                <span class="nc">RoleHierarchyVoter</span><span class="o">(</span><span class="n">roleHierarchy</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">accessDecisionManager</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Secured</code>와 <code class="language-plaintext highlighter-rouge">@RollAllowed</code>
+    <ul>
+      <li>메소드 호출 이전에 권한을 확인한다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">@PreAuthorize</code>와 <code class="language-plaintext highlighter-rouge">@PostAuthorize</code>
+    <ul>
+      <li>메소드 호출 이전에 권한을 확인하고 반환값이 있는 경우 <code class="language-plaintext highlighter-rouge">@PostAuthorize</code>를 통해 권한 확인이 가능하다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SampleService</span> <span class="o">{</span>
+
+<span class="c1">//   @PreAuthorize("hasRole('USER')")</span>
+<span class="c1">//   @PostAuthorize()</span>
+    <span class="nd">@Secured</span><span class="o">({</span><span class="s">"ROLE_USER"</span><span class="o">,</span> <span class="s">"ROLE_ADMIN"</span><span class="o">})</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dashboard</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+        <span class="nc">UserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="o">(</span><span class="nc">UserDetails</span><span class="o">)</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">userDetails</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="c1">// @WithMockUser</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">dashboard</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">();</span>
+    <span class="n">account</span><span class="o">.</span><span class="na">setRole</span><span class="o">(</span><span class="s">"ADMIN"</span><span class="o">);</span>
+    <span class="n">account</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">);</span>
+    <span class="n">account</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">"123"</span><span class="o">);</span>
+    <span class="n">accountService</span><span class="o">.</span><span class="na">createNew</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+
+    <span class="nc">UsernamePasswordAuthenticationToken</span> <span class="n">token</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UsernamePasswordAuthenticationToken</span><span class="o">(</span><span class="s">"yhw"</span><span class="o">,</span> <span class="s">"123"</span><span class="o">);</span>
+    <span class="nc">Authentication</span> <span class="n">authenticate</span> <span class="o">=</span> <span class="n">authenticationManager</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+    <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">authenticate</span><span class="o">);</span>
+
+    <span class="n">sampleService</span><span class="o">.</span><span class="na">dashboard</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="authenticationprincipal">@AuthenticationPrincipal</h3>
+<ul>
+  <li>커스텀 유저 클래스 구현하기</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserAccount</span> <span class="kd">extends</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Account</span> <span class="n">account</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserAccount</span><span class="o">(</span><span class="nc">Account</span> <span class="n">account</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">account</span><span class="o">.</span><span class="na">getUsername</span><span class="o">(),</span> <span class="n">account</span><span class="o">.</span><span class="na">getPassword</span><span class="o">(),</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">new</span> <span class="nc">SimpleGrantedAuthority</span><span class="o">(</span><span class="s">"ROLE_"</span> <span class="o">+</span> <span class="n">account</span><span class="o">.</span><span class="na">getRole</span><span class="o">())));</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">account</span> <span class="o">=</span> <span class="n">account</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Account</span> <span class="nf">getAccount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">account</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">AccountService</code> 수정</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="nc">String</span> <span class="n">username</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UsernameNotFoundException</span> <span class="o">{</span>
+    <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">findByUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">account</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">UsernameNotFoundException</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">UserAccount</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@AuthenticationPrincipal</span> <span class="nc">UserAccount</span> <span class="n">userAccount</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">UserDetailsService</code> 구현체에서 리턴하는 객체를 매개변수로 받을 수 있다.</li>
+  <li>그 안에 들어있는 Account객체를 getter를 통해 참조할 수 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@AuthenticationPrincipal</span><span class="o">(</span><span class="n">expression</span> <span class="o">=</span> <span class="s">"#this == 'anonymousUser' ? null : account"</span><span class="o">)</span> <span class="nc">Account</span> <span class="n">account</span>
+</code></pre></div></div>
+<ul>
+  <li>익명 Authentication인 경우 (“anonymousUser”, <code class="language-plaintext highlighter-rouge">AnonymousAuthenticationToken</code>)에는 <code class="language-plaintext highlighter-rouge">null</code>, 아닌 경우에는 <code class="language-plaintext highlighter-rouge">account</code> 필드를 사용한다.</li>
+  <li>Account를 바로 참조할 수 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@CurrentUser</span> <span class="nc">Account</span> <span class="n">account</span>
+
+<span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Target</span><span class="o">(</span><span class="nc">ElementType</span><span class="o">.</span><span class="na">PARAMETER</span><span class="o">)</span>
+<span class="nd">@AuthenticationPrincipal</span><span class="o">(</span><span class="n">expression</span> <span class="o">=</span> <span class="s">"#this == 'anonymousUser' ? null : account"</span><span class="o">)</span> 
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">CurrentUser</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="스프링-데이터-연동">스프링 데이터 연동</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">implementation group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">org.springframework.security'</span><span class="err">,</span> <span class="na">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">spring-security-data'</span><span class="err">,</span> <span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">5.5.2'</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Query</span><span class="o">(</span><span class="s">"select b from Book b where b.author.id = ?#{principal.account.id}"</span><span class="o">)</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Book</span><span class="o">&gt;</span> <span class="nf">findCurrentUserBooks</span><span class="o">();</span>
+</code></pre></div></div>
+<ul>
+  <li>쿼리 메서드에서 <code class="language-plaintext highlighter-rouge">principal</code> 참조 가능</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#security" class="page__taxonomy-item" rel="tag">Security</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#spring-security" class="page__taxonomy-item" rel="tag">Spring/Security</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-10-27T00:00:00+09:00">October 27, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BSecurity%5D+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fsecurity%2FSpringSecurity%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fsecurity%2FSpringSecurity%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fsecurity%2FSpringSecurity%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/spring/jpa/querydsl/Querydsl/" class="pagination--pager" title="[Spring][JPA][Querydsl] Querydsl
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/jpa/querydsl/Querydsl/" rel="permalink">[Spring][JPA][Querydsl] Querydsl
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-27T00:00:00+09:00">October 27, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/jpa/save&merge/" rel="permalink">[Spring][JPA] 변경 감지와 병합
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-24T00:00:00+09:00">October 24, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/jpa/SpringDataJPA/" rel="permalink">[Spring][JPA] 스프링 데이터 JPA
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-24T00:00:00+09:00">October 24, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          7 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/jpa/OSIV/" rel="permalink">[Spring][JPA] OSIV
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-20T00:00:00+09:00">October 20, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 yhw. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

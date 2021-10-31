@@ -94,4 +94,10 @@ var store = [{
         "tags": ["JPA","Spring","Querydsl"],
         "url": "https://rere950303.github.io/spring/jpa/querydsl/Querydsl/",
         "teaser": null
+      },{
+        "title": "[Spring][Security] 스프링 시큐리티",
+        "excerpt":"들어가며 해당 게시글은 인프런 백기선 강사님의 스프링 시큐리티 강의를 바탕으로 쓰였음을 미리 밝힙니다. 스프링 시큐리티: 폼 인증 스프링 시큐리티 연동 gradle 설정 implementation 'org.springframework.boot:spring-boot-starter-security' 기본 유저가 생성됨(ID: user) Using generated security password: 114284e0-656a-4fdf-b623-9b552a85b6c8 모든 요청은 인증을 필요로함 스프링 시큐리티 설정하기 @Configuration @EnableWebSecurity public class SecurityConfig extends WebSecurityConfigurerAdapter { @Override protected...","categories": ["Spring/Security"],
+        "tags": ["Security","Spring"],
+        "url": "https://rere950303.github.io/spring/security/SpringSecurity/",
+        "teaser": null
       }]
