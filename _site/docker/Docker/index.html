@@ -1,0 +1,1321 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Docker] 도커 - YHW Blog</title>
+<meta name="description" content="새로운 배움을 기록하고 공유합니다">
+
+
+  <meta name="author" content="yhw">
+  
+  <meta property="article:author" content="yhw">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="YHW Blog">
+<meta property="og:title" content="[Docker] 도커">
+<meta property="og:url" content="https://rere950303.github.io/docker/Docker/">
+
+
+  <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-11-05T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://rere950303.github.io/docker/Docker/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "yhw",
+      "url": "https://rere950303.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="YHW Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          YHW Blog
+          <span class="site-subtitle">새로운 배움을 기록하고 공유합니다</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#docker" itemprop="item"><span itemprop="name">Docker</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Docker] 도커</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio/photo.png" alt="yhw" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">yhw</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>어제와 다른 오늘, 오늘 같은 내일</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:yhwjjang1995@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Docker] 도커">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-11-05T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Docker] 도커
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-05T00:00:00+09:00">November 5, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#도커란-무엇인가">도커란 무엇인가</a>
+    <ul>
+      <li><a href="#서버를-관리한다는-것">서버를 관리한다는 것</a></li>
+      <li><a href="#서버관리-방식의-변화">서버관리 방식의 변화</a></li>
+      <li><a href="#도커의-등장">도커의 등장</a></li>
+      <li><a href="#도커란">도커란</a></li>
+      <li><a href="#컨테이너의-미래">컨테이너의 미래</a></li>
+    </ul>
+  </li>
+  <li><a href="#도커---설치부터-실행까지">도커 - 설치부터 실행까지</a>
+    <ul>
+      <li><a href="#도커-설치하기">도커 설치하기</a></li>
+      <li><a href="#도커-기본-명령어run">도커 기본 명령어(run)</a></li>
+      <li><a href="#도커-기본-명령어">도커 기본 명령어</a></li>
+      <li><a href="#도커-기본-명령어volume">도커 기본 명령어(volume)</a></li>
+      <li><a href="#도커-컴포즈">도커 컴포즈</a></li>
+      <li><a href="#도커-컴포즈-명령어">도커 컴포즈 명령어</a></li>
+    </ul>
+  </li>
+  <li><a href="#도커---이미지-만들고-배포하기">도커 - 이미지 만들고 배포하기</a>
+    <ul>
+      <li><a href="#도커-이미지-만들기---기본">도커 이미지 만들기 - 기본</a></li>
+      <li><a href="#도커-이미지-만들기웹-애플리케이션">도커 이미지 만들기(웹 애플리케이션)</a></li>
+      <li><a href="#이미지-저장소">이미지 저장소</a></li>
+    </ul>
+  </li>
+</ul>
+
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="들어가며">들어가며</h2>
+<p>해당 게시글은 인프런 subicura 강사님의 <a href="https://www.inflearn.com/course/도커-입문/dashboard">초보를 위한 도커 안내서</a> 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
+
+<h2 id="도커란-무엇인가">도커란 무엇인가</h2>
+<h3 id="서버를-관리한다는-것">서버를 관리한다는 것</h3>
+<ul>
+  <li>도커는 컨테이너 기반의 오픈소스 가상화 플랫폼이다.</li>
+  <li>Oracle, Wordpress, Gitlab 등 매우 복잡하다.</li>
+  <li>AWS, Azure, Google Cloud 등 계속해서 바뀌는 서버 환경</li>
+  <li>Node.js, Python, Ruby 등 계속해서 바뀌는 개발 환경</li>
+</ul>
+
+<h3 id="서버관리-방식의-변화">서버관리 방식의 변화</h3>
+<ul>
+  <li>전통 방식: Add user -&gt; System Env -&gt; Firewall -&gt; Network -&gt; dependencies -&gt; Python -&gt; Git clone -&gt; Package -&gt; Configuration -&gt; Migration -&gt; Proxy -&gt; Run (한땀한땀 관린 필요)</li>
+  <li>하나의 단계에서라도 사소한 문제 발생시 서버가 죽게 된다.</li>
+  <li>도커의 경우 어떠한 프로그램도 컨테이너로 만들 수 있고 어디서든 돌아간다.</li>
+  <li>가상머신처럼 독립적으로 실행되지만 가상머신보다 빠르고 가상머신보다 쉽고 가상머신보다 효율적이다.</li>
+</ul>
+
+<h3 id="도커의-등장">도커의 등장</h3>
+<ul>
+  <li>서버를 관리하기 위한 노력
+    <ul>
+      <li>서버배포.pptx -&gt; 문서화 한다</li>
+      <li>상태관리 도구(CHEF, puppet, ANSIBLE)</li>
+      <li>가상머신</li>
+      <li>자원격리: 프로세스를 가상으로 분리, 파일 / 디렉토리를 가상으로 분리, CPU / MEMORY / IO 그룹별 제한(리눅스 커널의 기능을 이용한 빠르고 효율적인 서버 관리)</li>
+    </ul>
+  </li>
+  <li>도커의 등장
+    <ul>
+      <li>컨테이너: 격리된 환경에서 작동하는 가상의 프로세스</li>
+      <li>리눅스 커널의 여러 기술을 활용</li>
+      <li>하드웨어 가상화 기술보다 가벼움</li>
+      <li>이미지 단위로 프로세스 실행 환경을 구성</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="도커란">도커란</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Docker/1.png">
+          <img src="/assets/images/post/Docker/1.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>도커의 특징: 확장성 / 이식성 / 표준성 / 이미지 / 설정관리 / 자원관리</li>
+  <li>도커가 설치되어 있다면 어디서든 컨테이너를 실행할 수 있음</li>
+  <li>특정 회사나 서비스에 종속적이지 않음</li>
+  <li>쉽게 개발서버를 만들 수 있고 테스트서버 생성도 간편함</li>
+  <li>컨테이너라는 표준으로 서버를 배포하므로 모든 서비스들의 배포과정이 동일해짐</li>
+  <li>이미지에서 컨테이너를 생성하기 때문에 반드시 이미지를 만드는 과정이 필요</li>
+  <li>Dockerfile를 이용하여 이미지를 만들고 처음부터 재현 가능</li>
+  <li>빌드 서버에서 이미지를 만들면 해당 이미지를 이미지 저장소에 저장하고 운영서버에서 이미지를 불러옴</li>
+  <li>설정은 보통 환경변수로 제어함</li>
+  <li>MYSQL_PASS=password와 같이 컨테이너를 띄울때 환경변수를 같이 지정</li>
+  <li>하나의 이미지가 환경변수에 따라 동적으로 설정파일을 생성하도록 만들어져야함</li>
+  <li>컨테이너는 삭제시 모든 데이터가 초기화됨</li>
+  <li>업로드 파일의 경우 별도의 저장소 필요</li>
+  <li>세션이나 캐시를 redis 와 같은 외부로 분리
+—&gt; 컨테이너: 서버 관리 혁신</li>
+</ul>
+
+<h3 id="컨테이너의-미래">컨테이너의 미래</h3>
+<ul>
+  <li>여러대의 서버와 여러개의 서비스를 관리하기 쉽게(쿠버네티스)</li>
+  <li>스케쥴링
+    <ul>
+      <li>컨테이너(서비스 프로세스)를 적당한 서버에 배포해 주는 작업</li>
+      <li>전략: idle 서버에 배포, 순서배포, 랜덤배포</li>
+      <li>서버가 죽으면 실행중이던 컨테이너를 다른 서버에 띄어줌</li>
+    </ul>
+  </li>
+  <li>클러스터링
+    <ul>
+      <li>여러 개의 서버를 하나의 서버처럼 사용(컨테이너 사이의 통신)</li>
+      <li>흩어져 있는 여러 개의 컨테이너도 가상 네트워크를 이용하여 마치 같은 서버에 있는 것처럼 쉽게 통신</li>
+    </ul>
+  </li>
+  <li>서비스 디스커버리
+    <ul>
+      <li>서비스를 찾아주는 기능</li>
+      <li>클러스터 환경에서 컨테이너는 어느 서버에 생성될지 알 수 없고 다른 서버로 이동할 수도 있음</li>
+      <li>컨테이너와 통신을 하기 위해서 어느 서버에서 실행중인지 알아야 하고 컨테이너가 생성되고 중지될 때 어딘가에 IP와 Port같은 정보를 업데이트해줘야 함</li>
+      <li>key-value 저장소에 정보를 저장할 수도 있고 내부 DNS 서버를 이용</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="도커---설치부터-실행까지">도커 - 설치부터 실행까지</h2>
+<h3 id="도커-설치하기">도커 설치하기</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Docker/2.png">
+          <img src="/assets/images/post/Docker/2.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>도커는 기본적으로 linux를 지원하기 때문에 MacOS와 Windows에 설치되는 Docker는 가상머신에 설치됨</li>
+  <li>MacOS는 xhyve를 사용하고 Windows는 Hyper-V 사용</li>
+  <li>docker CLI 는 도커 호스트에 명령을 전달하고 겨로가를 받아서 출력함</li>
+</ul>
+
+<h3 id="도커-기본-명령어run">도커 기본 명령어(run)</h3>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Docker/3.png">
+          <img src="/assets/images/post/Docker/3.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">docker run ubuntu:20.04</code>
+    <ul>
+      <li>run 명령어를 사용하면 사용할 이미지가 저장되어 있는지 확인하고 없다면 다운로드 (pull) 한 후 컨테이너를 생성(create)하고 시작(start)한다. 컨테이너는 정상적으로 실행됐지만 뭘 하라고 명령어를 전달하지 않았기 때문에 컨테이너는 생성되자마자 종료된다. 컨테이너는 프로세스이기 때문에 실행중인 프로세스가 없으면 컨테이너는 종료된다.</li>
+      <li>이미지마다 컨테이너가 만들어질때 실행할 명령어를 지정할 수 있고 ubuntu:20.04는 <code class="language-plaintext highlighter-rouge">/bin/sh</code> 가 지정되어 쉘이 실행되야 하지만, 입력을 받을 수 있도록 <code class="language-plaintext highlighter-rouge">-it</code> 옵션을 입력하지 않았기 때문에 바로 실행이 종료되었다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">docker run --rm -it ubuntu:20.04 /bin/sh</code>
+    <ul>
+      <li>컨테이너 내부에 들어가기 위해 <code class="language-plaintext highlighter-rouge">sh</code> 를 실행하고 키보드 입력을 위해 <code class="language-plaintext highlighter-rouge">-it</code> 옵션을 준다. 추가적으로 프로세스가 종료되면 컨테이너가 자동으로 삭제되도록 <code class="language-plaintext highlighter-rouge">--rm</code> 옵션도 추가한다.<code class="language-plaintext highlighter-rouge">--rm</code> 옵션이 없다면 컨테이너가 종료되더라도 삭제되지 않고 남아 있어 수동으로 삭제 해야한다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">docker run --rm -it centos:8 /bin/sh</code>
+    <ul>
+      <li>도커는 다양한 리눅스 배포판을 실행할 수 있다. 공통점은 모두 동일한 커널을 사용한다는 점이다. Ubuntu 또는 CentOS에 포함된 다양한 기본기능이 필요 없는 경우, Alpine 이라는 초소형 (5MB) 이미지를 사용할 수도 있다.</li>
+    </ul>
+  </li>
+  <li>MySQL 실행하기
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mysql mysql:5.7</code></li>
+      <li>MySQL 데이터베이스를 실행</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">docker exec -it mysql mysql // 컨테이너 mysql에 접속하여 mysql 명령어 실행</span>
+<span class="s">create database wp CHARACTER SET utf8;</span>
+<span class="s">grant all privileges on wp.* to wp@'%' identified by 'wp';</span>
+<span class="s">flush privileges;</span>
+<span class="s">quit</span>
+</code></pre></div></div>
+<ul>
+  <li>exec 명령어: exec 명령어는 run 명령어와 달리 실행중인 도커 컨테이너에 접속할 때 사용하며 컨테이너 안에 ssh server등을 설치하지 않고 exec 명령어로 접속한다.</li>
+</ul>
+
+<h3 id="도커-기본-명령어">도커 기본 명령어</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">docker ps</code>: 실행중인 컨테이너 목록을 확인하는 명령어</li>
+  <li><code class="language-plaintext highlighter-rouge">docker ps -a</code>: 중지된 컨테이너도 확인하려면 -a 옵션</li>
+  <li><code class="language-plaintext highlighter-rouge">docker stop [OPTIONS] CONTAINER [CONTAINER...]</code>: 실행중인 컨테이너를 중지하는 명령어. 실행중인 컨테이너를 하나 또는 여러개 (띄어쓰기) 중지할 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">docker rm [OPTIONS] CONTAINER [CONTAINER...]</code>: 종료된 컨테이너를 완전히 제거하는 명령어</li>
+  <li><code class="language-plaintext highlighter-rouge">docker logs [OPTIONS] CONTAINER</code>: 컨테이너가 정상적으로 동작하는지 확인하는 좋은 방법은 로그를 확인하는 것. -f, –tail 옵션</li>
+  <li><code class="language-plaintext highlighter-rouge">docker images [OPTIONS] [REPOSITORY[:TAG]]</code>: 도커가 다운로드한 이미지 목록을 보는 명령어</li>
+  <li><code class="language-plaintext highlighter-rouge">docker pull [OPTIONS] NAME[:TAG|@DIGEST]</code>: 이미지를 다운로드하는 명령어</li>
+  <li><code class="language-plaintext highlighter-rouge">docker rmi [OPTIONS] IMAGE [IMAGE...]</code>: 이미지를 삭제하는 방법. images 명령어를 통해 얻는 이미지 목록에서 이미지 ID를 입력하면 삭제가 된다. 단, 컨테이너가 실행중인 이미지는 삭제되지 않는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">docker network create [OPTIONS] NETWORK</code>(<code class="language-plaintext highlighter-rouge">docker network create app-network</code>): 도커 컨테이너끼리 이름으로 통신할 수 있는 가상 네트워크를 만든다. app-network 라는 이름으로 wordpress와 mysql이 통신할 네트워크를 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">docker network connect [OPTIONS] NETWORK CONTAINER</code> (<code class="language-plaintext highlighter-rouge">docker network connect app-network mysql</code>): 기존에 생성된 컨테이너에 네트워크를 추가. mysql 컨테이너에 네트워크를 추가</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">docker run -d -p 8080:80 \</span>
+  <span class="s">--network=app-network \</span>
+  <span class="s">-e WORDPRESS_DB_HOST=mysql \</span>
+  <span class="s">-e WORDPRESS_DB_NAME=wp \</span>
+  <span class="s">-e WORDPRESS_DB_USER=wp \</span>
+  <span class="s">-e WORDPRESS_DB_PASSWORD=wp \</span>
+  <span class="s">wordpress</span>
+</code></pre></div></div>
+<ul>
+  <li>워드프레스를 app-network에 속하게 하고 mysql을 이름으로 접근</li>
+</ul>
+
+<h3 id="도커-기본-명령어volume">도커 기본 명령어(volume)</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">docker stop mysql</span>
+<span class="s">docker rm mysql</span>
+<span class="s">docker run -d -p 3306:3306 \</span>
+  <span class="s">-e MYSQL_ALLOW_EMPTY_PASSWORD=true \</span>
+  <span class="s">--network=app-network \</span>
+  <span class="s">--name mysql \</span>
+  <span class="s">-v /Users/subicura/Workspace/github.com/subicura/docker-guide/ch02/mysql:/var/lib/mysql \</span>
+  <span class="s">mysql:5.7</span>
+</code></pre></div></div>
+<ul>
+  <li>mysql을 삭제후에 다시 실행하면 데이터베이스 오류가 발생</li>
+  <li><code class="language-plaintext highlighter-rouge">-v</code> 옵션으로 데이터베이스와 로컬 디렉토리를 연동, 이후 컨테이너 삭제 후 다시 컨테이너 생성을 하면 기존 데이터베이스와 동일한 데이터베이스 생성</li>
+  <li><code class="language-plaintext highlighter-rouge">-v /my/own/datadir:/var/lib/mysql</code></li>
+</ul>
+
+<h3 id="도커-컴포즈">도커 컴포즈</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mysql:5.7</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./mysql:/var/lib/mysql</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">MYSQL_ROOT_PASSWORD</span><span class="pi">:</span> <span class="s">wordpress</span>
+      <span class="na">MYSQL_DATABASE</span><span class="pi">:</span> <span class="s">wordpress</span>
+      <span class="na">MYSQL_USER</span><span class="pi">:</span> <span class="s">wordpress</span>
+      <span class="na">MYSQL_PASSWORD</span><span class="pi">:</span> <span class="s">wordpress</span>
+  <span class="na">wordpress</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">wordpress:latest</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./wp:/var/www/html</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8000:80"</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">WORDPRESS_DB_HOST</span><span class="pi">:</span> <span class="s">db:3306</span>
+      <span class="na">WORDPRESS_DB_PASSWORD</span><span class="pi">:</span> <span class="s">wordpress</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">docker-compose up -d</code></li>
+  <li><code class="language-plaintext highlighter-rouge">docker-compose down</code>: docker compose를 이용하여 mysql과 wordpress를 종료</li>
+  <li><code class="language-plaintext highlighter-rouge">services</code>: 실행할 컨테이너 정의, <code class="language-plaintext highlighter-rouge">docker run --name django</code> 과 같다고 생각할 수 있음</li>
+  <li><code class="language-plaintext highlighter-rouge">image</code>: 컨테이너에 사용할 이미지 이름과 태그, 태그를 생략하면 latest, 이미지가 없으면 자동으로 pull</li>
+  <li><code class="language-plaintext highlighter-rouge">ports</code>: 컨테이너와 연결할 포트(들), {호스트 포트}:{컨테이너 포트}</li>
+  <li><code class="language-plaintext highlighter-rouge">environment</code>: 컨테이너에서 사용할 환경변수(들), {환경변수 이름}:{값}</li>
+  <li><code class="language-plaintext highlighter-rouge">volumes</code>: 마운트하려는 디렉터리(들), {호스트 디렉터리}:{컨테이너 디렉터리}</li>
+  <li><code class="language-plaintext highlighter-rouge">restart</code>: 재시작 정책, restart: “no”, restart: always, restart: on-failure, restart: unless-stopped</li>
+  <li><code class="language-plaintext highlighter-rouge">build</code>: 이미지를 자체 빌드 후 사용, image 속성 대신 사용함, 여기에 사용할 별도의 도커 파일이 필요함</li>
+</ul>
+
+<h3 id="도커-컴포즈-명령어">도커 컴포즈 명령어</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">up</code>
+    <ul>
+      <li>docker-compose.yml에 정의된 컨테이너를 실행</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose up</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose up -d</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose up --force-recreate</code>: 컨테이너를 새로 만들기</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose up --build</code>: 도커 이미지를 다시 빌드(build로 선언했을 때만)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">stop</code>
+    <ul>
+      <li>컨테이너 멈춤</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose stop</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose stop wordpress</code>: wordpress 컨테이너만 멈춤</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">start</code>
+    <ul>
+      <li>멈춘 컨테이너를 재개</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose start</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose start wordpress</code>: wordpress 컨테이너만 재개</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">restart</code>
+    <ul>
+      <li>컨테이너를 재시작</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose restart</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose restart wordpress</code>: wordpress 컨테이너만 재시작</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">down</code>
+    <ul>
+      <li>컨테이너를 종료하고 삭제</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose down</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">logs</code>
+    <ul>
+      <li>컨테이너의 로그</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose logs</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose logs -f</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ps</code>
+    <ul>
+      <li>컨테이너 목록</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose ps</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">exec</code>
+    <ul>
+      <li>실행 중인 컨테이너에서 명령어 실행</li>
+      <li>docker-compose exec {컨테이너 이름} {명령어}</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose exec wordpress bash</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">build</code>
+    <ul>
+      <li>컨테이너 build 부분에 정의된 내용대로 빌드</li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose build</code></li>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose build wordpres</code>: wordpress 컨테이너만 build</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="도커---이미지-만들고-배포하기">도커 - 이미지 만들고 배포하기</h2>
+<h3 id="도커-이미지-만들기---기본">도커 이미지 만들기 - 기본</h3>
+<ul>
+  <li>이미지란
+    <ul>
+      <li>도커는 레이어드 파일 시스템 기반</li>
+      <li>AUFS, BTRFS, Overlayfs, …</li>
+      <li>이미지는 프로세스가 실행되는 파일들의 집합(환경) 프로세스는 환경(파일)을 변경할 수 있음</li>
+      <li>이 환경을 저장해서 새로운 이미지를 만든다</li>
+    </ul>
+  </li>
+  <li>읽기 전용 vs 쓰기 가능: 베이스 이미지에서 커스텀 후 새로운 이미지 만들기</li>
+</ul>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Docker/4.png">
+          <img src="/assets/images/post/Docker/4.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">$ docker run -it --name git ubuntu:latest bash</span>
+<span class="s">root@2f8bfff679f9:/# git</span>
+<span class="na">bash</span><span class="pi">:</span> <span class="na">git</span><span class="pi">:</span> <span class="s">command not found</span>
+<span class="s">root@2f8bfff679f9:/# apt-get update</span>
+<span class="s">root@2f8bfff679f9:/# apt-get install -y git</span>
+<span class="s">root@2f8bfff679f9:/# git --version</span>
+<span class="s">git version 2.17.1</span>
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">$ docker commit git ubuntu:git</span>
+<span class="s">sha256:f95008381e220660f6330bcc544640091f59793e213ff5fe9a8298d784a345fa</span>
+<span class="s">$docker images | grep ubuntu</span>
+<span class="s">ubuntu   git         f95008381e22     17 seconds ago  186MB</span>
+<span class="s">ubuntu   latest      cf0f3ca922e0     5 days ago     64.2MB</span>
+</code></pre></div></div>
+
+<figure class=" ">
+  
+    
+      <a href="/assets/images/post/Docker/5.png">
+          <img src="/assets/images/post/Docker/5.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>Dockerfile</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">명령어</th>
+      <th style="text-align: center">설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">FROM</td>
+      <td style="text-align: center">기본 이미지</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">RUN</td>
+      <td style="text-align: center">쉘 명령어 실행</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">CMD</td>
+      <td style="text-align: center">컨테이너 기본 실행 명령어 (Entrypoint의 인자로 사용)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">EXPOSE</td>
+      <td style="text-align: center">오픈되는 포트 정보</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ENV</td>
+      <td style="text-align: center">환경변수 설정</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ADD</td>
+      <td style="text-align: center">파일 또는 디렉토리 추가. URL/ZIP 사용가능</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">COPY</td>
+      <td style="text-align: center">파일 또는 디렉토리 추가</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ENTRYPOINT</td>
+      <td style="text-align: center">컨테이너 기본 실행 명령어</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">VOLUME</td>
+      <td style="text-align: center">외부 마운트 포인트 생성</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">USER</td>
+      <td style="text-align: center">RUN, CMD, ENTRYPOINT를 실행하는 사용자</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">WORKDIR</td>
+      <td style="text-align: center">작업 디렉토리 설정</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ARGS</td>
+      <td style="text-align: center">빌드타임 환경변수 설정</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">LABEL</td>
+      <td style="text-align: center">key - value 데이터</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ONBUILD</td>
+      <td style="text-align: center">다른 빌드의 베이스로 사용될때 사용하는 명령어</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>이미지 빌드하기</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">docker build -t {이미지명:이미지태그} {빌드 컨텍스트}</span> 
+<span class="s">$ docker build -t sample:1 .</span>
+</code></pre></div></div>
+<ul>
+  <li>현재 디렉토리의 Dockerfile로 빌드
+    <ul>
+      <li>-f <Dockerfile 위치=""> 옵션을 사용해 다른 위치의 Dockerfile 파일 사용 가능</Dockerfile></li>
+      <li>-t 명령어로 도커 이미지 이름을 지정</li>
+      <li>{네임스페이스}/{이미지이름}:{태그} 형식</li>
+    </ul>
+  </li>
+  <li>마지막에는 빌드 컨텍스트 위치를 지정
+    <ul>
+      <li>현재 디렉터리를 의미하는 점(.)을 주로 사용</li>
+      <li>필요한 경우 다른 디렉터리를 지정할 수도 있음</li>
+    </ul>
+  </li>
+  <li>.dockerignore
+    <ul>
+      <li>.gitignore와 비슷한 역할</li>
+      <li>도커 빌드 컨텍스트에서 지정된 패턴의 파일을 무시</li>
+      <li>.git이나 민감한 정보를 제외하는 용도로 주로 사용</li>
+      <li>.git이나 에셋 디렉터리만 제외시켜도 빌드 속도 개선</li>
+      <li>이미지 빌드 시에 사용하는 파일은 제외시키면 안 됨</li>
+    </ul>
+  </li>
+  <li>Dockerfile</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">FROM ubuntu:latest</span>
+<span class="s">RUN apt-get update</span>
+<span class="s">RUN apt-get install -y git</span>
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">$ docker build -t ubuntu:git-dockerfile .</span>
+<span class="s">$ docker images | grep ubuntu</span>
+</code></pre></div></div>
+
+<h3 id="도커-이미지-만들기웹-애플리케이션">도커 이미지 만들기(웹 애플리케이션)</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1. node 이미지 사용 </span>
+<span class="s">FROM node:12-alpine</span>
+<span class="c1">#2.패키지 우선 복사</span>
+<span class="s">COPY ./package* /usr/src/app/</span>
+<span class="s">WORKDIR /usr/src/app</span>
+<span class="s">RUN     npm install</span>
+<span class="c1"># 3. 소스 복사</span>
+<span class="s">COPY . /usr/src/app</span>
+<span class="c1"># 4. WEB 서버 실행 (Listen 포트 정의) </span>
+<span class="s">EXPOSE </span><span class="m">3000</span>
+<span class="s">CMD node app.js</span>
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">docker build -t subicura/app .</span>
+<span class="s">docker run --rm -d -p 3000:3000 subicura/app</span>
+</code></pre></div></div>
+<ul>
+  <li>FROM: <code class="language-plaintext highlighter-rouge">FROM [--platform=&lt;platform&gt;] &lt;image&gt;[:&lt;tag&gt;] [AS &lt;name&gt;]</code>
+    <ul>
+      <li>베이스 이미지 지정</li>
+      <li>FROM ubuntu:latest</li>
+      <li>FROM node:12</li>
+      <li>FROM python:3</li>
+    </ul>
+  </li>
+  <li>COPY: <code class="language-plaintext highlighter-rouge">COPY [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</code>
+    <ul>
+      <li>파일 또는 디렉토리 추가</li>
+      <li>COPY index.html /var/www/html/</li>
+      <li>COPY ./app /usr/src/app</li>
+    </ul>
+  </li>
+  <li>RUN: <code class="language-plaintext highlighter-rouge">RUN &lt;command&gt;</code>
+    <ul>
+      <li>명령어 실행</li>
+      <li>RUN apt-get update</li>
+      <li>RUN npm install</li>
+    </ul>
+  </li>
+  <li>WORKDIR: <code class="language-plaintext highlighter-rouge">WORKDIR /path/to/workdir</code>
+    <ul>
+      <li>작업 디렉토리 변경</li>
+      <li>WORKDIR /app</li>
+    </ul>
+  </li>
+  <li>EXPOSE
+    <ul>
+      <li>컨테이너에서 사용하는 포트 정보</li>
+      <li>EXPOSE 8000</li>
+    </ul>
+  </li>
+  <li>CMD: <code class="language-plaintext highlighter-rouge">CMD ["executable","param1","param2"]</code>, <code class="language-plaintext highlighter-rouge">CMD command param1 param2</code>
+    <ul>
+      <li>컨테이너 생성시 실행할 명령어</li>
+      <li>CMD [“node”, “app.js”]</li>
+      <li>CMD node app.js</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="이미지-저장소">이미지 저장소</h3>
+<ul>
+  <li>docker login</li>
+  <li>docker push {ID}/example</li>
+  <li>docker pull {ID}/example</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#docker" class="page__taxonomy-item" rel="tag">Docker</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#docker" class="page__taxonomy-item" rel="tag">Docker</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-05T00:00:00+09:00">November 5, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BDocker%5D+%EB%8F%84%EC%BB%A4%20https%3A%2F%2Frere950303.github.io%2Fdocker%2FDocker%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdocker%2FDocker%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdocker%2FDocker%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/spring/security/SpringSecurity/" class="pagination--pager" title="[Spring][Security] 스프링 시큐리티
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/security/SpringSecurity/" rel="permalink">[Spring][Security] 스프링 시큐리티
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-31T00:00:00+09:00">October 31, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          14 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/jpa/querydsl/Querydsl/" rel="permalink">[Spring][JPA][Querydsl] Querydsl
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-27T00:00:00+09:00">October 27, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/jpa/save&merge/" rel="permalink">[Spring][JPA] 변경 감지와 병합
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-24T00:00:00+09:00">October 24, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/jpa/SpringDataJPA/" rel="permalink">[Spring][JPA] 스프링 데이터 JPA
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-24T00:00:00+09:00">October 24, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          7 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 yhw. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

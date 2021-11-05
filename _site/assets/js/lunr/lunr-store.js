@@ -100,4 +100,10 @@ var store = [{
         "tags": ["Security","Spring"],
         "url": "https://rere950303.github.io/spring/security/SpringSecurity/",
         "teaser": null
+      },{
+        "title": "[Docker] 도커",
+        "excerpt":"들어가며 해당 게시글은 인프런 subicura 강사님의 초보를 위한 도커 안내서 강의를 바탕으로 쓰였음을 미리 밝힙니다. 도커란 무엇인가 서버를 관리한다는 것 도커는 컨테이너 기반의 오픈소스 가상화 플랫폼이다. Oracle, Wordpress, Gitlab 등 매우 복잡하다. AWS, Azure, Google Cloud 등 계속해서 바뀌는 서버 환경 Node.js, Python, Ruby 등 계속해서 바뀌는 개발 환경 서버관리...","categories": ["Docker"],
+        "tags": ["Docker"],
+        "url": "https://rere950303.github.io/docker/Docker/",
+        "teaser": null
       }]

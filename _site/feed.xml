@@ -1,4 +1,542 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-10-31T11:02:29+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Security] 스프링 시큐리티</title><link href="https://rere950303.github.io/spring/security/SpringSecurity/" rel="alternate" type="text/html" title="[Spring][Security] 스프링 시큐리티" /><published>2021-10-27T00:00:00+09:00</published><updated>2021-10-27T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/security/SpringSecurity</id><content type="html" xml:base="https://rere950303.github.io/spring/security/SpringSecurity/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-11-05T19:46:11+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Docker] 도커</title><link href="https://rere950303.github.io/docker/Docker/" rel="alternate" type="text/html" title="[Docker] 도커" /><published>2021-11-05T00:00:00+09:00</published><updated>2021-11-05T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;해당 게시글은 인프런 subicura 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/도커-입문/dashboard&quot;&gt;초보를 위한 도커 안내서&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;도커란-무엇인가&quot;&gt;도커란 무엇인가&lt;/h2&gt;
+&lt;h3 id=&quot;서버를-관리한다는-것&quot;&gt;서버를 관리한다는 것&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;도커는 컨테이너 기반의 오픈소스 가상화 플랫폼이다.&lt;/li&gt;
+  &lt;li&gt;Oracle, Wordpress, Gitlab 등 매우 복잡하다.&lt;/li&gt;
+  &lt;li&gt;AWS, Azure, Google Cloud 등 계속해서 바뀌는 서버 환경&lt;/li&gt;
+  &lt;li&gt;Node.js, Python, Ruby 등 계속해서 바뀌는 개발 환경&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;서버관리-방식의-변화&quot;&gt;서버관리 방식의 변화&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;전통 방식: Add user -&amp;gt; System Env -&amp;gt; Firewall -&amp;gt; Network -&amp;gt; dependencies -&amp;gt; Python -&amp;gt; Git clone -&amp;gt; Package -&amp;gt; Configuration -&amp;gt; Migration -&amp;gt; Proxy -&amp;gt; Run (한땀한땀 관린 필요)&lt;/li&gt;
+  &lt;li&gt;하나의 단계에서라도 사소한 문제 발생시 서버가 죽게 된다.&lt;/li&gt;
+  &lt;li&gt;도커의 경우 어떠한 프로그램도 컨테이너로 만들 수 있고 어디서든 돌아간다.&lt;/li&gt;
+  &lt;li&gt;가상머신처럼 독립적으로 실행되지만 가상머신보다 빠르고 가상머신보다 쉽고 가상머신보다 효율적이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;도커의-등장&quot;&gt;도커의 등장&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;서버를 관리하기 위한 노력
+    &lt;ul&gt;
+      &lt;li&gt;서버배포.pptx -&amp;gt; 문서화 한다&lt;/li&gt;
+      &lt;li&gt;상태관리 도구(CHEF, puppet, ANSIBLE)&lt;/li&gt;
+      &lt;li&gt;가상머신&lt;/li&gt;
+      &lt;li&gt;자원격리: 프로세스를 가상으로 분리, 파일 / 디렉토리를 가상으로 분리, CPU / MEMORY / IO 그룹별 제한(리눅스 커널의 기능을 이용한 빠르고 효율적인 서버 관리)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;도커의 등장
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너: 격리된 환경에서 작동하는 가상의 프로세스&lt;/li&gt;
+      &lt;li&gt;리눅스 커널의 여러 기술을 활용&lt;/li&gt;
+      &lt;li&gt;하드웨어 가상화 기술보다 가벼움&lt;/li&gt;
+      &lt;li&gt;이미지 단위로 프로세스 실행 환경을 구성&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;도커란&quot;&gt;도커란&lt;/h3&gt;
+
+&lt;figure class=&quot; &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Docker/1.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Docker/1.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;도커의 특징: 확장성 / 이식성 / 표준성 / 이미지 / 설정관리 / 자원관리&lt;/li&gt;
+  &lt;li&gt;도커가 설치되어 있다면 어디서든 컨테이너를 실행할 수 있음&lt;/li&gt;
+  &lt;li&gt;특정 회사나 서비스에 종속적이지 않음&lt;/li&gt;
+  &lt;li&gt;쉽게 개발서버를 만들 수 있고 테스트서버 생성도 간편함&lt;/li&gt;
+  &lt;li&gt;컨테이너라는 표준으로 서버를 배포하므로 모든 서비스들의 배포과정이 동일해짐&lt;/li&gt;
+  &lt;li&gt;이미지에서 컨테이너를 생성하기 때문에 반드시 이미지를 만드는 과정이 필요&lt;/li&gt;
+  &lt;li&gt;Dockerfile를 이용하여 이미지를 만들고 처음부터 재현 가능&lt;/li&gt;
+  &lt;li&gt;빌드 서버에서 이미지를 만들면 해당 이미지를 이미지 저장소에 저장하고 운영서버에서 이미지를 불러옴&lt;/li&gt;
+  &lt;li&gt;설정은 보통 환경변수로 제어함&lt;/li&gt;
+  &lt;li&gt;MYSQL_PASS=password와 같이 컨테이너를 띄울때 환경변수를 같이 지정&lt;/li&gt;
+  &lt;li&gt;하나의 이미지가 환경변수에 따라 동적으로 설정파일을 생성하도록 만들어져야함&lt;/li&gt;
+  &lt;li&gt;컨테이너는 삭제시 모든 데이터가 초기화됨&lt;/li&gt;
+  &lt;li&gt;업로드 파일의 경우 별도의 저장소 필요&lt;/li&gt;
+  &lt;li&gt;세션이나 캐시를 redis 와 같은 외부로 분리
+—&amp;gt; 컨테이너: 서버 관리 혁신&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;컨테이너의-미래&quot;&gt;컨테이너의 미래&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;여러대의 서버와 여러개의 서비스를 관리하기 쉽게(쿠버네티스)&lt;/li&gt;
+  &lt;li&gt;스케쥴링
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너(서비스 프로세스)를 적당한 서버에 배포해 주는 작업&lt;/li&gt;
+      &lt;li&gt;전략: idle 서버에 배포, 순서배포, 랜덤배포&lt;/li&gt;
+      &lt;li&gt;서버가 죽으면 실행중이던 컨테이너를 다른 서버에 띄어줌&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;클러스터링
+    &lt;ul&gt;
+      &lt;li&gt;여러 개의 서버를 하나의 서버처럼 사용(컨테이너 사이의 통신)&lt;/li&gt;
+      &lt;li&gt;흩어져 있는 여러 개의 컨테이너도 가상 네트워크를 이용하여 마치 같은 서버에 있는 것처럼 쉽게 통신&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서비스 디스커버리
+    &lt;ul&gt;
+      &lt;li&gt;서비스를 찾아주는 기능&lt;/li&gt;
+      &lt;li&gt;클러스터 환경에서 컨테이너는 어느 서버에 생성될지 알 수 없고 다른 서버로 이동할 수도 있음&lt;/li&gt;
+      &lt;li&gt;컨테이너와 통신을 하기 위해서 어느 서버에서 실행중인지 알아야 하고 컨테이너가 생성되고 중지될 때 어딘가에 IP와 Port같은 정보를 업데이트해줘야 함&lt;/li&gt;
+      &lt;li&gt;key-value 저장소에 정보를 저장할 수도 있고 내부 DNS 서버를 이용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;도커---설치부터-실행까지&quot;&gt;도커 - 설치부터 실행까지&lt;/h2&gt;
+&lt;h3 id=&quot;도커-설치하기&quot;&gt;도커 설치하기&lt;/h3&gt;
+
+&lt;figure class=&quot; &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Docker/2.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Docker/2.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;도커는 기본적으로 linux를 지원하기 때문에 MacOS와 Windows에 설치되는 Docker는 가상머신에 설치됨&lt;/li&gt;
+  &lt;li&gt;MacOS는 xhyve를 사용하고 Windows는 Hyper-V 사용&lt;/li&gt;
+  &lt;li&gt;docker CLI 는 도커 호스트에 명령을 전달하고 겨로가를 받아서 출력함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;도커-기본-명령어run&quot;&gt;도커 기본 명령어(run)&lt;/h3&gt;
+
+&lt;figure class=&quot; &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Docker/3.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Docker/3.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run ubuntu:20.04&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;run 명령어를 사용하면 사용할 이미지가 저장되어 있는지 확인하고 없다면 다운로드 (pull) 한 후 컨테이너를 생성(create)하고 시작(start)한다. 컨테이너는 정상적으로 실행됐지만 뭘 하라고 명령어를 전달하지 않았기 때문에 컨테이너는 생성되자마자 종료된다. 컨테이너는 프로세스이기 때문에 실행중인 프로세스가 없으면 컨테이너는 종료된다.&lt;/li&gt;
+      &lt;li&gt;이미지마다 컨테이너가 만들어질때 실행할 명령어를 지정할 수 있고 ubuntu:20.04는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/sh&lt;/code&gt; 가 지정되어 쉘이 실행되야 하지만, 입력을 받을 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-it&lt;/code&gt; 옵션을 입력하지 않았기 때문에 바로 실행이 종료되었다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run --rm -it ubuntu:20.04 /bin/sh&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너 내부에 들어가기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sh&lt;/code&gt; 를 실행하고 키보드 입력을 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-it&lt;/code&gt; 옵션을 준다. 추가적으로 프로세스가 종료되면 컨테이너가 자동으로 삭제되도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--rm&lt;/code&gt; 옵션도 추가한다.&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--rm&lt;/code&gt; 옵션이 없다면 컨테이너가 종료되더라도 삭제되지 않고 남아 있어 수동으로 삭제 해야한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run --rm -it centos:8 /bin/sh&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;도커는 다양한 리눅스 배포판을 실행할 수 있다. 공통점은 모두 동일한 커널을 사용한다는 점이다. Ubuntu 또는 CentOS에 포함된 다양한 기본기능이 필요 없는 경우, Alpine 이라는 초소형 (5MB) 이미지를 사용할 수도 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;MySQL 실행하기
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mysql mysql:5.7&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;MySQL 데이터베이스를 실행&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;docker exec -it mysql mysql // 컨테이너 mysql에 접속하여 mysql 명령어 실행&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;create database wp CHARACTER SET utf8;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;grant all privileges on wp.* to wp@&apos;%&apos; identified by &apos;wp&apos;;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;flush privileges;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;quit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;exec 명령어: exec 명령어는 run 명령어와 달리 실행중인 도커 컨테이너에 접속할 때 사용하며 컨테이너 안에 ssh server등을 설치하지 않고 exec 명령어로 접속한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;도커-기본-명령어&quot;&gt;도커 기본 명령어&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker ps&lt;/code&gt;: 실행중인 컨테이너 목록을 확인하는 명령어&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker ps -a&lt;/code&gt;: 중지된 컨테이너도 확인하려면 -a 옵션&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker stop [OPTIONS] CONTAINER [CONTAINER...]&lt;/code&gt;: 실행중인 컨테이너를 중지하는 명령어. 실행중인 컨테이너를 하나 또는 여러개 (띄어쓰기) 중지할 수 있다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rm [OPTIONS] CONTAINER [CONTAINER...]&lt;/code&gt;: 종료된 컨테이너를 완전히 제거하는 명령어&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker logs [OPTIONS] CONTAINER&lt;/code&gt;: 컨테이너가 정상적으로 동작하는지 확인하는 좋은 방법은 로그를 확인하는 것. -f, –tail 옵션&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker images [OPTIONS] [REPOSITORY[:TAG]]&lt;/code&gt;: 도커가 다운로드한 이미지 목록을 보는 명령어&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker pull [OPTIONS] NAME[:TAG|@DIGEST]&lt;/code&gt;: 이미지를 다운로드하는 명령어&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rmi [OPTIONS] IMAGE [IMAGE...]&lt;/code&gt;: 이미지를 삭제하는 방법. images 명령어를 통해 얻는 이미지 목록에서 이미지 ID를 입력하면 삭제가 된다. 단, 컨테이너가 실행중인 이미지는 삭제되지 않는다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker network create [OPTIONS] NETWORK&lt;/code&gt;(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker network create app-network&lt;/code&gt;): 도커 컨테이너끼리 이름으로 통신할 수 있는 가상 네트워크를 만든다. app-network 라는 이름으로 wordpress와 mysql이 통신할 네트워크를 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker network connect [OPTIONS] NETWORK CONTAINER&lt;/code&gt; (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker network connect app-network mysql&lt;/code&gt;): 기존에 생성된 컨테이너에 네트워크를 추가. mysql 컨테이너에 네트워크를 추가&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;docker run -d -p 8080:80 \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;--network=app-network \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;-e WORDPRESS_DB_HOST=mysql \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;-e WORDPRESS_DB_NAME=wp \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;-e WORDPRESS_DB_USER=wp \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;-e WORDPRESS_DB_PASSWORD=wp \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;wordpress&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;워드프레스를 app-network에 속하게 하고 mysql을 이름으로 접근&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;도커-기본-명령어volume&quot;&gt;도커 기본 명령어(volume)&lt;/h3&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;docker stop mysql&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;docker rm mysql&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;docker run -d -p 3306:3306 \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;-e MYSQL_ALLOW_EMPTY_PASSWORD=true \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;--network=app-network \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;--name mysql \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;-v /Users/subicura/Workspace/github.com/subicura/docker-guide/ch02/mysql:/var/lib/mysql \&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;mysql:5.7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;mysql을 삭제후에 다시 실행하면 데이터베이스 오류가 발생&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-v&lt;/code&gt; 옵션으로 데이터베이스와 로컬 디렉토리를 연동, 이후 컨테이너 삭제 후 다시 컨테이너 생성을 하면 기존 데이터베이스와 동일한 데이터베이스 생성&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-v /my/own/datadir:/var/lib/mysql&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;도커-컴포즈&quot;&gt;도커 컴포즈&lt;/h3&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2&apos;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql:5.7&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./mysql:/var/lib/mysql&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;MYSQL_ROOT_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;wordpress&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;MYSQL_DATABASE&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;wordpress&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;MYSQL_USER&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;wordpress&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;wordpress&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;wordpress&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;wordpress:latest&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./wp:/var/www/html&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;8000:80&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;WORDPRESS_DB_HOST&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;db:3306&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;WORDPRESS_DB_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;wordpress&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up -d&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose down&lt;/code&gt;: docker compose를 이용하여 mysql과 wordpress를 종료&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;services&lt;/code&gt;: 실행할 컨테이너 정의, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run --name django&lt;/code&gt; 과 같다고 생각할 수 있음&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image&lt;/code&gt;: 컨테이너에 사용할 이미지 이름과 태그, 태그를 생략하면 latest, 이미지가 없으면 자동으로 pull&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ports&lt;/code&gt;: 컨테이너와 연결할 포트(들), {호스트 포트}:{컨테이너 포트}&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;environment&lt;/code&gt;: 컨테이너에서 사용할 환경변수(들), {환경변수 이름}:{값}&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;volumes&lt;/code&gt;: 마운트하려는 디렉터리(들), {호스트 디렉터리}:{컨테이너 디렉터리}&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;restart&lt;/code&gt;: 재시작 정책, restart: “no”, restart: always, restart: on-failure, restart: unless-stopped&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build&lt;/code&gt;: 이미지를 자체 빌드 후 사용, image 속성 대신 사용함, 여기에 사용할 별도의 도커 파일이 필요함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;도커-컴포즈-명령어&quot;&gt;도커 컴포즈 명령어&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;up&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;docker-compose.yml에 정의된 컨테이너를 실행&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up -d&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up --force-recreate&lt;/code&gt;: 컨테이너를 새로 만들기&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up --build&lt;/code&gt;: 도커 이미지를 다시 빌드(build로 선언했을 때만)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stop&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너 멈춤&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose stop&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose stop wordpress&lt;/code&gt;: wordpress 컨테이너만 멈춤&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;start&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;멈춘 컨테이너를 재개&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose start&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose start wordpress&lt;/code&gt;: wordpress 컨테이너만 재개&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;restart&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너를 재시작&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose restart&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose restart wordpress&lt;/code&gt;: wordpress 컨테이너만 재시작&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;down&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너를 종료하고 삭제&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose down&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logs&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너의 로그&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose logs&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose logs -f&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ps&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너 목록&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose ps&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exec&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;실행 중인 컨테이너에서 명령어 실행&lt;/li&gt;
+      &lt;li&gt;docker-compose exec {컨테이너 이름} {명령어}&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose exec wordpress bash&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너 build 부분에 정의된 내용대로 빌드&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose build&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose build wordpres&lt;/code&gt;: wordpress 컨테이너만 build&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;도커---이미지-만들고-배포하기&quot;&gt;도커 - 이미지 만들고 배포하기&lt;/h2&gt;
+&lt;h3 id=&quot;도커-이미지-만들기---기본&quot;&gt;도커 이미지 만들기 - 기본&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;이미지란
+    &lt;ul&gt;
+      &lt;li&gt;도커는 레이어드 파일 시스템 기반&lt;/li&gt;
+      &lt;li&gt;AUFS, BTRFS, Overlayfs, …&lt;/li&gt;
+      &lt;li&gt;이미지는 프로세스가 실행되는 파일들의 집합(환경) 프로세스는 환경(파일)을 변경할 수 있음&lt;/li&gt;
+      &lt;li&gt;이 환경을 저장해서 새로운 이미지를 만든다&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;읽기 전용 vs 쓰기 가능: 베이스 이미지에서 커스텀 후 새로운 이미지 만들기&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot; &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Docker/4.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Docker/4.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;$ docker run -it --name git ubuntu:latest bash&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;root@2f8bfff679f9:/# git&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;bash&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;command not found&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;root@2f8bfff679f9:/# apt-get update&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;root@2f8bfff679f9:/# apt-get install -y git&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;root@2f8bfff679f9:/# git --version&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;git version 2.17.1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;$ docker commit git ubuntu:git&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;sha256:f95008381e220660f6330bcc544640091f59793e213ff5fe9a8298d784a345fa&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;$docker images | grep ubuntu&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;ubuntu   git         f95008381e22     17 seconds ago  186MB&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;ubuntu   latest      cf0f3ca922e0     5 days ago     64.2MB&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure class=&quot; &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Docker/5.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Docker/5.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Dockerfile&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;명령어&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;FROM&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;기본 이미지&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;RUN&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;쉘 명령어 실행&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;CMD&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;컨테이너 기본 실행 명령어 (Entrypoint의 인자로 사용)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;EXPOSE&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;오픈되는 포트 정보&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ENV&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;환경변수 설정&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ADD&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;파일 또는 디렉토리 추가. URL/ZIP 사용가능&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;COPY&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;파일 또는 디렉토리 추가&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ENTRYPOINT&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;컨테이너 기본 실행 명령어&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;VOLUME&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;외부 마운트 포인트 생성&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;USER&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;RUN, CMD, ENTRYPOINT를 실행하는 사용자&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;WORKDIR&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;작업 디렉토리 설정&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ARGS&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;빌드타임 환경변수 설정&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;LABEL&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;key - value 데이터&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ONBUILD&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;다른 빌드의 베이스로 사용될때 사용하는 명령어&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이미지 빌드하기&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;docker build -t {이미지명:이미지태그} {빌드 컨텍스트}&lt;/span&gt; 
+&lt;span class=&quot;s&quot;&gt;$ docker build -t sample:1 .&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;현재 디렉토리의 Dockerfile로 빌드
+    &lt;ul&gt;
+      &lt;li&gt;-f &lt;Dockerfile 위치=&quot;&quot;&gt; 옵션을 사용해 다른 위치의 Dockerfile 파일 사용 가능&lt;/Dockerfile&gt;&lt;/li&gt;
+      &lt;li&gt;-t 명령어로 도커 이미지 이름을 지정&lt;/li&gt;
+      &lt;li&gt;{네임스페이스}/{이미지이름}:{태그} 형식&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;마지막에는 빌드 컨텍스트 위치를 지정
+    &lt;ul&gt;
+      &lt;li&gt;현재 디렉터리를 의미하는 점(.)을 주로 사용&lt;/li&gt;
+      &lt;li&gt;필요한 경우 다른 디렉터리를 지정할 수도 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;.dockerignore
+    &lt;ul&gt;
+      &lt;li&gt;.gitignore와 비슷한 역할&lt;/li&gt;
+      &lt;li&gt;도커 빌드 컨텍스트에서 지정된 패턴의 파일을 무시&lt;/li&gt;
+      &lt;li&gt;.git이나 민감한 정보를 제외하는 용도로 주로 사용&lt;/li&gt;
+      &lt;li&gt;.git이나 에셋 디렉터리만 제외시켜도 빌드 속도 개선&lt;/li&gt;
+      &lt;li&gt;이미지 빌드 시에 사용하는 파일은 제외시키면 안 됨&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dockerfile&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;FROM ubuntu:latest&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;RUN apt-get update&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;RUN apt-get install -y git&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;$ docker build -t ubuntu:git-dockerfile .&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;$ docker images | grep ubuntu&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;도커-이미지-만들기웹-애플리케이션&quot;&gt;도커 이미지 만들기(웹 애플리케이션)&lt;/h3&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# 1. node 이미지 사용 &lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;FROM node:12-alpine&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#2.패키지 우선 복사&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;COPY ./package* /usr/src/app/&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;WORKDIR /usr/src/app&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;RUN     npm install&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# 3. 소스 복사&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;COPY . /usr/src/app&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# 4. WEB 서버 실행 (Listen 포트 정의) &lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;EXPOSE &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3000&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;CMD node app.js&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;docker build -t subicura/app .&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;docker run --rm -d -p 3000:3000 subicura/app&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;FROM: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FROM [--platform=&amp;lt;platform&amp;gt;] &amp;lt;image&amp;gt;[:&amp;lt;tag&amp;gt;] [AS &amp;lt;name&amp;gt;]&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;베이스 이미지 지정&lt;/li&gt;
+      &lt;li&gt;FROM ubuntu:latest&lt;/li&gt;
+      &lt;li&gt;FROM node:12&lt;/li&gt;
+      &lt;li&gt;FROM python:3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;COPY: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COPY [--chown=&amp;lt;user&amp;gt;:&amp;lt;group&amp;gt;] &amp;lt;src&amp;gt;... &amp;lt;dest&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;파일 또는 디렉토리 추가&lt;/li&gt;
+      &lt;li&gt;COPY index.html /var/www/html/&lt;/li&gt;
+      &lt;li&gt;COPY ./app /usr/src/app&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;RUN: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RUN &amp;lt;command&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;명령어 실행&lt;/li&gt;
+      &lt;li&gt;RUN apt-get update&lt;/li&gt;
+      &lt;li&gt;RUN npm install&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;WORKDIR: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WORKDIR /path/to/workdir&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;작업 디렉토리 변경&lt;/li&gt;
+      &lt;li&gt;WORKDIR /app&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EXPOSE
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너에서 사용하는 포트 정보&lt;/li&gt;
+      &lt;li&gt;EXPOSE 8000&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;CMD: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CMD command param1 param2&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컨테이너 생성시 실행할 명령어&lt;/li&gt;
+      &lt;li&gt;CMD [“node”, “app.js”]&lt;/li&gt;
+      &lt;li&gt;CMD node app.js&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;이미지-저장소&quot;&gt;이미지 저장소&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;docker login&lt;/li&gt;
+  &lt;li&gt;docker push {ID}/example&lt;/li&gt;
+  &lt;li&gt;docker pull {ID}/example&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Docker" /><category term="Docker" /></entry><entry><title type="html">[Spring][Security] 스프링 시큐리티</title><link href="https://rere950303.github.io/spring/security/SpringSecurity/" rel="alternate" type="text/html" title="[Spring][Security] 스프링 시큐리티" /><published>2021-10-31T00:00:00+09:00</published><updated>2021-10-31T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/security/SpringSecurity</id><content type="html" xml:base="https://rere950303.github.io/spring/security/SpringSecurity/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 백기선 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/백기선-스프링-시큐리티/dashboard&quot;&gt;스프링 시큐리티&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;스프링-시큐리티-폼-인증&quot;&gt;스프링 시큐리티: 폼 인증&lt;/h2&gt;
@@ -2175,7 +2713,39 @@
   &lt;li&gt;스프링 데이터 Sort 지원&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select()&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;selectFrom()&lt;/code&gt; 으로 시작 가능&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntityManager&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JPAQueryFactory&lt;/code&gt; 제공&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/JPA/Querydsl" /><category term="JPA" /><category term="Spring" /><category term="Querydsl" /></entry><entry><title type="html">[Spring][JPA] 스프링 데이터 JPA</title><link href="https://rere950303.github.io/spring/jpa/SpringDataJPA/" rel="alternate" type="text/html" title="[Spring][JPA] 스프링 데이터 JPA" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/SpringDataJPA</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/SpringDataJPA/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/JPA/Querydsl" /><category term="JPA" /><category term="Spring" /><category term="Querydsl" /></entry><entry><title type="html">[Spring][JPA] 변경 감지와 병합</title><link href="https://rere950303.github.io/spring/jpa/save&merge/" rel="alternate" type="text/html" title="[Spring][JPA] 변경 감지와 병합" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/save&amp;merge</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/save&amp;merge/">&lt;h2 id=&quot;준영속-엔티티&quot;&gt;준영속 엔티티&lt;/h2&gt;
+&lt;p&gt;식별자(ID)를 가지고 있는 엔티티로써 영속성 컨텍스트가 더는 관리하지 않는것을 말한다. 따라서 해당 엔티티의 속성을 변경해도 변경감지를 통한 update쿼리가 생성되지 않는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;준영속-엔티티를-수정하는-2가지-방법&quot;&gt;준영속 엔티티를 수정하는 2가지 방법&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;변경 감지 기능 사용
+    &lt;ul&gt;
+      &lt;li&gt;영속성 컨텍스트에서 영속상태인 엔티티를 조회한 후에 트랜잭션 안에서 속성을 변경하고 변경 감지 기능을 통해 트랜잭션 시점의 플러쉬로 데이터베이스 UPDATE SQL 실행&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;병합 사용(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge()&lt;/code&gt;)
+    &lt;ul&gt;
+      &lt;li&gt;이는 준영속 상태의 엔티티를 영속 상태로 변경할 떄 사용하는 기능이다.&lt;/li&gt;
+      &lt;li&gt;파라미터로 넘어온 준영속 엔티티의 식별자 값으로 1차 캐시에서 엔티티를 조회한다.&lt;/li&gt;
+      &lt;li&gt;만약 1차 캐시에 엔티티가 없으면 데이터베이스에서 엔티티를 조회하고, 1차 캐시에 저장한다.&lt;/li&gt;
+      &lt;li&gt;조회한 영속 엔티티( mergeMember )에 member 엔티티의 값을 채워 넣는다.&lt;/li&gt;
+      &lt;li&gt;영속 상태인 mergeMember를 반환한다.&lt;/li&gt;
+      &lt;li&gt;트랜잭션 커밋 시점에 변경 감지 기능이 동작해서 데이터베이스에 UPDATE SQL 실행&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;변경 감지 기능을 사용하면 원하는 속성만 선택해서 변경할 수 있지만, 병합을 사용하면 모든 속성이 변경된다. 병합시 값이 없으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 로 업데이트 할 위험도 있다. (병합은 모든 필드를 교체한다.)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드는 식별자 값이 없으면( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; ) 새로운 엔티티로 판단해서 영속화(persist)하고 식별자가 있으면 병합(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge&lt;/code&gt;)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드는 식별자를 자동 생성해야 정상 동작한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GeneratedValue&lt;/code&gt; 사용시 식별자 없이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드를 호출하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 가 호출되면서 식별자 값이 자동으로 할당된다. 반면에 식별자를 직접 할당하도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Id&lt;/code&gt; 만 선언 했다고 가정하자. 이 경우 식별자를 직접 할당하지 않고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드를 호출하면 식별자가 없는 상태로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 를 호출한다. 그러면 식별자가 없다는 예외가 발생한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;가장-좋은-해결-방법&quot;&gt;가장 좋은 해결 방법&lt;/h2&gt;
+&lt;p&gt;가급적 변경 감지 기능을 사용하는 것이 좋다. 이를 위해서는 트랜잭션 단위인 서비스 계층에 준영속 엔티티의 식별자와 변경할 속성값을 파라미터나 DTO형태로 명확하게 전달해주는 것이 매우 중요하다. 병합의 경우 의도치 않는 변경이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 값 주입의 우려가 있기 때문이다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /><category term="save" /><category term="merge" /></entry><entry><title type="html">[Spring][JPA] 스프링 데이터 JPA</title><link href="https://rere950303.github.io/spring/jpa/SpringDataJPA/" rel="alternate" type="text/html" title="[Spring][JPA] 스프링 데이터 JPA" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/SpringDataJPA</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/SpringDataJPA/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 김영한 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/스프링-데이터-JPA-실전/dashboard&quot;&gt;실전! 스프링 데이터 JPA&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;공통-인터페이스-기능&quot;&gt;공통 인터페이스 기능&lt;/h2&gt;
@@ -2685,39 +3255,7 @@
 따라서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Persistable&lt;/code&gt; 를 사용해서 새로운 엔티티 확인 여부를 직접 구현하게는 효과적이다. 참고로 등록시간( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CreatedDate&lt;/code&gt; )을 
 조합해서 사용하면 이 필드로 새로운 엔티티 여부를 편리하게 확인할 수 있다. 새로운 엔티티의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isNew()&lt;/code&gt; 메소드 실행후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 과정에서 JPA에 의해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CreatedDate&lt;/code&gt; 가 
 동작하기 때문이다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /></entry><entry><title type="html">[Spring][JPA] 변경 감지와 병합</title><link href="https://rere950303.github.io/spring/jpa/save&merge/" rel="alternate" type="text/html" title="[Spring][JPA] 변경 감지와 병합" /><published>2021-10-24T00:00:00+09:00</published><updated>2021-10-24T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/save&amp;merge</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/save&amp;merge/">&lt;h2 id=&quot;준영속-엔티티&quot;&gt;준영속 엔티티&lt;/h2&gt;
-&lt;p&gt;식별자(ID)를 가지고 있는 엔티티로써 영속성 컨텍스트가 더는 관리하지 않는것을 말한다. 따라서 해당 엔티티의 속성을 변경해도 변경감지를 통한 update쿼리가 생성되지 않는다.&lt;/p&gt;
-
-&lt;h2 id=&quot;준영속-엔티티를-수정하는-2가지-방법&quot;&gt;준영속 엔티티를 수정하는 2가지 방법&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;변경 감지 기능 사용
-    &lt;ul&gt;
-      &lt;li&gt;영속성 컨텍스트에서 영속상태인 엔티티를 조회한 후에 트랜잭션 안에서 속성을 변경하고 변경 감지 기능을 통해 트랜잭션 시점의 플러쉬로 데이터베이스 UPDATE SQL 실행&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;병합 사용(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge()&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;이는 준영속 상태의 엔티티를 영속 상태로 변경할 떄 사용하는 기능이다.&lt;/li&gt;
-      &lt;li&gt;파라미터로 넘어온 준영속 엔티티의 식별자 값으로 1차 캐시에서 엔티티를 조회한다.&lt;/li&gt;
-      &lt;li&gt;만약 1차 캐시에 엔티티가 없으면 데이터베이스에서 엔티티를 조회하고, 1차 캐시에 저장한다.&lt;/li&gt;
-      &lt;li&gt;조회한 영속 엔티티( mergeMember )에 member 엔티티의 값을 채워 넣는다.&lt;/li&gt;
-      &lt;li&gt;영속 상태인 mergeMember를 반환한다.&lt;/li&gt;
-      &lt;li&gt;트랜잭션 커밋 시점에 변경 감지 기능이 동작해서 데이터베이스에 UPDATE SQL 실행&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;변경 감지 기능을 사용하면 원하는 속성만 선택해서 변경할 수 있지만, 병합을 사용하면 모든 속성이 변경된다. 병합시 값이 없으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 로 업데이트 할 위험도 있다. (병합은 모든 필드를 교체한다.)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드는 식별자 값이 없으면( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; ) 새로운 엔티티로 판단해서 영속화(persist)하고 식별자가 있으면 병합(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드는 식별자를 자동 생성해야 정상 동작한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GeneratedValue&lt;/code&gt; 사용시 식별자 없이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드를 호출하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 가 호출되면서 식별자 값이 자동으로 할당된다. 반면에 식별자를 직접 할당하도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Id&lt;/code&gt; 만 선언 했다고 가정하자. 이 경우 식별자를 직접 할당하지 않고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;save()&lt;/code&gt; 메서드를 호출하면 식별자가 없는 상태로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 를 호출한다. 그러면 식별자가 없다는 예외가 발생한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;가장-좋은-해결-방법&quot;&gt;가장 좋은 해결 방법&lt;/h2&gt;
-&lt;p&gt;가급적 변경 감지 기능을 사용하는 것이 좋다. 이를 위해서는 트랜잭션 단위인 서비스 계층에 준영속 엔티티의 식별자와 변경할 속성값을 파라미터나 DTO형태로 명확하게 전달해주는 것이 매우 중요하다. 병합의 경우 의도치 않는 변경이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 값 주입의 우려가 있기 때문이다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /><category term="save" /><category term="merge" /></entry><entry><title type="html">[Spring][JPA] OSIV</title><link href="https://rere950303.github.io/spring/jpa/OSIV/" rel="alternate" type="text/html" title="[Spring][JPA] OSIV" /><published>2021-10-20T00:00:00+09:00</published><updated>2021-10-20T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/OSIV</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/OSIV/">&lt;h2 id=&quot;osiv&quot;&gt;OSIV&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /></entry><entry><title type="html">[Spring][JPA] OSIV</title><link href="https://rere950303.github.io/spring/jpa/OSIV/" rel="alternate" type="text/html" title="[Spring][JPA] OSIV" /><published>2021-10-20T00:00:00+09:00</published><updated>2021-10-20T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/OSIV</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/OSIV/">&lt;h2 id=&quot;osiv&quot;&gt;OSIV&lt;/h2&gt;
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Open Session In View&lt;/code&gt; 의 약자로써 영속성 컨텍스트를 뷰까지 열어둔다는 뜻이다. 영속성 컨텍스트가 살아있으면 엔티티는 영속 상태로 유지된다. 따라서 뷰에서도 지연 로딩을 사용할 수 있다. &lt;br /&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring.jpa.open-in-view: false&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring.jpa.open-in-view : true(기본값)&lt;/code&gt;&lt;/p&gt;
 
@@ -8037,26 +8575,4 @@
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;option&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SLOW&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;느린 배송&lt;span class=&quot;nt&quot;&gt;&amp;lt;/option&amp;gt;&lt;/span&gt; 
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;/select&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Spring/Thymeleaf" /><category term="Thymeleaf" /><category term="Spring" /></entry><entry><title type="html">[WEB] 절대경로와 상대경로</title><link href="https://rere950303.github.io/web/Relative-path&-Absolute-path/" rel="alternate" type="text/html" title="[WEB] 절대경로와 상대경로" /><published>2021-09-24T00:00:00+09:00</published><updated>2021-09-24T00:00:00+09:00</updated><id>https://rere950303.github.io/web/Relative%20path&amp;%20Absolute%20path</id><content type="html" xml:base="https://rere950303.github.io/web/Relative-path&amp;-Absolute-path/">&lt;h2 id=&quot;절대경로&quot;&gt;절대경로&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;html과 같은 웹 페이지나 파일이 가지고 있는 고유한 경로를 말한다.&lt;/li&gt;
-  &lt;li&gt;ex: /Users/hyungwook/Desktop/AbsoulutePath.txt&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;상대경로&quot;&gt;상대경로&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;현재 위치를 &lt;strong&gt;기준&lt;/strong&gt;으로 정한 파일 등의 경로를 말한다.
-    &lt;ol&gt;
-      &lt;li&gt;/ : 루트 경로&lt;/li&gt;
-      &lt;li&gt;./ : 현재 경로&lt;/li&gt;
-      &lt;li&gt;../ :  상단 폴더의 경로&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;ex: /Users/hyungwook/Desktop/ 위치에서
-    &lt;ul&gt;
-      &lt;li&gt;/ : /Users/&lt;/li&gt;
-      &lt;li&gt;./ : /Users/hyungwook/Desktop/&lt;/li&gt;
-      &lt;li&gt;../ : /Users/hyungwook/&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="WEB" /><category term="WEB" /></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Spring/Thymeleaf" /><category term="Thymeleaf" /><category term="Spring" /></entry></feed>
