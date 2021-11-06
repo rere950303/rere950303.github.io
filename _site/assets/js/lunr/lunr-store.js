@@ -106,4 +106,10 @@ var store = [{
         "tags": ["Docker"],
         "url": "https://rere950303.github.io/docker/Docker/",
         "teaser": null
+      },{
+        "title": "[Docker][Spring] Spring WAS 도커로 띄우기",
+        "excerpt":"JDK 이미지 Dockerfile Spring .jar 파일을 실행하는 이미지 생성 FROM azul/zulu-openjdk:11 ARG JAR_FILE=./build/libs/*.jar ADD ${JAR_FILE} app.jar EXPOSE 8080 ENTRYPOINT [\"java\",\"-jar\",\"/app.jar\"] mariadb와 Spring 이미지를 docker-compose.yml로 생성 version: \"3\" services: database: container_name: database image: mariadb environment: - MYSQL_DATABASE=moviereview - MYSQL_ROOT_PASSWORD=1234 - MYSQL_ROOT_HOST=% command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci'] ports: - \"3306:3306\" platform: linux/amd64 // m1...","categories": ["Docker/Spring"],
+        "tags": ["Docker","Spring"],
+        "url": "https://rere950303.github.io/docker/spring/Spring&Docker/",
+        "teaser": null
       }]
