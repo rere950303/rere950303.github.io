@@ -108,8 +108,20 @@ var store = [{
         "teaser": null
       },{
         "title": "[Docker][Spring] Spring WAS 도커로 띄우기",
-        "excerpt":"JDK 이미지 Dockerfile Spring .jar 파일을 실행하는 이미지 생성 FROM azul/zulu-openjdk:11 ARG JAR_FILE=./build/libs/*.jar ADD ${JAR_FILE} app.jar EXPOSE 8080 ENTRYPOINT [\"java\",\"-jar\",\"/app.jar\"] mariadb와 Spring 이미지를 docker-compose.yml로 생성 version: \"3\" services: database: container_name: database image: mariadb environment: - MYSQL_DATABASE=moviereview - MYSQL_ROOT_PASSWORD=1234 - MYSQL_ROOT_HOST=% command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci'] ports: - \"3306:3306\" platform: linux/amd64 // m1...","categories": ["Docker/Spring"],
+        "excerpt":"ubuntu + jdk 이미지 Dockerfile Spring의 .jar 파일을 실행하는 이미지 생성 한글 사진 파일 업로드를 위한 locale 설정 FROM ubuntu RUN apt-get update RUN apt-get install -y openjdk-11-jdk RUN apt-get -y install locales RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen &amp;&amp; \\ locale-gen ENV LANG en_US.UTF-8 ENV LANGUAGE en_US:en ENV LC_ALL...","categories": ["Docker/Spring"],
         "tags": ["Docker","Spring"],
         "url": "https://rere950303.github.io/docker/spring/Spring&Docker/",
+        "teaser": null
+      },{
+        "title": "[Docker] 도커와 CI환경",
+        "excerpt":"들어가며 해당 게시글은 인프런 John Ahn 강사님의 [따라하며 배우는 도커와 CI환경][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다. 도커 기본 도커를 쓰는 이유 Installer를 통한 설치의 경우 갖고 있는 서버, 패키지 버전, 운영체제 등에 따라 프로그램을 설치하는 과정중에 많은 에러들이 발생한다. 또한 그 과정이 복합하다. 도커를 이용하여 예상치 못한 에러를 줄일 수...","categories": ["Docker"],
+        "tags": ["Docker","CI"],
+        "url": "https://rere950303.github.io/docker/Docker&CI/",
+        "teaser": null
+      },{
+        "title": "[Javascript] Javascript",
+        "excerpt":"JavaScript 언어소개 웹브라우저: 경고창 등 탈 웹브라우저: 웹서버까지 확장 php, python, java … node.js, Spring 탈 웹: Google Apps Script 언어란: 의사소통을 위한 약속(문법) 환경이란: 다양한 분야에서의 사용 alert(‘hello world’); -&gt; 웹브라우저 write(‘hello world’); -&gt; 웹서버 msgBox(‘hello world’); -&gt; SpreadSheet Javascript 기본 - 실행방법과 실습환경 코드 작성과 실행 &lt;!DOCTYPE html&gt;...","categories": ["JavaScript"],
+        "tags": ["JavaScript"],
+        "url": "https://rere950303.github.io/javascript/JavaScript/",
         "teaser": null
       }]

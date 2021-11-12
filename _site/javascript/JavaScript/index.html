@@ -1,0 +1,1895 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Javascript] Javascript - YHW Blog</title>
+<meta name="description" content="새로운 배움을 기록하고 공유합니다">
+
+
+  <meta name="author" content="yhw">
+  
+  <meta property="article:author" content="yhw">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="YHW Blog">
+<meta property="og:title" content="[Javascript] Javascript">
+<meta property="og:url" content="https://rere950303.github.io/javascript/JavaScript/">
+
+
+  <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-11-12T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://rere950303.github.io/javascript/JavaScript/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "yhw",
+      "url": "https://rere950303.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="YHW Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          YHW Blog
+          <span class="site-subtitle">새로운 배움을 기록하고 공유합니다</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#javascript" itemprop="item"><span itemprop="name">Javascript</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Javascript] Javascript</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio/photo.png" alt="yhw" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">yhw</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>어제와 다른 오늘, 오늘 같은 내일</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:yhwjjang1995@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Javascript] Javascript">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-11-12T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Javascript] Javascript
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-12T00:00:00+09:00">November 12, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#javascript-언어소개">JavaScript 언어소개</a></li>
+  <li><a href="#javascript-기본---실행방법과-실습환경">Javascript 기본 - 실행방법과 실습환경</a>
+    <ul>
+      <li><a href="#코드-작성과-실행">코드 작성과 실행</a></li>
+    </ul>
+  </li>
+  <li><a href="#비교">비교</a>
+    <ul>
+      <li><a href="#비교-연산자">비교 연산자</a></li>
+      <li><a href="#부정과-부등호">부정과 부등호</a></li>
+    </ul>
+  </li>
+  <li><a href="#함수">함수</a>
+    <ul>
+      <li><a href="#함수란">함수란</a></li>
+      <li><a href="#함수의-입력">함수의 입력</a></li>
+      <li><a href="#다양한-함수-정의-방법">다양한 함수 정의 방법</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체">객체</a>
+    <ul>
+      <li><a href="#객체의-소개와-문법">객체의 소개와 문법</a></li>
+      <li><a href="#객체와-반복문">객체와 반복문</a></li>
+      <li><a href="#객체-지향-프로그래밍">객체 지향 프로그래밍</a></li>
+    </ul>
+  </li>
+  <li><a href="#모듈">모듈</a>
+    <ul>
+      <li><a href="#모듈화">모듈화</a></li>
+      <li><a href="#라이브러리">라이브러리</a></li>
+    </ul>
+  </li>
+  <li><a href="#정규표현식">정규표현식</a>
+    <ul>
+      <li><a href="#패턴-만들기">패턴 만들기</a></li>
+      <li><a href="#regexp-객체의-사용">RegExp 객체의 사용</a></li>
+      <li><a href="#string과-정규표현식">String과 정규표현식</a></li>
+      <li><a href="#옵션i-g">옵션(i, g)</a></li>
+      <li><a href="#캡쳐">캡쳐</a></li>
+      <li><a href="#치환">치환</a></li>
+    </ul>
+  </li>
+  <li><a href="#함수지향---값으로서의-함수와-콜백">함수지향 - 값으로서의 함수와 콜백</a>
+    <ul>
+      <li><a href="#함수의-용도---1">함수의 용도 - 1</a></li>
+      <li><a href="#값으로서의-함수와-콜백---함수의-용도-2">값으로서의 함수와 콜백 - 함수의 용도 2</a></li>
+      <li><a href="#값으로서의-함수와-콜백---콜백이란">값으로서의 함수와 콜백 - 콜백이란?</a></li>
+      <li><a href="#비동기-콜백과-ajax">비동기 콜백과 Ajax</a></li>
+    </ul>
+  </li>
+  <li><a href="#함수지향---클로저">함수지향 - 클로저</a>
+    <ul>
+      <li><a href="#내부함수-외부함수">내부함수, 외부함수</a></li>
+      <li><a href="#클로저란">클로저란?</a></li>
+      <li><a href="#private-variable">private variable</a></li>
+      <li><a href="#클로저의-응용">클로저의 응용</a></li>
+    </ul>
+  </li>
+  <li><a href="#함수지향---arguments">함수지향 - arguments</a>
+    <ul>
+      <li><a href="#arguments">arguments</a></li>
+      <li><a href="#매개변수의-수---function-length">매개변수의 수 - function length</a></li>
+    </ul>
+  </li>
+  <li><a href="#함수지향---함수의-호출">함수지향 - 함수의 호출</a>
+    <ul>
+      <li><a href="#apply-소개">apply 소개</a></li>
+      <li><a href="#apply-사용">apply 사용</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향---생성자와-new">객체지향 - 생성자와 new</a>
+    <ul>
+      <li><a href="#자바스크립트의-객체지향">자바스크립트의 객체지향</a></li>
+      <li><a href="#생성자와-new">생성자와 new</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향---전역객체">객체지향 - 전역객체</a></li>
+  <li><a href="#객체지향---this">객체지향 - this</a>
+    <ul>
+      <li><a href="#함수와-this">함수와 this</a></li>
+      <li><a href="#메소드와-this">메소드와 this</a></li>
+      <li><a href="#생성자와-this">생성자와 this</a></li>
+      <li><a href="#객체로서-함수">객체로서 함수</a></li>
+      <li><a href="#apply와-this">apply와 this</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향---상속">객체지향 - 상속</a>
+    <ul>
+      <li><a href="#상속이란">상속이란</a></li>
+      <li><a href="#상속의-사용법">상속의 사용법</a></li>
+      <li><a href="#기능의-추가">기능의 추가</a></li>
+      <li><a href="#prototype">prototype</a></li>
+      <li><a href="#prototype-chain">prototype chain</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향---표준-내장객체의-확장">객체지향 - 표준 내장객체의 확장</a>
+    <ul>
+      <li><a href="#표준-내장-객체란">표준 내장 객체란</a></li>
+      <li><a href="#배열의-확장-1">배열의 확장 1</a></li>
+      <li><a href="#배열의-확장-2">배열의 확장 2</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향---object">객체지향 - Object</a>
+    <ul>
+      <li><a href="#object란">Object란</a></li>
+      <li><a href="#object-확장">Object 확장</a></li>
+      <li><a href="#object-확장의-위험">Object 확장의 위험</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향---데이터-타입">객체지향 - 데이터 타입</a>
+    <ul>
+      <li><a href="#원시-데이터-타입과-객체">원시 데이터 타입과 객체</a></li>
+      <li><a href="#래퍼-객체">래퍼 객체</a></li>
+    </ul>
+  </li>
+  <li><a href="#객체지향---참조">객체지향 - 참조</a>
+    <ul>
+      <li><a href="#복제란">복제란</a></li>
+      <li><a href="#참조">참조</a></li>
+      <li><a href="#함수와-참조">함수와 참조</a></li>
+    </ul>
+  </li>
+</ul>
+
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="javascript-언어소개">JavaScript 언어소개</h2>
+<ul>
+  <li>웹브라우저: 경고창 등</li>
+  <li>탈 웹브라우저: 웹서버까지 확장
+    <ul>
+      <li>php, python, java …</li>
+      <li>node.js, Spring</li>
+    </ul>
+  </li>
+  <li>탈 웹: Google Apps Script</li>
+  <li>언어란: 의사소통을 위한 약속(문법)</li>
+  <li>환경이란: 다양한 분야에서의 사용
+    <ul>
+      <li>alert(‘hello world’); -&gt; 웹브라우저</li>
+      <li>write(‘hello world’); -&gt; 웹서버</li>
+      <li>msgBox(‘hello world’); -&gt; SpreadSheet</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="javascript-기본---실행방법과-실습환경">Javascript 기본 - 실행방법과 실습환경</h2>
+<h3 id="코드-작성과-실행">코드 작성과 실행</h3>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello world</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="비교">비교</h2>
+<h3 id="비교-연산자">비교 연산자</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">==</code>: 데이터 타입 유무와 상관없이 값이 같으면 true</li>
+  <li><code class="language-plaintext highlighter-rouge">===</code>: 데이터 타입까지 일치해야 true</li>
+</ul>
+
+<h3 id="부정과-부등호">부정과 부등호</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">!=</code> &lt;-&gt; <code class="language-plaintext highlighter-rouge">==</code></li>
+  <li><code class="language-plaintext highlighter-rouge">!==</code> &lt;-&gt; <code class="language-plaintext highlighter-rouge">===</code></li>
+</ul>
+
+<h2 id="함수">함수</h2>
+<h3 id="함수란">함수란</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fucntion</span> <span class="nx">함수명</span> <span class="p">([</span><span class="nx">인자</span><span class="p">])</span> <span class="p">{</span>
+  <span class="nx">코드</span>
+  <span class="k">return</span> <span class="nx">반환값</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">numbering</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">numbering</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="함수의-입력">함수의 입력</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">get_argument</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">arg</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">get_argumetn</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">get_argumetn</span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
+</code></pre></div></div>
+
+<h3 id="다양한-함수-정의-방법">다양한 함수 정의 방법</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">numbering</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">documnet</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>익명 함수</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
+  <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<h2 id="객체">객체</h2>
+<h3 id="객체의-소개와-문법">객체의 소개와 문법</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">grades</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="dl">'</span><span class="s1">k8805</span><span class="dl">'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="dl">'</span><span class="s1">soriagli</span><span class="dl">'</span><span class="p">:</span> <span class="mi">80</span><span class="p">};</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">grades</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">grades</span><span class="p">[</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// grades.egoing</span>
+<span class="nx">grades</span><span class="p">[</span><span class="dl">'</span><span class="s1">sdf</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="nx">grades</span><span class="p">[</span><span class="dl">'</span><span class="s1">ggg</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">102</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="객체와-반복문">객체와 반복문</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">grades</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="dl">'</span><span class="s1">k8805</span><span class="dl">'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sorialgi</span><span class="dl">'</span><span class="p">:</span> <span class="mi">80</span><span class="p">};</span>
+<span class="k">for</span><span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">grades</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">key : </span><span class="dl">"</span><span class="o">+</span><span class="nx">key</span><span class="o">+</span><span class="dl">"</span><span class="s2"> value : </span><span class="dl">"</span><span class="o">+</span><span class="nx">grades</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="객체-지향-프로그래밍">객체 지향 프로그래밍</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">grades</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">list</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="dl">'</span><span class="s1">k8805</span><span class="dl">'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sorialgi</span><span class="dl">'</span><span class="p">:</span> <span class="mi">80</span><span class="p">},</span>
+    <span class="dl">'</span><span class="s1">show</span><span class="dl">'</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">){</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">name</span><span class="o">+</span><span class="dl">'</span><span class="s1">:</span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">grades</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="모듈">모듈</h2>
+<h3 id="모듈화">모듈화</h3>
+<ul>
+  <li>greeting.js</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">welcome</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">Hello world</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>main.html</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"greeting.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">welcome</span><span class="p">());</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="라이브러리">라이브러리</h3>
+<ul>
+  <li>jquery는 Javascript의 라이브러리이다.</li>
+  <li>jquery를 사용하는 경우</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://code.jquery.com/jquery-1.11.0.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"list"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"execute_btn"</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"execute"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#execute_btn</span><span class="dl">'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#list li</span><span class="dl">'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="dl">'</span><span class="s1">coding everybody</span><span class="dl">'</span><span class="p">);</span>
+        <span class="p">})</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+<ul>
+  <li>jquery를 사용하지 않는 경우</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"list"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span>empty<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"execute_btn"</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"execute"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+        <span class="kd">function</span> <span class="nx">addEvent</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">eventType</span><span class="p">,</span> <span class="nx">eventHandler</span><span class="p">,</span> <span class="nx">useCapture</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// W3C DOM</span>
+                <span class="nx">target</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">eventType</span><span class="p">,</span> <span class="nx">eventHandler</span><span class="p">,</span> <span class="nx">useCapture</span> <span class="p">?</span> <span class="nx">useCapture</span> <span class="p">:</span> <span class="kc">false</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// IE DOM</span>
+                <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="dl">"</span><span class="s2">on</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">eventType</span><span class="p">,</span> <span class="nx">eventHandler</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="kd">function</span> <span class="nx">clickHandler</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">nav</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">list</span><span class="dl">'</span><span class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nav</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">child</span> <span class="o">=</span> <span class="nx">nav</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+                    <span class="k">continue</span><span class="p">;</span>
+                <span class="nx">child</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Coding everybody</span><span class="dl">'</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">addEvent</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">execute_btn</span><span class="dl">'</span><span class="p">),</span> <span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">clickHandler</span><span class="p">);</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="정규표현식">정규표현식</h2>
+<h3 id="패턴-만들기">패턴 만들기</h3>
+<ul>
+  <li>정규표현식 리터럴</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/a/</span>
+</code></pre></div></div>
+<ul>
+  <li>정규표현식 객체 생성자</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="regexp-객체의-사용">RegExp 객체의 사용</h3>
+<ul>
+  <li>RegExp.exec()</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="dl">'</span><span class="s1">abcdef</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// ["a"]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="dl">'</span><span class="s1">abcdef</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// ["ab"], pattern = /a./</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="dl">'</span><span class="s1">bcdefg</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// null</span>
+</code></pre></div></div>
+<ul>
+  <li>RegExp.test()</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">abcdef</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// true</span>
+<span class="nx">cnosole</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">bcdefg</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<h3 id="string과-정규표현식">String과 정규표현식</h3>
+<ul>
+  <li>String.match()</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">abcdef</span><span class="dl">'</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">));</span> <span class="c1">// ["a"]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">bcdefg</span><span class="dl">'</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">));</span> <span class="c1">// null</span>
+</code></pre></div></div>
+<ul>
+  <li>String.replace()</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">abcdef</span><span class="dl">'</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">pattern</span><span class="p">,</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">));</span>  <span class="c1">// Abcdef</span>
+</code></pre></div></div>
+<h3 id="옵션i-g">옵션(i, g)</h3>
+<ul>
+  <li>i를 붙이면 대소문자를 구분하지 않는다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">xi</span> <span class="o">=</span> <span class="sr">/a/</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Abcde</span><span class="dl">"</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">xi</span><span class="p">));</span> <span class="c1">// null</span>
+<span class="kd">var</span> <span class="nx">oi</span> <span class="o">=</span> <span class="sr">/a/i</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Abcde</span><span class="dl">"</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">oi</span><span class="p">));</span> <span class="c1">// ["A"];</span>
+</code></pre></div></div>
+<ul>
+  <li>g를 붙이면 검색된 모든 결과를 리턴한다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">xg</span> <span class="o">=</span> <span class="sr">/a/</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">abcdea</span><span class="dl">"</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">xg</span><span class="p">));</span> <span class="c1">// ["a"]</span>
+<span class="kd">var</span> <span class="nx">og</span> <span class="o">=</span> <span class="sr">/a/g</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">abcdea</span><span class="dl">"</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">og</span><span class="p">));</span> <span class="c1">// ["a", "a"]</span>
+</code></pre></div></div>
+
+<h3 id="캡쳐">캡쳐</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/</span><span class="se">(\w</span><span class="sr">+</span><span class="se">)\s(\w</span><span class="sr">+</span><span class="se">)</span><span class="sr">/</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">coding everybody</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">pattern</span><span class="p">,</span> <span class="dl">"</span><span class="s2">$2, $1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// "everybdy, coding"</span>
+</code></pre></div></div>
+
+<h3 id="치환">치환</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">urlPattern</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\b(?:</span><span class="sr">https</span><span class="se">?)</span><span class="sr">:</span><span class="se">\/\/[</span><span class="sr">a-z0-9-+&amp;@#</span><span class="se">\/</span><span class="sr">%?=~_|!:,.;</span><span class="se">]</span><span class="sr">*/gim</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. </span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">content</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">urlPattern</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">&lt;a href="</span><span class="dl">'</span><span class="o">+</span><span class="nx">url</span><span class="o">+</span><span class="dl">'</span><span class="s1">"&gt;</span><span class="dl">'</span><span class="o">+</span><span class="nx">url</span><span class="o">+</span><span class="dl">'</span><span class="s1">&lt;/a&gt;</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>생활코딩 : <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://opentutorials.org/course/1"</span><span class="nt">&gt;</span>http://opentutorials.org/course/1<span class="nt">&lt;/a&gt;</span> 입니다. 네이버 : <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://naver.com"</span><span class="nt">&gt;</span>http://naver.com<span class="nt">&lt;/a&gt;</span> 입니다.
+</code></pre></div></div>
+
+<h2 id="함수지향---값으로서의-함수와-콜백">함수지향 - 값으로서의 함수와 콜백</h2>
+<h3 id="함수의-용도---1">함수의 용도 - 1</h3>
+<ul>
+  <li>JavaScript에서는 함수도 객체다. 다시 말해서 일종의 값이다. 거의 모든 언어가 함수를 가지고 있다. JavaScript의 함수가 다른 언어의 함수와 다른 점은 함수가 값이 될 수 있다는 점이다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">a</span><span class="p">(){}</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">b</span><span class="p">:</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ul>
+  <li>함수는 값이기 때문에 다른 함수의 인자로 전달 될수도 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">cal</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">num</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">func</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">increase</span><span class="p">(</span><span class="nx">num</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">num</span><span class="o">+</span><span class="mi">1</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">decrease</span><span class="p">(</span><span class="nx">num</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">num</span><span class="o">-</span><span class="mi">1</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">cal</span><span class="p">(</span><span class="nx">increase</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">cal</span><span class="p">(</span><span class="nx">decrease</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="값으로서의-함수와-콜백---함수의-용도-2">값으로서의 함수와 콜백 - 함수의 용도 2</h3>
+<ul>
+  <li>함수는 함수의 리턴 값으로도 사용할 수 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">cal</span><span class="p">(</span><span class="nx">mode</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">funcs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">plus</span><span class="dl">'</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">){</span><span class="k">return</span> <span class="nx">left</span> <span class="o">+</span> <span class="nx">right</span><span class="p">},</span>
+        <span class="dl">'</span><span class="s1">minus</span><span class="dl">'</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">){</span><span class="k">return</span> <span class="nx">left</span> <span class="o">-</span> <span class="nx">right</span><span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">funcs</span><span class="p">[</span><span class="nx">mode</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">cal</span><span class="p">(</span><span class="dl">'</span><span class="s1">plus</span><span class="dl">'</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">cal</span><span class="p">(</span><span class="dl">'</span><span class="s1">minus</span><span class="dl">'</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>   
+</code></pre></div></div>
+<ul>
+  <li>당연히 배열의 값으로도 사용할 수 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">process</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">input</span><span class="p">){</span> <span class="k">return</span> <span class="nx">input</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;},</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">input</span><span class="p">){</span> <span class="k">return</span> <span class="nx">input</span> <span class="o">*</span> <span class="nx">input</span><span class="p">;},</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">input</span><span class="p">){</span> <span class="k">return</span> <span class="nx">input</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;}</span>
+<span class="p">];</span>
+<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">process</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="nx">input</span> <span class="o">=</span> <span class="nx">process</span><span class="p">[</span><span class="nx">i</span><span class="p">](</span><span class="nx">input</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span> <span class="c1">// 60.5</span>
+</code></pre></div></div>
+
+<h3 id="값으로서의-함수와-콜백---콜백이란">값으로서의 함수와 콜백 - 콜백이란?</h3>
+<ul>
+  <li>값으로 사용될 수 있는 특성을 이용하면 함수의 인자로 함수로 전달할 수 있다. 값으로 전달된 함수는 호출될 수 있기 때문에 이를 이용하면 함수의 동작을 완전히 바꿀 수 있다. 인자로 전달된 함수 sortNumber의 구현에 따라서 sort의 동작방법이 완전히 바뀌게 된다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sortNumber</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
+    <span class="c1">// 위의 예제와 비교해서 a와 b의 순서를 바꾸면 정렬순서가 반대가 된다.</span>
+    <span class="k">return</span> <span class="nx">b</span><span class="o">-</span><span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">numbers</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">sortNumber</span><span class="p">));</span> <span class="c1">// array, [20,10,9,8,7,6,5,4,3,2,1]</span>
+</code></pre></div></div>
+
+<h3 id="비동기-콜백과-ajax">비동기 콜백과 Ajax</h3>
+<ul>
+  <li>콜백은 비동기처리에서도 유용하게 사용된다. 시간이 오래걸리는 작업이 있을 때 이 작업이 완료된 후에 처리해야 할 일을 콜백으로 지정하면 해당 작업이 끝났을 때 미리 등록한 작업을 실행하도록 할 수 있다. 다음 코드는 일반적인 환경에서는 작동하지 않고 서버 환경에서만 동작한다.</li>
+  <li>datasource.json.js: <code class="language-plaintext highlighter-rouge">{"title":"JavaScript","author":"egoing"}</code></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//code.jquery.com/jquery-1.11.0.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+        <span class="nx">$</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">./datasource.json.js</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+        <span class="p">},</span> <span class="dl">'</span><span class="s1">json</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="함수지향---클로저">함수지향 - 클로저</h2>
+<h3 id="내부함수-외부함수">내부함수, 외부함수</h3>
+<ul>
+  <li>클로저(closure)는 내부함수가 외부함수의 맥락(context)에 접근할 수 있는 것을 가르킨다. 클로저는 자바스크립트를 이용한 고난이도의 테크닉을 구사하는데 필수적인 개념으로 활용된다.</li>
+  <li>내부함수</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">outter</span><span class="p">(){</span>
+    <span class="kd">function</span> <span class="nx">inner</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">coding everybody</span><span class="dl">'</span><span class="p">;</span> 
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">inner</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">outter</span><span class="p">();</span>
+</code></pre></div></div>
+<ul>
+  <li>내부함수는 외부함수의 지역변수에 접근할 수 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">outter</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">coding everybody</span><span class="dl">'</span><span class="p">;</span>  
+    <span class="kd">function</span> <span class="nx">inner</span><span class="p">(){</span>        
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">inner</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">outter</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="클로저란">클로저란?</h3>
+<ul>
+  <li>클로저(closure)는 내부함수와 밀접한 관계를 가지고 있는 주제다. 내부함수는 외부함수의 지역변수에 접근 할 수 있는데 외부함수의 실행이 끝나서 외부함수가 소멸된 이후에도 내부함수가 외부함수의 변수에 접근 할 수 있다. 이러한 메커니즘을 클로저라고 한다. 아래 예제는 이전의 예제를 조금 변형한 것이다. 결과는 경고창으로 coding everybody를 출력할 것이다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">outter</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">coding everybody</span><span class="dl">'</span><span class="p">;</span>  
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>        
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">inner</span> <span class="o">=</span> <span class="nx">outter</span><span class="p">();</span>
+<span class="nx">inner</span><span class="p">();</span>
+</code></pre></div></div>
+<ul>
+  <li>클로저란 내부함수가 외부함수의 지역변수에 접근 할 수 있고, 외부함수는 외부함수의 지역변수를 사용하는 내부함수가 소멸될 때까지 소멸되지 않는 특성을 의미한다.</li>
+</ul>
+
+<h3 id="private-variable">private variable</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">factory_movie</span><span class="p">(</span><span class="nx">title</span><span class="p">){</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">get_title</span> <span class="p">:</span> <span class="kd">function</span> <span class="p">(){</span>
+            <span class="k">return</span> <span class="nx">title</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="na">set_title</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_title</span><span class="p">){</span>
+            <span class="nx">title</span> <span class="o">=</span> <span class="nx">_title</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">ghost</span> <span class="o">=</span> <span class="nx">factory_movie</span><span class="p">(</span><span class="dl">'</span><span class="s1">Ghost in the shell</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">matrix</span> <span class="o">=</span> <span class="nx">factory_movie</span><span class="p">(</span><span class="dl">'</span><span class="s1">Matrix</span><span class="dl">'</span><span class="p">);</span>
+ 
+<span class="nx">alert</span><span class="p">(</span><span class="nx">ghost</span><span class="p">.</span><span class="nx">get_title</span><span class="p">());</span> <span class="c1">// 'Ghost in the shell'</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">get_title</span><span class="p">());</span> <span class="c1">// 'Matrix'</span>
+ 
+<span class="nx">ghost</span><span class="p">.</span><span class="nx">set_title</span><span class="p">(</span><span class="dl">'</span><span class="s1">공각기동대</span><span class="dl">'</span><span class="p">);</span>
+ 
+<span class="nx">alert</span><span class="p">(</span><span class="nx">ghost</span><span class="p">.</span><span class="nx">get_title</span><span class="p">());</span> <span class="c1">// '공각기동대'</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">get_title</span><span class="p">());</span> <span class="c1">// 'Matrix' </span>
+</code></pre></div></div>
+
+<h3 id="클로저의-응용">클로저의 응용</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">index</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">index</span><span class="p">]());</span> <span class="c1">// 5 5 5 5 5</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="k">return</span> <span class="nx">id</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">index</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">index</span><span class="p">]());</span> <span class="c1">// 0 1 2 3 4</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="함수지향---arguments">함수지향 - arguments</h2>
+<h3 id="arguments">arguments</h3>
+<ul>
+  <li>함수에는 arguments라는 변수에 담긴 숨겨진 유사 배열이 있다. 이 배열에는 함수를 호출할 때 입력한 인자가 담겨있다. 아래 예제를 보자. 결과는 10이다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sum</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    
+    <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="dl">'</span><span class="s1"> : </span><span class="dl">'</span><span class="o">+</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="dl">'</span><span class="s1">&lt;br /&gt;</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nx">_sum</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>   
+    <span class="k">return</span> <span class="nx">_sum</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">result : </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+</code></pre></div></div>
+<ul>
+  <li>arguments는 함수안에서 사용할 수 있도록 그 이름이나 특성이 약속되어 있는 일종의 배열이다. arguments[0]은 함수로 전달된 첫번째 인자를 알아낼 수 있다. 또 arguments.length를 이용해서 함수로 전달된 인자의 개수를 알아낼 수도 있다. 이러한 특성에 반복문을 결합하면 함수로 전달된 인자의 값을 순차적으로 가져올 수 있다. 그 값을 더해서 리턴하면 인자로 전달된 값에 대한 총합을 구하는 함수를 만들 수 있다.</li>
+</ul>
+
+<h3 id="매개변수의-수---function-length">매개변수의 수 - function length</h3>
+<ul>
+  <li>매개변수와 관련된 두가지 수가 있다. 하나는 함수.length, 다른 하나는 arguments.length이다. arguments.length는 함수로 전달된 실제 인자의 수를 의미하고, 함수.length는 함수에 정의된 인자의 수를 의미한다. 아래의 코드를 보자.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">zero</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+        <span class="dl">'</span><span class="s1">zero.length</span><span class="dl">'</span><span class="p">,</span> <span class="nx">zero</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+        <span class="dl">'</span><span class="s1">arguments</span><span class="dl">'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">one</span><span class="p">(</span><span class="nx">arg1</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+        <span class="dl">'</span><span class="s1">one.length</span><span class="dl">'</span><span class="p">,</span> <span class="nx">one</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+        <span class="dl">'</span><span class="s1">arguments</span><span class="dl">'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">two</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+        <span class="dl">'</span><span class="s1">two.length</span><span class="dl">'</span><span class="p">,</span> <span class="nx">two</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+        <span class="dl">'</span><span class="s1">arguments</span><span class="dl">'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">zero</span><span class="p">();</span> <span class="c1">// zero.length 0 arguments 0 </span>
+<span class="nx">one</span><span class="p">(</span><span class="dl">'</span><span class="s1">val1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">val2</span><span class="dl">'</span><span class="p">);</span>  <span class="c1">// one.length 1 arguments 2 </span>
+<span class="nx">two</span><span class="p">(</span><span class="dl">'</span><span class="s1">val1</span><span class="dl">'</span><span class="p">);</span>  <span class="c1">// two.length 2 arguments 1</span>
+</code></pre></div></div>
+
+<h2 id="함수지향---함수의-호출">함수지향 - 함수의 호출</h2>
+<h3 id="apply-소개">apply 소개</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">func</span><span class="p">(){</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span>
+</code></pre></div></div>
+<ul>
+  <li>JavaScript는 함수를 호출하는 특별한 방법을 제공한다. 위의 예제에서 함수 func는 Function이라는 객체의 인스턴스다. 따라서 func는 객체 Function이 가지고 있는 메소드들을 상속하고 있다. 지금 이야기하려는 메소드는 Function.apply과 Function.call이다. 이 메소드들을 이용해서 함수를 호출해보자. 결과는 3이다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">arg1</span><span class="o">+</span><span class="nx">arg2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">sum</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]))</span>
+</code></pre></div></div>
+<ul>
+  <li>함수 sum은 Function 객체의 인스턴스다. 그렇기 때문에 객체 Function 의 메소드 apply를 호출 할 수 있다. apply 메소드는 두개의 인자를 가질 수 있는데, 첫번째 인자는 함수(sum)가 실행될 맥락이다. 두번째 인자는 배열인데, 이 배열의 담겨있는 원소가 함수(sum)의 인자로 순차적으로 대입된다. Function.call은 사용법이 거의 비슷하다.</li>
+</ul>
+
+<h3 id="apply-사용">apply 사용</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">o1</span> <span class="o">=</span> <span class="p">{</span><span class="na">val1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="na">val2</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="na">val3</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="nx">o2</span> <span class="o">=</span> <span class="p">{</span><span class="na">v1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="na">v2</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="na">v3</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="na">v4</span><span class="p">:</span><span class="mi">25</span><span class="p">}</span>
+<span class="kd">function</span> <span class="nx">sum</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="k">this</span><span class="p">){</span>
+        <span class="nx">_sum</span> <span class="o">+=</span> <span class="k">this</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">_sum</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">sum</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">o1</span><span class="p">))</span> <span class="c1">// 6</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">sum</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">o2</span><span class="p">))</span> <span class="c1">// 185</span>
+</code></pre></div></div>
+<ul>
+  <li>우선 두개의 객체를 만들었다. o1는 3개의 속성을 가지고 있다. 각각의 이름은 val1, val2,val3이다. o2는 4개의 속성을 가지고 있고 o1과는 다른 속성 이름을 가지고 있고 속성의 수도 다르다. 그 다음엔 함수 sum을 만들었다. 이 함수는 객체의 속성을 열거할 때 사용하는 for in 문을 이용해서 객체 자신(this)의 값을 열거한 후에 각 속성의 값을 지역변수 _sum에 저장한 후에 이를 리턴하고 있다.</li>
+  <li>객체 Function의 메소드 apply의 첫번째 인자는 함수가 실행될 맥락이다. 이렇게 생각하자. sum.apply(o1)은 함수 sum을 객체 o1의 메소드로 만들고 sum을 호출한 후에 sum을 삭제한다. 아래와 비슷하다. (실행결과가 조금 다를 것이다. 그것은 함수 for in문으로 객체 o1의 값을 열거할 때 함수 sum도 포함되기 때문이다.)</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">o1</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="nx">sum</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">o1</span><span class="p">.</span><span class="nx">sum</span><span class="p">());</span>
+<span class="k">delete</span> <span class="nx">o1</span><span class="p">.</span><span class="nx">sum</span><span class="p">();</span>
+</code></pre></div></div>
+<ul>
+  <li>sum이 o1 소속의 메소드가 된다는 것은 이렇게 바꿔 말할 수 있다. 함수 sum에서 this의 값이 전역객체가 아니라 o1이 된다는 의미다. 일반적인 객체지향 언어에서는 하나의 객체에 소속된 함수는 그 객체의 소유물이 된다. 하지만 JavaScript에서 함수는 독립적인 객체로서 존재하고, apply나 call 메소드를 통해서 다른 객체의 소유물인 것처럼 실행할 수 있다. 흥미롭다.
+만약 apply의 첫번째 인자로 null을 전달하면 apply가 실행된 함수 인스턴스는 전역객체(브라우저에서는 window)를 맥락으로 실행되게 된다.</li>
+</ul>
+
+<h2 id="객체지향---생성자와-new">객체지향 - 생성자와 new</h2>
+<h3 id="자바스크립트의-객체지향">자바스크립트의 객체지향</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">introduce</span><span class="p">());</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">introduce</span><span class="dl">'</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">introduce</span><span class="p">());</span>
+</code></pre></div></div>
+
+<h3 id="생성자와-new">생성자와 new</h3>
+<ul>
+  <li>함수를 호출할 때 new을 붙이면 새로운 객체를 만든 후에 이를 리턴한다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){}</span> <span class="c1">// 객체 생성자</span>
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+<span class="nx">p1</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">p1</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+ 
+<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+<span class="nx">p2</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">leezche</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">p2</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p2</span><span class="p">.</span><span class="nx">introduce</span><span class="p">());</span>
+</code></pre></div></div>
+<ul>
+  <li>생성자 내에서 이 객체의 프로퍼티를 정의하고 있다. 이러한 작업을 초기화라고 한다. 이를 통해서 코드의 재사용성이 대폭 높아졌다. 코드를 통해서 알 수 있듯이 생성자 함수는 일반함수와 구분하기 위해서 첫글자를 대문자로 표시한다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+    <span class="p">}</span>   
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+ 
+<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">leezche</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p2</span><span class="p">.</span><span class="nx">introduce</span><span class="p">());</span>
+</code></pre></div></div>
+
+<h2 id="객체지향---전역객체">객체지향 - 전역객체</h2>
+<ul>
+  <li>모든 전역변수와 함수는 사실 window 객체의 프로퍼티다. 객체를 명시하지 않으면 암시적으로 window의 프로퍼티로 간주된다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">func</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello?</span><span class="dl">'</span><span class="p">);</span>    
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">func</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">func</span><span class="dl">'</span><span class="p">:</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello?</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}}</span>
+<span class="nx">o</span><span class="p">.</span><span class="nx">func</span><span class="p">();</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">o</span><span class="p">.</span><span class="nx">func</span><span class="p">();</span>
+</code></pre></div></div>
+<ul>
+  <li>ECMAScript에서는 전역객체의 API를 정의해두었다. 그 외의 API는 호스트 환경에서 필요에 따라서 추가로 정의하고 있다. 이를테면 웹브라우저 자바스크립트에서는 alert()이라는 전역객체의 메소드가 존재하지만 node.js에는 존재하지 않는다. 또한 전역객체의 이름도 호스트환경에 따라서 다른데, 웹브라우저에서 전역객체는 window이지만 node.js에서는 global이다.</li>
+</ul>
+
+<h2 id="객체지향---this">객체지향 - this</h2>
+<h3 id="함수와-this">함수와 this</h3>
+<ul>
+  <li>this는 함수 내에서 함수 호출 맥락(context)를 의미한다. 맥락이라는 것은 상황에 따라서 달라진다는 의미인데 즉 함수를 어떻게 호출하느냐에 따라서 this가 가리키는 대상이 달라진다는 뜻이다. 함수와 객체의 관계가 느슨한 자바스크립트에서 this는 이 둘을 연결시켜주는 실질적인 연결점의 역할을 한다.</li>
+  <li>함수를 호출했을 때 this는 무엇을 가르키는지 살펴보자. this는 전역객체인 window와 같다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">func</span><span class="p">(){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">window</span> <span class="o">===</span> <span class="k">this</span><span class="p">){</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">window === this</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span> 
+</code></pre></div></div>
+<h3 id="메소드와-this">메소드와 this</h3>
+<ul>
+  <li>객체의 소속인 메소드의 this는 그 객체를 가르킨다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">func</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">o</span> <span class="o">===</span> <span class="k">this</span><span class="p">){</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">"</span><span class="s2">o === this</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">o</span><span class="p">.</span><span class="nx">func</span><span class="p">();</span> 
+</code></pre></div></div>
+
+<h3 id="생성자와-this">생성자와 this</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">funcThis</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> 
+ 
+<span class="kd">function</span> <span class="nx">Func</span><span class="p">(){</span>
+    <span class="nx">funcThis</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="nx">Func</span><span class="p">();</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">funcThis</span> <span class="o">===</span> <span class="nb">window</span><span class="p">){</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">window &lt;br /&gt;</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Func</span><span class="p">();</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">funcThis</span> <span class="o">===</span> <span class="nx">o2</span><span class="p">){</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">o2 &lt;br /&gt;</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>생성자는 빈 객체를 만든다. 그리고 이 객체내에서 this는 만들어진 객체를 가르킨다. 이것은 매우 중요한 사실이다. 생성자가 실행되기 전까지는 객체는 변수에도 할당될 수 없기 때문에 this가 아니면 객체에 대한 어떠한 작업을 할 수 없기 때문이다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Func</span><span class="p">(){</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span> <span class="c1">// undefined</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Func</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="객체로서-함수">객체로서 함수</h3>
+<ul>
+  <li>함수는 Function 생성자 함수의 객체다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;}</span>
+
+<span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="dl">'</span><span class="s1">x</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">y</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">return x + y;</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="apply와-this">apply와 this</h3>
+<ul>
+  <li>함수의 메소드인 apply, call을 이용하면 this의 값을 제어할 수 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kd">function</span> <span class="nx">func</span><span class="p">(){</span>
+    <span class="k">switch</span><span class="p">(</span><span class="k">this</span><span class="p">){</span>
+        <span class="k">case</span> <span class="nx">o</span><span class="p">:</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">o&lt;br /&gt;</span><span class="dl">'</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nx">p</span><span class="p">:</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">p&lt;br /&gt;</span><span class="dl">'</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nb">window</span><span class="p">:</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">window&lt;br /&gt;</span><span class="dl">'</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>          
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">();</span>
+<span class="nx">func</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+<span class="nx">func</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="객체지향---상속">객체지향 - 상속</h2>
+<h3 id="상속이란">상속이란</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+    <span class="p">}</span>   
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="상속의-사용법">상속의 사용법</h3>
+<ul>
+  <li>Programmer이라는 생성자를 만들었다. 그리고 이 생성자의 prototype과 Person의 객체를 연결했더니 Programmer 객체도 메소드 introduce를 사용할 수 있게 되었다. 
+Programmer가 Person의 기능을 상속하고 있는 것이다. 단순히 똑같은 기능을 갖게 되는 것이라면 상속의 의의는 사라질 것이다. 부모의 기능을 계승 발전할 수 있는 것이 상속의 가치다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+<span class="p">}</span>
+ 
+<span class="kd">function</span> <span class="nx">Programmer</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+<span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">coding</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">hello world</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">(</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">coding</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="기능의-추가">기능의 추가</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> 
+<span class="p">}</span>
+ 
+<span class="kd">function</span> <span class="nx">Programmer</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+<span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">coding</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">hello world</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">(</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">introduce</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">coding</span><span class="p">()</span><span class="o">+</span><span class="dl">"</span><span class="s2">&lt;br /&gt;</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="prototype">prototype</h3>
+<ul>
+  <li>그럼 prototype이란 무엇인가? 한국어로는 원형정도로 번역되는 prototype은 말 그대로 객체의 원형이라고 할 수 있다. 함수는 객체다. 그러므로 생성자로 사용될 함수도 객체다. 객체는 프로퍼티를 가질 수 있는데 prototype이라는 프로퍼티는 그 용도가 약속되어 있는 특수한 프로퍼티다. prototype에 저장된 속성들은 생성자를 통해서 객체가 만들어질 때 그 객체에 연결된다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Ultra</span><span class="p">(){}</span>
+<span class="nx">Ultra</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">ultraProp</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+ 
+<span class="kd">function</span> <span class="nx">Super</span><span class="p">(){}</span>
+<span class="nx">Super</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ultra</span><span class="p">();</span>
+ 
+<span class="kd">function</span> <span class="nx">Sub</span><span class="p">(){}</span>
+<span class="nx">Sub</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Super</span><span class="p">();</span>
+ 
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sub</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">ultraProp</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="prototype-chain">prototype chain</h3>
+<ul>
+  <li>생성자 Sub를 통해서 만들어진 객체 o가 Ultra의 프로퍼티 ultraProp에 접근 가능한 것은 prototype 체인으로 Sub와 Ultra가 연결되어 있기 때문이다. 내부적으로는 아래와 같은 일이 일어난다. prototype는 객체와 객체를 연결하는 체인의 역할을 하는 것이다. 이러한 관계를 prototype chain이라고 한다.</li>
+</ul>
+
+<ol>
+  <li>객체 o에서 ultraProp를 찾는다.</li>
+  <li>없다면 Sub.prototype.ultraProp를 찾는다.</li>
+  <li>없다면 Super.prototype.ultraProp를 찾는다.</li>
+  <li>없다면 Ultra.prototype.ultraProp를 찾는다.</li>
+</ol>
+
+<h2 id="객체지향---표준-내장객체의-확장">객체지향 - 표준 내장객체의 확장</h2>
+<h3 id="표준-내장-객체란">표준 내장 객체란</h3>
+<ul>
+  <li>표준 내장 객체(Standard Built-in Object)는 자바스크립트가 기본적으로 가지고 있는 객체들을 의미한다. 내장 객체가 중요한 이유는 프로그래밍을 하는데 기본적으로 필요한 도구들이기 때문에다. 결국 프로그래밍이라는 것은 언어와 호스트 환경이 제공하는 기능들을 통해서 새로운 소프트웨어를 만들어내는 것이기 때문에 내장 객체에 대한 이해는 프로그래밍의 기본이라고 할 수 있다.
+    <ul>
+      <li>Object</li>
+      <li>Function</li>
+      <li>Array</li>
+      <li>String</li>
+      <li>Boolean</li>
+      <li>Number</li>
+      <li>Math</li>
+      <li>Date</li>
+      <li>RegExp</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="배열의-확장-1">배열의 확장 1</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="dl">'</span><span class="s1">seoul</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">new york</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">ladarkh</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">pusan</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Tsukuba</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">getRandomValueFromArray</span><span class="p">(</span><span class="nx">haystack</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">haystack</span><span class="p">.</span><span class="nx">length</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">());</span>
+    <span class="k">return</span> <span class="nx">haystack</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span> 
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getRandomValueFromArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">));</span>
+</code></pre></div></div>
+<h3 id="배열의-확장-2">배열의 확장 2</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">rand</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">());</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="dl">'</span><span class="s1">seoul</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">new york</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">ladarkh</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">pusan</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Tsukuba</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">rand</span><span class="p">());</span>
+</code></pre></div></div>
+
+<h2 id="객체지향---object">객체지향 - Object</h2>
+<h3 id="object란">Object란</h3>
+<ul>
+  <li>Object 객체는 객체의 가장 기본적인 형태를 가지고 있는 객체이다. 다시 말해서 아무것도 상속받지 않는 순수한 객체다. 자바스크립트에서는 값을 저장하는 기본적인 단위로 Object를 사용한다.</li>
+  <li>동시에 자바스크립트의 모든 객체는 Object 객체를 상속 받는데, 그런 이유로 모든 객체는 Object 객체의 프로퍼티를 가지고 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">grades</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="dl">'</span><span class="s1">k8805</span><span class="dl">'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sorialgi</span><span class="dl">'</span><span class="p">:</span> <span class="mi">80</span><span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="object-확장">Object 확장</h3>
+<ul>
+  <li>Object 객체를 확장하면 모든 객체가 접근할 수 있는 API를 만들 수 있다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">contain</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">neddle</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="k">this</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">===</span> <span class="nx">neddle</span><span class="p">){</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">city</span><span class="dl">'</span><span class="p">:</span><span class="dl">'</span><span class="s1">seoul</span><span class="dl">'</span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">contain</span><span class="p">(</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">egoing</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">leezche</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">grapittie</span><span class="dl">'</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">contain</span><span class="p">(</span><span class="dl">'</span><span class="s1">leezche</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="object-확장의-위험">Object 확장의 위험</h3>
+<ul>
+  <li>그런데 Object 객체는 확장하지 않는 것이 바람직하다. 왜냐하면 모든 객체에 영향을 주기 때문이다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="nx">o</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>  
+<span class="p">}</span>
+
+<span class="c1">// name</span>
+<span class="c1">// contain</span>
+</code></pre></div></div>
+<ul>
+  <li>확장한 프로퍼티인 contain이 포함되어 있다. 객체가 기본적으로 가지고 있을 것으로 예상하고 있는 객체 외에 다른 객체를 가지고 있는 것은 개발자들에게 혼란을 준다. 이 문제를 회피하기 위해서는 프로퍼티의 해당 객체의 소속인지를 체크해볼 수 있는 hasOwnProperty를 사용하면 된다. hasOwnProperty는 인자로 전달된 속성의 이름이 객체의 속성인지 여부를 판단한다. 만약 prototype으로 상속 받은 객체라면 false가 된다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="nx">o</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">name</span><span class="p">))</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="객체지향---데이터-타입">객체지향 - 데이터 타입</h2>
+<h3 id="원시-데이터-타입과-객체">원시 데이터 타입과 객체</h3>
+<ul>
+  <li>객체와 객체가 아닌 것</li>
+  <li>객체가 아닌 것(원시 데이터 타입)
+    <ul>
+      <li>숫자</li>
+      <li>문자열</li>
+      <li>불리언(true/false)</li>
+      <li>null</li>
+      <li>undefined</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="래퍼-객체">래퍼 객체</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">coding</span><span class="dl">'</span><span class="p">;</span>
+<span class="c1">// str = new String('coding')</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>        <span class="c1">// 6</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>     <span class="c1">// "C"</span>
+</code></pre></div></div>
+<ul>
+  <li>문자열은 분명히 프로퍼티와 메소드가 있다. 그렇다면 객체다. 그런데 왜 문자열이 객체가 아니라고 할까? 그것은 내부적으로 문자열이 원시 데이터 타입이고 문자열과 관련된 어떤 작업을 하려고 할 때 자바스크립트는 임시로 문자열 객체를 만들고 사용이 끝나면 제거하기 때문이다. 이러한 처리는 내부적으로 일어난다. 그렇기 때문에 몰라도 된다. 하지만 원시 데이터 타입과 객체는 좀 다른 동작 방법을 가지고 있기 때문에 이들을 분별하는 것은 결국엔 필요하다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">coding</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">str</span><span class="p">.</span><span class="nx">prop</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">everybody</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">prop</span><span class="p">);</span>      <span class="c1">// undefined</span>
+</code></pre></div></div>
+<ul>
+  <li>str.prop를 하는 순간에 자바스크립트 내부적으로 String 객체가 만들어진다. prop 프로퍼티는 이 객체에 저장되고 이 객체는 곧 제거 된다. 그렇기 때문에 prop라는 속성이 저장된 객체는 존재하지 않게된다. 이러한 특징은 일반적인 객체의 동작 방법과는 다르다. 
+하지만 문자열과 관련해서 필요한 기능성을 객체지향적으로 제공해야 하는 필요 또한 있기 때문에 원시 데이터 형을 객체처럼 다룰 수 있도록 하기 위한 객체를 자바스크립트는 제공하고 있는데 그것이 레퍼객체(wrapper object)다. 레퍼객체로는 String, Number, Boolean이 있다. null과 undefined는 레퍼 객체가 존재하지 않는다.</li>
+</ul>
+
+<h2 id="객체지향---참조">객체지향 - 참조</h2>
+<h3 id="복제란">복제란</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+<span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// 1</span>
+</code></pre></div></div>
+
+<h3 id="참조">참조</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">:</span><span class="mi">1</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>  <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<h3 id="함수와-참조">함수와 참조</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">func</span><span class="p">(</span><span class="nx">b</span><span class="p">){</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// 1</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">:</span><span class="mi">1</span><span class="p">};</span>
+<span class="kd">function</span> <span class="nx">func</span><span class="p">(</span><span class="nx">b</span><span class="p">){</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">:</span><span class="mi">2</span><span class="p">};</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>  <span class="c1">// 1</span>
+</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">:</span><span class="mi">1</span><span class="p">};</span>
+<span class="kd">function</span> <span class="nx">func</span><span class="p">(</span><span class="nx">b</span><span class="p">){</span>
+    <span class="nx">b</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">func</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>  <span class="c1">// 2</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#javascript" class="page__taxonomy-item" rel="tag">JavaScript</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#javascript" class="page__taxonomy-item" rel="tag">JavaScript</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-12T00:00:00+09:00">November 12, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BJavascript%5D+Javascript%20https%3A%2F%2Frere950303.github.io%2Fjavascript%2FJavaScript%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fjavascript%2FJavaScript%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fjavascript%2FJavaScript%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/docker/Docker&CI/" class="pagination--pager" title="[Docker] 도커와 CI환경
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker/Docker&CI/" rel="permalink">[Docker] 도커와 CI환경
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-07T00:00:00+09:00">November 7, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker/spring/Spring&Docker/" rel="permalink">[Docker][Spring] Spring WAS 도커로 띄우기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-06T00:00:00+09:00">November 6, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker/Docker/" rel="permalink">[Docker] 도커
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-05T00:00:00+09:00">November 5, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          7 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/security/SpringSecurity/" rel="permalink">[Spring][Security] 스프링 시큐리티
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-10-31T00:00:00+09:00">October 31, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          14 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 yhw. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>
