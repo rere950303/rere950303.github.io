@@ -120,8 +120,20 @@ var store = [{
         "teaser": null
       },{
         "title": "[Javascript] Javascript",
-        "excerpt":"JavaScript 언어소개 웹브라우저: 경고창 등 탈 웹브라우저: 웹서버까지 확장 php, python, java … node.js, Spring 탈 웹: Google Apps Script 언어란: 의사소통을 위한 약속(문법) 환경이란: 다양한 분야에서의 사용 alert(‘hello world’); -&gt; 웹브라우저 write(‘hello world’); -&gt; 웹서버 msgBox(‘hello world’); -&gt; SpreadSheet Javascript 기본 - 실행방법과 실습환경 코드 작성과 실행 &lt;!DOCTYPE html&gt;...","categories": ["JavaScript"],
-        "tags": ["JavaScript"],
+        "excerpt":"Javascript 언어소개 웹브라우저: 경고창 등 탈 웹브라우저: 웹서버까지 확장 php, python, java … node.js, Spring 탈 웹: Google Apps Script 언어란: 의사소통을 위한 약속(문법) 환경이란: 다양한 분야에서의 사용 alert(‘hello world’); -&gt; 웹브라우저 write(‘hello world’); -&gt; 웹서버 msgBox(‘hello world’); -&gt; SpreadSheet Javascript 기본 - 실행방법과 실습환경 코드 작성과 실행 &lt;!DOCTYPE html&gt;...","categories": ["Javascript"],
+        "tags": ["Javascript"],
         "url": "https://rere950303.github.io/javascript/JavaScript/",
+        "teaser": null
+      },{
+        "title": "[AWS] AWS",
+        "excerpt":"S3(Simple Storage Service)  구성요소     Bucket   Folder   Object(File)   ","categories": ["AWS"],
+        "tags": ["AWS"],
+        "url": "https://rere950303.github.io/aws/AWS/",
+        "teaser": null
+      },{
+        "title": "[DB] Database Management System(DBMS)",
+        "excerpt":"DBMS에는 특정 기관에 대한 정보를 가지고 있다. 연관된 data의 집합 data와 data 접근에 필요한 프로그램의 집합 쉽고 편한 data CRUD 환경 제공 초창기 database app은 파일 시스템을 이용하여 구축되었다. 이는 여러가지 단점이 존재했다. data 증폭 및 불일치: 여러 종류의 파일과 다양한 포맷 data 접근의 어려움: 새로운 작업을 수행하기 위해서는(예를 들어...","categories": ["DB"],
+        "tags": ["DB","DBMS"],
+        "url": "https://rere950303.github.io/db/DBMS/",
         "teaser": null
       }]

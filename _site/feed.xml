@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-11-12T20:39:20+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Javascript] Javascript</title><link href="https://rere950303.github.io/javascript/JavaScript/" rel="alternate" type="text/html" title="[Javascript] Javascript" /><published>2021-11-12T00:00:00+09:00</published><updated>2021-11-12T00:00:00+09:00</updated><id>https://rere950303.github.io/javascript/JavaScript</id><content type="html" xml:base="https://rere950303.github.io/javascript/JavaScript/">&lt;h2 id=&quot;javascript-언어소개&quot;&gt;JavaScript 언어소개&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-11-17T00:49:36+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[DB] Database Management System(DBMS)</title><link href="https://rere950303.github.io/db/DBMS/" rel="alternate" type="text/html" title="[DB] Database Management System(DBMS)" /><published>2021-11-17T00:00:00+09:00</published><updated>2021-11-17T00:00:00+09:00</updated><id>https://rere950303.github.io/db/DBMS</id><content type="html" xml:base="https://rere950303.github.io/db/DBMS/">&lt;ul&gt;
+  &lt;li&gt;DBMS에는 특정 기관에 대한 정보를 가지고 있다.
+    &lt;ul&gt;
+      &lt;li&gt;연관된 data의 집합&lt;/li&gt;
+      &lt;li&gt;data와 data 접근에 필요한 프로그램의 집합&lt;/li&gt;
+      &lt;li&gt;쉽고 편한 data CRUD 환경 제공&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;초창기 database app은 파일 시스템을 이용하여 구축되었다. 이는 여러가지 단점이 존재했다.
+    &lt;ul&gt;
+      &lt;li&gt;data 증폭 및 불일치: 여러 종류의 파일과 다양한 포맷&lt;/li&gt;
+      &lt;li&gt;data 접근의 어려움: 새로운 작업을 수행하기 위해서는(예를 들어 특정 조건을 만족하는 data list 검색) 새로운 프로그램을 작성해야 된다.&lt;/li&gt;
+      &lt;li&gt;data 고립: 서로 관련된 data들이 다른 파일 / 포맷으로 흩어짐&lt;/li&gt;
+      &lt;li&gt;무결성 문제: 무결성 제약조건이 DB와 다르게 명시적으로 나타나지 않으며 해당 조건이 지켜지기 어렵다. 따라서 프로그램에 제약조건이 내포될 수 밖에 없는데 이로 인해 새로운 제약조건을 추가하거나 기조의 조건을 변경하는 것이 어렵다.&lt;/li&gt;
+      &lt;li&gt;원자 단위의 업데이트: 업데이트중 일부분만이 수행될 경우 data 일관성이 깨지게 된다.&lt;/li&gt;
+      &lt;li&gt;동시접근: 성능을 위해서는 data에 대한 동시 접근이 필요한데 이에 대한 통제가 제대로 이루어지지 않는다면 data 일관성이 깨지고 만다. 따라서 많은 user들이 서로 다른 data에 접근하게 되는 일이 발생할 수도 있다.&lt;/li&gt;
+      &lt;li&gt;보안문제: 파일 시스템의 경우 특정 유저에게 특정 data에만 접근 가능한 권한 설정이 어렵다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Levels of Abstraction
+    &lt;ul&gt;
+      &lt;li&gt;Physical level: record가 어떻게 저장되는지(하드웨어 측면)&lt;/li&gt;
+      &lt;li&gt;Logical level: DB에 저장되는 data와 data사이 관계 설명
+        &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dept_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;View level: app은 data의 타입을 숨기고, 보안상 여러 data를 유저로부터 숨긴다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인스턴스와 스키마
+    &lt;ul&gt;
+      &lt;li&gt;스키마: DB의 논리적 구조를 의미한다. 예를 들어 특정 DB는 소비자, 계좌, 그들의 관계에 대한 정보로 이루어져 있다.
+        &lt;ul&gt;
+          &lt;li&gt;Physical schema: Physical level에서의 DB 설계&lt;/li&gt;
+          &lt;li&gt;Logical schema: Logical level에서의 DB 설계&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;인스턴스: 특정 시점에 DB에 있는 실제 data&lt;/li&gt;
+      &lt;li&gt;Physical Data independence: Physical schema가 변해도 Logical schema는 변하지 않는다. 즉 영향이 없다. 하지만 App은 Logical schema을 기반으로 설계되기 떄문에 Logical schema가 변동되면 App도 변경이 필요하다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="DBMS" /></entry><entry><title type="html">[AWS] AWS</title><link href="https://rere950303.github.io/aws/AWS/" rel="alternate" type="text/html" title="[AWS] AWS" /><published>2021-11-16T00:00:00+09:00</published><updated>2021-11-16T00:00:00+09:00</updated><id>https://rere950303.github.io/aws/AWS</id><content type="html" xml:base="https://rere950303.github.io/aws/AWS/">&lt;h2 id=&quot;s3simple-storage-service&quot;&gt;S3(Simple Storage Service)&lt;/h2&gt;
+&lt;h3 id=&quot;구성요소&quot;&gt;구성요소&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Bucket&lt;/li&gt;
+  &lt;li&gt;Folder&lt;/li&gt;
+  &lt;li&gt;Object(File)&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="AWS" /><category term="AWS" /></entry><entry><title type="html">[Javascript] Javascript</title><link href="https://rere950303.github.io/javascript/JavaScript/" rel="alternate" type="text/html" title="[Javascript] Javascript" /><published>2021-11-12T00:00:00+09:00</published><updated>2021-11-12T00:00:00+09:00</updated><id>https://rere950303.github.io/javascript/JavaScript</id><content type="html" xml:base="https://rere950303.github.io/javascript/JavaScript/">&lt;h2 id=&quot;javascript-언어소개&quot;&gt;Javascript 언어소개&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;웹브라우저: 경고창 등&lt;/li&gt;
   &lt;li&gt;탈 웹브라우저: 웹서버까지 확장
@@ -1016,7 +1068,7 @@ Programmer가 Person의 기능을 상속하고 있는 것이다. 단순히 똑�
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="JavaScript" /><category term="JavaScript" /></entry><entry><title type="html">[Docker] 도커와 CI환경</title><link href="https://rere950303.github.io/docker/Docker&CI/" rel="alternate" type="text/html" title="[Docker] 도커와 CI환경" /><published>2021-11-07T00:00:00+09:00</published><updated>2021-11-07T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker&amp;CI</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker&amp;CI/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Javascript" /><category term="Javascript" /></entry><entry><title type="html">[Docker] 도커와 CI환경</title><link href="https://rere950303.github.io/docker/Docker&CI/" rel="alternate" type="text/html" title="[Docker] 도커와 CI환경" /><published>2021-11-07T00:00:00+09:00</published><updated>2021-11-07T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker&amp;CI</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker&amp;CI/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 John Ahn 강사님의 [따라하며 배우는 도커와 CI환경][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;도커-기본&quot;&gt;도커 기본&lt;/h2&gt;
@@ -1262,7 +1314,144 @@ Programmer가 Person의 기능을 상속하고 있는 것이다. 단순히 똑�
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/usr/src/app/node_modules&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./:/usr/src/app&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;stdin_open&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Docker" /><category term="Docker" /><category term="CI" /></entry><entry><title type="html">[Docker][Spring] Spring WAS 도커로 띄우기</title><link href="https://rere950303.github.io/docker/spring/Spring&Docker/" rel="alternate" type="text/html" title="[Docker][Spring] Spring WAS 도커로 띄우기" /><published>2021-11-06T00:00:00+09:00</published><updated>2021-11-06T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/spring/Spring&amp;Docker</id><content type="html" xml:base="https://rere950303.github.io/docker/spring/Spring&amp;Docker/">&lt;h2 id=&quot;ubuntu--jdk-이미지&quot;&gt;ubuntu + jdk 이미지&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;운영환경을-위한-nginx&quot;&gt;운영환경을 위한 Nginx&lt;/h3&gt;
+&lt;p&gt;이미지 4번&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;개발 서버는 소스 변경시 자동으로 다시 빌드하여 변경 소스를 반영해줌으로써 개발 환경에 특화된 기능들이 있다. 하지만 운영 환경에서는 소스 변경시 바로 다시 반영해줄 필요가 없으며 개발에 필요한 기능들이 필요하지 않기에 더 깔끔하고 빠른 Nginx를 웹 서버로 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;운영환경-도커-이미지를-위한-dockerfile-작성하기&quot;&gt;운영환경 도커 이미지를 위한 Dockerfile 작성하기&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm run build&lt;/code&gt;로 생성한 빌드 파일을 Nginx 서버가 브라우저에서 보일수 있게 설정&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;FROM node:alpine as builder&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;WORKDIR /usr/src/app&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;COPY package.json ./&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;RUN npm install&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;COPY ./ ./&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;FROM nginx&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;COPY --from=builder /usr/src/app/build /usr/share/nginx/html&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--from=builder&lt;/code&gt;: 다른 stage에 있는 파일을 복사할때 다른 stage 이름을 명시&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;간단한-어플을-실제로-배포해보기테스트--배포-부분&quot;&gt;간단한 어플을 실제로 배포해보기(테스트 &amp;amp; 배포 부분)&lt;/h2&gt;
+&lt;h3 id=&quot;travis-ci-설명&quot;&gt;Travis CI 설명&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Travis CI를 이용하면 원격 저장소에 있는 프로젝트를 특정 이벤트에 따라 자동으로 테스트, 빌드하거나 배포할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;로컬저장소에 있는 소스를 깃허브에 push한다&lt;/li&gt;
+  &lt;li&gt;Travis CI에게 소스가 push 되었다고 알려준다.&lt;/li&gt;
+  &lt;li&gt;Travis CI는 업데이트 된 소스를 깃허브에서 가져온다.&lt;/li&gt;
+  &lt;li&gt;깃허브에서 가져온 소스를 테스트 코드를 실행해본다.&lt;/li&gt;
+  &lt;li&gt;테스트가 성공하면 AWS같은 호스팅 사이트로 보내서 배포한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;travisyml-파일-작성하기-테스트까지&quot;&gt;.travis.yml 파일 작성하기 (테스트까지)&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;도커환경에서 리액트앱을 실행하고 있으니 Travis CI에서도 도커환경 구성&lt;/li&gt;
+  &lt;li&gt;구성된 도커 환경에서 Dockerfile.dev를 이용해서 도커 이미지 생성&lt;/li&gt;
+  &lt;li&gt;어떻게 Test를 수행할 것이지 설정해주기&lt;/li&gt;
+  &lt;li&gt;어떻게 AWS에 소스코드를 배포할 것인지 설정해주기&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;required&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;generic&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;before_install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;start creating an image with dockerfile&quot;&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t react -f Dockerfile.dev .&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker run -e CI=true react npm run test -- --coverage // 실행할 스크립트(테스트 실행)&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;after_success&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;test success&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;aws-알아보기&quot;&gt;AWS 알아보기&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;EC2란: Amazon Elastic Compute Cloud(Amazon EC2)는 AWS 클라우드에서 확장식 컴퓨팅을 제공한다. Amazon EC2를 사용하면 하드웨어에 선투자할 필요가 없어 더 빠르게 앱을 개발하고 배포할 수 있다. Amazon EC2를 통해 원하는 만큼 가상 서버를 구축하고 보안 및 네트쿼크 구성과 스토리지 관리가 가능하다.
+    &lt;ul&gt;
+      &lt;li&gt;Amazon EC2는 한대의 컴퓨터를 임대한다고 생각하면 된다. 그리고 그 컴퓨터에 OS를 설치하고 웹서비스를 위한 프로그램들(WAS, DB)을 설치해서 사용할 수 있다. 1대의 컴퓨터를 하나의 EC2 인스턴스라고 부른다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EB란: AWS Elastic Beanstalk는 Apache, nginx 같은 친숙한 서버에서 Java, NET. PHP, Node.js, Python, Ruby, GO 및 Docker와 함께 개발된 웹 응용 프로그램 및 서비스를 배포하고 확장하기 쉬운 서비스이다. EC2 인스턴스나 데이터베이스 같이 많은 것들을 포함한 환경을 구성하며 만들고 있는 소프트웨어를 업데이트 할때마다 자동으로 이 환경을 관리해준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;elastic-beanstalk-환경-구성하기&quot;&gt;Elastic Beanstalk 환경 구성하기&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;로드 발란서 -&amp;gt; EC2 인스턴스(64bit Amazon Linux) -&amp;gt; 도커 컨테이너 -&amp;gt; 어플리케이션&lt;/li&gt;
+  &lt;li&gt;트래픽이 많을 경우 EB 환경에 있는 로드 발란서가 각 EC2로 트래픽을 분산&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;travisyml-파일-작성하기-배포-부분&quot;&gt;.travis.yml 파일 작성하기 (배포 부분)&lt;/h3&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;required&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;generic&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;before_install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;start creating an image with dockerfile&quot;&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t react -f Dockerfile.dev .&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker run -e CI=true react npm run test -- --coverage&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elasticbeanstalk&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;region&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;us-east-2&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;react&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;React-env&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;bucket_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elasticbeanstalk-us-east-2-601633539824&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;bucket_path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;react&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;all_branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;provider&lt;/code&gt;: 외부 서비스 표시&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;region&lt;/code&gt;: 현재 사용하고 있는 AWS의 서비스가 위치하고 있는 물리적 장소&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt;: 생성된 앱 이름&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bucket_name&lt;/code&gt;: 해당 EB를 위한 s3 버켓 이름 (Travics CI는 가지고 있는 파일을 압축해서 먼저 s3에 보낸다.)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bucket_path&lt;/code&gt;: 앱 이름과 동일&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;branch&lt;/code&gt;: 어떤 브랜치에 push를 할때 AWS에 배포를 할것인지.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;travis-ci의-aws접근을-위한-api-생성&quot;&gt;Travis CI의 AWS접근을 위한 API 생성&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;깃허브 -&amp;gt; Travis CI -&amp;gt; AWS: Travis CI 아이디 로그인시 깃허브 연동으로 인증을 하고, AWS에서 제공해주는 secret key를 travis.yml 파일에다가 적어주면 된다.&lt;/li&gt;
+  &lt;li&gt;Seceret, Access API Key 받는 순서
+    &lt;ul&gt;
+      &lt;li&gt;IAM USER 생성: Identity and Access Management의 약자로써 AWS 리소스에 대한 액세스를 안전하게 제어할 수 있는 웹 서비스이다. IAM을 사용하여 리소스를 사용하도록 인증 및 인가된 대상을 제어한다.
+        &lt;ul&gt;
+          &lt;li&gt;Root 생성자: 현재 우리가 처음 가입하여 사용하고 있는 계정, AWS 서비스 및 리소스에 대한 완전한 액세스 권한이 있음&lt;/li&gt;
+          &lt;li&gt;IAM 사용자: root 사용자가 부여한 권한만 가지고 있음&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;API키를 yml 파일에 적어주기
+        &lt;ul&gt;
+          &lt;li&gt;직접 키를 Travis.yml 파일에 적으면 노출 위험이 있기 때문에 Travis 웹사이트 해당 저장소에 저장하고 yml파일에서 불러오는 형태를 취해야 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;복잡한-어플을-실제로-배포해보기개발-환경-부분&quot;&gt;복잡한 어플을 실제로 배포해보기(개발 환경 부분)&lt;/h2&gt;</content><author><name>yhw</name></author><category term="Docker" /><category term="Docker" /><category term="CI" /></entry><entry><title type="html">[Docker][Spring] Spring WAS 도커로 띄우기</title><link href="https://rere950303.github.io/docker/spring/Spring&Docker/" rel="alternate" type="text/html" title="[Docker][Spring] Spring WAS 도커로 띄우기" /><published>2021-11-06T00:00:00+09:00</published><updated>2021-11-06T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/spring/Spring&amp;Docker</id><content type="html" xml:base="https://rere950303.github.io/docker/spring/Spring&amp;Docker/">&lt;h2 id=&quot;ubuntu--jdk-이미지&quot;&gt;ubuntu + jdk 이미지&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Dockerfile&lt;/li&gt;
   &lt;li&gt;Spring의 .jar 파일을 실행하는 이미지 생성&lt;/li&gt;
@@ -4576,1837 +4765,4 @@ Programmer가 Person의 기능을 상속하고 있는 것이다. 단순히 똑�
 따라서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Persistable&lt;/code&gt; 를 사용해서 새로운 엔티티 확인 여부를 직접 구현하게는 효과적이다. 참고로 등록시간( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CreatedDate&lt;/code&gt; )을 
 조합해서 사용하면 이 필드로 새로운 엔티티 여부를 편리하게 확인할 수 있다. 새로운 엔티티의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isNew()&lt;/code&gt; 메소드 실행후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persist()&lt;/code&gt; 과정에서 JPA에 의해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CreatedDate&lt;/code&gt; 가 
 동작하기 때문이다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /></entry><entry><title type="html">[Spring][JPA] OSIV</title><link href="https://rere950303.github.io/spring/jpa/OSIV/" rel="alternate" type="text/html" title="[Spring][JPA] OSIV" /><published>2021-10-20T00:00:00+09:00</published><updated>2021-10-20T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/OSIV</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/OSIV/">&lt;h2 id=&quot;osiv&quot;&gt;OSIV&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Open Session In View&lt;/code&gt; 의 약자로써 영속성 컨텍스트를 뷰까지 열어둔다는 뜻이다. 영속성 컨텍스트가 살아있으면 엔티티는 영속 상태로 유지된다. 따라서 뷰에서도 지연 로딩을 사용할 수 있다. &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring.jpa.open-in-view: false&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring.jpa.open-in-view : true(기본값)&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;요청-당-트랜잭션-방식의-osiv-문제점&quot;&gt;요청 당 트랜잭션 방식의 OSIV 문제점&lt;/h2&gt;
-&lt;p&gt;컨트롤러나 뷰 같은 프리젠테이션 계층이 엔티티를 변경할 수 있다. 요청이 끝나고 트랜잭션이 커밋되면서 영속성 컨텍스트가 플러쉬 된다면 데이터베이스의 내용이 의도치 않게 변경되게 된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;스프링-osiv-비즈니스-계층-트랜잭션&quot;&gt;스프링 OSIV: 비즈니스 계층 트랜잭션&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;스프링 프레임워크가 제공하는 OSIV는 비즈니스 계층에서 트랜잭션을 사용하는 OSIV을 말한다. 즉 트랜잭션의 범위는 비즈니스 로직이 존재하는 계층까지만을 포함하지만 영속성 컨텍스트의 범위는 뷰까지 확장시켜주는 개념이다.&lt;/li&gt;
-  &lt;li&gt;엔티티를 변경하지 않고 조회만 하는 경우에는 트랜잭션 단위가 아니어도 되므로 트랙잭션 없이 읽기가 가능하고 따라서 뷰 로직 단계에서도 지연로딩 및 프록시 초기화가 가능하다.&lt;/li&gt;
-  &lt;li&gt;요청이 끝나고 영속성 컨텍스트가 종료될때 플러쉬가 호출되지 않는다.&lt;/li&gt;
-  &lt;li&gt;단, 프리젠테이션 계층에서 엔티티 변경후 다시 트랜잭션 범위의 비즈니스 로직을 호출하는 경우 의도치 않은 플러쉬가 발생할 수 있는바 이를 주의해야 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
-&lt;p&gt;이 전략은 너무 오랜 시간동안 데이터베이스 커넥션 리소스를 사용하기 때문에, 실시간 트래픽이 중요한 애플리케이션에서는 커넥션이 모자랄 수 있다. 따라서 고객 서비스의 실시간 API는 OSIV를 끄고, ADMIN 처럼 커넥션을 많이 사용하지 않는 곳에서는 OSIV를 키는 것이 바람직하다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /><category term="OSIV" /></entry><entry><title type="html">[Spring][JPA] 자바 ORM 표준 JPA</title><link href="https://rere950303.github.io/spring/jpa/JPA/" rel="alternate" type="text/html" title="[Spring][JPA] 자바 ORM 표준 JPA" /><published>2021-10-02T00:00:00+09:00</published><updated>2021-10-02T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/jpa/JPA</id><content type="html" xml:base="https://rere950303.github.io/spring/jpa/JPA/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
-&lt;p&gt;해당 게시글은 인프런 김영한 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&quot;&gt;자바 ORM 표준 JPA 프로그래밍 - 기본편&lt;/a&gt; 강의와 도서를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;jpa-소개&quot;&gt;JPA 소개&lt;/h2&gt;
-&lt;h3 id=&quot;sql-중심적인-개발의-문제점&quot;&gt;SQL 중심적인 개발의 문제점&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;객체 지향 언어&lt;/li&gt;
-  &lt;li&gt;관계형 데이터베이스&lt;/li&gt;
-  &lt;li&gt;객체를 관계형 데이터베이스에 관리&lt;/li&gt;
-  &lt;li&gt;CRUD(객체를 SQL로, SQL을 자바 객체로)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;INTO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEMBER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MEMBER_ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;VALUES&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEMBER_ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEMBER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;UPDATE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEMBER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SET&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;필드 수정시 SQL을 모두 수정해야함.&lt;/li&gt;
-  &lt;li&gt;패러다임의 불일치(객체 vs 관계형 데이터베이스)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/1.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/1.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;객체와 관계형 데이터베이스의 차이
-    &lt;ul&gt;
-      &lt;li&gt;상속&lt;/li&gt;
-      &lt;li&gt;연관관계&lt;/li&gt;
-      &lt;li&gt;데이터 타입&lt;/li&gt;
-      &lt;li&gt;데이터 식별 방법&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;상속&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/2.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/2.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;INSERT 쿼리를 두 번 생성해야 한다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;각각의 테이블에 따른 조인 SQL 작성&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;연관관계&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/3.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/3.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;객체는 참조를 사용: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;member.getTeam()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;테이블은 외래 키를 사용: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JOIN ON M.TEAM_ID = T.TEAM_ID&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;객체를 테이블에 맞추어 모델링 하는 경우 객체 지향 언어의 장점이 사라진다.&lt;/li&gt;
-  &lt;li&gt;객체 모델링 저장을 하는 경우 조회시에 모든 데이터를 끌고 와서 객체를 생성한 후 참조관계를 설정해주어야 한다.&lt;/li&gt;
-  &lt;li&gt;객체 그래프 탐색시 처음 실행하는 SQL에 따라 탐색 범위가 결정된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/4.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/4.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;p&gt;–&amp;gt; 객체답게 모델링 할수록 매핑 작업만 늘어난다.&lt;/p&gt;
-
-&lt;h3 id=&quot;jpajava-persistence-api-소개&quot;&gt;JPA(Java Persistence API) 소개&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;자바 진영의 ORM 기술 표준&lt;/li&gt;
-  &lt;li&gt;Object-relational mapping(객체 관계 매핑)&lt;/li&gt;
-  &lt;li&gt;객체는 객체대로 설계&lt;/li&gt;
-  &lt;li&gt;관계형 데이터베이스는 관계형 데이터베이스대로 설계&lt;/li&gt;
-  &lt;li&gt;ORM 프레임워크가 중간에서 매핑&lt;/li&gt;
-  &lt;li&gt;JPA는 애플리케이션과 JDBC 사이에서 동작&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;half &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/5.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/5.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/6.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/6.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/7.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/7.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;JPA는 표준 명세&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/8.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/8.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;JPA를 왜 사용해야 하는가?
-    &lt;ul&gt;
-      &lt;li&gt;SQL 중심적인 개발에서 객체 중심으로 개발&lt;/li&gt;
-      &lt;li&gt;생산성&lt;/li&gt;
-      &lt;li&gt;유지보수&lt;/li&gt;
-      &lt;li&gt;패러다임의 불일치 해결&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;생산성 - JPA와 CRUD
-    &lt;ul&gt;
-      &lt;li&gt;저장: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jpa.persist(member)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;조회: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member member = jpa.find(memberId)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;수정: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;member.setName(“변경할 이름”)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;삭제: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jpa.remove(member)&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;유지보수(기존: 필드 변경시 모든 SQL 수정)
-    &lt;ul&gt;
-      &lt;li&gt;JPA 사용시 필드만 추가하면 됨&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;JPA와 패러다임의 불일치 해결
-    &lt;ul&gt;
-      &lt;li&gt;JPA와 상속: 여러 개의 INSERT 쿼리 자동생성, 여러 개의 테이블을 조인해서 SELECT 쿼리 자동생성&lt;/li&gt;
-      &lt;li&gt;JPA와 연관관계, 객체 그래프 탐색: 서로 다른 두 객체를 연관관계 설정시 적절한 INSERT SELECT 쿼리 자동생성&lt;/li&gt;
-      &lt;li&gt;JPA와 비교하기: 동일한 트랜잭션에서 조회한 엔티티는 같음을 보장(== 동등성 비교)
-     - JPA의 성능 최적화 기능
-       - 1차 캐시와 동일성(identity) 보장
-       - 트랜잭션을 지원하는 쓰기 지연(transactional write-behind)
-       - 지연 로딩(Lazy Loading)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;1차 캐시와 동일성 보장: 같은 트랜잭션 안에서는 같은 엔티티를 반환(약간의 조회 성능 향상)&lt;/li&gt;
-  &lt;li&gt;트랜잭션을 지원하는 쓰기 지연(INSERT): 트랜잭션을 커밋할 때까지 INSERT SQL을 모음, JDBC BATCH SQL 기능을 사용해서 한번에 SQL 전송&lt;/li&gt;
-  &lt;li&gt;트랜잭션을 지원하는 쓰기 지연(UPDATE): UPDATE, DELETE로 인한 로우(ROW)락 시간 최소화, 트랜잭션 커밋 시 UPDATE, DELETE SQL 실행하고, 바로 커밋&lt;/li&gt;
-  &lt;li&gt;지연 로딩과 즉시 로딩
-    &lt;ul&gt;
-      &lt;li&gt;지연로딩:객체가 실제 사용될 때 로딩&lt;/li&gt;
-      &lt;li&gt;즉시 로딩: JOIN SQL로 한번에 연관된 객체까지 미리 조회&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;jpa-시작하기애플리케이션-개발&quot;&gt;JPA 시작하기(애플리케이션 개발)&lt;/h2&gt;
-&lt;h3 id=&quot;jpa-구동-방식&quot;&gt;JPA 구동 방식&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/9.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/9.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;엔티티 매니저 팩토리는 하나만 생성해서 애플리케이션 전체에서 공유&lt;/li&gt;
-  &lt;li&gt;엔티티 매니저는 쓰레드간에 공유X (사용하고 버려야 한다).&lt;/li&gt;
-  &lt;li&gt;JPA의 모든 데이터 변경은 트랜잭션 안에서 실행&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;jpql&quot;&gt;JPQL&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;애플리케이션이 필요한 데이터만 DB에서 불러오려면 결국 검색 조건이 포함된 SQL이 필요&lt;/li&gt;
-  &lt;li&gt;JPA는 SQL을 추상화한 JPQL이라는 객체 지향 쿼리 언어 제공&lt;/li&gt;
-  &lt;li&gt;JPQL은 엔티티 객체를 대상으로 쿼리&lt;/li&gt;
-  &lt;li&gt;SQL은 데이터베이스 테이블을 대상으로 쿼리&lt;/li&gt;
-  &lt;li&gt;SQL을 추상화해서 특정 데이터베이스 SQL에 의존X&lt;/li&gt;
-  &lt;li&gt;JPQL을 한마디로 정의하면 객체 지향 SQL&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;영속성-관리---내부-동작-방식&quot;&gt;영속성 관리 - 내부 동작 방식&lt;/h2&gt;
-&lt;h3 id=&quot;영속성-컨텍스트-1&quot;&gt;영속성 컨텍스트 1&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티 매니저 팩토리와 엔티티 매니저&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/10.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/10.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;영속성 컨텍스트는 논리적인 개념(눈에 보이지 않음)&lt;/li&gt;
-  &lt;li&gt;엔티티 매니저를 통해서 영속성 컨텍스트에 접근&lt;/li&gt;
-  &lt;li&gt;엔티티의 생명주기
-    &lt;ul&gt;
-      &lt;li&gt;비영속 (new/transient): 영속성 컨텍스트와 전혀 관계가 없는 새로운 상태&lt;/li&gt;
-      &lt;li&gt;영속 (managed): 영속성 컨텍스트에 관리되는 상태&lt;/li&gt;
-      &lt;li&gt;준영속 (detached): 영속성 컨텍스트에 저장되었다가 분리된 상태&lt;/li&gt;
-      &lt;li&gt;삭제 (removed): 삭제된 상태&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;영속&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/11.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/11.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//객체를 생성한 상태(비영속)&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;member1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;회원1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;EntityManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createEntityManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTransaction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//객체를 저장한 상태(영속)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;준영속, 삭제&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;detach&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//객체를 삭제한 상태(삭제)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;영속성-컨텍스트-2&quot;&gt;영속성 컨텍스트 2&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티 조회, 1차 캐시에서 조회(1차 캐시에 없는 경우 쿼리 생성)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;half &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/12.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/12.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/13.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/13.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1차 캐시로 반복 가능한 읽기(REPEATABLE READ) 등급의 트랜잭션 격리 수준을 데이터베이스가 아닌 애플리케이션 차원에서 제공&lt;/li&gt;
-  &lt;li&gt;트랜잭션을 지원하는 쓰기 지연&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;half &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/14.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/14.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/15.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/15.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;엔티티 수정(변경 감지)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 영속 엔티티 조회&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;memberA&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 영속 엔티티 데이터 수정&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;memberA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hi&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;memberA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//em.update(member) 이런 코드가 있어야 하지 않을까?&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;commit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// [트랜잭션] 커밋&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;flush 시점에 영속성 컨텍스트 내에서 스냅샷과 Entity를 비교하여 UPDATE 쿼리를 생성한 후에 함께 flush 한다. 이후 commit를 한다.&lt;/li&gt;
-  &lt;li&gt;플러시: 영속성 컨텍스트의 변경내용을 데이터베이스에 반영(1차 캐시 내용이 없어지는 것은 아니고 단지 컨텍스트와 데이터베이스 동기화 작업이라고 보면됨)&lt;/li&gt;
-  &lt;li&gt;플러시 발생
-    &lt;ul&gt;
-      &lt;li&gt;변경 감지&lt;/li&gt;
-      &lt;li&gt;수정된 엔티티를 쓰기 지연 SQL 저장소에 등록&lt;/li&gt;
-      &lt;li&gt;쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송(등록, 수정, 삭제 쿼리)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;플러시 방법
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.flush()&lt;/code&gt; - 직접 호출&lt;/li&gt;
-      &lt;li&gt;트랜잭션 커밋 - 플러시 자동 호출&lt;/li&gt;
-      &lt;li&gt;JPQL 쿼리 실행 - 플러시 자동 호출&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;JPQL 쿼리 실행시 플러시가 자동으로 호출되는 이유: JPQL, 즉 SQL를 데이터베이스에 날려 원하는 결과를 얻기 위해서는 영속성 컨텍스트와 데이터베이스가 동기화 되어있어야 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;memberA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;memberB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;memberC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//중간에 JPQL 실행&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;members&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;준영속 상태
-    &lt;ul&gt;
-      &lt;li&gt;영속 상태의 엔티티가 영속성 컨텍스트에서 분리(detached)&lt;/li&gt;
-      &lt;li&gt;영속성 컨텍스트가 제공하는 기능을 사용 못함&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;준영속 상태로 만드는 방법
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.detach(entity)&lt;/code&gt;: 특정 엔티티만 준영속 상태로 전환&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.clear()&lt;/code&gt;: 영속성 컨텍스트를 완전히 초기화&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.close()&lt;/code&gt;: 영속성 컨텍스트를 종료&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;엔티티-매핑&quot;&gt;엔티티 매핑&lt;/h2&gt;
-&lt;h3 id=&quot;객체와-테이블-매핑&quot;&gt;객체와 테이블 매핑&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티 매핑 소개
-    &lt;ul&gt;
-      &lt;li&gt;객체와 테이블 매핑: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Table&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;필드와 컬럼 매핑: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Column&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;기본 키 매핑: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Id&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;연관관계 매핑: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToOne&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@JoinColumn&lt;/code&gt;(외래키를 매핑할때 사용한다.)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;객체와 테이블 매핑
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity&lt;/code&gt;가 붙은 클래스는 JPA가 관리, 엔티티라 한다.
-        &lt;ul&gt;
-          &lt;li&gt;기본 생성자 필수(파라미터가 없는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected&lt;/code&gt; 생성자)&lt;/li&gt;
-          &lt;li&gt;저장할 필드에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final&lt;/code&gt; 사용 X&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final&lt;/code&gt; 클래스, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enum&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;interface&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;inner&lt;/code&gt; 클래스 사용X&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity&lt;/code&gt; 속성 정리
-        &lt;ul&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;name&lt;/code&gt;: JPA에서 사용할 엔티티 이름을 지정한다. 기본값: 클래스 이름을 그대로 사용(예: Member). 같은 클래스 이름이 없으면 가급적 기본값을 사용한다.&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Table&lt;/code&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;속성&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;기능&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;기본값&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;name&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;매핑할 테이블 이름&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;엔티티 이름을 사용&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;catalog&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;데이터베이스 catalog 매핑&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;schema&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;데이터베이스 schema 매핑&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;uniqueConstraints (DDL)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;DDL 생성 시에 유니크 제약 조건 생성&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;데이터베이스-스키마-자동-생성&quot;&gt;데이터베이스 스키마 자동 생성&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;DDL을 애플리케이션 실행 시점에 자동 생성&lt;/li&gt;
-  &lt;li&gt;테이블중심 -&amp;gt; 객체중심&lt;/li&gt;
-  &lt;li&gt;데이터베이스 방언을 활용해서 데이터베이스에 맞는 적절한 DDL 생성&lt;/li&gt;
-  &lt;li&gt;이렇게 생성된 DDL은 개발 장비에서만 사용&lt;/li&gt;
-  &lt;li&gt;생성된 DDL은 운영서버에서는 사용하지 않거나, 적절히 다듬은 후 사용&lt;/li&gt;
-  &lt;li&gt;데이터베이스 스키마 자동 생성 - 속성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;옵션&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;create&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;기존테이블 삭제 후 다시 생성 (DROP + CREATE)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;create-drop&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;create와 같으나 종료시점에 테이블 DROP&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;update&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;변경분만 반영(운영DB에는 사용하면 안됨)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;validate&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;엔티티와 테이블이 정상 매핑되었는지만 확인&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;none&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;사용하지 않음&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;데이터베이스 스키마 자동 생성 - 주의
-    &lt;ul&gt;
-      &lt;li&gt;운영 장비에는 절대 create, create-drop, update 사용하면 안된다.&lt;/li&gt;
-      &lt;li&gt;개발 초기 단계는 create 또는 update&lt;/li&gt;
-      &lt;li&gt;테스트 서버는 update 또는 validate&lt;/li&gt;
-      &lt;li&gt;스테이징과 운영 서버는 validate 또는 none&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;DDL 생성 기능
-    &lt;ul&gt;
-      &lt;li&gt;제약조건 추가: 회원 이름은 필수, 10자 초과X -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Column(nullable = false, length = 10)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;유니크 제약조건 추가 -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Table(uniqueConstraints = {@UniqueConstraint( name = &quot;NAME_AGE_UNIQUE&quot;, columnNames = {&quot;NAME&quot;, &quot;AGE&quot;})})&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;필드와-컬럼-매핑&quot;&gt;필드와 컬럼 매핑&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Enumerated&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;EnumType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RoleType&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;roleType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Temporal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TemporalType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TIMESTAMP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createdDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Temporal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TemporalType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TIMESTAMP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastModifiedDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Lob&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;//Getter, Setter&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;어노테이션&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;@Column&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;컬럼 매핑&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;@Temporal&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;날짜 타입 매핑&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;@Enumerated&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;enum 타입 매핑&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;@Lob&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;BLOB, CLOB 매핑&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;@Transient&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;특정 필드를 컬럼에 매핑하지 않음(매핑 무시)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;@Column&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;속성&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;설명&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;기본값&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;name&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;필드와 매핑할 테이블의 컬럼 이름&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;객체의 필드 이름&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;insertable, updatable&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;등록, 변경 가능 여부&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;TRUE&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;nullable(DDL)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;null 값의 허용 여부를 설정한다. false로 설정하면 DDL 생성 시에 not null 제약조건이 붙는다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;unique(DDL)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;@Table의 uniqueConstraints와 같지만 한 컬럼에 간단히 유니크 제약조건을 걸 때 사용한다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;columnDefinition (DDL)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;데이터베이스 컬럼 정보를 직접 줄 수 있다.  ex) varchar(100) default ‘EMPTY’&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;필드의 자바 타입과 방언 정보를 사용해&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;length(DDL)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;문자 길이 제약조건, String 타입에만 사용한다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;255&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;precision, scale(DDL)&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;BigDecimal 타입에서 사용한다(BigInteger도 사용할 수 있다). precision은 소수점을 포함한 전체 자릿수를, scale은 소수의 자릿수 다. 참고로 double, float 타입에는 적용되지 않는다. 아주 큰 숫자나 정밀한 소수를 다루어야 할 때만 사용한다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;precision=19, scale=2&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Enumerated&lt;/code&gt;: 자바 enum 타입을 매핑할 때 사용(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnumType.STRING&lt;/code&gt; 사용권장)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Temporal&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LocalDate&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LocalDateTime&lt;/code&gt;을 사용할 때는 생략 가능(최신 하이버네이트 지원)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Lob&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Lob&lt;/code&gt;에는 지정할 수 있는 속성이 없다. 매핑하는 필드 타입이 문자면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CLOB&lt;/code&gt; 매핑, 나머지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BLOB&lt;/code&gt; 매핑&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;기본-키-매핑&quot;&gt;기본 키 매핑&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;기본 키 매핑 어노테이션: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Id&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GeneratedValue&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;AUTO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;기본 키 매핑 방법
-    &lt;ul&gt;
-      &lt;li&gt;직접 할당: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Id&lt;/code&gt;만 사용&lt;/li&gt;
-      &lt;li&gt;자동 생성(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GeneratedValue&lt;/code&gt;)
-        &lt;ul&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IDENTITY&lt;/code&gt;: 데이터베이스에 위임, MYSQL&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SEQUENCE&lt;/code&gt;: 데이터베이스 시퀀스 오브젝트 사용, ORACLE(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SequenceGenerator&lt;/code&gt; 필요)&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TABLE&lt;/code&gt;: 키 생성용 테이블 사용, 모든 DB에서 사용(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@TableGenerator&lt;/code&gt; 필요)&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AUTO&lt;/code&gt;: 방언에 따라 자동 지정, 기본값&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;IDENTITY 전략 - 특징
-    &lt;ul&gt;
-      &lt;li&gt;기본 키 생성을 데이터베이스에 위임&lt;/li&gt;
-      &lt;li&gt;주로 MySQL, PostgreSQL, SQL Server, DB2에서 사용(예: MySQL의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AUTO_ INCREMENT&lt;/code&gt;)&lt;/li&gt;
-      &lt;li&gt;JPA는 보통 트랜잭션 커밋 시점에 INSERT SQL 실행&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AUTO_ INCREMENT&lt;/code&gt;는 데이터베이스에 INSERT SQL을 실행한 이후에 ID 값을 알 수 있음&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IDENTITY&lt;/code&gt; 전략은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.persist()&lt;/code&gt; 시점에 즉시 INSERT SQL 실행하고 DB에서 식별자를 조회&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;SEQUENCE 전략 - 특징
-    &lt;ul&gt;
-      &lt;li&gt;데이터베이스 시퀀스는 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트(예: 오라클 시퀀스)&lt;/li&gt;
-      &lt;li&gt;오라클, PostgreSQL, DB2, H2 데이터베이스에서 사용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@SequenceGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MEMBER_SEQ_GENERATOR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,
-        sequenceName= “MEMBER_SEQ&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//매핑할 데이터베이스 시퀀스 이름&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;initialValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;allocationSize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SEQUENCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;속성&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;설명&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;기본값&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;name&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;식별자 생성기 이름&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;필수&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;sequenceName&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;데이터베이스에 등록되어 있는 시퀀스 이름&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;hibernate_sequence&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;initialValue&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;DDL 생성시에만 사용됨, 시퀀스 DDL을 생성할 때 처음 시작하는 수를 지정한다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;allocationSize&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;시퀀스 한 번 호출에 증가하는 수(성능 최적화에 사용됨 데이터베이스 시퀀스 값이 하나씩 증가하도록 설정되어 있으면 이 값을 반드시 1로 설정해야 한다&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;50&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;catalog, schema&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;데이터베이스 catalog, schema 이름&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TABLE 전략
-    &lt;ul&gt;
-      &lt;li&gt;키 생성 전용 테이블을 하나 만들어서 데이터베이스 시퀀스를 흉내내는 전략&lt;/li&gt;
-      &lt;li&gt;장점: 모든 데이터베이스에 적용 가능&lt;/li&gt;
-      &lt;li&gt;단점: 성능&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;권장하는 식별자 전략
-    &lt;ul&gt;
-      &lt;li&gt;기본 키 제약 조건: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 아님, 유일, 변하면 안된다.&lt;/li&gt;
-      &lt;li&gt;미래까지 이 조건을 만족하는 자연키는 찾기 어렵다. &lt;strong&gt;대리키&lt;/strong&gt;(대체키)를 사용하자.&lt;/li&gt;
-      &lt;li&gt;예를 들어 주민등록번호도 기본키로 적절하기 않다.&lt;/li&gt;
-      &lt;li&gt;권장: Long형 + 대체키 + 키 생성전략 사용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;연관관계-매핑-기초&quot;&gt;연관관계 매핑 기초&lt;/h2&gt;
-&lt;h3 id=&quot;연관관계가-필요한-이유&quot;&gt;연관관계가 필요한 이유&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;객체를 테이블에 맞추어 데이터 중심으로 모델링하면, 협력 관계를 만들 수 없다.&lt;/li&gt;
-  &lt;li&gt;객체는 참조를 사용해서 연관된 객체를 찾는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;단방향-연관관계&quot;&gt;단방향 연관관계&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/16.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/16.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;USERNAME&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//    @Column(name = &quot;TEAM_ID&quot;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//    private Long teamId;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/17.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/17.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;h3 id=&quot;양방향-연관관계와-연관관계의-주인1---기본&quot;&gt;양방향 연관관계와 연관관계의 주인1 - 기본&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/18.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/18.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;USERNAME&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@OneToMany&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mappedBy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;team&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;members&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;연관관계의 주인과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt;: 객체와 테이블간에 연관관계를 맺는 차이를 이해해야 한다.&lt;/li&gt;
-  &lt;li&gt;객체와 테이블이 관계를 맺는 차이
-    &lt;ul&gt;
-      &lt;li&gt;객체 연관관계 = 2개: 회원 -&amp;gt; 팀 연관관계 1개(단방향) + 팀 -&amp;gt; 회원 연관관계 1개(단방향)&lt;/li&gt;
-      &lt;li&gt;테이블 연관관계 = 1개: 회원 &amp;lt;-&amp;gt; 팀의 연관관계 1개(양방향)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;객체의 양방향 관계는 사실 양방향 관계가 아니라 서로 다른 단뱡향 관계 2개다.&lt;/li&gt;
-  &lt;li&gt;테이블은 외래키 하나로 두 테이블의 연관관계를 관리, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MEMBER.TEAM_ID&lt;/code&gt; 외래키 하나로 양방향 연관관계 가짐 (양쪽으로 조인할 수 있다.)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEMBER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TEAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TEAM_ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TEAM_ID&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TEAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEMBER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TEAM_ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TEAM_ID&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;둘 중 하나로 외래키를 관리해야 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/19.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/19.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;연관관계의 주인(Owner)
-    &lt;ul&gt;
-      &lt;li&gt;객체의 두 관계중 하나를 연관관계의 주인으로 지정&lt;/li&gt;
-      &lt;li&gt;연관관계의 주인만이 외래키를 관리(등록, 수정)&lt;/li&gt;
-      &lt;li&gt;주인이 아닌쪽은 읽기만 가능&lt;/li&gt;
-      &lt;li&gt;주인은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt; 속성 사용X&lt;/li&gt;
-      &lt;li&gt;주인이 아니면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt; 속성으로 주인 지정&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;누구를 주인으로? -&amp;gt; 외래 키가 있는 있는 곳을 주인으로 정해라&lt;/li&gt;
-  &lt;li&gt;양방향 매핑시 가장 많이 하는 실수&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;TeamA&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;member1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//역방향(주인이 아닌 방향)만 연관관계 설정&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMembers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/20.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/20.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;h3 id=&quot;양방향-연관관계와-연관관계의-주인2---주의점&quot;&gt;양방향 연관관계와 연관관계의 주인2 - 주의점&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;순수 객체 상태를 고려해서 항상 양쪽에 값을 설정하자
-    &lt;ul&gt;
-      &lt;li&gt;연관관계 설정 후 데이터베이스에서 객체를 가져오면 괜찮으나 1차 캐시에서 값을 가져오는 경우 NPE가 발생할 수 있다.&lt;/li&gt;
-      &lt;li&gt;테스트 케이스 작성시 NPE 또는 빈 객체가 조회될 수도 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;연관관계 편의 메소드를 생성하자&lt;/li&gt;
-  &lt;li&gt;양방향 매핑시에 무한 루프를 조심하자(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toString()&lt;/code&gt;, lombok, JSON 생성 라이브러리)&lt;/li&gt;
-  &lt;li&gt;양방향 매핑 정리
-    &lt;ul&gt;
-      &lt;li&gt;단방향 매핑만으로도 이미 연관관계 매핑은 완료&lt;/li&gt;
-      &lt;li&gt;양방향 매핑은 반대 방향으로 조회(객체 그래프 탐색) 기능이 추가된 것 뿐&lt;/li&gt;
-      &lt;li&gt;JPQL에서 역방향으로 탐색할 일이 많음&lt;/li&gt;
-      &lt;li&gt;단방향 매핑을 잘 하고 양방향은 필요할 때 추가해도 됨 (테이블에 영향을 주지 않음)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;연관관계의 주인을 정하는 기준
-    &lt;ul&gt;
-      &lt;li&gt;비즈니스 로직을 기준으로 연관관계의 주인을 선택하면 안됨&lt;/li&gt;
-      &lt;li&gt;연관관계의 주인은 외래키의 위치를 기준으로 정해야함&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;다양한-연관관계-매핑&quot;&gt;다양한 연관관계 매핑&lt;/h2&gt;
-&lt;h3 id=&quot;연관관계-매핑시-고려사항-3가지&quot;&gt;연관관계 매핑시 고려사항 3가지&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;다중성(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToOne&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToMany&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToOne&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToMany&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;단방향, 양방향&lt;/li&gt;
-  &lt;li&gt;연관관계의 주인&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;다대일-n1&quot;&gt;다대일 [N:1]&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/21.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/21.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;가장 많이 사용하는 연관관계&lt;/li&gt;
-  &lt;li&gt;외래키가 있는 쪽이 연관관계의 주인&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;일대다-1n&quot;&gt;일대다 [1:N]&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/22.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/22.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;테이블 일대다 관계는 항상 다(N)쪽에 외래키가 있음&lt;/li&gt;
-  &lt;li&gt;객체와 테이블의 차이 때문에 반대편 테이블의 외래키를 관리하는 특이한 구조&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@JoinColumn&lt;/code&gt;을 꼭 사용해야 함. 그렇지 않으면 조인 테이블 방식을 사용함(중간에 테이블을 하나 추가함)&lt;/li&gt;
-  &lt;li&gt;일대다 단방향 매핑의 단점
-    &lt;ul&gt;
-      &lt;li&gt;엔티티가 관리하는 외래키가 다른 테이블에 있음&lt;/li&gt;
-      &lt;li&gt;연관관계 관리를 위해 추가로 외래키와 관련하여 UPDATE SQL 실행&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;일대다 양방향의 경우 공식적인 표준스펙은 아니며 권장하지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;일대일-11&quot;&gt;일대일 [1:1]&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;일대일 관계는 그 반대도 일대일&lt;/li&gt;
-  &lt;li&gt;주테이블이나 대상테이블 중에 외래키 선택 가능&lt;/li&gt;
-  &lt;li&gt;외래 키에 데이터베이스 유니크(UNI) 제약조건 추가&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/23.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/23.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;주테이블에 외래키
-    &lt;ul&gt;
-      &lt;li&gt;주 객체가 대상 객체의 참조를 가지는 것처럼 주 테이블에 외래키를 두고 대상 테이블을 찾음&lt;/li&gt;
-      &lt;li&gt;객체지향 개발자 선호&lt;/li&gt;
-      &lt;li&gt;JPA 매핑 편리(주테이블이므로 단방향 연관관계만 설정)&lt;/li&gt;
-      &lt;li&gt;장점: 주 테이블만 조회해도 대상 테이블에 데이터가 있는지 확인 가능&lt;/li&gt;
-      &lt;li&gt;단점: 값이 없으면 외래 키에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 허용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;대상테이블에 외래키
-    &lt;ul&gt;
-      &lt;li&gt;대상 테이블에 외래 키가 존재&lt;/li&gt;
-      &lt;li&gt;전통적인 데이터베이스 개발자 선호&lt;/li&gt;
-      &lt;li&gt;장점: 주 테이블과 대상 테이블을 일대일에서 일대다 관계로 변경할 때 테이블 구조 유지&lt;/li&gt;
-      &lt;li&gt;단점: 프록시 기능의 한계로 지연 로딩으로 설정해도 항상 즉시 로딩됨 -&amp;gt; 대상테이블에 외래키가 존재하는 경우 주객체를 로딩할때 대상객체가 존재하는지 아닌지를 주테이블 만으로는 알수가 없기에 어차피 JOIN 쿼리가 나가게 된다.&lt;/li&gt;
-      &lt;li&gt;단점: 대상테이블에 외래키가 있으므로 양방향 연관관계 설정 필요&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;다대다-nm&quot;&gt;다대다 [N:M]&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;관계형 데이터베이스는 정규화된 테이블 2개로 다대다 관계를 표현할 수 없음&lt;/li&gt;
-  &lt;li&gt;연결 테이블을 추가해서 일대다, 다대일 관계로 풀어내야함&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/24.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/24.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;다대다 매핑의 한계
-    &lt;ul&gt;
-      &lt;li&gt;편리해 보이지만 실무에서 사용X&lt;/li&gt;
-      &lt;li&gt;연결 테이블이 단순히 연결만 하고 끝나지 않음&lt;/li&gt;
-      &lt;li&gt;주문시간, 수량 같은 데이터가 들어올 수 있음&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;다대다 한계 극복
-    &lt;ul&gt;
-      &lt;li&gt;연결 테이블용 엔티티 추가(연결 테이블을 엔티티로 승격)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/25.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/25.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;고급-매핑&quot;&gt;고급 매핑&lt;/h2&gt;
-&lt;h3 id=&quot;상속관계-매핑&quot;&gt;상속관계 매핑&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;관계형 데이터베이스는 상속 관계X&lt;/li&gt;
-  &lt;li&gt;슈퍼타입 서브타입 관계라는 모델링 기법이 객체 상속과 유사&lt;/li&gt;
-  &lt;li&gt;상속관계 매핑: 객체의 상속과 구조와 DB의 슈퍼타입 서브타입 관계를 매핑&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/26.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/26.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;각각 테이블로 변환 -&amp;gt; 조인전략(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JOINED&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;테이블 정규화&lt;/li&gt;
-      &lt;li&gt;외래 키 참조 무결성 제약조건 활용가능&lt;/li&gt;
-      &lt;li&gt;저장공간 효율화&lt;/li&gt;
-      &lt;li&gt;조회시 조인을 많이 사용, 성능저하&lt;/li&gt;
-      &lt;li&gt;데이터 저장시 INSERT SQL 2번 호출&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/27.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/27.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;통합 테이블로 변환 -&amp;gt; 단일 테이블 전략(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SINGLE_TABLE&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;조인이 필요 없으므로 일반적으로 조회 성능이 빠름&lt;/li&gt;
-      &lt;li&gt;조회 쿼리가 단순함&lt;/li&gt;
-      &lt;li&gt;자식 엔티티가 매핑한 컬럼은 모두 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 허용&lt;/li&gt;
-      &lt;li&gt;단일 테이블에 모든 것을 저장하므로 테이블이 커질 수 있다. 상황에 따라서 조회 성능이 오히려 느려질 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/28.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/28.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;서브타입 테이블로 변환 -&amp;gt; 구현 클래스마다 테이블 전략(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TABLE_PER_CLASS&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;이 전략은 데이터베이스 설계자와 ORM 전문가 둘 다 추천X&lt;/li&gt;
-      &lt;li&gt;여러 자식 테이블을 함께 조회할 때 성능이 느림(UNION SQL 필요)&lt;/li&gt;
-      &lt;li&gt;자식 테이블을 통합해서 쿼리하기 어려움&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/29.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/29.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;주요 어노테이션
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Inheritance(strategy=InheritanceType.XXX)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DiscriminatorColumn(name=“DTYPE”)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DiscriminatorValue(“XXX”)&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;mappedsuperclass---매핑-정보-상속&quot;&gt;@MappedSuperclass - 매핑 정보 상속&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;공통 매핑 정보가 필요할 때 사용(id, name)&lt;/li&gt;
-  &lt;li&gt;상속관계 매핑X&lt;/li&gt;
-  &lt;li&gt;엔티티X, 테이블과 매핑X&lt;/li&gt;
-  &lt;li&gt;부모 클래스를 상속 받는 자식 클래스에 매핑 정보만 제공&lt;/li&gt;
-  &lt;li&gt;조회, 검색 불가(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.find(BaseEntity&lt;/code&gt;) 불가)&lt;/li&gt;
-  &lt;li&gt;직접 생성해서 사용할 일이 없으므로 추상 클래스 권장&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MappedSuperclass&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;테이블과 관계 없고, 단순히 엔티티가 공통으로 사용하는 매핑 정보를 모으는 역할&lt;/li&gt;
-      &lt;li&gt;주로 등록일, 수정일, 등록자, 수정자 같은 전체 엔티티에서 공통으로 적용하는 정보를 모을 때 사용&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity&lt;/code&gt; 클래스는 엔티티나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MappedSuperclass&lt;/code&gt;로 지정한 클래스만 상속 가능&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;프록시와-연관관계-관리&quot;&gt;프록시와 연관관계 관리&lt;/h2&gt;
-&lt;h3 id=&quot;프록시&quot;&gt;프록시&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/30.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/30.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.find()&lt;/code&gt; vs &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.getReference()&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.find()&lt;/code&gt;: 데이터베이스를 통해서 실제 엔티티 객체 조회&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.getReference()&lt;/code&gt;: 데이터베이스 조회를 미루는 가짜(프록시) 엔티티 객체 조회&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;프록시 특징
-    &lt;ul&gt;
-      &lt;li&gt;실제 클래스를 상속 받아서 만들어짐&lt;/li&gt;
-      &lt;li&gt;실제 클래스와 겉모양이 같다.&lt;/li&gt;
-      &lt;li&gt;사용하는 입장에서는 진짜 객체인지 프록시 객체인지 구분하지 않고 사용하면 됨(이론상)&lt;/li&gt;
-      &lt;li&gt;프록시 객체는 실제 객체의 참조(target)를 보관&lt;/li&gt;
-      &lt;li&gt;프록시 객체를 호출하면 프록시 객체는 실제 객체의 메소드 호출&lt;/li&gt;
-      &lt;li&gt;프록시 객체는 처음 사용할때 한 번만 초기화&lt;/li&gt;
-      &lt;li&gt;초기화되면 프록시 객체를 통해서 실제 엔티티에 접근 가능&lt;/li&gt;
-      &lt;li&gt;프록시 객체는 원본 엔티티를 상속받음, 따라서 타입 체크시 주의해야함 (== 비교 실패, 대신 instance of 사용)&lt;/li&gt;
-      &lt;li&gt;영속성 컨텍스트에 찾는 엔티티가 이미 있으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.getReference()&lt;/code&gt;를 호출해도 실제 엔티티 반환&lt;/li&gt;
-      &lt;li&gt;영속성 컨텍스트의 도움을 받을 수 없는 준영속 상태일 때, 프록시를 초기화하면 문제 발생(하이버네이트는 org.hibernate.LazyInitializationException 예외를 터트림)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;즉시-로딩과-지연-로딩&quot;&gt;즉시 로딩과 지연 로딩&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티 참고관계에서 참조하는 객체의 필드값을 이용할 때까지 프록시 객체로 지연로딩을 구현(사용하는 시점에 쿼리가 나감)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;USERNAME&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fetch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FetchType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LAZY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//**&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;프록시와 즉시로딩 주의
-    &lt;ul&gt;
-      &lt;li&gt;가급적 지연 로딩만 사용(특히 실무에서)&lt;/li&gt;
-      &lt;li&gt;즉시 로딩을 적용하면 예상하지 못한 SQL이 발생&lt;/li&gt;
-      &lt;li&gt;즉시 로딩은 JPQL에서 N+1 문제를 일으킨다.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToOne&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToOne은&lt;/code&gt; 기본이 즉시 로딩 -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LAZY&lt;/code&gt;로 설정&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToMany&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToMany&lt;/code&gt;는 기본이 지연 로딩&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;영속성-전이-cascade&quot;&gt;영속성 전이: CASCADE&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;특정 엔티티를 영속 상태로 만들 때 연관된 엔티티도 함께 영속 상태로 만들도 싶을 때&lt;/li&gt;
-  &lt;li&gt;엔티티를 영속화할 때 연관된 엔티티도 함께 영속화하는 편리함을 제공할 뿐&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL&lt;/code&gt;: 모두 적용&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PERSIST&lt;/code&gt;: 영속&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REMOVE&lt;/code&gt;: 삭제&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;고아-객체&quot;&gt;고아 객체&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;고아 객체 제거: 부모 엔티티와 연관관계가 끊어진 자식 엔티티를 자동으로 삭제&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orphanRemoval = true&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;참조가 제거된 엔티티는 다른 곳에서 참조하지 않는 고아 객체로 보고 삭제하는 기능&lt;/li&gt;
-  &lt;li&gt;참조하는 곳이 하나일 때 사용해야함!&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToOne&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToMany&lt;/code&gt;만 가능&lt;/li&gt;
-  &lt;li&gt;개념적으로 부모를 제거하면 자식은 고아가 된다. 따라서 고아 객체 제거 기능을 활성화 하면, 부모를 제거할 때 자식도 함께 제거된다. 이것은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CascadeType.REMOVE&lt;/code&gt;처럼 동작한다.&lt;/li&gt;
-  &lt;li&gt;영속성 전이 + 고아 객체, 생명주기(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CascadeType.ALL + orphanRemovel=true&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;스스로 생명주기를 관리하는 엔티티는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.persist()&lt;/code&gt;로 영속화, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.remove()&lt;/code&gt;로 제거&lt;/li&gt;
-      &lt;li&gt;두 옵션을 모두 활성화하면 부모 엔티티를 통해서 자식의 생명 주기를 관리할 수 있음&lt;/li&gt;
-      &lt;li&gt;도메인 주도 설계(DDD)의 Aggregate Root개념을 구현할 때 유용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;값-타입&quot;&gt;값 타입&lt;/h2&gt;
-&lt;h3 id=&quot;기본값-타입&quot;&gt;기본값 타입&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;엔티티 타입
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity&lt;/code&gt;로 정의하는 객체&lt;/li&gt;
-      &lt;li&gt;데이터가 변해도 식별자로 지속해서 추적 가능&lt;/li&gt;
-      &lt;li&gt;예)회원 엔티티의 키나 나이값을 변경해도 식별자로 인식 가능&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;값 타입
-    &lt;ul&gt;
-      &lt;li&gt;int, Integer, String처럼 단순히 값으로 사용하는 자바 기본 타입이나 객체&lt;/li&gt;
-      &lt;li&gt;식별자가 없고 값만 있으므로 변경시 추적 불가&lt;/li&gt;
-      &lt;li&gt;예) 숫자 100을 200으로 변경하면 완전히 다른 값으로 대체
-     - 값 타입 분류
-       - 기본값 타입(int, double, Integer, Long, String): 생명주기를 엔티티의 의존, 값 타입은 공유하면 X
-       - 임베디드 타입(embedded type, 복합 값 타입)
-       - 컬렉션 값 타입(collection value type)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;임베디드-타입&quot;&gt;임베디드 타입&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;임베디드 타입
-    &lt;ul&gt;
-      &lt;li&gt;새로운 값 타입을 직접 정의할 수 있음&lt;/li&gt;
-      &lt;li&gt;JPA는 임베디드 타입(embedded type)이라 함&lt;/li&gt;
-      &lt;li&gt;주로 기본 값 타입을 모아서 만들어서 복합 값 타입이라고도 함&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Embeddable&lt;/code&gt;: 값 타입을 정의하는 곳에 표시&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Embedded&lt;/code&gt;: 값 타입을 사용하는 곳에 표시&lt;/li&gt;
-      &lt;li&gt;기본 생성자 필수&lt;/li&gt;
-      &lt;li&gt;재사용&lt;/li&gt;
-      &lt;li&gt;높은 응집도&lt;/li&gt;
-      &lt;li&gt;임베디드 타입을 포함한 모든 값 타입은, 값 타입을 소유한 엔티티에 생명주기를 의존함&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;임베디드 타입과 테이블 매핑
-    &lt;ul&gt;
-      &lt;li&gt;임베디드 타입은 엔티티의 값일 뿐이다.&lt;/li&gt;
-      &lt;li&gt;임베디드 타입을 사용하기 전과 후에 매핑하는 테이블은 같다.&lt;/li&gt;
-      &lt;li&gt;잘 설계한 ORM 애플리케이션은 매핑한 테이블의 수보다 클래스의 수가 더 많음&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@AttributeOverride&lt;/code&gt;: 속성 재정의
-    &lt;ul&gt;
-      &lt;li&gt;한 엔티티에서 같은 값 타입을 사용하면 컬럼명이 중복됨&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@AttributeOverrides&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@AttributeOverride&lt;/code&gt;를 사용해서 컬럼명 속성을 재정의&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;값-타입과-불변-객체&quot;&gt;값 타입과 불변 객체&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;값 타입은 복잡한 객체 세상을 조금이라도 단순화하려고 만든 개념이다. 따라서 값 타입은 단순하고 안전하게 다룰 수 있어야 한다.&lt;/li&gt;
-  &lt;li&gt;값 타입 공유 참조
-    &lt;ul&gt;
-      &lt;li&gt;임베디드 타입 같은 값 타입을 여러 엔티티에서 공유하면 위험함&lt;/li&gt;
-      &lt;li&gt;임베디드 타입처럼 직접 정의한 값 타입은 자바의 기본 타입이 아니라 객체 타입이다.&lt;/li&gt;
-      &lt;li&gt;객체 타입은 참조 값을 직접 대입하는 것을 막을 방법이 없다.&lt;/li&gt;
-      &lt;li&gt;객체의 공유 참조는 피할 수 없다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;불변 객체
-    &lt;ul&gt;
-      &lt;li&gt;객체 타입을 수정할 수 없게 만들면 부작용을 원천 차단&lt;/li&gt;
-      &lt;li&gt;값 타입은 불변 객체(immutable object)로 설계해야함&lt;/li&gt;
-      &lt;li&gt;불변 객체: 생성 시점 이후 절대 값을 변경할 수 없는 객체&lt;/li&gt;
-      &lt;li&gt;생성자로만 값을 설정하고 수정자(Setter)를 만들지 않으면 됨&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;값-타입의-비교&quot;&gt;값 타입의 비교&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;동일성(identity) 비교: 인스턴스의 참조 값을 비교, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;==&lt;/code&gt; 사용&lt;/li&gt;
-  &lt;li&gt;동등성(equivalence) 비교: 인스턴스의 값을 비교, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;equals()&lt;/code&gt;사용&lt;/li&gt;
-  &lt;li&gt;값 타입의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;equals()&lt;/code&gt; 메소드를 적절하게 재정의(주로 모든 필드 사용)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;값-타입-컬렉션권장하지-않음&quot;&gt;값 타입 컬렉션(권장하지 않음)&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/31.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/31.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;값 타입을 하나 이상 저장할 때 사용&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ElementCollection&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CollectionTable&lt;/code&gt; 사용&lt;/li&gt;
-  &lt;li&gt;데이터베이스는 컬렉션을 같은 테이블에 저장할 수 없다.&lt;/li&gt;
-  &lt;li&gt;컬렉션을 저장하기 위한 별도의 테이블이 필요함&lt;/li&gt;
-  &lt;li&gt;값 타입 컬렉션도 &lt;strong&gt;지연 로딩&lt;/strong&gt; 전략 사용&lt;/li&gt;
-  &lt;li&gt;값 타입 수정시 필드 수정이 아닌 값 타입 단위로 교체해주어야 한다.(부작용 방지)&lt;/li&gt;
-  &lt;li&gt;값 타입 컬렉션의 제약사항
-    &lt;ul&gt;
-      &lt;li&gt;값 타입은 엔티티와 다르게 식별자 개념이 없다.&lt;/li&gt;
-      &lt;li&gt;값은 변경하면 추적이 어렵다.&lt;/li&gt;
-      &lt;li&gt;값 타입 컬렉션에 변경 사항이 발생하면, 주인 엔티티와 연관된 모든 데이터를 삭제하고, 값 타입 컬렉션에 있는 현재 값을 모두 다시 저장한다.&lt;/li&gt;
-      &lt;li&gt;값 타입 컬렉션을 매핑하는 테이블은 모든 컬럼을 묶어서 기본 키를 구성해야 함: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; 입력X, 중복 저장X&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;값 타입 컬렉션 대안
-    &lt;ul&gt;
-      &lt;li&gt;값 타입 컬렉션 대신에 일대다 관계를 고려&lt;/li&gt;
-      &lt;li&gt;일대다 관계를 위한 엔티티를 만들고, 여기에서 값 타입을 사용&lt;/li&gt;
-      &lt;li&gt;영속성 전이(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cascade&lt;/code&gt;) + 고아 객체 제거를 사용해서 값 타입 컬렉션 처럼 사용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;–&amp;gt; 값 타입은 정말 값 타입이라 판단될 때만 사용, 엔티티와 값 타입을 혼동해서 엔티티를 값 타입으로 만들면 안됨, 식별자가 필요하고 지속해서 값을 추적 / 변경해야 한다면 그것은 값 타입이 아닌 엔티티&lt;/p&gt;
-
-&lt;h2 id=&quot;객체지향-쿼리-언어1---기본-문법&quot;&gt;객체지향 쿼리 언어1 - 기본 문법&lt;/h2&gt;
-&lt;h3 id=&quot;소개&quot;&gt;소개&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;JPQL&lt;/li&gt;
-  &lt;li&gt;QueryDSL&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;네이티브 SQL&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;JPQL
-    &lt;ul&gt;
-      &lt;li&gt;검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색&lt;/li&gt;
-      &lt;li&gt;애플리케이션이 필요한 데이터만 DB에서 불러오려면 결국 검색 조건이 포함된 SQL이 필요&lt;/li&gt;
-      &lt;li&gt;JPA는 SQL을 추상화한 JPQL이라는 객체 지향 쿼리 언어 제공&lt;/li&gt;
-      &lt;li&gt;JPQL은 엔티티 객체를 대상으로 쿼리&lt;/li&gt;
-      &lt;li&gt;SQL은 데이터베이스 테이블을 대상으로 쿼리&lt;/li&gt;
-      &lt;li&gt;SQL을 추상화해서 특정 데이터베이스 SQL에 의존X&lt;/li&gt;
-      &lt;li&gt;JPQL을 한마디로 정의하면 객체 지향 SQL&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jpql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.age &amp;gt; 18&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jpql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;USERNAME&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;USERNAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TEAM_ID&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TEAM_ID&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;where&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;queryDSL
-    &lt;ul&gt;
-      &lt;li&gt;문자가 아닌 자바코드로 JPQL을 작성할 수 있음&lt;/li&gt;
-      &lt;li&gt;JPQL 빌더 역할&lt;/li&gt;
-      &lt;li&gt;컴파일 시점에 문법 오류를 찾을 수 있음&lt;/li&gt;
-      &lt;li&gt;동적쿼리 작성 편리함&lt;/li&gt;
-      &lt;li&gt;단순하고 쉬움&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//JPQL&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//select m from Member m where m.age &amp;gt; 18&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;JPAFactoryQuery&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JPAQueryFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;QMember&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QMember&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 
-        &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;selectFrom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;orderBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;desc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;네이티브 SQL
-    &lt;ul&gt;
-      &lt;li&gt;JPA가 제공하는 SQL을 직접 사용하는 기능&lt;/li&gt;
-      &lt;li&gt;JPQL로 해결할 수 없는 특정 데이터베이스에 의존적인 기능&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;SELECT ID, AGE, TEAM_ID, NAMEFROM MEMBERWHERE NAME = ‘kim’&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createNativeQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;JDBC 직접 사용, SpringJdbcTemplate 등
-    &lt;ul&gt;
-      &lt;li&gt;JPA를 사용하면서 JDBC 커넥션을 직접 사용하거나, 스프링 JdbcTemplate, 마이바티스등을 함께 사용 가능&lt;/li&gt;
-      &lt;li&gt;단 영속성 컨텍스트를 적절한 시점에 강제로 플러시 필요&lt;/li&gt;
-      &lt;li&gt;예) JPA를 우회해서 SQL을 실행하기 직전에 영속성 컨텍스트 수동 플러시&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;기본-문법과-쿼리-api&quot;&gt;기본 문법과 쿼리 API&lt;/h3&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티 이름 사용, 테이블 이름이 아님(Member)&lt;/li&gt;
-  &lt;li&gt;별칭은 필수(m) (as는 생략가능)&lt;/li&gt;
-  &lt;li&gt;집합과 정렬&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//회원수&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//나이 합&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;AVG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//평균 나이 &lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//최대 나이 &lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;MIN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//최소 나이&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;GROUP BY, HAVING, ORDER BY&lt;/li&gt;
-  &lt;li&gt;TypeQuery, Query
-    &lt;ul&gt;
-      &lt;li&gt;TypeQuery: 반환 타입이 명확할 때 사용&lt;/li&gt;
-      &lt;li&gt;Query: 반환 타입이 명확하지 않을 때 사용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;TypedQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SELECT m FROM Member m&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Query&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SELECT m.username, m.age from Member m&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;결과 조회 API
-    &lt;ul&gt;
-      &lt;li&gt;query.getResultList(): 결과가 하나 이상일 때, 리스트 반환, 결과가 없으면 빈 리스트 반환&lt;/li&gt;
-      &lt;li&gt;query.getSingleResult(): 결과가 정확히 하나, 단일 객체 반환
-        &lt;ul&gt;
-          &lt;li&gt;결과가 없으면: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;javax.persistence.NoResultException&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;둘 이상이면: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;javax.persistence.NonUniqueResultException&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;스프링 데이터 JPA 사용시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;try ~ catch&lt;/code&gt;를 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Optional&lt;/code&gt; 객체를 반환&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;파라미터 바인딩 - 이름 기준&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;usernameParam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;프로젝션select&quot;&gt;프로젝션(SELECT)&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;SELECT 절에 조회할 대상을 지정하는 것&lt;/li&gt;
-  &lt;li&gt;프로젝션 대상: 엔티티, 임베디드 타입, 스칼라 타입(숫자, 문자등 기본 데이터 타입)
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT m FROM Member m&lt;/code&gt; -&amp;gt; 엔티티 프로젝션&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT m.team FROM Member m&lt;/code&gt; -&amp;gt; 엔티티 프로젝션&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT m.address FROM Member m&lt;/code&gt; -&amp;gt; 임베디드 타입 프로젝션&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT m.username, m.age FROM Member m&lt;/code&gt; -&amp;gt; 스칼라 타입 프로젝션&lt;/li&gt;
-      &lt;li&gt;DISTINCT로 중복 제거&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;프로젝션 - 여러 값 조회
-    &lt;ul&gt;
-      &lt;li&gt;Query 타입으로 조회&lt;/li&gt;
-      &lt;li&gt;Object[] 타입으로 조회&lt;/li&gt;
-      &lt;li&gt;new 명령어로 조회
-        &lt;ul&gt;
-          &lt;li&gt;단순 값을 DTO로 바로 조회(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT new jpabook.jpql.UserDTO(m.username, m.age) FROM Member m&lt;/code&gt;)&lt;/li&gt;
-          &lt;li&gt;패키지명을 포함한 전체 클래스명 입력&lt;/li&gt;
-          &lt;li&gt;순서와 타입이 일치하는 생성자 필요&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;페이징-api&quot;&gt;페이징 API&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;JPA는 페이징을 다음 두 API로 추상화
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setFirstResult(int startPosition)&lt;/code&gt; : 조회 시작 위치(0부터 시작)&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMaxResults(int maxResult)&lt;/code&gt; : 조회할 데이터 수&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jpql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;select m from Member m order by m.name desc&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jpql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFirstResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setMaxResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h3 id=&quot;조인&quot;&gt;조인&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;내부 조인: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT m FROM Member m [INNER] JOIN m.team t&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;외부 조인: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT m FROM Member m LEFT [OUTER] JOIN m.team t&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;세타 조인: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select count(m) from Member m, Team t where m.username = t.name&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;조인 - ON 절
-    &lt;ul&gt;
-      &lt;li&gt;조인 대상 필터링( 예) 회원과 팀을 조인하면서, 팀 이름이 A인 팀만 조인 )&lt;/li&gt;
-      &lt;li&gt;연관관계 없는 엔티티 외부 조인(하이버네이트 5.1부터)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;서브-쿼리&quot;&gt;서브 쿼리&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;나이가 평균보다 많은 회원&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;avg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;한 건이라도 주문한 고객&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;서브 쿼리 지원 함수
-    &lt;ul&gt;
-      &lt;li&gt;[NOT] EXISTS (subquery): 서브쿼리에 결과가 존재하면 참&lt;/li&gt;
-      &lt;li&gt;ALL 모두 만족하면 참&lt;/li&gt;
-      &lt;li&gt;ANY, SOME: 같은 의미, 조건을 하나라도 만족하면 참&lt;/li&gt;
-      &lt;li&gt;[NOT] IN (subquery): 서브쿼리의 결과 중 하나라도 같은 것이 있으면 참&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;JPA 서브 쿼리 한계
-    &lt;ul&gt;
-      &lt;li&gt;JPA는 WHERE, HAVING 절에서만 서브 쿼리 사용 가능&lt;/li&gt;
-      &lt;li&gt;SELECT 절도 가능(하이버네이트에서 지원)&lt;/li&gt;
-      &lt;li&gt;FROM 절의 서브 쿼리는 현재 JPQL에서 불가능&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;조건식---case-식&quot;&gt;조건식 - CASE 식&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;기본 CASE 식&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;학생요금&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt; 
-         &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;경로요금&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
-         &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;일반요금&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;단순 CASE 식&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;팀A&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;인센티브110&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt; 
-        &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;팀B&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;인센티브120&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;인센티브105&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;COALESCE: 하나씩 조회해서 null이 아니면 반환&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;coalesce&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;이름&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;없는&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;회원&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;사용자 이름이 ‘관리자’면 null을 반환하고 나머지는 본인의 이름을 반환&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NULLIF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;관리자&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;jpql-사용자-정의-함수&quot;&gt;JPQL 사용자 정의 함수&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;사용하는 DB 방언을 상속받고, 사용자 정의 함수를 등록한다.&lt;/li&gt;
-  &lt;li&gt;하이버네이트는 사용전 방언에 추가해야 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_concat&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;객체지향-쿼리-언어2---중급-문법&quot;&gt;객체지향 쿼리 언어2 - 중급 문법&lt;/h2&gt;
-&lt;h3 id=&quot;경로-표현식&quot;&gt;경로 표현식&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;.(점)을 찍어 객체 그래프를 탐색하는 것&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;상태&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;필드&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;단일&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;값&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;연관&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;필드&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;orders&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;컬렉션&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;값&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;연관&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;필드&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;팀A&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;상태 필드(state field): 단순히 값을 저장하기 위한 필드 (ex: m.username)&lt;/li&gt;
-  &lt;li&gt;연관 필드(association field): 연관관계를 위한 필드
-    &lt;ul&gt;
-      &lt;li&gt;단일 값 연관 필드: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToOne&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToOne&lt;/code&gt;, 대상이 엔티티(ex: m.team)&lt;/li&gt;
-      &lt;li&gt;컬렉션 값 연관 필드: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@OneToMany&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ManyToMany&lt;/code&gt;, 대상이 컬렉션(ex: m.orders)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;상태 필드(state field): 경로 탐색의 끝, 탐색X&lt;/li&gt;
-  &lt;li&gt;단일 값 연관 경로: 묵시적 내부 조인(inner join) 발생, 탐색O, 권장하지 않음&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Orders&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;inner&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;컬렉션 값 연관 경로: 묵시적 내부 조인 발생, 탐색X, FROM 절에서 명시적 조인을 통해 별칭을 얻으면 별칭을 통해 탐색 가능&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;members&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;명시적 조인: join 키워드 직접 사용&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;묵시적 조인: 경로 표현식에 의해 묵시적으로 SQL 조인 발생 (내부 조인만 가능)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;실무 조언
-    &lt;ul&gt;
-      &lt;li&gt;가급적 묵시적 조인 대신에 명시적 조인 사용&lt;/li&gt;
-      &lt;li&gt;조인은 SQL 튜닝에 중요 포인트&lt;/li&gt;
-      &lt;li&gt;묵시적 조인은 조인이 일어나는 상황을 한눈에 파악하기 어려움&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;페치-조인-1---기본&quot;&gt;페치 조인 1 - 기본&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;N + 1 문제는 즉시로딩이든 지연로딩이든 발생한다.&lt;/li&gt;
-  &lt;li&gt;SQL 조인 종류X&lt;/li&gt;
-  &lt;li&gt;JPQL에서 성능 최적화를 위해 제공하는 기능&lt;/li&gt;
-  &lt;li&gt;연관된 엔티티나 컬렉션을 SQL 한 번에 함께 조회하는 기능&lt;/li&gt;
-  &lt;li&gt;join fetch 명령어 사용&lt;/li&gt;
-  &lt;li&gt;엔티티 페치 조인
-    &lt;ul&gt;
-      &lt;li&gt;회원을 조회하면서 연관된 팀도 함께 조회(SQL 한 번에)&lt;/li&gt;
-      &lt;li&gt;JPQL: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select m from Member m join fetch m.team&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;SQL: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT M.*, T.* FROM MEMBER M INNER JOIN TEAM T ON M.TEAM_ID=T.ID&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;컬렉션 페치 조인(일대다 관계)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fetch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;members&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;팀A&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TEAM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;INNER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MEMBER&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;M&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TEAM_ID&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;팀A&apos;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Spring/JPA/basic/32.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Spring/JPA/basic/32.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;페치 조인과 DISTINCT
-    &lt;ul&gt;
-      &lt;li&gt;SQL에 DISTINCT를 추가&lt;/li&gt;
-      &lt;li&gt;애플리케이션에서 엔티티 중복 제거&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distinct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fetch&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;members&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;팀A&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;SQL에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DISTINCT&lt;/code&gt;를 추가하지만 데이터가 다르므로 SQL 결과에서 중복제거 실패&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DISTINCT&lt;/code&gt;가 추가로 애플리케이션에서 중복 제거시도&lt;/li&gt;
-  &lt;li&gt;같은 식별자를 가진 Team 엔티티 제거&lt;/li&gt;
-  &lt;li&gt;페치 조인과 일반 조인의 차이
-    &lt;ul&gt;
-      &lt;li&gt;일반 조인 실행시 연관된 엔티티를 함께 조회하지 않음&lt;/li&gt;
-      &lt;li&gt;JPQL은 결과를 반환할 때 연관관계 고려X, 단지 SELECT 절에 지정한 엔티티만 조회할 뿐&lt;/li&gt;
-      &lt;li&gt;페치 조인을 사용할 때만 연관된 엔티티도 함께 조회(즉시 로딩)&lt;/li&gt;
-      &lt;li&gt;페치 조인은 객체 그래프를 SQL 한번에 조회하는 개념&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;페치-조인-2---한계&quot;&gt;페치 조인 2 - 한계&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;페치 조인 대상에는 별칭을 줄 수 없다.(하이버네이트는 가능, 가급적 사용X)&lt;/li&gt;
-  &lt;li&gt;둘 이상의 컬렉션은 페치 조인 할 수 없다.&lt;/li&gt;
-  &lt;li&gt;컬렉션을 페치 조인하면 페이징 API(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setFirstResult&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMaxResults&lt;/code&gt;)를 사용할 수 없다.
-    &lt;ul&gt;
-      &lt;li&gt;일대일, 다대일 같은 단일 값 연관 필드들은 페치 조인해도 페이징 가능&lt;/li&gt;
-      &lt;li&gt;하이버네이트는 경고 로그를 남기고 메모리에서 페이징(매우 위험) -&amp;gt; 데이터베이스에서 모든 데이터를 가져와서 객체 만든 후 애플리케이션에서 페이징 처리&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BatchSize&lt;/code&gt;: 일대다 조인에서 지연로딩시 IN 쿼리를 통해 한번에 연관 필드 객체를 가져와서 1 + N 문제를 1 + 1문제로 완화(글로벌 세팅도 가능)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;엔티티-직접-사용&quot;&gt;엔티티 직접 사용&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;JPQL에서 엔티티를 직접 사용하면 SQL에서 해당 엔티티의 기본 키 값을 사용&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//엔티티의 아이디를 사용&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//엔티티를 직접 사용&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티를 파라미터로 전달&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jpql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jpql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;member&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=?&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qlString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;qlString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;team&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;team_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=?&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;벌크-연산&quot;&gt;벌크 연산&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;JPA 변경 감지 기능으로 실행하려면 너무 많은 SQL 실행 -&amp;gt; 변경된 데이터가 100건이라면 100번의 UPDATE SQL 실행&lt;/li&gt;
-  &lt;li&gt;쿼리 한 번으로 여러 테이블 로우 변경(엔티티)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qlString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;update Product p &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                  &lt;span class=&quot;s&quot;&gt;&quot;set p.price = p.price * 1.1 &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-                  &lt;span class=&quot;s&quot;&gt;&quot;where p.stockAmount &amp;lt; :stockAmount&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resultCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;qlString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stockAmount&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;executeUpdate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;executeUpdate()&lt;/code&gt;의 결과는 영향받은 엔티티 수 반환&lt;/li&gt;
-  &lt;li&gt;UPDATE, DELETE 지원&lt;/li&gt;
-  &lt;li&gt;벌크 연산은 영속성 컨텍스트를 무시하고 데이터베이스에 직접 쿼리(데이터베이스와 영속성 컨텍스트의 동기화 문제)
-    &lt;ol&gt;
-      &lt;li&gt;벌크 연산을 먼저 실행&lt;/li&gt;
-      &lt;li&gt;벌크 연산 수행 후 영속성 컨텍스트 초기화&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/JPA" /><category term="JPA" /><category term="Spring" /></entry></feed>

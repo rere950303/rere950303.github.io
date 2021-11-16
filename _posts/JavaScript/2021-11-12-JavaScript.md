@@ -4,11 +4,11 @@ last\_modified\_at: 2021-11-12T 11:30 +09:00
 header:
   overlay\_color: "#333"
 categories:
-  - JavaScript
+  - Javascript
 tags:
-  - JavaScript
+  - Javascript
 ---
-## JavaScript 언어소개
+## Javascript 언어소개
 - 웹브라우저: 경고창 등
 - 탈 웹브라우저: 웹서버까지 확장
   - php, python, java ...
