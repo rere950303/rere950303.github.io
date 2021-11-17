@@ -136,4 +136,10 @@ var store = [{
         "tags": ["DB","DBMS"],
         "url": "https://rere950303.github.io/db/DBMS/",
         "teaser": null
+      },{
+        "title": "[DB] Data Models, Data Languages, Data Approaches",
+        "excerpt":"Data Models A colleciton of for descibing Data, Data relationships, Data semantics, Data constraints Relational model 관계형 모델은 실제 세계의 데이터를 관계라는 개념을 사용하여 표현한 데이터 모델이다. 릴레이션(테이블), 튜플(행), 속성(칼럼) SQL로 많은 발전을 이룸 Entity-Relationship data model DB 설계시 주로 사용 개체: 단독으로 존재하는 객체를 의미하며, 동일한 개체는 존재하지 않는다....","categories": ["DB"],
+        "tags": ["DB","SQL"],
+        "url": "https://rere950303.github.io/db/Data/",
+        "teaser": null
       }]
