@@ -126,7 +126,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[AWS] AWS",
-        "excerpt":"S3(Simple Storage Service)  구성요소     Bucket   Folder   Object(File)   ","categories": ["AWS"],
+        "excerpt":"EC2 (Elastic Compute Cloud) 시작하기 소개 독립된 컴퓨터의 임대 인스턴스는 컴퓨터 1대를 의미 지역은 서울로 선택 원격으로 접속하여 제어 가능 인스턴스 타입 여러가지 OS가 존재 여러가지 컴퓨터 사양: CPU, Memory, Network, 인스턴스 스토리지 (Type으로 구분) 인스턴스 장치 설정 임대 컴퓨터 설정 인스턴스 개수 설정 네트워크 설정 종료 방식: stop, terminate...","categories": ["AWS"],
         "tags": ["AWS"],
         "url": "https://rere950303.github.io/aws/AWS/",
         "teaser": null
@@ -141,5 +141,11 @@ var store = [{
         "excerpt":"Data Models A colleciton of for descibing Data, Data relationships, Data semantics, Data constraints Relational model 관계형 모델은 실제 세계의 데이터를 관계라는 개념을 사용하여 표현한 데이터 모델이다. 릴레이션(테이블), 튜플(행), 속성(칼럼) SQL로 많은 발전을 이룸 Entity-Relationship data model DB 설계시 주로 사용 개체: 단독으로 존재하는 객체를 의미하며, 동일한 개체는 존재하지 않는다....","categories": ["DB"],
         "tags": ["DB","SQL"],
         "url": "https://rere950303.github.io/db/Data/",
+        "teaser": null
+      },{
+        "title": "[DB] DB Components, Architecture",
+        "excerpt":"Storage Management 저장 장치 관리자는 DB에 저장된 data와 App / query 사이에 인퍼테이스 역할을 하는 프로그램 모듈이다. file manager와 통신하면서 효율적인 data storing, retrieving, updating 역할을 한다. Query Processing parser / translator 이용하여 관계대수표현으로 변환한다. 통계자료를 통해 쿼리를 최적화하고 data를 얻기 위한 절차적 계획을 세운다. 해당 계획을 실행하고 테이블 형태의...","categories": ["DB"],
+        "tags": ["DB"],
+        "url": "https://rere950303.github.io/db/DB_Components/",
         "teaser": null
       }]

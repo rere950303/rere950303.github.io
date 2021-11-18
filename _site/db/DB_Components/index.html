@@ -9,19 +9,21 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[DB] DB Components, Architecture - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
   <meta name="author" content="yhw">
   
+  <meta property="article:author" content="yhw">
+  
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="YHW Blog">
-<meta property="og:url" content="https://rere950303.github.io/">
+<meta property="og:title" content="[DB] DB Components, Architecture">
+<meta property="og:url" content="https://rere950303.github.io/db/DB_Components/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -32,6 +34,8 @@
 
 
 
+  <meta property="article:published_time" content="2021-11-18T00:00:00+09:00">
+
 
 
 
@@ -41,11 +45,9 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/">
+<link rel="canonical" href="https://rere950303.github.io/db/DB_Components/">
 
 
-
-  <link rel="next" href="https://rere950303.github.io/page2/">
 
 
 <script type="application/ld+json">
@@ -111,7 +113,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--single">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -165,6 +167,42 @@
     <div class="initial-content">
       
 
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#db" itemprop="item"><span itemprop="name">Db</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[DB] DB Components, Architecture</li>
+      
+    
+  </ol>
+</nav>
+
+  
 
 
 <div id="main" role="main">
@@ -288,33 +326,18 @@
 
 
 
-  <div class="archive">
-    
-      <h1 id="page-title" class="page__title"></h1>
-    
-    
-
-<h3 class="archive__subtitle">최근 포스트</h3>
-
-
-
-
-<div class="entries-list">
-  
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[DB] DB Components, Architecture">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2021-11-18T00:00:00+09:00">
     
 
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
+    <div class="page__inner-wrap">
       
-        <a href="/db/DB_Components/" rel="permalink">[DB] DB Components, Architecture
-</a>
-      
-    </h2>
-    
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB] DB Components, Architecture
+</h1>
+          
 
   <p class="page__meta">
     
@@ -341,17 +364,177 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
+        </header>
+      
 
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#storage-management">Storage Management</a></li>
+  <li><a href="#query-processing">Query Processing</a></li>
+  <li><a href="#transaction-management">Transaction Management</a></li>
+  <li><a href="#database-architecture">Database Architecture</a></li>
+</ul>
+
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="storage-management">Storage Management</h2>
+<ul>
+  <li>저장 장치 관리자는 DB에 저장된 data와 App / query 사이에 인퍼테이스 역할을 하는 프로그램 모듈이다.</li>
+  <li>file manager와 통신하면서 효율적인 data storing, retrieving, updating 역할을 한다.</li>
+</ul>
+
+<h2 id="query-processing">Query Processing</h2>
+
+<figure class=" ">
   
     
+      <a href="/assets/images/post/DB/3/1.png">
+          <img src="/assets/images/post/DB/3/1.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ol>
+  <li>parser / translator 이용하여 관계대수표현으로 변환한다.</li>
+  <li>통계자료를 통해 쿼리를 최적화하고 data를 얻기 위한 절차적 계획을 세운다.</li>
+  <li>해당 계획을 실행하고 테이블 형태의 query output를 내놓는다.</li>
+</ol>
+
+<h2 id="transaction-management">Transaction Management</h2>
+<ul>
+  <li>Database System Internal: user, query processor, storage manager, disk storage 로 구성</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/DB/3/2.png">
+          <img src="/assets/images/post/DB/3/2.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>Transaction: DB App 에서 하나의 논리적 함수를 수행하기 위한 연산들의 집합을 말한다. DB 연산의 단위를 의미한다.</li>
+  <li>Transaction-management component: system faulure / transaction faulre 에도 불구하고 data의 일관성을 유지시켜 준다.</li>
+  <li>Concurrency-control manager: DB에 대한 동시 접근 제어함으로써 data의 일관성을 유지시키고 최대 많은 transaction을 허용함으로써 효율성을 극대화 시킨다.</li>
+</ul>
+
+<h2 id="database-architecture">Database Architecture</h2>
+<ul>
+  <li>DB의 구조는 DB가 실행되고 있는 컴퓨터 시스템에 큰 영향을 받는다.</li>
+  <li>Centralized: DB의 모든 요소가 단일 시스템에 포함(DBMS, App, API)</li>
+  <li>Client-Server: 사용자가 필요한 특정 서버에 접근하는 방식</li>
+  <li>Parallel: 여러 disk와 하나의 공유 메모리를 통해 처리량을 높이는 방식</li>
+  <li>Distributed: DB를 여러개의 노드로 분산한후 통신을 통해 하나의 논리적 DB를 구축하는 방식</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#db" class="page__taxonomy-item" rel="tag">DB</a>
+    
+    </span>
+  </p>
 
 
 
-<div class="list__item">
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#db" class="page__taxonomy-item" rel="tag">DB</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-18T00:00:00+09:00">November 18, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+DB+Components%2C+Architecture%20https%3A%2F%2Frere950303.github.io%2Fdb%2FDB_Components%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdb%2FDB_Components%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdb%2FDB_Components%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/db/Data/" class="pagination--pager" title="[DB] Data Models, Data Languages, Data Approaches
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -366,7 +549,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-11-17T00:00:00+09:00">November 17, 2021</time>
       </span>
     
@@ -378,7 +561,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           1 분 소요
         
@@ -392,12 +575,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -412,7 +595,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-11-17T00:00:00+09:00">November 17, 2021</time>
       </span>
     
@@ -424,7 +607,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           1 분 소요
         
@@ -438,12 +621,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -458,7 +641,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-11-16T00:00:00+09:00">November 16, 2021</time>
       </span>
     
@@ -470,7 +653,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           최대 1 분 소요
         
@@ -484,12 +667,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -504,7 +687,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-11-12T00:00:00+09:00">November 12, 2021</time>
       </span>
     
@@ -516,7 +699,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           14 분 소요
         
@@ -530,287 +713,13 @@
   </article>
 </div>
 
+        
+      </div>
+    </div>
   
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/docker/Docker&CI/" rel="permalink">[Docker] 도커와 CI환경
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-07T00:00:00+09:00">November 7, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          8 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/docker/spring/Spring&Docker/" rel="permalink">[Docker][Spring] Spring WAS 도커로 띄우기
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-06T00:00:00+09:00">November 6, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          최대 1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/docker/Docker/" rel="permalink">[Docker] 도커
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-05T00:00:00+09:00">November 5, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          7 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/security/SpringSecurity/" rel="permalink">[Spring][Security] 스프링 시큐리티
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-10-31T00:00:00+09:00">October 31, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          14 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/jpa/querydsl/Querydsl/" rel="permalink">[Spring][JPA][Querydsl] Querydsl
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-10-27T00:00:00+09:00">October 27, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          10 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
   
 </div>
 
-
-<nav class="pagination">
-  
-  <ul>
-    
-    
-    <li><a href="#" class="disabled"><span aria-hidden="true">이전</span></a></li>
-    
-
-    
-    
-      <li><a href="#" class="disabled current">1</a></li>
-    
-
-    
-    
-
-    
-    
-    
-
-    
-      
-        
-        
-        
-        <li><a href="/page2/">2</a></li>
-      
-    
-
-    
-    
-
-    
-      <li><a href="/page3/">3</a></li>
-    
-
-    
-    
-      <li><a href="/page2/">다음</a></li>
-    
-  </ul>
-</nav>
-
-
-
-  </div>
-</div>
     </div>
 
     
@@ -871,6 +780,30 @@
 <script src="/assets/js/lunr/lunr-en.js"></script>
 
 
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
 
 
 
