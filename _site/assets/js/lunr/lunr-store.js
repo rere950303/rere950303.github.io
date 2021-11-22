@@ -148,4 +148,16 @@ var store = [{
         "tags": ["DB"],
         "url": "https://rere950303.github.io/db/DB_Components/",
         "teaser": null
+      },{
+        "title": "[DB] Intro to Relational Model(1)",
+        "excerpt":"Relational Database Structure RDB relation: table(tuple 집합) tuple: a row of table(속성들의 집합을 의미하며 n개의 속성으로 이루어진 tuple를 n-tuple라고 부른다.) attribute: table의 열을 의미하낟. RDB는 tables의 집합으로 이루어진다. Attribute Types 각 속성별로 가질수 있는 값들의 집합을 domain이라고 부른다. 속성들의 값은 atomic 해야하고 단 하나의 값만 가질수 있다. 모든 domain은 null값을...","categories": ["DB"],
+        "tags": ["DB","RDB"],
+        "url": "https://rere950303.github.io/db/RDB_1/",
+        "teaser": null
+      },{
+        "title": "[DB] Intro to Relational Model(2)",
+        "excerpt":"Relational Query Languages Relataional algebra - Procedural 여러가지 relation 연산을 제공: Relational operation(Selection, Projection, Natural join, Cartesian product), Set operation(Union, Intersection, Set difference) relational calculs - non procedural Selection: tuple를 선택(σ) Projection: 속성을 선택(π) - relation은 집합 개념이므로 중복되는 tuple은 하나만 남고 삭제된다. Cartesian product: 피연산자 두개의 relation을 곱해서 모든...","categories": ["DB"],
+        "tags": ["DB","RDB"],
+        "url": "https://rere950303.github.io/db/RDB_2/",
+        "teaser": null
       }]
