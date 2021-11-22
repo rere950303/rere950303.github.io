@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-11-22T11:30:39+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[DB] Intro to Relational Model(2)</title><link href="https://rere950303.github.io/db/RDB_2/" rel="alternate" type="text/html" title="[DB] Intro to Relational Model(2)" /><published>2021-11-22T00:00:00+09:00</published><updated>2021-11-22T00:00:00+09:00</updated><id>https://rere950303.github.io/db/RDB_2</id><content type="html" xml:base="https://rere950303.github.io/db/RDB_2/">&lt;h2 id=&quot;relational-query-languages&quot;&gt;Relational Query Languages&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-11-23T00:12:59+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[DB] Intro to Relational Model(2)</title><link href="https://rere950303.github.io/db/RDB_2/" rel="alternate" type="text/html" title="[DB] Intro to Relational Model(2)" /><published>2021-11-22T00:00:00+09:00</published><updated>2021-11-22T00:00:00+09:00</updated><id>https://rere950303.github.io/db/RDB_2</id><content type="html" xml:base="https://rere950303.github.io/db/RDB_2/">&lt;h2 id=&quot;relational-query-languages&quot;&gt;Relational Query Languages&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Relataional algebra - Procedural
     &lt;ul&gt;
@@ -344,7 +344,49 @@
   &lt;li&gt;DB도 마찬가지 방법으로 접속 가능&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;aws-를-이용한-자유로운-규모-확장과-축소&quot;&gt;AWS 를 이용한 자유로운 규모 확장과 축소&lt;/h2&gt;</content><author><name>yhw</name></author><category term="AWS" /><category term="AWS" /></entry><entry><title type="html">[Javascript] Javascript</title><link href="https://rere950303.github.io/javascript/JavaScript/" rel="alternate" type="text/html" title="[Javascript] Javascript" /><published>2021-11-12T00:00:00+09:00</published><updated>2021-11-12T00:00:00+09:00</updated><id>https://rere950303.github.io/javascript/JavaScript</id><content type="html" xml:base="https://rere950303.github.io/javascript/JavaScript/">&lt;h2 id=&quot;javascript-언어소개&quot;&gt;Javascript 언어소개&lt;/h2&gt;
+&lt;h2 id=&quot;aws를-이용한-자유로운-규모-확장과-축소&quot;&gt;AWS를 이용한 자유로운 규모 확장과 축소&lt;/h2&gt;
+&lt;h3 id=&quot;scalability&quot;&gt;Scalability&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;가상머신: 물리적기계 + 운영체제 + 가상머신(소프트웨어로 만든 기계) + 여러가지의 운영체제&lt;/li&gt;
+  &lt;li&gt;VMWare, VirtualBox 등&lt;/li&gt;
+  &lt;li&gt;AWS도 물리적 기계가 필요&lt;/li&gt;
+  &lt;li&gt;스타트업의 경우 여러가지 EC2의 사양을 선택 효율성 증대 가능&lt;/li&gt;
+  &lt;li&gt;큰 회사의 경우 고유 서버 시스템을 갖고 있을수 있지만 여러개의 EC2를 생성하여 서비스 처리 가능&lt;/li&gt;
+  &lt;li&gt;AWS 활용시에 트래픽에 따른 융통성 있는 EC2 관리가 가능&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;스트래스-테스트&quot;&gt;스트래스 테스트&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;수비: wordpress(marketplace에서 이미지를 통한 EC2 생성)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;top&lt;/code&gt; 명령어로 CPU 점유율 점검&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;공격: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install apache2-utils&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ab -n 요청횟수 -c 동시접속자수 웹서버주소&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;요청, 동시접속, 총소요시간, 실패, 초당처리속도, 개별처리속도 -&amp;gt; 테이블 작성&lt;/li&gt;
+      &lt;li&gt;동시접속이 커질수록 개별처리속도가 비례하여 증가&lt;/li&gt;
+      &lt;li&gt;총소요시간과 초당처리속도는 유의미한 차이가 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;elastic-ips&quot;&gt;Elastic IPs&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;현재 인스턴스를 이미지화 하고 해당 이미지로 다시 높은 사양의 인스턴스 생성&lt;/li&gt;
+  &lt;li&gt;인스턴스를 멈춘후 다시 시작시 새로운 IP 할당, 새로운 인스턴스 생성 후에도 마찬가지&lt;/li&gt;
+  &lt;li&gt;Elastic IP를 통해 위와 같은 문제를 해결 가능(단 유료이다.)&lt;/li&gt;
+  &lt;li&gt;Allocate New Address를 통해 IP 할당 가능&lt;/li&gt;
+  &lt;li&gt;Associate Address를 통해 생성된 EC2 인스턴스에 일관된 IP 부여 가능&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;인스턴스-교체&quot;&gt;인스턴스 교체&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;이미지 생성후 해당 이미지로 새로운 인스턴스 생성&lt;/li&gt;
+  &lt;li&gt;Elastic IP를 기존 인스턴스에서 뺏어온후 새로운 인스턴스에 부여&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;###&lt;/p&gt;</content><author><name>yhw</name></author><category term="AWS" /><category term="AWS" /></entry><entry><title type="html">[Javascript] Javascript</title><link href="https://rere950303.github.io/javascript/JavaScript/" rel="alternate" type="text/html" title="[Javascript] Javascript" /><published>2021-11-12T00:00:00+09:00</published><updated>2021-11-12T00:00:00+09:00</updated><id>https://rere950303.github.io/javascript/JavaScript</id><content type="html" xml:base="https://rere950303.github.io/javascript/JavaScript/">&lt;h2 id=&quot;javascript-언어소개&quot;&gt;Javascript 언어소개&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;웹브라우저: 경고창 등&lt;/li&gt;
   &lt;li&gt;탈 웹브라우저: 웹서버까지 확장

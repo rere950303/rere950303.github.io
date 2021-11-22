@@ -1125,11 +1125,11 @@
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"regions"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="nf">regions</span><span class="o">()</span> <span class="o">{</span>
-	<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">regions</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedHashMap</span><span class="o">&lt;&gt;();</span> 
-	<span class="n">regions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"SEOUL"</span><span class="o">,</span> <span class="s">"서울"</span><span class="o">);</span>
-	<span class="n">regions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"BUSAN"</span><span class="o">,</span> <span class="s">"부산"</span><span class="o">);</span>
-	<span class="n">regions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"JEJU"</span><span class="o">,</span> <span class="s">"제주"</span><span class="o">);</span>
-	<span class="k">return</span> <span class="n">regions</span><span class="o">;</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">regions</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="n">regions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"SEOUL"</span><span class="o">,</span> <span class="s">"서울"</span><span class="o">);</span>
+    <span class="n">regions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"BUSAN"</span><span class="o">,</span> <span class="s">"부산"</span><span class="o">);</span>
+    <span class="n">regions</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"JEJU"</span><span class="o">,</span> <span class="s">"제주"</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">regions</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
 <p>—&gt; <code class="language-plaintext highlighter-rouge">@ModelAttribute</code>는 이렇게 컨트롤러에 있는 별도의 메서드에 적용할 수 있다.</p>
@@ -1185,7 +1185,7 @@
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"itemTypes"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="nc">ItemType</span><span class="o">[]</span> <span class="nf">itemTypes</span><span class="o">()</span> <span class="o">{</span>
-	<span class="k">return</span> <span class="nc">ItemType</span><span class="o">.</span><span class="na">values</span><span class="o">();</span>
+    <span class="k">return</span> <span class="nc">ItemType</span><span class="o">.</span><span class="na">values</span><span class="o">();</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
@@ -1222,11 +1222,11 @@
 <h3 id="셀렉트-박스">셀렉트 박스</h3>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"deliveryCodes"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DeliveryCode</span><span class="o">&gt;</span> <span class="nf">deliveryCodes</span><span class="o">()</span> <span class="o">{</span>
-	<span class="nc">List</span><span class="o">&lt;</span><span class="nc">DeliveryCode</span><span class="o">&gt;</span> <span class="n">deliveryCodes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> 
-	<span class="n">deliveryCodes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">DeliveryCode</span><span class="o">(</span><span class="s">"FAST"</span><span class="o">,</span> <span class="s">"빠른 배송"</span><span class="o">));</span> 
-	<span class="n">deliveryCodes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">DeliveryCode</span><span class="o">(</span><span class="s">"NORMAL"</span><span class="o">,</span> <span class="s">"일반 배송"</span><span class="o">));</span> 
-	<span class="n">deliveryCodes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">DeliveryCode</span><span class="o">(</span><span class="s">"SLOW"</span><span class="o">,</span> <span class="s">"느린 배송"</span><span class="o">));</span> 
-	<span class="k">return</span> <span class="n">deliveryCodes</span><span class="o">;</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DeliveryCode</span><span class="o">&gt;</span> <span class="n">deliveryCodes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="n">deliveryCodes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">DeliveryCode</span><span class="o">(</span><span class="s">"FAST"</span><span class="o">,</span> <span class="s">"빠른 배송"</span><span class="o">));</span>
+    <span class="n">deliveryCodes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">DeliveryCode</span><span class="o">(</span><span class="s">"NORMAL"</span><span class="o">,</span> <span class="s">"일반 배송"</span><span class="o">));</span>
+    <span class="n">deliveryCodes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">DeliveryCode</span><span class="o">(</span><span class="s">"SLOW"</span><span class="o">,</span> <span class="s">"느린 배송"</span><span class="o">));</span>
+    <span class="k">return</span> <span class="n">deliveryCodes</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
 

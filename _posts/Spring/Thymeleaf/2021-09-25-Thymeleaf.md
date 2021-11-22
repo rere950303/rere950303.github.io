@@ -703,11 +703,11 @@ implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 ```java
 @ModelAttribute("regions")
 public Map<String, String> regions() {
-	Map<String, String> regions = new LinkedHashMap<>(); 
-	regions.put("SEOUL", "서울");
-	regions.put("BUSAN", "부산");
-	regions.put("JEJU", "제주");
-	return regions;
+    Map<String, String> regions = new LinkedHashMap<>();
+    regions.put("SEOUL", "서울");
+    regions.put("BUSAN", "부산");
+    regions.put("JEJU", "제주");
+    return regions;
 }
 ```
 —\> `@ModelAttribute`는 이렇게 컨트롤러에 있는 별도의 메서드에 적용할 수 있다.
@@ -762,7 +762,7 @@ public Map<String, String> regions() {
 ```java
 @ModelAttribute("itemTypes")
 public ItemType[] itemTypes() {
-	return ItemType.values();
+    return ItemType.values();
 }
 ```
 
@@ -802,11 +802,11 @@ public ItemType[] itemTypes() {
 ```java
 @ModelAttribute("deliveryCodes")
 public List<DeliveryCode> deliveryCodes() {
-	List<DeliveryCode> deliveryCodes = new ArrayList<>(); 
-	deliveryCodes.add(new DeliveryCode("FAST", "빠른 배송")); 
-	deliveryCodes.add(new DeliveryCode("NORMAL", "일반 배송")); 
-	deliveryCodes.add(new DeliveryCode("SLOW", "느린 배송")); 
-	return deliveryCodes;
+    List<DeliveryCode> deliveryCodes = new ArrayList<>();
+    deliveryCodes.add(new DeliveryCode("FAST", "빠른 배송"));
+    deliveryCodes.add(new DeliveryCode("NORMAL", "일반 배송"));
+    deliveryCodes.add(new DeliveryCode("SLOW", "느린 배송"));
+    return deliveryCodes;
 }
 ```
 
