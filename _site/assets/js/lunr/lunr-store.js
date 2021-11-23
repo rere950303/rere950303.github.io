@@ -125,12 +125,6 @@ var store = [{
         "url": "https://rere950303.github.io/javascript/JavaScript/",
         "teaser": null
       },{
-        "title": "[AWS] AWS",
-        "excerpt":"EC2 (Elastic Compute Cloud) 시작하기 소개 독립된 컴퓨터의 임대 인스턴스는 컴퓨터 1대를 의미 지역은 서울로 선택 원격으로 접속하여 제어 가능 인스턴스 타입 여러가지 OS가 존재 여러가지 컴퓨터 사양: CPU, Memory, Network, 인스턴스 스토리지 (Type으로 구분) 인스턴스 장치 설정 임대 컴퓨터 설정 인스턴스 개수 설정 네트워크 설정 종료 방식: stop, terminate...","categories": ["AWS"],
-        "tags": ["AWS"],
-        "url": "https://rere950303.github.io/aws/AWS/",
-        "teaser": null
-      },{
         "title": "[DB] Database Management System(DBMS)",
         "excerpt":"DBMS에는 특정 기관에 대한 정보를 가지고 있다. 연관된 data의 집합 data와 data 접근에 필요한 프로그램의 집합 쉽고 편한 data CRUD 환경 제공 초창기 database app은 파일 시스템을 이용하여 구축되었다. 이는 여러가지 단점이 존재했다. data 증폭 및 불일치: 여러 종류의 파일과 다양한 포맷 data 접근의 어려움: 새로운 작업을 수행하기 위해서는(예를 들어...","categories": ["DB"],
         "tags": ["DB","DBMS"],
@@ -159,5 +153,11 @@ var store = [{
         "excerpt":"Relational Query Languages Relataional algebra - Procedural 여러가지 relation 연산을 제공: Relational operation(Selection, Projection, Natural join, Cartesian product), Set operation(Union, Intersection, Set difference) relational calculs - non procedural Selection: tuple를 선택(σ) Projection: 속성을 선택(π) - relation은 집합 개념이므로 중복되는 tuple은 하나만 남고 삭제된다. Cartesian product: 피연산자 두개의 relation을 곱해서 모든...","categories": ["DB"],
         "tags": ["DB","RDB"],
         "url": "https://rere950303.github.io/db/RDB_2/",
+        "teaser": null
+      },{
+        "title": "[AWS] AWS",
+        "excerpt":"지역과 가용구역 Region: 전 세계 아마존 컴퓨터가 존재하는 곳, 서울에도 존재 웹사이트 주 사용자의 분포가 중요: 주 소비자가 일본인 경우 일본 인프라를 사용하는 것이 유리 가용구역: 하나의 지역에는 여러개의 가용구역이 존재한다. 자연재해 등으로 인한 장애 방지를 위함이다. CDN(Contents Delivery Network) CloudFront는 AWS에 제공하는 CDN 서비스이다. 캐싱을 통해 빠른 응답을 보장한다....","categories": ["AWS"],
+        "tags": ["AWS"],
+        "url": "https://rere950303.github.io/aws/AWS/",
         "teaser": null
       }]
