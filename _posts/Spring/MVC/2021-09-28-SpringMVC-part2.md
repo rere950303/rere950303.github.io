@@ -385,11 +385,9 @@ public String addItemV2(@ModelAttribute Item item, BindingResult bindingResult, 
     //검증 로직
     if (!StringUtils.hasText(item.getItemName())) {
         bindingResult.addError(new FieldError("item", "itemName", item.getItemName(), false, null, null, "상품 이름은 필수입니다."));
-
     }
     if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 10000000) {
         bindingResult.addError(new FieldError("item", "price", item.getPrice(), false, null, null, "가격은 1000 ~ 1000000 까지 허용합니다."));
-
     }
     if (item.getQuantity() == null || item.getQuantity() > 9999) {
         bindingResult.addError(new FieldError("item", "quantity", item.getQuantity(), false, null, null, "수량은 최대 9999까지 허용합니다."));
@@ -443,7 +441,8 @@ spring.messages.basename=messages,errors
 ```yaml
 required.item.itemName=상품 이름은 필수입니다. 
 range.item.price=가격은 {0} ~ {1} 까지 허용합니다. 
-max.item.quantity=수량은 최대 {0} 까지 허용합니다. totalPriceMin=가격 * 수량의 합은 {0}원 이상이어야 합니다. 현재 값 = {1}
+max.item.quantity=수량은 최대 {0} 까지 허용합니다. 
+totalPriceMin=가격 * 수량의 합은 {0}원 이상이어야 합니다. 현재 값 = {1}
 ```
 
 `errors_en.properties`파일을 생성하면 오류 메시지도 국제화 처리를 할 수 있다.
@@ -547,7 +546,8 @@ void reject(String errorCode, @Nullable Object[] errorArgs, @Nullable String def
 
 ```yaml
 #Level1
-required.item.itemName: 상품 이름은 필수 입니다. #Level2
+required.item.itemName: 상품 이름은 필수 입니다.
+#Level2
 required: 필수 값 입니다.
 ```
 —\> 오류 메시지에 `required.item.itemName` 와 같이 객체명과 필드명을 조합한 세밀한 메시지 코드가 있으면 이 메시지를 높은 우선순위로 사용하는 것이다.
@@ -582,28 +582,28 @@ public class MessageCodesResolverTest {
 	- `MessageCodesResolver` 인터페이스이고 `DefaultMessageCodesResolver` 는 기본 구현체이다.
 	- 주로 다음과 함께 사용 `ObjectError` , `FieldError`
 - DefaultMessageCodesResolver의 기본 메시지 생성 규칙
-	1. 객체 오류
-    
-```yaml
-객체 오류의 경우 다음 순서로 2가지 생성 1.: code + "." + object name 2.: code
-예) 오류 코드: required, object name: item 
-1.: required.item
-2.: required
-```
-2. 필드 오류
-
-```yaml
-필드 오류의 경우 다음 순서로4가지 메시지 코드 생성
-  1.: code + "." + object name + "." + field
-  2.: code + "." + field
-  3.: code + "." + field type
-  4.: code
-예) 오류 코드: typeMismatch, object name "user", field "age", field type: int 
-  1. "typeMismatch.user.age"
-  2. "typeMismatch.age"
-  3. "typeMismatch.int"
-  4. "typeMismatch"
-```
+  1. 객체 오류
+    ```yaml
+    객체 오류의 경우 다음 순서로 2가지 생성 
+    1.: code + "." + object name 
+    2.: code
+    예) 오류 코드: required, object name: item 
+    1.: required.item
+    2.: required
+    ```
+  2. 필드 오류
+    ```yaml
+    필드 오류의 경우 다음 순서로4가지 메시지 코드 생성
+    1.: code + "." + object name + "." + field
+    2.: code + "." + field
+    3.: code + "." + field type
+    4.: code
+    예) 오류 코드: typeMismatch, object name "user", field "age", field type: int 
+    1. "typeMismatch.user.age"
+    2. "typeMismatch.age"
+    3. "typeMismatch.int"
+    4. "typeMismatch"
+    ```
 
 - 동작 방식
 	- `rejectValue()` , `reject()` 는 내부에서 `MessageCodesResolver` 를 사용한다. 여기에서 메시지 코드들을 생성한다.
@@ -848,12 +848,12 @@ public class ItemServiceApplication implements WebMvcConfigurer {
     // ...
 }
 ```
-- 검증시 `@Validated` `@Valid` 둘다 사용가능하다. `javax.validation.@Valid` 를 사용하려면 `build.gradle` 의존관계 추가가 필요하다. (이전에 추가했다.) \``implementation 'org.springframework.boot:spring-boot-starter-validation'`@Validated\`\``는 스프링 전용 검증 애노테이션이고,`@Valid`는 자바 표준 검증 애노테이션이다. 둘중 아무거나 사용해도 동일하게 작동하지만,`@Validated\` 는 내부에 groups 라는 기능을 포함하고 있다. 이 부분은 조금 뒤에 다시 설명하겠다.
+- 검증시 `@Validated` `@Valid` 둘다 사용가능하다. `javax.validation.@Valid` 를 사용하려면 `build.gradle` 의존관계 추가가 필요하다. (이전에 추가했다.) `@Validated`는 스프링 전용 검증 애노테이션이고, `@Valid`는 자바 표준 검증 애노테이션이다. 둘 중 아무거나 사용해도 동일하게 작동하지만, `@Validated` 는 내부에 groups 라는 기능을 포함하고 있다. 이 부분은 조금 뒤에 다시 설명하겠다.
 - 검증 순서
 	1. `@ModelAttribute` 각각의 필드에 타입 변환 시도
 		1. 성공하면 다음으로
 		2. 실패하면 `typeMismatch` 로 `FieldError` 추가
-	2. `Validator` 적용(변환에 성공한 필드만 BeanValidation 적용)
+	2. `Validator` 적용(변환에 성공한 필드만 Bean Validation 적용)
 
 ### Bean Validation - 에러 코드
 Bean Validation을 적용하고 `bindingResult` 에 등록된 검증 오류 코드를 보자. 오류 코드가 애노테이션 이름으로 등록된다. 마치 `typeMismatch` 와 유사하다. `NotBlank` 라는 오류 코드를 기반으로 `MessageCodesResolver` 를 통해 다양한 메시지 코드가 순서대로 생성된다.
@@ -867,6 +867,7 @@ Bean Validation을 적용하고 `bindingResult` 에 등록된 검증 오류 코�
 	- Range.price
 	- Range.java.lang.Integer
 	- Range
+
 `errors.properties`
 
 ```yaml
@@ -944,7 +945,8 @@ public interface UpdateCheck {
 ```java
 @Data
 public class Item {
-    @NotNull(groups = UpdateCheck.class) //수정시에만 적용 private Long id;
+    @NotNull(groups = UpdateCheck.class) //수정시에만 적용 
+    private Long id;
     @NotBlank(groups = {SaveCheck.class, UpdateCheck.class})
     private String itemName;
     @NotNull(groups = {SaveCheck.class, UpdateCheck.class})
@@ -953,7 +955,8 @@ public class Item {
     private Integer price;
 
     @NotNull(groups = {SaveCheck.class, UpdateCheck.class})
-    @Max(value = 9999, groups = SaveCheck.class) //등록시에만 적용 private Integer quantity;
+    @Max(value = 9999, groups = SaveCheck.class) //등록시에만 적용 
+    private Integer quantity;
     public Item() {
     }
 
@@ -998,7 +1001,8 @@ public class ItemUpdateForm {
     @NotNull
     @Range(min = 1000, max = 1000000)
     private Integer price;
-    //수정에서는 수량은 자유롭게 변경할 수 있다. private Integer quantity;
+    //수정에서는 수량은 자유롭게 변경할 수 있다. 
+    private Integer quantity;
 }
 ```
 - ITEM 수정용 폼
@@ -1013,7 +1017,8 @@ public class ItemUpdateForm {
     @NotNull
     @Range(min = 1000, max = 1000000)
     private Integer price;
-    //수정에서는 수량은 자유롭게 변경할 수 있다. private Integer quantity;
+    //수정에서는 수량은 자유롭게 변경할 수 있다. 
+    private Integer quantity;
 }
 ```
 - 폼 객체 바인딩
