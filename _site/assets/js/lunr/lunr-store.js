@@ -160,4 +160,10 @@ var store = [{
         "tags": ["AWS"],
         "url": "https://rere950303.github.io/aws/AWS/",
         "teaser": null
+      },{
+        "title": "[DB] Introduction to SQL",
+        "excerpt":"Data Definition Lauguage SQL의 DDL은 relatioin에 관한 정보를 만든다. 각 relation의 스키마 각 속성들의 domain 무결성 제약조건 각 relation의 인덱스 정보 / 보안, 권한 정보 Domain Types in SQL char(n): 길이가 n인 고정 길이 문자열 varchar(n): 최대 길이가 n인 가변 길이 문자열 int smallint numeric(p, d): 고정 소수점 실수, p는...","categories": ["DB"],
+        "tags": ["DB"],
+        "url": "https://rere950303.github.io/db/IntroSQL/",
+        "teaser": null
       }]

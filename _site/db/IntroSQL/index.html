@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[DB] Intro to Relational Model(1) - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[DB] Introduction to SQL - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[DB] Intro to Relational Model(1)">
-<meta property="og:url" content="https://rere950303.github.io/db/RDB_1/">
+<meta property="og:title" content="[DB] Introduction to SQL">
+<meta property="og:url" content="https://rere950303.github.io/db/IntroSQL/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-11-19T00:00:00+09:00">
+  <meta property="article:published_time" content="2021-11-24T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/db/RDB_1/">
+<link rel="canonical" href="https://rere950303.github.io/db/IntroSQL/">
 
 
 
@@ -196,7 +196,7 @@
     
       
       
-        <li class="current">[DB] Intro to Relational Model(1)</li>
+        <li class="current">[DB] Introduction to SQL</li>
       
     
   </ol>
@@ -327,15 +327,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[DB] Intro to Relational Model(1)">
+    <meta itemprop="headline" content="[DB] Introduction to SQL">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-11-19T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2021-11-24T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Intro to Relational Model(1)
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Introduction to SQL
 </h1>
           
 
@@ -344,7 +344,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-19T00:00:00+09:00">November 19, 2021</time>
+        <time datetime="2021-11-24T00:00:00+09:00">November 24, 2021</time>
       </span>
     
 
@@ -357,7 +357,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -374,10 +374,11 @@
               
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
-  <li><a href="#relational-database-structure">Relational Database Structure</a></li>
-  <li><a href="#attribute-types">Attribute Types</a></li>
-  <li><a href="#relation-schema-and-instance">Relation Schema and Instance</a></li>
-  <li><a href="#keys">Keys</a></li>
+  <li><a href="#data-definition-lauguage">Data Definition Lauguage</a></li>
+  <li><a href="#domain-types-in-sql">Domain Types in SQL</a></li>
+  <li><a href="#create-table-construct">Create Table Construct</a></li>
+  <li><a href="#integrity-constraints-in-create-table">Integrity Constraints in Create Table</a></li>
+  <li><a href="#drop-and-alter-table-constructs">Drop and Alter Table Constructs</a></li>
 </ul>
 
               
@@ -387,41 +388,69 @@
             </nav>
           </aside>
         
-        <h2 id="relational-database-structure">Relational Database Structure</h2>
+        <h2 id="data-definition-lauguage">Data Definition Lauguage</h2>
 <ul>
-  <li>RDB
+  <li>SQL의 DDL은 relatioin에 관한 정보를 만든다.</li>
+  <li>각 relation의 스키마</li>
+  <li>각 속성들의 domain</li>
+  <li>무결성 제약조건</li>
+  <li>각 relation의 인덱스 정보 / 보안, 권한 정보</li>
+</ul>
+
+<h2 id="domain-types-in-sql">Domain Types in SQL</h2>
+<ul>
+  <li>char(n): 길이가 n인 고정 길이 문자열</li>
+  <li>varchar(n): 최대 길이가 n인 가변 길이 문자열</li>
+  <li>int</li>
+  <li>smallint</li>
+  <li>numeric(p, d): 고정 소수점 실수, p는 부호를 포함한 전체 숫자의 길이, s는 소수점 이하 숫자의 길이</li>
+  <li>real, float(n): float는 길이 n을 사용자가 설정함</li>
+  <li>NULL, NOT NULL: 속성이 null값을 가질 수 있는지의 여부를 선언</li>
+  <li>ex: ID VARCHAR(20) NOT NULL, Deposit INT DEFAULT 0</li>
+</ul>
+
+<h2 id="create-table-construct">Create Table Construct</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">r</span> <span class="p">(</span><span class="n">A1</span> <span class="n">D1</span><span class="p">,</span> <span class="n">A2</span> <span class="n">D2</span><span class="p">,</span> <span class="p">...</span> <span class="p">,</span> <span class="n">An</span> <span class="n">Dn</span><span class="p">),</span>
+               <span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraint1</span><span class="p">),</span>
+               <span class="p">...,</span>
+               <span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraintk</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">instructor</span> <span class="p">(</span>
+    <span class="n">ID</span>          <span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">name</span>        <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+    <span class="n">dept_name</span>   <span class="nb">varchar</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">salary</span>      <span class="n">numeruc</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="integrity-constraints-in-create-table">Integrity Constraints in Create Table</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">student</span> <span class="p">(</span>
+    <span class="n">ID</span>          <span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">name</span>        <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+    <span class="n">dept_name</span>   <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+    <span class="n">tot_cred</span>    <span class="nb">numeric</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="k">primary</span> <span class="k">key</span> <span class="n">ID</span><span class="p">,</span>
+    <span class="k">foreign</span> <span class="k">key</span> <span class="p">(</span><span class="n">dept_name</span><span class="p">)</span> <span class="k">references</span> <span class="n">department</span><span class="p">(</span><span class="n">dept_name</span><span class="p">));</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>not null: null값을 가질 수 없고 해당 속성의 값이 null인 tuple를 삽입, 수정하는 동작은 거부됨</li>
+  <li>primary key(객체 무결성 제약조건): tuple의 유일성을 보장하기 위한 규칙으로 각 tuple를 식별하는 역할, null이나 중복되는 값을 가질수 없음</li>
+  <li>foreign key(A1, A2,,) references r(A1, A2,,): 외래키는 relation r의 기본키를 참조함, 외래키의 값은 r에 항상 그 값이 존재해야 한다.</li>
+</ul>
+
+<h2 id="drop-and-alter-table-constructs">Drop and Alter Table Constructs</h2>
+<ul>
+  <li>drop table student: 테이블과 내용 모두 삭제</li>
+  <li>delete from dtudent: 내용만 삭제, 테이블 스키마는 유지</li>
+  <li>alter table: 기존 테이블에 새로운 속성을 추가하거나 기존 속성을 삭제
     <ul>
-      <li>relation: table(tuple 집합)</li>
-      <li>tuple: a row of table(속성들의 집합을 의미하며 n개의 속성으로 이루어진 tuple를 n-tuple라고 부른다.)</li>
-      <li>attribute: table의 열을 의미하낟.</li>
+      <li>alter table r add A D (모든 tuple은 새로운 속성에 대해 null값을 가진다.)</li>
+      <li>alter table r drop A (삭제하는 속성이 다른 테이블에서 참조하는 속성인 경우 외래키 무결성 제약조건이 깨질 수 있으므로 조심해야한다.)</li>
     </ul>
   </li>
-  <li>RDB는 tables의 집합으로 이루어진다.</li>
-</ul>
-
-<h2 id="attribute-types">Attribute Types</h2>
-<ul>
-  <li>각 속성별로 가질수 있는 값들의 집합을 domain이라고 부른다.</li>
-  <li>속성들의 값은 atomic 해야하고 단 하나의 값만 가질수 있다.</li>
-  <li>모든 domain은 null값을 가질수 있는데 여기서 null이라고 함은 unknown or does not exist를 의미한다.</li>
-  <li>null값은 많은 연산에서 복잡함을 야기한다.</li>
-</ul>
-
-<h2 id="relation-schema-and-instance">Relation Schema and Instance</h2>
-<ul>
-  <li>속성들과 해당 속성들의 도메인의 집합</li>
-  <li>R = {A1, A2, …, An} -&gt; instructor = {ID, name, dept_name, salary}</li>
-  <li>relation r은 D1 * D2 * … * Dn의 부분집합이다.</li>
-  <li>Instance는 r의 현재 값, 즉 스냅샷을 의미한다.</li>
-</ul>
-
-<h2 id="keys">Keys</h2>
-<ul>
-  <li>key는 R의 부분집합이다.</li>
-  <li>super key는 key 중에서 tuple의 유일성을 만족하는 key이다.</li>
-  <li>candidate key는 super key중에서 최소성을 만족하는 key이다.</li>
-  <li>primary key는 candidate key중에 선택된 하나의 key이다. (null값을 가지면 안된다.)</li>
-  <li>외래키 제약조건: relation에 존재하는 외래키의 값은 참조되는 relation에 반드시 값이 존재해야 한다.(참조하는 r &lt;-&gt; 참조되는 r)</li>
 </ul>
 
         
@@ -443,11 +472,7 @@
     
       
       
-      <a href="/tags/#db" class="page__taxonomy-item" rel="tag">DB</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#rdb" class="page__taxonomy-item" rel="tag">RDB</a>
+      <a href="/tags/#db" class="page__taxonomy-item" rel="tag">DB</a>
     
     </span>
   </p>
@@ -475,7 +500,7 @@
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-19T00:00:00+09:00">November 19, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-24T00:00:00+09:00">November 24, 2021</time></p>
 
 
       </footer>
@@ -485,23 +510,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Intro+to+Relational+Model%281%29%20https%3A%2F%2Frere950303.github.io%2Fdb%2FRDB_1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Introduction+to+SQL%20https%3A%2F%2Frere950303.github.io%2Fdb%2FIntroSQL%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdb%2FRDB_1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdb%2FIntroSQL%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdb%2FRDB_1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdb%2FIntroSQL%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/db/DB_Components/" class="pagination--pager" title="[DB] DB Components, Architecture
+      <a href="/aws/AWS/" class="pagination--pager" title="[AWS] AWS
 ">이전</a>
     
     
-      <a href="/db/RDB_2/" class="pagination--pager" title="[DB] Intro to Relational Model(2)
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -515,52 +539,6 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/db/IntroSQL/" rel="permalink">[DB] Introduction to SQL
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-24T00:00:00+09:00">November 24, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -629,6 +607,52 @@
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-11-22T00:00:00+09:00">November 22, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/db/RDB_1/" rel="permalink">[DB] Intro to Relational Model(1)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-19T00:00:00+09:00">November 19, 2021</time>
       </span>
     
 
