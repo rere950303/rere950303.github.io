@@ -1091,30 +1091,34 @@
     </ul>
   </li>
   <li>DefaultMessageCodesResolver의 기본 메시지 생성 규칙
-    <ol>
-      <li>객체 오류
-        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="s">객체 오류의 경우 다음 순서로 2가지 생성</span> 
-  <span class="s">1.</span><span class="pi">:</span> <span class="s">code + "." + object name</span> 
-  <span class="s">2.</span><span class="pi">:</span> <span class="s">code</span>
-  <span class="s">예) 오류 코드</span><span class="pi">:</span> <span class="s">required, object name</span><span class="pi">:</span> <span class="s">item</span> 
-  <span class="s">1.</span><span class="pi">:</span> <span class="s">required.item</span>
-  <span class="s">2.</span><span class="pi">:</span> <span class="s">required</span>
+    <ul>
+      <li>
+        <p>객체 오류</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">객체 오류의 경우 다음 순서로 2가지 생성</span> 
+<span class="s">1.</span><span class="pi">:</span> <span class="s">code + "." + object name</span> 
+<span class="s">2.</span><span class="pi">:</span> <span class="s">code</span>
+<span class="s">예) 오류 코드</span><span class="pi">:</span> <span class="s">required, object name</span><span class="pi">:</span> <span class="s">item</span> 
+<span class="s">1.</span><span class="pi">:</span> <span class="s">required.item</span>
+<span class="s">2.</span><span class="pi">:</span> <span class="s">required</span>
 </code></pre></div>        </div>
       </li>
-      <li>필드 오류
-  ```yaml
-  필드 오류의 경우 다음 순서로4가지 메시지 코드 생성
-  1.: code + “.” + object name + “.” + field
-  2.: code + “.” + field
-  3.: code + “.” + field type
-  4.: code
-  예) 오류 코드: typeMismatch, object name “user”, field “age”, field type: int</li>
-      <li>“typeMismatch.user.age”</li>
-      <li>“typeMismatch.age”</li>
-      <li>“typeMismatch.int”</li>
-      <li>“typeMismatch”
-  ```</li>
-    </ol>
+      <li>
+        <p>필드 오류</p>
+
+        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">필드 오류의 경우 다음 순서로4가지 메시지 코드 생성</span>
+<span class="s">1.</span><span class="pi">:</span> <span class="s">code + "." + object name + "." + field</span>
+<span class="s">2.</span><span class="pi">:</span> <span class="s">code + "." + field</span>
+<span class="s">3.</span><span class="pi">:</span> <span class="s">code + "." + field type</span>
+<span class="s">4.</span><span class="pi">:</span> <span class="s">code</span>
+<span class="s">예) 오류 코드</span><span class="pi">:</span> <span class="s">typeMismatch, object name "user", field "age", field type</span><span class="pi">:</span> <span class="s">int</span> 
+<span class="s">1. "typeMismatch.user.age"</span>
+<span class="s">2. "typeMismatch.age"</span>
+<span class="s">3. "typeMismatch.int"</span>
+<span class="s">4. "typeMismatch"</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>동작 방식
     <ul>

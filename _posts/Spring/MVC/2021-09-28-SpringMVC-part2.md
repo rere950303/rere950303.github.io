@@ -582,7 +582,8 @@ public class MessageCodesResolverTest {
 	- `MessageCodesResolver` 인터페이스이고 `DefaultMessageCodesResolver` 는 기본 구현체이다.
 	- 주로 다음과 함께 사용 `ObjectError` , `FieldError`
 - DefaultMessageCodesResolver의 기본 메시지 생성 규칙
-  1. 객체 오류
+  - 객체 오류
+
     ```yaml
     객체 오류의 경우 다음 순서로 2가지 생성 
     1.: code + "." + object name 
@@ -591,7 +592,8 @@ public class MessageCodesResolverTest {
     1.: required.item
     2.: required
     ```
-  2. 필드 오류
+  - 필드 오류
+
     ```yaml
     필드 오류의 경우 다음 순서로4가지 메시지 코드 생성
     1.: code + "." + object name + "." + field
