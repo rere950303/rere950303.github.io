@@ -254,31 +254,27 @@ public @interface WithUser {
 
 ```java
 private static void initialize() {
-		if (!StringUtils.hasText(strategyName)) {
-			// Set default
-			strategyName = MODE_THREADLOCAL;
-		}
-		if (strategyName.equals(MODE_THREADLOCAL)) {
-			strategy = new ThreadLocalSecurityContextHolderStrategy();
-		}
-		else if (strategyName.equals(MODE_INHERITABLETHREADLOCAL)) {
-			strategy = new InheritableThreadLocalSecurityContextHolderStrategy();
-		}
-		else if (strategyName.equals(MODE_GLOBAL)) {
-			strategy = new GlobalSecurityContextHolderStrategy();
-		}
-		else {
-			// Try to load a custom strategy
-			try {
-				Class<?> clazz = Class.forName(strategyName);
-				Constructor<?> customStrategy = clazz.getConstructor();
-				strategy = (SecurityContextHolderStrategy) customStrategy.newInstance();
-			}
-			catch (Exception ex) {
-				ReflectionUtils.handleReflectionException(ex);
-			}
-		}
-		initializeCount++;
+    if (!StringUtils.hasText(strategyName)) {
+        // Set default
+        strategyName = MODE_THREADLOCAL;
+    }
+    if (strategyName.equals(MODE_THREADLOCAL)) {
+        strategy = new ThreadLocalSecurityContextHolderStrategy();
+    } else if (strategyName.equals(MODE_INHERITABLETHREADLOCAL)) {
+        strategy = new InheritableThreadLocalSecurityContextHolderStrategy();
+    } else if (strategyName.equals(MODE_GLOBAL)) {
+        strategy = new GlobalSecurityContextHolderStrategy();
+    } else {
+        // Try to load a custom strategy
+        try {
+            Class<?> clazz = Class.forName(strategyName);
+            Constructor<?> customStrategy = clazz.getConstructor();
+            strategy = (SecurityContextHolderStrategy) customStrategy.newInstance();
+        } catch (Exception ex) {
+            ReflectionUtils.handleReflectionException(ex);
+        }
+    }
+    initializeCount++;
 }
 ```
 - `ThreadLocalSecurityContextHolderStrategy`
@@ -286,33 +282,33 @@ private static void initialize() {
 ```java
 final class ThreadLocalSecurityContextHolderStrategy implements SecurityContextHolderStrategy {
 
-	private static final ThreadLocal<SecurityContext> contextHolder = new ThreadLocal<>();
+    private static final ThreadLocal<SecurityContext> contextHolder = new ThreadLocal<>();
 
-	@Override
-	public void clearContext() {
-		contextHolder.remove();
-	}
+    @Override
+    public void clearContext() {
+        contextHolder.remove();
+    }
 
-	@Override
-	public SecurityContext getContext() {
-		SecurityContext ctx = contextHolder.get();
-		if (ctx == null) {
-			ctx = createEmptyContext();
-			contextHolder.set(ctx);
-		}
-		return ctx;
-	}
+    @Override
+    public SecurityContext getContext() {
+        SecurityContext ctx = contextHolder.get();
+        if (ctx == null) {
+            ctx = createEmptyContext();
+            contextHolder.set(ctx);
+        }
+        return ctx;
+    }
 
-	@Override
-	public void setContext(SecurityContext context) {
-		Assert.notNull(context, "Only non-null SecurityContext instances are permitted");
-		contextHolder.set(context);
-	}
+    @Override
+    public void setContext(SecurityContext context) {
+        Assert.notNull(context, "Only non-null SecurityContext instances are permitted");
+        contextHolder.set(context);
+    }
 
-	@Override
-	public SecurityContext createEmptyContext() {
-		return new SecurityContextImpl();
-	}
+    @Override
+    public SecurityContext createEmptyContext() {
+        return new SecurityContextImpl();
+    }
 }
 ```
 - http 요청이 들어오면 `setContext` 메소드에서 인증된 `SecuiryContext` 객체를 매개변수로 받아 TLS 변수로 저장한다. 이후 같은 쓰레드에서 `SecuiryContext` 에 접근하면 항상 같은 `SecuiryContext` 객체를 얻을수 있게 된다.
@@ -696,6 +692,7 @@ public class DemoSpringSecurityFormApplication {
   - SimplUrlLogoutSuccessHandler
 
 - `LogoutFilter`
+
 ```java
 private void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
         throws IOException, ServletException {

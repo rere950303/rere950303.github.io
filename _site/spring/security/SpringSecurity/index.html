@@ -697,31 +697,27 @@
 </ul>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">if</span> <span class="o">(!</span><span class="nc">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">strategyName</span><span class="o">))</span> <span class="o">{</span>
-			<span class="c1">// Set default</span>
-			<span class="n">strategyName</span> <span class="o">=</span> <span class="no">MODE_THREADLOCAL</span><span class="o">;</span>
-		<span class="o">}</span>
-		<span class="k">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_THREADLOCAL</span><span class="o">))</span> <span class="o">{</span>
-			<span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadLocalSecurityContextHolderStrategy</span><span class="o">();</span>
-		<span class="o">}</span>
-		<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_INHERITABLETHREADLOCAL</span><span class="o">))</span> <span class="o">{</span>
-			<span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InheritableThreadLocalSecurityContextHolderStrategy</span><span class="o">();</span>
-		<span class="o">}</span>
-		<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_GLOBAL</span><span class="o">))</span> <span class="o">{</span>
-			<span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GlobalSecurityContextHolderStrategy</span><span class="o">();</span>
-		<span class="o">}</span>
-		<span class="k">else</span> <span class="o">{</span>
-			<span class="c1">// Try to load a custom strategy</span>
-			<span class="k">try</span> <span class="o">{</span>
-				<span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">strategyName</span><span class="o">);</span>
-				<span class="nc">Constructor</span><span class="o">&lt;?&gt;</span> <span class="n">customStrategy</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">();</span>
-				<span class="n">strategy</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SecurityContextHolderStrategy</span><span class="o">)</span> <span class="n">customStrategy</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
-			<span class="o">}</span>
-			<span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
-				<span class="nc">ReflectionUtils</span><span class="o">.</span><span class="na">handleReflectionException</span><span class="o">(</span><span class="n">ex</span><span class="o">);</span>
-			<span class="o">}</span>
-		<span class="o">}</span>
-		<span class="n">initializeCount</span><span class="o">++;</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="nc">StringUtils</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">strategyName</span><span class="o">))</span> <span class="o">{</span>
+        <span class="c1">// Set default</span>
+        <span class="n">strategyName</span> <span class="o">=</span> <span class="no">MODE_THREADLOCAL</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_THREADLOCAL</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadLocalSecurityContextHolderStrategy</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_INHERITABLETHREADLOCAL</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InheritableThreadLocalSecurityContextHolderStrategy</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">strategyName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="no">MODE_GLOBAL</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">strategy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GlobalSecurityContextHolderStrategy</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">// Try to load a custom strategy</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">strategyName</span><span class="o">);</span>
+            <span class="nc">Constructor</span><span class="o">&lt;?&gt;</span> <span class="n">customStrategy</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">();</span>
+            <span class="n">strategy</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SecurityContextHolderStrategy</span><span class="o">)</span> <span class="n">customStrategy</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">ReflectionUtils</span><span class="o">.</span><span class="na">handleReflectionException</span><span class="o">(</span><span class="n">ex</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">initializeCount</span><span class="o">++;</span>
 <span class="o">}</span>
 </code></pre></div></div>
 <ul>
@@ -730,33 +726,33 @@
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="nc">ThreadLocalSecurityContextHolderStrategy</span> <span class="kd">implements</span> <span class="nc">SecurityContextHolderStrategy</span> <span class="o">{</span>
 
-	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ThreadLocal</span><span class="o">&lt;</span><span class="nc">SecurityContext</span><span class="o">&gt;</span> <span class="n">contextHolder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadLocal</span><span class="o">&lt;&gt;();</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ThreadLocal</span><span class="o">&lt;</span><span class="nc">SecurityContext</span><span class="o">&gt;</span> <span class="n">contextHolder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadLocal</span><span class="o">&lt;&gt;();</span>
 
-	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">clearContext</span><span class="o">()</span> <span class="o">{</span>
-		<span class="n">contextHolder</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
-	<span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clearContext</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">contextHolder</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+    <span class="o">}</span>
 
-	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="nc">SecurityContext</span> <span class="nf">getContext</span><span class="o">()</span> <span class="o">{</span>
-		<span class="nc">SecurityContext</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">contextHolder</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-		<span class="k">if</span> <span class="o">(</span><span class="n">ctx</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-			<span class="n">ctx</span> <span class="o">=</span> <span class="n">createEmptyContext</span><span class="o">();</span>
-			<span class="n">contextHolder</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
-		<span class="o">}</span>
-		<span class="k">return</span> <span class="n">ctx</span><span class="o">;</span>
-	<span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">SecurityContext</span> <span class="nf">getContext</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">SecurityContext</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">contextHolder</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ctx</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">ctx</span> <span class="o">=</span> <span class="n">createEmptyContext</span><span class="o">();</span>
+            <span class="n">contextHolder</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ctx</span><span class="o">;</span>
+    <span class="o">}</span>
 
-	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setContext</span><span class="o">(</span><span class="nc">SecurityContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-		<span class="nc">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">"Only non-null SecurityContext instances are permitted"</span><span class="o">);</span>
-		<span class="n">contextHolder</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
-	<span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setContext</span><span class="o">(</span><span class="nc">SecurityContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">"Only non-null SecurityContext instances are permitted"</span><span class="o">);</span>
+        <span class="n">contextHolder</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+    <span class="o">}</span>
 
-	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="nc">SecurityContext</span> <span class="nf">createEmptyContext</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="k">new</span> <span class="nf">SecurityContextImpl</span><span class="o">();</span>
-	<span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">SecurityContext</span> <span class="nf">createEmptyContext</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">SecurityContextImpl</span><span class="o">();</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 <ul>
@@ -1273,22 +1269,24 @@
       <li>SimplUrlLogoutSuccessHandler</li>
     </ul>
   </li>
-  <li><code class="language-plaintext highlighter-rouge">LogoutFilter</code>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span>
-      <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">requiresLogout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">))</span> <span class="o">{</span>
-      <span class="nc">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
-      <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
-          <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Logging out [%s]"</span><span class="o">,</span> <span class="n">auth</span><span class="o">));</span>
-      <span class="o">}</span>
-      <span class="k">this</span><span class="o">.</span><span class="na">handler</span><span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
-      <span class="k">this</span><span class="o">.</span><span class="na">logoutSuccessHandler</span><span class="o">.</span><span class="na">onLogoutSuccess</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
-      <span class="k">return</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+  <li><code class="language-plaintext highlighter-rouge">LogoutFilter</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="nc">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="nc">FilterChain</span> <span class="n">chain</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">requiresLogout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">))</span> <span class="o">{</span>
+        <span class="nc">Authentication</span> <span class="n">auth</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="nc">LogMessage</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Logging out [%s]"</span><span class="o">,</span> <span class="n">auth</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">handler</span><span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">logoutSuccessHandler</span><span class="o">.</span><span class="na">onLogoutSuccess</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">auth</span><span class="o">);</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">chain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
+</code></pre></div></div>
+<ul>
   <li><code class="language-plaintext highlighter-rouge">CompositeLogoutHandler</code>(<code class="language-plaintext highlighter-rouge">LogoutHandler</code> 구현체로 여러 종류의 <code class="language-plaintext highlighter-rouge">LogoutHandler</code>를 가지고 있음.)</li>
 </ul>
 
@@ -1814,6 +1812,52 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/db/BasicQueryStructure/" rel="permalink">[DB] Basic Query Structure
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-25T00:00:00+09:00">November 25, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
         <a href="/db/IntroSQL/" rel="permalink">[DB] Introduction to SQL
 </a>
       
@@ -1918,52 +1962,6 @@
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2021-11-22T00:00:00+09:00">November 22, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          최대 1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/db/RDB_1/" rel="permalink">[DB] Intro to Relational Model(1)
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-19T00:00:00+09:00">November 19, 2021</time>
       </span>
     
 

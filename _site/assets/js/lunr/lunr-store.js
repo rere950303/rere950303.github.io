@@ -166,4 +166,10 @@ var store = [{
         "tags": ["DB"],
         "url": "https://rere950303.github.io/db/IntroSQL/",
         "teaser": null
+      },{
+        "title": "[DB] Basic Query Structure",
+        "excerpt":"Data-manipulation language(DML) insert, delete, update tuples typical SQL SELECT A1, A2, ..., An // attribute FROM r1, r2, ..., rm // relation WHERE P // predicate The SELECT Clause 대소문자를 구별하지 않는다. distinct 키워드로 중복되는 값을 제거할 수 있다. asterisk(*): 모든 속성을 선택 산술연산을 사용할 수 있다.(+, -, *, /)...","categories": ["DB"],
+        "tags": ["DB"],
+        "url": "https://rere950303.github.io/db/BasicQueryStructure/",
+        "teaser": null
       }]

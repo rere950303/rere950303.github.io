@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[DB] Introduction to SQL - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[DB] Basic Query Structure - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[DB] Introduction to SQL">
-<meta property="og:url" content="https://rere950303.github.io/db/IntroSQL/">
+<meta property="og:title" content="[DB] Basic Query Structure">
+<meta property="og:url" content="https://rere950303.github.io/db/BasicQueryStructure/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-11-24T00:00:00+09:00">
+  <meta property="article:published_time" content="2021-11-25T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/db/IntroSQL/">
+<link rel="canonical" href="https://rere950303.github.io/db/BasicQueryStructure/">
 
 
 
@@ -196,7 +196,7 @@
     
       
       
-        <li class="current">[DB] Introduction to SQL</li>
+        <li class="current">[DB] Basic Query Structure</li>
       
     
   </ol>
@@ -327,15 +327,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[DB] Introduction to SQL">
+    <meta itemprop="headline" content="[DB] Basic Query Structure">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-11-24T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2021-11-25T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Introduction to SQL
+          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Basic Query Structure
 </h1>
           
 
@@ -344,7 +344,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-24T00:00:00+09:00">November 24, 2021</time>
+        <time datetime="2021-11-25T00:00:00+09:00">November 25, 2021</time>
       </span>
     
 
@@ -357,7 +357,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          최대 1 분 소요
         
       </span>
     
@@ -374,11 +374,14 @@
               
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
-  <li><a href="#data-definition-lauguage">Data Definition Lauguage</a></li>
-  <li><a href="#domain-types-in-sql">Domain Types in SQL</a></li>
-  <li><a href="#create-table-construct">Create Table Construct</a></li>
-  <li><a href="#integrity-constraints-in-create-table">Integrity Constraints in Create Table</a></li>
-  <li><a href="#drop-and-alter-table-constructs">Drop and Alter Table Constructs</a></li>
+  <li><a href="#data-manipulation-languagedml">Data-manipulation language(DML)</a></li>
+  <li><a href="#the-select-clause">The SELECT Clause</a></li>
+  <li><a href="#the-where-clause">The WHERE Clause</a></li>
+  <li><a href="#the-from-clause">The FROM Clause</a>
+    <ul>
+      <li><a href="#joins">Joins</a></li>
+    </ul>
+  </li>
 </ul>
 
               
@@ -388,70 +391,61 @@
             </nav>
           </aside>
         
-        <h2 id="data-definition-lauguage">Data Definition Lauguage</h2>
+        <h2 id="data-manipulation-languagedml">Data-manipulation language(DML)</h2>
 <ul>
-  <li>SQL의 DDL은 relatioin에 관한 정보를 만든다.</li>
-  <li>각 relation의 스키마</li>
-  <li>각 속성들의 domain</li>
-  <li>무결성 제약조건</li>
-  <li>각 relation의 인덱스 정보 / 보안, 권한 정보</li>
+  <li>insert, delete, update tuples</li>
+  <li>typical SQL</li>
 </ul>
 
-<h2 id="domain-types-in-sql">Domain Types in SQL</h2>
-<ul>
-  <li>char(n): 길이가 n인 고정 길이 문자열</li>
-  <li>varchar(n): 최대 길이가 n인 가변 길이 문자열</li>
-  <li>int</li>
-  <li>smallint</li>
-  <li>numeric(p, d): 고정 소수점 실수, p는 부호를 포함한 전체 숫자의 길이, s는 소수점 이하 숫자의 길이</li>
-  <li>real, float(n): float는 길이 n을 사용자가 설정함</li>
-  <li>NULL, NOT NULL: 속성이 null값을 가질 수 있는지의 여부를 선언</li>
-  <li>ex: ID VARCHAR(20) NOT NULL, Deposit INT DEFAULT 0</li>
-</ul>
-
-<h2 id="create-table-construct">Create Table Construct</h2>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">r</span> <span class="p">(</span><span class="n">A1</span> <span class="n">D1</span><span class="p">,</span> <span class="n">A2</span> <span class="n">D2</span><span class="p">,</span> <span class="p">...</span> <span class="p">,</span> <span class="n">An</span> <span class="n">Dn</span><span class="p">),</span>
-               <span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraint1</span><span class="p">),</span>
-               <span class="p">...,</span>
-               <span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraintk</span><span class="p">)</span>
-<span class="p">)</span>
-</code></pre></div></div>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">instructor</span> <span class="p">(</span>
-    <span class="n">ID</span>          <span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-    <span class="n">name</span>        <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-    <span class="n">dept_name</span>   <span class="nb">varchar</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-    <span class="n">salary</span>      <span class="n">numeruc</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="p">)</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">An</span> <span class="o">//</span> <span class="n">attribute</span>
+<span class="k">FROM</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">rm</span> <span class="o">//</span> <span class="n">relation</span>
+<span class="k">WHERE</span> <span class="n">P</span> <span class="o">//</span> <span class="n">predicate</span>
 </code></pre></div></div>
 
-<h2 id="integrity-constraints-in-create-table">Integrity Constraints in Create Table</h2>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">student</span> <span class="p">(</span>
-    <span class="n">ID</span>          <span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
-    <span class="n">name</span>        <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-    <span class="n">dept_name</span>   <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
-    <span class="n">tot_cred</span>    <span class="nb">numeric</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="k">primary</span> <span class="k">key</span> <span class="n">ID</span><span class="p">,</span>
-    <span class="k">foreign</span> <span class="k">key</span> <span class="p">(</span><span class="n">dept_name</span><span class="p">)</span> <span class="k">references</span> <span class="n">department</span><span class="p">(</span><span class="n">dept_name</span><span class="p">));</span>
-<span class="p">)</span>
+<h2 id="the-select-clause">The SELECT Clause</h2>
+<ul>
+  <li>대소문자를 구별하지 않는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">distinct</code> 키워드로 중복되는 값을 제거할 수 있다.</li>
+  <li>asterisk(*): 모든 속성을 선택</li>
+  <li>산술연산을 사용할 수 있다.(+, -, *, /)</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ID</span><span class="p">,</span> <span class="n">nmae</span><span class="p">,</span> <span class="n">salary</span> <span class="o">/</span> <span class="mi">12</span> <span class="o">//</span> <span class="err">기존</span> <span class="n">relation</span><span class="err">에는</span> <span class="err">영향</span> <span class="n">X</span>
+<span class="k">FROM</span> <span class="n">instructor</span>
 </code></pre></div></div>
 
+<h2 id="the-where-clause">The WHERE Clause</h2>
 <ul>
-  <li>not null: null값을 가질 수 없고 해당 속성의 값이 null인 tuple를 삽입, 수정하는 동작은 거부됨</li>
-  <li>primary key(객체 무결성 제약조건): tuple의 유일성을 보장하기 위한 규칙으로 각 tuple를 식별하는 역할, null이나 중복되는 값을 가질수 없음</li>
-  <li>foreign key(A1, A2,,) references r(A1, A2,,): 외래키는 relation r의 기본키를 참조함, 외래키의 값은 r에 항상 그 값이 존재해야 한다.</li>
+  <li>관계대수에서의 selection predicate에 대응</li>
+  <li>결과 relation에서 predicate를 만족하는 tuple만을 추출</li>
+  <li>logical connectives -&gt; and, or, not</li>
 </ul>
 
-<h2 id="drop-and-alter-table-constructs">Drop and Alter Table Constructs</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">name</span>
+<span class="k">FROM</span> <span class="n">instructor</span>
+<span class="k">WHERE</span> <span class="n">dept_name</span> <span class="o">=</span> <span class="n">Comp</span><span class="p">.</span> <span class="n">Sci</span><span class="p">.</span> <span class="k">and</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="mi">80000</span>
+</code></pre></div></div>
+
+<h2 id="the-from-clause">The FROM Clause</h2>
 <ul>
-  <li>drop table student: 테이블과 내용 모두 삭제</li>
-  <li>delete from dtudent: 내용만 삭제, 테이블 스키마는 유지</li>
-  <li>alter table: 기존 테이블에 새로운 속성을 추가하거나 기존 속성을 삭제
-    <ul>
-      <li>alter table r add A D (모든 tuple은 새로운 속성에 대해 null값을 가진다.)</li>
-      <li>alter table r drop A (삭제하는 속성이 다른 테이블에서 참조하는 속성인 경우 외래키 무결성 제약조건이 깨질 수 있으므로 조심해야한다.)</li>
-    </ul>
-  </li>
+  <li>쿼리에 필요한 relation를 나열</li>
+  <li>Cartesian product(공통되는 속성이 있을경우 속성 앞에 relation 이름을 붙여 구별한다.)</li>
 </ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">instructor</span><span class="p">,</span> <span class="n">teaches</span>
+</code></pre></div></div>
+
+<h3 id="joins">Joins</h3>
+<ul>
+  <li>원하는 data가 하나의 relation에 없을 경우 2개 이상의 relation을 join</li>
+  <li>Cartesian product와 where절 이용</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">course_id</span>
+<span class="k">FROM</span> <span class="n">instructor</span><span class="p">,</span> <span class="n">teaches</span>
+<span class="k">WHERE</span> <span class="n">instructor</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">teaches</span><span class="p">.</span><span class="n">ID</span> 
+</code></pre></div></div>
 
         
       </section>
@@ -500,7 +494,7 @@
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-24T00:00:00+09:00">November 24, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-25T00:00:00+09:00">November 25, 2021</time></p>
 
 
       </footer>
@@ -510,23 +504,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Introduction+to+SQL%20https%3A%2F%2Frere950303.github.io%2Fdb%2FIntroSQL%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Basic+Query+Structure%20https%3A%2F%2Frere950303.github.io%2Fdb%2FBasicQueryStructure%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdb%2FIntroSQL%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdb%2FBasicQueryStructure%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdb%2FIntroSQL%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdb%2FBasicQueryStructure%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/aws/AWS/" class="pagination--pager" title="[AWS] AWS
+      <a href="/db/IntroSQL/" class="pagination--pager" title="[DB] Introduction to SQL
 ">이전</a>
     
     
-      <a href="/db/BasicQueryStructure/" class="pagination--pager" title="[DB] Basic Query Structure
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -550,7 +543,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/db/BasicQueryStructure/" rel="permalink">[DB] Basic Query Structure
+        <a href="/db/IntroSQL/" rel="permalink">[DB] Introduction to SQL
 </a>
       
     </h2>
@@ -561,7 +554,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-25T00:00:00+09:00">November 25, 2021</time>
+        <time datetime="2021-11-24T00:00:00+09:00">November 24, 2021</time>
       </span>
     
 
@@ -574,7 +567,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     

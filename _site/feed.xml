@@ -1,4 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-11-24T12:19:07+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[DB] Introduction to SQL</title><link href="https://rere950303.github.io/db/IntroSQL/" rel="alternate" type="text/html" title="[DB] Introduction to SQL" /><published>2021-11-24T00:00:00+09:00</published><updated>2021-11-24T00:00:00+09:00</updated><id>https://rere950303.github.io/db/IntroSQL</id><content type="html" xml:base="https://rere950303.github.io/db/IntroSQL/">&lt;h2 id=&quot;data-definition-lauguage&quot;&gt;Data Definition Lauguage&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2021-11-25T22:48:22+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[DB] Basic Query Structure</title><link href="https://rere950303.github.io/db/BasicQueryStructure/" rel="alternate" type="text/html" title="[DB] Basic Query Structure" /><published>2021-11-25T00:00:00+09:00</published><updated>2021-11-25T00:00:00+09:00</updated><id>https://rere950303.github.io/db/BasicQueryStructure</id><content type="html" xml:base="https://rere950303.github.io/db/BasicQueryStructure/">&lt;h2 id=&quot;data-manipulation-languagedml&quot;&gt;Data-manipulation language(DML)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;insert, delete, update tuples&lt;/li&gt;
+  &lt;li&gt;typical SQL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;An&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attribute&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;relation&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;predicate&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;the-select-clause&quot;&gt;The SELECT Clause&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;대소문자를 구별하지 않는다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distinct&lt;/code&gt; 키워드로 중복되는 값을 제거할 수 있다.&lt;/li&gt;
+  &lt;li&gt;asterisk(*): 모든 속성을 선택&lt;/li&gt;
+  &lt;li&gt;산술연산을 사용할 수 있다.(+, -, *, /)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nmae&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;기존&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;relation&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;에는&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;영향&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;the-where-clause&quot;&gt;The WHERE Clause&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;관계대수에서의 selection predicate에 대응&lt;/li&gt;
+  &lt;li&gt;결과 relation에서 predicate를 만족하는 tuple만을 추출&lt;/li&gt;
+  &lt;li&gt;logical connectives -&amp;gt; and, or, not&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dept_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Comp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sci&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;80000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;the-from-clause&quot;&gt;The FROM Clause&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;쿼리에 필요한 relation를 나열&lt;/li&gt;
+  &lt;li&gt;Cartesian product(공통되는 속성이 있을경우 속성 앞에 relation 이름을 붙여 구별한다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teaches&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;joins&quot;&gt;Joins&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;원하는 data가 하나의 relation에 없을 경우 2개 이상의 relation을 join&lt;/li&gt;
+  &lt;li&gt;Cartesian product와 where절 이용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;course_id&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teaches&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teaches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /></entry><entry><title type="html">[DB] Introduction to SQL</title><link href="https://rere950303.github.io/db/IntroSQL/" rel="alternate" type="text/html" title="[DB] Introduction to SQL" /><published>2021-11-24T00:00:00+09:00</published><updated>2021-11-24T00:00:00+09:00</updated><id>https://rere950303.github.io/db/IntroSQL</id><content type="html" xml:base="https://rere950303.github.io/db/IntroSQL/">&lt;h2 id=&quot;data-definition-lauguage&quot;&gt;Data Definition Lauguage&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;SQL의 DDL은 relatioin에 관한 정보를 만든다.&lt;/li&gt;
   &lt;li&gt;각 relation의 스키마&lt;/li&gt;
@@ -438,53 +492,7 @@
   &lt;li&gt;Client-Server: 사용자가 필요한 특정 서버에 접근하는 방식&lt;/li&gt;
   &lt;li&gt;Parallel: 여러 disk와 하나의 공유 메모리를 통해 처리량을 높이는 방식&lt;/li&gt;
   &lt;li&gt;Distributed: DB를 여러개의 노드로 분산한후 통신을 통해 하나의 논리적 DB를 구축하는 방식&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /></entry><entry><title type="html">[DB] Database Management System(DBMS)</title><link href="https://rere950303.github.io/db/DBMS/" rel="alternate" type="text/html" title="[DB] Database Management System(DBMS)" /><published>2021-11-17T00:00:00+09:00</published><updated>2021-11-17T00:00:00+09:00</updated><id>https://rere950303.github.io/db/DBMS</id><content type="html" xml:base="https://rere950303.github.io/db/DBMS/">&lt;ul&gt;
-  &lt;li&gt;DBMS에는 특정 기관에 대한 정보를 가지고 있다.
-    &lt;ul&gt;
-      &lt;li&gt;연관된 data의 집합&lt;/li&gt;
-      &lt;li&gt;data와 data 접근에 필요한 프로그램의 집합&lt;/li&gt;
-      &lt;li&gt;쉽고 편한 data CRUD 환경 제공&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;초창기 database app은 파일 시스템을 이용하여 구축되었다. 이는 여러가지 단점이 존재했다.
-    &lt;ul&gt;
-      &lt;li&gt;data 증폭 및 불일치: 여러 종류의 파일과 다양한 포맷&lt;/li&gt;
-      &lt;li&gt;data 접근의 어려움: 새로운 작업을 수행하기 위해서는(예를 들어 특정 조건을 만족하는 data list 검색) 새로운 프로그램을 작성해야 된다.&lt;/li&gt;
-      &lt;li&gt;data 고립: 서로 관련된 data들이 다른 파일 / 포맷으로 흩어짐&lt;/li&gt;
-      &lt;li&gt;무결성 문제: 무결성 제약조건이 DB와 다르게 명시적으로 나타나지 않으며 해당 조건이 지켜지기 어렵다. 따라서 프로그램에 제약조건이 내포될 수 밖에 없는데 이로 인해 새로운 제약조건을 추가하거나 기조의 조건을 변경하는 것이 어렵다.&lt;/li&gt;
-      &lt;li&gt;원자 단위의 업데이트: 업데이트중 일부분만이 수행될 경우 data 일관성이 깨지게 된다.&lt;/li&gt;
-      &lt;li&gt;동시접근: 성능을 위해서는 data에 대한 동시 접근이 필요한데 이에 대한 통제가 제대로 이루어지지 않는다면 data 일관성이 깨지고 만다. 따라서 많은 user들이 서로 다른 data에 접근하게 되는 일이 발생할 수도 있다.&lt;/li&gt;
-      &lt;li&gt;보안문제: 파일 시스템의 경우 특정 유저에게 특정 data에만 접근 가능한 권한 설정이 어렵다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Levels of Abstraction
-    &lt;ul&gt;
-      &lt;li&gt;Physical level: record가 어떻게 저장되는지(하드웨어 측면)&lt;/li&gt;
-      &lt;li&gt;Logical level: DB에 저장되는 data와 data사이 관계 설명
-        &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;dept_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;View level: app은 data의 타입을 숨기고, 보안상 여러 data를 유저로부터 숨긴다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;인스턴스와 스키마
-    &lt;ul&gt;
-      &lt;li&gt;스키마: DB의 논리적 구조를 의미한다. 예를 들어 특정 DB는 소비자, 계좌, 그들의 관계에 대한 정보로 이루어져 있다.
-        &lt;ul&gt;
-          &lt;li&gt;Physical schema: Physical level에서의 DB 설계&lt;/li&gt;
-          &lt;li&gt;Logical schema: Logical level에서의 DB 설계&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;인스턴스: 특정 시점에 DB에 있는 실제 data&lt;/li&gt;
-      &lt;li&gt;Physical Data independence: Physical schema가 변해도 Logical schema는 변하지 않는다. 즉 영향이 없다. 하지만 App은 Logical schema을 기반으로 설계되기 떄문에 Logical schema가 변동되면 App도 변경이 필요하다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="DBMS" /></entry><entry><title type="html">[DB] Data Models, Data Languages, Data Approaches</title><link href="https://rere950303.github.io/db/Data/" rel="alternate" type="text/html" title="[DB] Data Models, Data Languages, Data Approaches" /><published>2021-11-17T00:00:00+09:00</published><updated>2021-11-17T00:00:00+09:00</updated><id>https://rere950303.github.io/db/Data</id><content type="html" xml:base="https://rere950303.github.io/db/Data/">&lt;h2 id=&quot;data-models&quot;&gt;Data Models&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /></entry><entry><title type="html">[DB] Data Models, Data Languages, Data Approaches</title><link href="https://rere950303.github.io/db/Data/" rel="alternate" type="text/html" title="[DB] Data Models, Data Languages, Data Approaches" /><published>2021-11-17T00:00:00+09:00</published><updated>2021-11-17T00:00:00+09:00</updated><id>https://rere950303.github.io/db/Data</id><content type="html" xml:base="https://rere950303.github.io/db/Data/">&lt;h2 id=&quot;data-models&quot;&gt;Data Models&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;A colleciton of for descibing Data, Data relationships, Data semantics, Data constraints&lt;/li&gt;
   &lt;li&gt;Relational model
@@ -577,7 +585,53 @@
 &lt;ul&gt;
   &lt;li&gt;테이블 정규화: 어떠한 설계가 나쁜 설계인지 정의하고 테스트한다. data 불일치, 중복 등을 배제&lt;/li&gt;
   &lt;li&gt;ER model: DB에 대한 요구사항을 분석하고 ER model를 설계한다. 실제 세계에서 뿐만 아니라 DB에서 필요한 개체, 그 개체의 속성, 개체들의 관계를 정의한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="SQL" /></entry><entry><title type="html">[Javascript] Javascript</title><link href="https://rere950303.github.io/javascript/JavaScript/" rel="alternate" type="text/html" title="[Javascript] Javascript" /><published>2021-11-12T00:00:00+09:00</published><updated>2021-11-12T00:00:00+09:00</updated><id>https://rere950303.github.io/javascript/JavaScript</id><content type="html" xml:base="https://rere950303.github.io/javascript/JavaScript/">&lt;h2 id=&quot;javascript-언어소개&quot;&gt;Javascript 언어소개&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="SQL" /></entry><entry><title type="html">[DB] Database Management System(DBMS)</title><link href="https://rere950303.github.io/db/DBMS/" rel="alternate" type="text/html" title="[DB] Database Management System(DBMS)" /><published>2021-11-17T00:00:00+09:00</published><updated>2021-11-17T00:00:00+09:00</updated><id>https://rere950303.github.io/db/DBMS</id><content type="html" xml:base="https://rere950303.github.io/db/DBMS/">&lt;ul&gt;
+  &lt;li&gt;DBMS에는 특정 기관에 대한 정보를 가지고 있다.
+    &lt;ul&gt;
+      &lt;li&gt;연관된 data의 집합&lt;/li&gt;
+      &lt;li&gt;data와 data 접근에 필요한 프로그램의 집합&lt;/li&gt;
+      &lt;li&gt;쉽고 편한 data CRUD 환경 제공&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;초창기 database app은 파일 시스템을 이용하여 구축되었다. 이는 여러가지 단점이 존재했다.
+    &lt;ul&gt;
+      &lt;li&gt;data 증폭 및 불일치: 여러 종류의 파일과 다양한 포맷&lt;/li&gt;
+      &lt;li&gt;data 접근의 어려움: 새로운 작업을 수행하기 위해서는(예를 들어 특정 조건을 만족하는 data list 검색) 새로운 프로그램을 작성해야 된다.&lt;/li&gt;
+      &lt;li&gt;data 고립: 서로 관련된 data들이 다른 파일 / 포맷으로 흩어짐&lt;/li&gt;
+      &lt;li&gt;무결성 문제: 무결성 제약조건이 DB와 다르게 명시적으로 나타나지 않으며 해당 조건이 지켜지기 어렵다. 따라서 프로그램에 제약조건이 내포될 수 밖에 없는데 이로 인해 새로운 제약조건을 추가하거나 기조의 조건을 변경하는 것이 어렵다.&lt;/li&gt;
+      &lt;li&gt;원자 단위의 업데이트: 업데이트중 일부분만이 수행될 경우 data 일관성이 깨지게 된다.&lt;/li&gt;
+      &lt;li&gt;동시접근: 성능을 위해서는 data에 대한 동시 접근이 필요한데 이에 대한 통제가 제대로 이루어지지 않는다면 data 일관성이 깨지고 만다. 따라서 많은 user들이 서로 다른 data에 접근하게 되는 일이 발생할 수도 있다.&lt;/li&gt;
+      &lt;li&gt;보안문제: 파일 시스템의 경우 특정 유저에게 특정 data에만 접근 가능한 권한 설정이 어렵다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Levels of Abstraction
+    &lt;ul&gt;
+      &lt;li&gt;Physical level: record가 어떻게 저장되는지(하드웨어 측면)&lt;/li&gt;
+      &lt;li&gt;Logical level: DB에 저장되는 data와 data사이 관계 설명
+        &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instructor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dept_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;View level: app은 data의 타입을 숨기고, 보안상 여러 data를 유저로부터 숨긴다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인스턴스와 스키마
+    &lt;ul&gt;
+      &lt;li&gt;스키마: DB의 논리적 구조를 의미한다. 예를 들어 특정 DB는 소비자, 계좌, 그들의 관계에 대한 정보로 이루어져 있다.
+        &lt;ul&gt;
+          &lt;li&gt;Physical schema: Physical level에서의 DB 설계&lt;/li&gt;
+          &lt;li&gt;Logical schema: Logical level에서의 DB 설계&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;인스턴스: 특정 시점에 DB에 있는 실제 data&lt;/li&gt;
+      &lt;li&gt;Physical Data independence: Physical schema가 변해도 Logical schema는 변하지 않는다. 즉 영향이 없다. 하지만 App은 Logical schema을 기반으로 설계되기 떄문에 Logical schema가 변동되면 App도 변경이 필요하다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="DBMS" /></entry><entry><title type="html">[Javascript] Javascript</title><link href="https://rere950303.github.io/javascript/JavaScript/" rel="alternate" type="text/html" title="[Javascript] Javascript" /><published>2021-11-12T00:00:00+09:00</published><updated>2021-11-12T00:00:00+09:00</updated><id>https://rere950303.github.io/javascript/JavaScript</id><content type="html" xml:base="https://rere950303.github.io/javascript/JavaScript/">&lt;h2 id=&quot;javascript-언어소개&quot;&gt;Javascript 언어소개&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;웹브라우저: 경고창 등&lt;/li&gt;
   &lt;li&gt;탈 웹브라우저: 웹서버까지 확장
@@ -2028,61 +2082,4 @@ Programmer가 Person의 기능을 상속하고 있는 것이다. 단순히 똑�
     &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;na&quot;&gt;MYSQL_ROOT_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;johnahn&lt;/span&gt;
       &lt;span class=&quot;na&quot;&gt;MYSQL_DATABASE&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;myapp&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Docker" /><category term="Docker" /><category term="CI" /></entry><entry><title type="html">[Docker][Spring] Spring WAS 도커로 띄우기</title><link href="https://rere950303.github.io/docker/spring/Spring&Docker/" rel="alternate" type="text/html" title="[Docker][Spring] Spring WAS 도커로 띄우기" /><published>2021-11-06T00:00:00+09:00</published><updated>2021-11-06T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/spring/Spring&amp;Docker</id><content type="html" xml:base="https://rere950303.github.io/docker/spring/Spring&amp;Docker/">&lt;h2 id=&quot;ubuntu--jdk-이미지&quot;&gt;ubuntu + jdk 이미지&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Dockerfile&lt;/li&gt;
-  &lt;li&gt;Spring의 .jar 파일을 실행하는 이미지 생성&lt;/li&gt;
-  &lt;li&gt;한글 사진 파일 업로드를 위한 locale 설정&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;FROM ubuntu&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;RUN apt-get update&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;RUN apt-get install -y openjdk-11-jdk&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;RUN apt-get -y install locales&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;RUN sed -i &apos;/en_US.UTF-8/s/^# //g&apos; /etc/locale.gen &amp;amp;&amp;amp; \&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;locale-gen&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;ENV LANG en_US.UTF-8&lt;/span&gt;  
-&lt;span class=&quot;s&quot;&gt;ENV LANGUAGE en_US:en&lt;/span&gt;  
-&lt;span class=&quot;s&quot;&gt;ENV LC_ALL en_US.UTF-8&lt;/span&gt;  
-&lt;span class=&quot;s&quot;&gt;ARG JAR_FILE=./build/libs/*.jar&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;ADD ${JAR_FILE} app.jar&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;EXPOSE &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;8080&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;mariadb와-spring-이미지를-docker-composeyml로-생성&quot;&gt;mariadb와 Spring 이미지를 docker-compose.yml로 생성&lt;/h2&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;database&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mariadb&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./db:/var/lib/mysql&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MYSQL_DATABASE=moviereview&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MYSQL_ROOT_PASSWORD=1234&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MYSQL_ROOT_HOST=%&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;--character-set-server=utf8mb4&apos;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;--collation-server=utf8mb4_unicode_ci&apos;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3306:3306&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;platform&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;linux/amd64&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;application&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;application&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;.&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;SPRING_DATASOURCE_URL&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jdbc:mariadb://database:3306/moviereview?useSSL=false&amp;amp;serverTimezone=UTC&amp;amp;useLegacyDatetimeCode=false&amp;amp;allowPublicKeyRetrieval=true&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;SPRING_DATASOURCE_USERNAME&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;root&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;SPRING_DATASOURCE_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1234&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./photo:/var/lib/photo&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;8080:8080&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-&lt;ul&gt;
-  &lt;li&gt;사진 파일 업로드시 볼륨을 이용하여 호스트의 하드디스크에 저장&lt;/li&gt;
-  &lt;li&gt;data도 볼륨을 생성하여 컨테이너 삭제후 다시 만들어도 기존 서버 유지 가능&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Docker/Spring" /><category term="Docker" /><category term="Spring" /></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Docker" /><category term="Docker" /><category term="CI" /></entry></feed>
