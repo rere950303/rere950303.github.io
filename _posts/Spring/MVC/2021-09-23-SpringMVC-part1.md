@@ -561,7 +561,7 @@ public String modelAttributeV1(@ModelAttribute HelloData helloData) {
 - `HelloData` 객체를 생성한다.
 - 요청 파라미터의 이름으로 `HelloData` 객체의 프로퍼티를 찾는다. 그리고 해당 프로퍼티의 setter를 호출해서 파라미터의 값을 입력(바인딩) 한다.
 - `@ModelAttribute` 는 생략할 수 있다. 그런데 `@RequestParam` 도 생략할 수 있으니 혼란이 발생할 수 있다.
-	 1. ` String` , `int` , `Integer` 같은 단순 타입 = `@RequestParam`
+	1. `String` , `int` , `Integer` 같은 단순 타입 = `@RequestParam`
 	2. 나머지 = `@ModelAttribute` (argument resolver 로 지정해둔 타입 외)
 - 다음과 같은 코드를 자동으로 넣어준다
 
