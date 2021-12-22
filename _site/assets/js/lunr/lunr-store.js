@@ -113,12 +113,6 @@ var store = [{
         "url": "https://rere950303.github.io/docker/spring/Spring&Docker/",
         "teaser": null
       },{
-        "title": "[Docker] 도커와 CI환경",
-        "excerpt":"들어가며 해당 게시글은 인프런 John Ahn 강사님의 [따라하며 배우는 도커와 CI환경][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다. 도커 기본 도커를 쓰는 이유 Installer를 통한 설치의 경우 갖고 있는 서버, 패키지 버전, 운영체제 등에 따라 프로그램을 설치하는 과정중에 많은 에러들이 발생한다. 또한 그 과정이 복합하다. 도커를 이용하여 예상치 못한 에러를 줄일 수...","categories": ["Docker"],
-        "tags": ["Docker","CI"],
-        "url": "https://rere950303.github.io/docker/Docker&CI/",
-        "teaser": null
-      },{
         "title": "[Javascript] Javascript",
         "excerpt":"Javascript 언어소개 웹브라우저: 경고창 등 탈 웹브라우저: 웹서버까지 확장 php, python, java … node.js, Spring 탈 웹: Google Apps Script 언어란: 의사소통을 위한 약속(문법) 환경이란: 다양한 분야에서의 사용 alert(‘hello world’); -&gt; 웹브라우저 write(‘hello world’); -&gt; 웹서버 msgBox(‘hello world’); -&gt; SpreadSheet Javascript 기본 - 실행방법과 실습환경 코드 작성과 실행 &lt;!DOCTYPE html&gt;...","categories": ["Javascript"],
         "tags": ["Javascript"],
@@ -171,5 +165,11 @@ var store = [{
         "excerpt":"Data-manipulation language(DML) insert, delete, update tuples typical SQL SELECT A1, A2, ..., An // attribute FROM r1, r2, ..., rm // relation WHERE P // predicate The SELECT Clause 대소문자를 구별하지 않는다. distinct 키워드로 중복되는 값을 제거할 수 있다. asterisk(*): 모든 속성을 선택 산술연산을 사용할 수 있다.(+, -, *, /)...","categories": ["DB"],
         "tags": ["DB"],
         "url": "https://rere950303.github.io/db/BasicQueryStructure/",
+        "teaser": null
+      },{
+        "title": "[Docker] 도커와 CI환경",
+        "excerpt":"들어가며 해당 게시글은 인프런 John Ahn 강사님의 따라하며 배우는 도커와 CI환경 강의를 바탕으로 쓰였음을 미리 밝힙니다. 도커 기본 도커를 쓰는 이유 Installer를 통한 설치의 경우 갖고 있는 서버, 패키지 버전, 운영체제 등에 따라 프로그램을 설치하는 과정중에 많은 에러들이 발생한다. 또한 그 과정이 복합하다. 도커를 이용하여 예상치 못한 에러를 줄일 수...","categories": ["Docker"],
+        "tags": ["Docker","CI"],
+        "url": "https://rere950303.github.io/docker/Docker&CI/",
         "teaser": null
       }]
