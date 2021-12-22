@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Docker][Spring] Spring WAS 도커로 띄우기 - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Spring][Log] 로깅 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[Docker][Spring] Spring WAS 도커로 띄우기">
-<meta property="og:url" content="https://rere950303.github.io/docker/spring/Spring&Docker/">
+<meta property="og:title" content="[Spring][Log] 로깅">
+<meta property="og:url" content="https://rere950303.github.io/spring/log/Log/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-11-06T00:00:00+09:00">
+  <meta property="article:published_time" content="2021-12-23T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/docker/spring/Spring&Docker/">
+<link rel="canonical" href="https://rere950303.github.io/spring/log/Log/">
 
 
 
@@ -188,7 +188,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#docker" itemprop="item"><span itemprop="name">Docker</span></a>
+          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -198,7 +198,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
+          <a href="/categories/#log" itemprop="item"><span itemprop="name">Log</span></a>
           <meta itemprop="position" content="3" />
         </li>
         <span class="sep">/</span>
@@ -206,7 +206,7 @@
     
       
       
-        <li class="current">[Docker][Spring] Spring WAS 도커로 띄우기</li>
+        <li class="current">[Spring][Log] 로깅</li>
       
     
   </ol>
@@ -337,15 +337,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Docker][Spring] Spring WAS 도커로 띄우기">
+    <meta itemprop="headline" content="[Spring][Log] 로깅">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-11-06T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2021-12-23T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[Docker][Spring] Spring WAS 도커로 띄우기
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][Log] 로깅
 </h1>
           
 
@@ -354,7 +354,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-06T00:00:00+09:00">November 6, 2021</time>
+        <time datetime="2021-12-23T00:00:00+09:00">December 23, 2021</time>
       </span>
     
 
@@ -367,7 +367,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -379,63 +379,74 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="ubuntu--jdk-이미지">ubuntu + jdk 이미지</h2>
-<ul>
-  <li>Dockerfile</li>
-  <li>Spring의 .jar 파일을 실행하는 이미지 생성</li>
-  <li>한글 사진 파일 업로드를 위한 locale 설정</li>
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#로깅-라이브러리">로깅 라이브러리</a></li>
+  <li><a href="#로그-선언">로그 선언</a></li>
+  <li><a href="#로그-레벨-설정">로그 레벨 설정</a></li>
+  <li><a href="#올바른-로그-사용법">올바른 로그 사용법</a></li>
 </ul>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">FROM ubuntu</span>
-<span class="s">RUN apt-get update</span>
-<span class="s">RUN apt-get install -y openjdk-11-jdk</span>
-<span class="s">RUN apt-get -y install locales</span>
-<span class="s">RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen &amp;&amp; \</span>
-    <span class="s">locale-gen</span>
-<span class="s">ENV LANG en_US.UTF-8</span>  
-<span class="s">ENV LANGUAGE en_US:en</span>  
-<span class="s">ENV LC_ALL en_US.UTF-8</span>  
-<span class="s">ARG JAR_FILE=./build/libs/*.jar</span>
-<span class="s">ADD ${JAR_FILE} app.jar</span>
-<span class="s">EXPOSE </span><span class="m">8080</span>
-<span class="s">ENTRYPOINT ["java","-jar","/app.jar"]</span>
-</code></pre></div></div>
-
-<h2 id="mariadb와-spring-이미지를-docker-composeyml로-생성">mariadb와 Spring 이미지를 docker-compose.yml로 생성</h2>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3"</span>
-<span class="na">services</span><span class="pi">:</span>
-  <span class="na">database</span><span class="pi">:</span>
-    <span class="na">container_name</span><span class="pi">:</span> <span class="s">database</span>
-    <span class="na">image</span><span class="pi">:</span> <span class="s">mariadb</span>
-    <span class="na">volumes</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">./db:/var/lib/mysql</span>
-    <span class="na">environment</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">MYSQL_DATABASE=moviereview</span>
-      <span class="pi">-</span> <span class="s">MYSQL_ROOT_PASSWORD=1234</span>
-      <span class="pi">-</span> <span class="s">MYSQL_ROOT_HOST=%</span>
-    <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">--character-set-server=utf8mb4'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">--collation-server=utf8mb4_unicode_ci'</span><span class="pi">]</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">3306:3306"</span>
-    <span class="na">platform</span><span class="pi">:</span> <span class="s">linux/amd64</span>
-
-  <span class="na">application</span><span class="pi">:</span>
-    <span class="na">container_name</span><span class="pi">:</span> <span class="s">application</span>
-    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
-    <span class="na">environment</span><span class="pi">:</span>
-      <span class="na">SPRING_DATASOURCE_URL</span><span class="pi">:</span> <span class="s">jdbc:mariadb://database:3306/moviereview?useSSL=false&amp;serverTimezone=UTC&amp;useLegacyDatetimeCode=false&amp;allowPublicKeyRetrieval=true</span>
-      <span class="na">SPRING_DATASOURCE_USERNAME</span><span class="pi">:</span> <span class="s">root</span>
-      <span class="na">SPRING_DATASOURCE_PASSWORD</span><span class="pi">:</span> <span class="m">1234</span>
-    <span class="na">volumes</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s">./photo:/var/lib/photo</span>
-    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
-    <span class="na">ports</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
-</code></pre></div></div>
-
-<hr />
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="로깅-라이브러리">로깅 라이브러리</h2>
+<p>스프링 부트 라이브러리를 사용하면 스프링 부트 로깅 라이브러리( <code class="language-plaintext highlighter-rouge">spring-boot-starter-logging</code> )가 함께 포함된다. 스프링 부트 로깅 라이브러리는 기본으로 다음 로깅 라이브러리를 사용한다.</p>
 <ul>
-  <li>사진 파일 업로드시 볼륨을 이용하여 호스트의 하드디스크에 저장</li>
-  <li>data도 볼륨을 생성하여 컨테이너 삭제후 다시 만들어도 기존 서버 유지 가능</li>
+  <li>SLF4J, Logback</li>
+  <li>로그 라이브러리는 Logback, Log4J, Log4J2 등등 수 많은 라이브러리가 있는데, 그것을 통합해서 인터페이스로 제공하는 것이 바로 SLF4J 라이브러리다. 쉽게 이야기해서 SLF4J는 인터페이스이고, 그 구현체로 Logback 같은 로그 라이브러리를 선택하면 된다. 실무에서는 스프링 부트가 기본으로 제공하는 Logback을 대부분 사용한다.</li>
+</ul>
+
+<h2 id="로그-선언">로그 선언</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">private Logger log = LoggerFactory.getLogger(getClass());</code></li>
+  <li><code class="language-plaintext highlighter-rouge">@Slf4j</code> : 롬복 사용 가능</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//@Slf4j</span>
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LogTestController</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">getClass</span><span class="o">());</span>
+
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/log-test"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">logTest</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"Spring"</span><span class="o">;</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">trace</span><span class="o">(</span><span class="s">"trace log={}"</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"debug log={}"</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">" info log={}"</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">" warn log={}"</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"error log={}"</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+        <span class="c1">//로그를 사용하지 않아도 a+b 계산 로직이 먼저 실행됨, 이런 방식으로 사용하면 X </span>
+        <span class="n">log</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"String concat log="</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"ok"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>LEVEL: TRACE &gt; DEBUG &gt; INFO &gt; WARN &gt; ERROR</li>
+  <li>개발 서버는 debug 출력</li>
+  <li>운영 서버는 info 출력</li>
+</ul>
+
+<h2 id="로그-레벨-설정">로그 레벨 설정</h2>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#전체 로그 레벨 설정(기본 info) </span>
+<span class="s">logging.level.root=info</span>
+
+<span class="c1">#hello.springmvc 패키지와 그 하위 로그 레벨 설정 </span>
+<span class="s">logging.level.hello.springmvc=debug</span>
+</code></pre></div></div>
+
+<h2 id="올바른-로그-사용법">올바른 로그 사용법</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">log.debug("data="+data)</code>: 로그 출력 레벨을 info로 설정해도 해당 코드에 있는 “data=”+data가 실제 실행이 되어 버린다. 결과적으로 문자 더하기 연산이 발생한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">log.debug("data={}", data)</code>: 로그 출력 레벨을 info로 설정하면 아무일도 발생하지 않는다. 따라서 앞과 같은 의미없는 연산이 발생하지 않는다.</li>
 </ul>
 
         
@@ -457,7 +468,15 @@
     
       
       
-      <a href="/tags/#docker" class="page__taxonomy-item" rel="tag">Docker</a><span class="sep">, </span>
+      <a href="/tags/#logback" class="page__taxonomy-item" rel="tag">Logback</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#log" class="page__taxonomy-item" rel="tag">Log</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#slf4j" class="page__taxonomy-item" rel="tag">SLF4J</a><span class="sep">, </span>
     
       
       
@@ -482,14 +501,14 @@
     
       
       
-      <a href="/categories/#docker-spring" class="page__taxonomy-item" rel="tag">Docker/Spring</a>
+      <a href="/categories/#spring-log" class="page__taxonomy-item" rel="tag">Spring/Log</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-06T00:00:00+09:00">November 6, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-12-23T00:00:00+09:00">December 23, 2021</time></p>
 
 
       </footer>
@@ -499,23 +518,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDocker%5D%5BSpring%5D+Spring+WAS+%EB%8F%84%EC%BB%A4%EB%A1%9C+%EB%9D%84%EC%9A%B0%EA%B8%B0%20https%3A%2F%2Frere950303.github.io%2Fdocker%2Fspring%2FSpring%26Docker%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BLog%5D+%EB%A1%9C%EA%B9%85%20https%3A%2F%2Frere950303.github.io%2Fspring%2Flog%2FLog%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdocker%2Fspring%2FSpring%26Docker%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Flog%2FLog%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdocker%2Fspring%2FSpring%26Docker%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Flog%2FLog%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/docker/Docker/" class="pagination--pager" title="[Docker] 도커
+      <a href="/docker/Docker&CI/" class="pagination--pager" title="[Docker] 도커와 CI환경
 ">이전</a>
     
     
-      <a href="/javascript/JavaScript/" class="pagination--pager" title="[Javascript] Javascript
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -529,52 +547,6 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/log/Log/" rel="permalink">[Spring][Log] 로깅
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-12-23T00:00:00+09:00">December 23, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -609,7 +581,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          11 분 소요
+          10 분 소요
         
       </span>
     
@@ -702,6 +674,52 @@
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/AWS/" rel="permalink">[AWS] AWS
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-11-23T00:00:00+09:00">November 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          5 분 소요
         
       </span>
     

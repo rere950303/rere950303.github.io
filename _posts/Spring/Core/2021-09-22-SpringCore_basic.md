@@ -1,5 +1,5 @@
 ---
-title: "[Spring][Core] 스프링 핵심 원리"
+title: "[Spring][Core] 스프링 핵심 원리-기본편"
 last\_modified\_at: 2021-09-22T 12:06 +09:00
 header:
   overlay\_color: "#333"

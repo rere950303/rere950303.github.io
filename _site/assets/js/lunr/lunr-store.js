@@ -29,10 +29,16 @@ var store = [{
         "url": "https://rere950303.github.io/sql/where&having/",
         "teaser": null
       },{
-        "title": "[Spring][Core] 스프링 핵심 원리",
+        "title": "[Spring][Core] 스프링 핵심 원리-고급편",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 [스프링 핵심 원리 - 고급편][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다. 예제 만들기 로그 추적기 - 요구사항 분석 모든 PUBLIC 메서드의 호출과 응답 정보를 로그로 출력 애플리케이션의 흐름을 변경하면 안됨(로그를 남긴다고 해서 비즈니스 로직의 동작에 영향을 주면 안됨) 메서드 호출에 걸린 시간 정상 흐름과 예외...","categories": ["Spring/Core"],
+        "tags": ["Object-oriented","Spring"],
+        "url": "https://rere950303.github.io/spring/core/SpringCore_advanced/",
+        "teaser": null
+      },{
+        "title": "[Spring][Core] 스프링 핵심 원리-기본편",
         "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 핵심 원리 - 기본편 강의를 바탕으로 쓰였음을 미리 밝힙니다. 객체 지향 설계와 스프링 좋은 객체 지향 프로그래밍 스프링은 객체 지향 언어가 가진 강력한 특징을 살려내는 프레임워크 객체 지향 언어의 특징: 캡슐화, 다형성, 추상화, 상속 역할과 구현의 분리 -&gt; 인터페이스와 구현클래스 다형성으로 인터페이스를 구현한...","categories": ["Spring/Core"],
         "tags": ["Object-oriented","Spring"],
-        "url": "https://rere950303.github.io/spring/core/SpringCore/",
+        "url": "https://rere950303.github.io/spring/core/SpringCore_basic/",
         "teaser": null
       },{
         "title": "[Spring][MVC] SpringMVC-part1",
@@ -171,5 +177,11 @@ var store = [{
         "excerpt":"들어가며 해당 게시글은 인프런 John Ahn 강사님의 따라하며 배우는 도커와 CI환경 강의를 바탕으로 쓰였음을 미리 밝힙니다. 도커 기본 도커를 쓰는 이유 Installer를 통한 설치의 경우 갖고 있는 서버, 패키지 버전, 운영체제 등에 따라 프로그램을 설치하는 과정중에 많은 에러들이 발생한다. 또한 그 과정이 복합하다. 도커를 이용하여 예상치 못한 에러를 줄일 수...","categories": ["Docker"],
         "tags": ["Docker","CI"],
         "url": "https://rere950303.github.io/docker/Docker&CI/",
+        "teaser": null
+      },{
+        "title": "[Spring][Log] 로깅",
+        "excerpt":"로깅 라이브러리 스프링 부트 라이브러리를 사용하면 스프링 부트 로깅 라이브러리( spring-boot-starter-logging )가 함께 포함된다. 스프링 부트 로깅 라이브러리는 기본으로 다음 로깅 라이브러리를 사용한다. SLF4J, Logback 로그 라이브러리는 Logback, Log4J, Log4J2 등등 수 많은 라이브러리가 있는데, 그것을 통합해서 인터페이스로 제공하는 것이 바로 SLF4J 라이브러리다. 쉽게 이야기해서 SLF4J는 인터페이스이고, 그 구현체로 Logback...","categories": ["Spring/Log"],
+        "tags": ["Spring","Log","SLF4J","Logback"],
+        "url": "https://rere950303.github.io/spring/log/Log/",
         "teaser": null
       }]
