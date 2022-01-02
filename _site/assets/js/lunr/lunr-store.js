@@ -184,4 +184,16 @@ var store = [{
         "tags": ["Spring","Log","SLF4J","Logback"],
         "url": "https://rere950303.github.io/spring/log/Log/",
         "teaser": null
+      },{
+        "title": "[Spring][RESTful] RESTful Web Services 개발",
+        "excerpt":"들어가며  해당 게시글은 인프런 Dowon Lee 강사님의 [Spring Boot를 이용한 RESTful Web Services 개발][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.   Web Service 개발 방법 SOAP과 REST의 이해     Web Service: 네트워크 상에서 서로 다른 종류의 컴퓨터들 간에 상효작용하기 위한 소프트웨어 시스템  ","categories": ["Spring/RESTful"],
+        "tags": ["RESTful","Spring","Microservices"],
+        "url": "https://rere950303.github.io/spring/restful/RESTful/",
+        "teaser": null
+      },{
+        "title": "[Spring][Batch] Spring Batch",
+        "excerpt":"들어가며 해당 게시글은 인프런 정수원 강사님의 스프링 배치 - Spring Boot 기반으로 개발하는 Spring Batch 강의를 바탕으로 쓰였음을 미리 밝힙니다. 스프링 배치 소개 개요 배치 핵심 패턴 Read: 데이터베이스, 파일, 큐에서 다량의 데이터 조회한다. Process: 특정 방법으로 데이터를 가공한다. Write: 데이터를 수정된 양식으로 다시 저장한다. 배치 시나리오 배치 프로세스를 주기적으로...","categories": ["Spring/Batch"],
+        "tags": ["Batch","Spring"],
+        "url": "https://rere950303.github.io/spring/batch/batch/",
+        "teaser": null
       }]
