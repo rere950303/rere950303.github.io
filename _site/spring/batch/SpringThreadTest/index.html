@@ -1,0 +1,1010 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Spring][Batch] Spring Batch Multithread - YHW Blog</title>
+<meta name="description" content="새로운 배움을 기록하고 공유합니다">
+
+
+  <meta name="author" content="yhw">
+  
+  <meta property="article:author" content="yhw">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="YHW Blog">
+<meta property="og:title" content="[Spring][Batch] Spring Batch Multithread">
+<meta property="og:url" content="https://rere950303.github.io/spring/batch/SpringThreadTest/">
+
+
+  <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-01-04T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://rere950303.github.io/spring/batch/SpringThreadTest/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "yhw",
+      "url": "https://rere950303.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="YHW Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          YHW Blog
+          <span class="site-subtitle">새로운 배움을 기록하고 공유합니다</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#batch" itemprop="item"><span itemprop="name">Batch</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Spring][Batch] Spring Batch Multithread</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio/photo.png" alt="yhw" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">yhw</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>어제와 다른 오늘, 오늘 같은 내일</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:yhwjjang1995@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Spring][Batch] Spring Batch Multithread">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2022-01-04T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][Batch] Spring Batch Multithread
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-04T00:00:00+09:00">January 4, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#prometheus--grafana-이용한-모니터링">Prometheus &amp; Grafana 이용한 모니터링</a></li>
+  <li><a href="#외부-api-통신-step-partioning">외부 API 통신 Step Partioning</a></li>
+  <li><a href="#테스트-결과">테스트 결과</a></li>
+  <li><a href="#고찰">고찰</a></li>
+</ul>
+
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="들어가며">들어가며</h2>
+<p>영화 오픈 API를 이용한 프로젝트 진행 중 약 10000건 정도의 Batch 성 작업에 많은 시간이 소요됨에 따라 성능 개선을 위한 멀티 스레드 적용 여부 및 적용 스레드 개수 등의 테스트</p>
+
+<h2 id="prometheus--grafana-이용한-모니터링">Prometheus &amp; Grafana 이용한 모니터링</h2>
+<ul>
+  <li>의존성 추가</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">implementation 'org.springframework.boot:spring-boot-starter-actuator'</span>
+<span class="s">implementation 'io.micrometer:micrometer-registry-prometheus'</span>
+</code></pre></div></div>
+<ul>
+  <li>Endpoint 활성화</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">management</span><span class="pi">:</span>
+  <span class="na">endpoints</span><span class="pi">:</span>
+    <span class="na">web</span><span class="pi">:</span>
+      <span class="na">exposure</span><span class="pi">:</span>
+        <span class="na">include</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+</code></pre></div></div>
+<ul>
+  <li>Prometheus와 Grafana는 도커 이미지를 이용하여 컨테이너로 실행했다. 자바 웹 애플리케이션에서 <code class="language-plaintext highlighter-rouge">/actuator/prometheus</code> 경로로 모니터링 정보를 push하고 Prometheus는 해당 경로에서 자료를 pull한다. 이를 도식화하여 볼 수 있도록 Grafana의 DataSource를 Prometheus로 설정한다.</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/1.png">
+          <img src="/assets/images/post/Spring/Test/Batch/1.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/2.png">
+          <img src="/assets/images/post/Spring/Test/Batch/2.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/3.png">
+          <img src="/assets/images/post/Spring/Test/Batch/3.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/4.png">
+          <img src="/assets/images/post/Spring/Test/Batch/4.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>cpu 사용량, 메모리 사용량, 자바 DB 커넥션 지표, HTTP 지표 등을 모니터링 할 수 있다.</li>
+</ul>
+
+<h2 id="외부-api-통신-step-partioning">외부 API 통신 Step Partioning</h2>
+<p>멀티 스레드 작업을 위해 API 통신을 위한 STEP을 partition 했다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Partitioner</code>: 스레드 개수에 맞춰서 partition의 개수를 조절할 수 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RangePartitioner</span> <span class="kd">implements</span> <span class="nc">Partitioner</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">ExecutionContext</span><span class="o">&gt;</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span> <span class="n">gridSize</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">ExecutionContext</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+        <span class="kt">int</span> <span class="n">firstPage</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">lastPage</span> <span class="o">=</span> <span class="mi">25</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">lastPage</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">ExecutionContext</span> <span class="n">executionContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ExecutionContext</span><span class="o">();</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"partition "</span> <span class="o">+</span> <span class="n">count</span><span class="o">++,</span> <span class="n">executionContext</span><span class="o">);</span>
+
+            <span class="n">executionContext</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="s">"firstPage"</span><span class="o">,</span> <span class="n">firstPage</span><span class="o">);</span>
+            <span class="n">executionContext</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="s">"lastPage"</span><span class="o">,</span> <span class="n">lastPage</span><span class="o">);</span>
+
+            <span class="n">firstPage</span> <span class="o">+=</span> <span class="mi">25</span><span class="o">;</span>
+            <span class="n">lastPage</span> <span class="o">+=</span> <span class="mi">25</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TaskExecutor</code>: 테스트를 위한 스레드의 개수를 조절한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">TaskExecutor</span> <span class="nf">taskExecutor</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">ThreadPoolTaskExecutor</span> <span class="n">threadPoolExecutor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadPoolTaskExecutor</span><span class="o">();</span>
+    <span class="n">threadPoolExecutor</span><span class="o">.</span><span class="na">setCorePoolSize</span><span class="o">(?);</span>
+    <span class="n">threadPoolExecutor</span><span class="o">.</span><span class="na">setMaxPoolSize</span><span class="o">(?);</span>
+    <span class="n">threadPoolExecutor</span><span class="o">.</span><span class="na">setThreadNamePrefix</span><span class="o">(</span><span class="s">"yhw-movieRank-"</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">threadPoolExecutor</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="테스트-결과">테스트 결과</h2>
+<ul>
+  <li>스레드 1개</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/1-cpu.png">
+          <img src="/assets/images/post/Spring/Test/Batch/1-cpu.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/1-heap.png">
+          <img src="/assets/images/post/Spring/Test/Batch/1-heap.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>스레드 2개</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/2-cpu.png">
+          <img src="/assets/images/post/Spring/Test/Batch/2-cpu.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/2-heap.png">
+          <img src="/assets/images/post/Spring/Test/Batch/2-heap.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>스레드 3개</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/3-cpu.png">
+          <img src="/assets/images/post/Spring/Test/Batch/3-cpu.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/3-heap.png">
+          <img src="/assets/images/post/Spring/Test/Batch/3-heap.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<ul>
+  <li>스레드 4개</li>
+</ul>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/4-cpu.png">
+          <img src="/assets/images/post/Spring/Test/Batch/4-cpu.png" alt="" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/post/Spring/Test/Batch/4-heap.png">
+          <img src="/assets/images/post/Spring/Test/Batch/4-heap.png" alt="" />
+      </a>
+    
+  
+  
+</figure>
+
+<p>-&gt; 스레드의 개수가 점점 늘어날수록 CPU의 점유율이 매우 조금 상승하는 것을 볼 수 있었고 힙 메모리 사용량은 큰 차이가 없었으며 Non-Heap 메모리 영역은 8.4% ~ 8.5% 로 일정했다. 각 스레드 별로 10번 테스트 케이스 실행시 Job 실행에 약 40 ~ 50초 정도 소요되었으며 스레드별 차이가 없었다.</p>
+
+<h2 id="고찰">고찰</h2>
+<ul>
+  <li>로그를 찍어본 결과 API 통신에서 대부분 시간이 소요되는 것을 볼 수 있었다. 결국 <code class="language-plaintext highlighter-rouge">@StepScope</code>로 선언한 프록시 객체를 실제 빈으로 만들어서 메소드를 호출해야 한다. 이때 API 통신은 실제 빈을 만들기 위한 로직에 포함되어 있다.</li>
+  <li>실제 빈을 얻기 위한 로직은 다음과 같다. 즉 동기화 되어 있기 때문에 멀티 스레드의 효과를 얻지 못한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">Object</span> <span class="nf">get</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">ObjectFactory</span><span class="o">&lt;?&gt;</span> <span class="n">objectFactory</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">StepContext</span> <span class="n">context</span> <span class="o">=</span> <span class="n">getContext</span><span class="o">();</span>
+    <span class="nc">Object</span> <span class="n">scopedObject</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">scopedObject</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">mutex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">scopedObject</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">scopedObject</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Creating object in scope=%s, name=%s"</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">name</span><span class="o">));</span>
+                <span class="o">}</span>
+
+
+                <span class="n">scopedObject</span> <span class="o">=</span> <span class="n">objectFactory</span><span class="o">.</span><span class="na">getObject</span><span class="o">();</span>
+                <span class="n">context</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">scopedObject</span><span class="o">);</span>
+
+            <span class="o">}</span>
+
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">scopedObject</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>해결 방안 모색
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">@StepScope</code>가 아닌 <code class="language-plaintext highlighter-rouge">ThreadLocal</code>을 이용한 paritioning을 생각해보았다. StepListener를 이용하여 Step 시작 전에 paging 변수를 스레드 단위 변수로 저장하려고 했지만 결국 처음 빈 생성시에 <code class="language-plaintext highlighter-rouge">NullPointerEx</code>이 발생했다.</li>
+      <li><code class="language-plaintext highlighter-rouge">@Async</code>를 통한 AOP를 활용하여 비동기적으로 하면 어떨가 생각해보았다. 시간이 많이 소요되는 지점은 API 통신을 하는 부분인데 non-blocking 방식으로 코딩하면 <code class="language-plaintext highlighter-rouge">itemreader.read()</code> 순간에 <code class="language-plaintext highlighter-rouge">ReadEx</code>이 발생했다.</li>
+      <li><code class="language-plaintext highlighter-rouge">Job</code>을 여러 개로 나눠서 병렬 처리하는 경우 결국 빈 생성 초기화나 <code class="language-plaintext highlighter-rouge">@StepScope</code>로 인한 병목현상은 여전했다.</li>
+    </ul>
+  </li>
+  <li>다음 포스팅에서는 <code class="language-plaintext highlighter-rouge">Quartz</code>를 통한 <code class="language-plaintext highlighter-rouge">Job</code>의 스케줄링으로 위와 같은 문제를 개선해 보겠다.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#batch" class="page__taxonomy-item" rel="tag">Batch</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#thread" class="page__taxonomy-item" rel="tag">Thread</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#spring-batch" class="page__taxonomy-item" rel="tag">Spring/Batch</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-01-04T00:00:00+09:00">January 4, 2022</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BBatch%5D+Spring+Batch+Multithread%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fbatch%2FSpringThreadTest%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fbatch%2FSpringThreadTest%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fbatch%2FSpringThreadTest%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/spring/batch/batch/" class="pagination--pager" title="[Spring][Batch] Spring Batch
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/batch/batch/" rel="permalink">[Spring][Batch] Spring Batch
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-03T00:00:00+09:00">January 3, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          36 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/restful/RESTful/" rel="permalink">[Spring][RESTful] RESTful Web Services 개발
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-12-23T00:00:00+09:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/log/Log/" rel="permalink">[Spring][Log] 로깅
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-12-23T00:00:00+09:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker/Docker&CI/" rel="permalink">[Docker] 도커와 CI환경
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-12-22T00:00:00+09:00">December 22, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 yhw. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

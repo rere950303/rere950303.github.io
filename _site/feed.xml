@@ -1,4 +1,236 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-03T00:42:20+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Batch] Spring Batch</title><link href="https://rere950303.github.io/spring/batch/batch/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch" /><published>2022-01-03T00:00:00+09:00</published><updated>2022-01-03T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/batch</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/batch/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-05T00:05:26+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Batch] Spring Batch Multithread</title><link href="https://rere950303.github.io/spring/batch/SpringThreadTest/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch Multithread" /><published>2022-01-04T00:00:00+09:00</published><updated>2022-01-04T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/SpringThreadTest</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/SpringThreadTest/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;영화 오픈 API를 이용한 프로젝트 진행 중 약 10000건 정도의 Batch 성 작업에 많은 시간이 소요됨에 따라 성능 개선을 위한 멀티 스레드 적용 여부 및 적용 스레드 개수 등의 테스트&lt;/p&gt;
+
+&lt;h2 id=&quot;prometheus--grafana-이용한-모니터링&quot;&gt;Prometheus &amp;amp; Grafana 이용한 모니터링&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;의존성 추가&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;implementation &apos;org.springframework.boot:spring-boot-starter-actuator&apos;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;implementation &apos;io.micrometer:micrometer-registry-prometheus&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;Endpoint 활성화&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;management&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;endpoints&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;exposure&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;Prometheus와 Grafana는 도커 이미지를 이용하여 컨테이너로 실행했다. 자바 웹 애플리케이션에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/actuator/prometheus&lt;/code&gt; 경로로 모니터링 정보를 push하고 Prometheus는 해당 경로에서 자료를 pull한다. 이를 도식화하여 볼 수 있도록 Grafana의 DataSource를 Prometheus로 설정한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/1.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/1.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/2.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/2.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/3.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/3.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/4.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/4.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;cpu 사용량, 메모리 사용량, 자바 DB 커넥션 지표, HTTP 지표 등을 모니터링 할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;외부-api-통신-step-partioning&quot;&gt;외부 API 통신 Step Partioning&lt;/h2&gt;
+&lt;p&gt;멀티 스레드 작업을 위해 API 통신을 위한 STEP을 partition 했다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Partitioner&lt;/code&gt;: 스레드 개수에 맞춰서 partition의 개수를 조절할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RangePartitioner&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Partitioner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExecutionContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;partition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gridSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExecutionContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HashMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstPage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastPage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lastPage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;ExecutionContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;executionContext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExecutionContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;partition &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;executionContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;executionContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;firstPage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstPage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;executionContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lastPage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastPage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;n&quot;&gt;firstPage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;lastPage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TaskExecutor&lt;/code&gt;: 테스트를 위한 스레드의 개수를 조절한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TaskExecutor&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;taskExecutor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;ThreadPoolTaskExecutor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threadPoolExecutor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadPoolTaskExecutor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;threadPoolExecutor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setCorePoolSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(?);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;threadPoolExecutor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setMaxPoolSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(?);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;threadPoolExecutor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setThreadNamePrefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;yhw-movieRank-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threadPoolExecutor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;테스트-결과&quot;&gt;테스트 결과&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;스레드 1개&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/1-cpu.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/1-cpu.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/1-heap.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/1-heap.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스레드 2개&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/2-cpu.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/2-cpu.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/2-heap.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/2-heap.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스레드 3개&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/3-cpu.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/3-cpu.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/3-heap.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/3-heap.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스레드 4개&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/4-cpu.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/4-cpu.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/post/Spring/Test/Batch/4-heap.png&quot;&gt;
+          &lt;img src=&quot;/assets/images/post/Spring/Test/Batch/4-heap.png&quot; alt=&quot;&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;-&amp;gt; 스레드의 개수가 점점 늘어날수록 CPU의 점유율이 매우 조금 상승하는 것을 볼 수 있었고 힙 메모리 사용량은 큰 차이가 없었으며 Non-Heap 메모리 영역은 8.4% ~ 8.5% 로 일정했다. 각 스레드 별로 10번 테스트 케이스 실행시 Job 실행에 약 40 ~ 50초 정도 소요되었으며 스레드별 차이가 없었다.&lt;/p&gt;
+
+&lt;h2 id=&quot;고찰&quot;&gt;고찰&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;로그를 찍어본 결과 API 통신에서 대부분 시간이 소요되는 것을 볼 수 있었다. 결국 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@StepScope&lt;/code&gt;로 선언한 프록시 객체를 실제 빈으로 만들어서 메소드를 호출해야 한다. 이때 API 통신은 실제 빈을 만들기 위한 로직에 포함되어 있다.&lt;/li&gt;
+  &lt;li&gt;실제 빈을 얻기 위한 로직은 다음과 같다. 즉 동기화 되어 있기 때문에 멀티 스레드의 효과를 얻지 못한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ObjectFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objectFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;StepContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scopedObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scopedObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;scopedObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAttribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scopedObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isDebugEnabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Creating object in scope=%s, name=%s&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+
+                &lt;span class=&quot;n&quot;&gt;scopedObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objectFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAttribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scopedObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scopedObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;해결 방안 모색
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@StepScope&lt;/code&gt;가 아닌 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal&lt;/code&gt;을 이용한 paritioning을 생각해보았다. StepListener를 이용하여 Step 시작 전에 paging 변수를 스레드 단위 변수로 저장하려고 했지만 결국 처음 빈 생성시에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NullPointerEx&lt;/code&gt;이 발생했다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Async&lt;/code&gt;를 통한 AOP를 활용하여 비동기적으로 하면 어떨가 생각해보았다. 시간이 많이 소요되는 지점은 API 통신을 하는 부분인데 non-blocking 방식으로 코딩하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;itemreader.read()&lt;/code&gt; 순간에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReadEx&lt;/code&gt;이 발생했다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Job&lt;/code&gt;을 여러 개로 나눠서 병렬 처리하는 경우 결국 빈 생성 초기화나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@StepScope&lt;/code&gt;로 인한 병목현상은 여전했다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;다음 포스팅에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quartz&lt;/code&gt;를 통한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Job&lt;/code&gt;의 스케줄링으로 위와 같은 문제를 개선해 보겠다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Batch" /><category term="Batch" /><category term="Spring" /><category term="Thread" /></entry><entry><title type="html">[Spring][Batch] Spring Batch</title><link href="https://rere950303.github.io/spring/batch/batch/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch" /><published>2022-01-03T00:00:00+09:00</published><updated>2022-01-03T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/batch</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/batch/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 정수원 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/스프링-배치/dashboard&quot;&gt;스프링 배치 - Spring Boot 기반으로 개발하는 Spring Batch&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;스프링-배치-소개&quot;&gt;스프링 배치 소개&lt;/h2&gt;
@@ -2164,7 +2396,13 @@
 &lt;ul&gt;
   &lt;li&gt;JobExplorer, JobRepository, JobRegistry, JobLauncher 를 포함하고 있으며 배치의 시작, 중단, 재시작, job 요약 등의 모니터링이 가능하다.&lt;/li&gt;
   &lt;li&gt;기본 구현체로 SimpleJobOprerator 클래스를 제공한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Batch" /><category term="Batch" /><category term="Spring" /></entry><entry><title type="html">[Spring][Log] 로깅</title><link href="https://rere950303.github.io/spring/log/Log/" rel="alternate" type="text/html" title="[Spring][Log] 로깅" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/log/Log</id><content type="html" xml:base="https://rere950303.github.io/spring/log/Log/">&lt;h2 id=&quot;로깅-라이브러리&quot;&gt;로깅 라이브러리&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Batch" /><category term="Batch" /><category term="Spring" /></entry><entry><title type="html">[Spring][RESTful] RESTful Web Services 개발</title><link href="https://rere950303.github.io/spring/restful/RESTful/" rel="alternate" type="text/html" title="[Spring][RESTful] RESTful Web Services 개발" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/restful/RESTful</id><content type="html" xml:base="https://rere950303.github.io/spring/restful/RESTful/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;해당 게시글은 인프런 Dowon Lee 강사님의 [Spring Boot를 이용한 RESTful Web Services 개발][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;web-service-개발-방법-soap과-rest의-이해&quot;&gt;Web Service 개발 방법 SOAP과 REST의 이해&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Web Service: 네트워크 상에서 서로 다른 종류의 컴퓨터들 간에 상효작용하기 위한 소프트웨어 시스템&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/RESTful" /><category term="RESTful" /><category term="Spring" /><category term="Microservices" /></entry><entry><title type="html">[Spring][Log] 로깅</title><link href="https://rere950303.github.io/spring/log/Log/" rel="alternate" type="text/html" title="[Spring][Log] 로깅" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/log/Log</id><content type="html" xml:base="https://rere950303.github.io/spring/log/Log/">&lt;h2 id=&quot;로깅-라이브러리&quot;&gt;로깅 라이브러리&lt;/h2&gt;
 &lt;p&gt;스프링 부트 라이브러리를 사용하면 스프링 부트 로깅 라이브러리( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-boot-starter-logging&lt;/code&gt; )가 함께 포함된다. 스프링 부트 로깅 라이브러리는 기본으로 다음 로깅 라이브러리를 사용한다.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;SLF4J, Logback&lt;/li&gt;
@@ -2356,13 +2594,7 @@
 &lt;ul&gt;
   &lt;li&gt;WAS는 HTTP 요청이 들어오면 쓰레드풀에서 쓰레드를 할당한다. 만약 사용자 A의 HTTP요청이 끝나고 나갈때 쓰레드 로컬에서 해당 쓰레드에 대응되는 value(TraceId)값을 삭제하지 않는다면 사용자 A에 대한 데이터는 그대로 남게된다. 이후 사용자 B의 HTTP요청에 대해 같은 쓰레트가 할당된다면 사용자 B는 쓰레드 로컬에서 사용자 A에 대한 데이터를 조회할 수 있게 된다. 이는 매우 심각한 문제이다.&lt;/li&gt;
   &lt;li&gt;이런 문제를 예방하려면 사용자A의 요청이 끝날 때 쓰레드 로컬의 값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal.remove()&lt;/code&gt; 를 통해서 꼭 제거해야 한다. 쓰레드 로컬을 사용할 때는 이 부분을 꼭! 기억하자.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Log" /><category term="Spring" /><category term="Log" /><category term="SLF4J" /><category term="Logback" /></entry><entry><title type="html">[Spring][RESTful] RESTful Web Services 개발</title><link href="https://rere950303.github.io/spring/restful/RESTful/" rel="alternate" type="text/html" title="[Spring][RESTful] RESTful Web Services 개발" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/restful/RESTful</id><content type="html" xml:base="https://rere950303.github.io/spring/restful/RESTful/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
-&lt;p&gt;해당 게시글은 인프런 Dowon Lee 강사님의 [Spring Boot를 이용한 RESTful Web Services 개발][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;web-service-개발-방법-soap과-rest의-이해&quot;&gt;Web Service 개발 방법 SOAP과 REST의 이해&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Web Service: 네트워크 상에서 서로 다른 종류의 컴퓨터들 간에 상효작용하기 위한 소프트웨어 시스템&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/RESTful" /><category term="RESTful" /><category term="Spring" /><category term="Microservices" /></entry><entry><title type="html">[Docker] 도커와 CI환경</title><link href="https://rere950303.github.io/docker/Docker&CI/" rel="alternate" type="text/html" title="[Docker] 도커와 CI환경" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker&amp;CI</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker&amp;CI/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Log" /><category term="Spring" /><category term="Log" /><category term="SLF4J" /><category term="Logback" /></entry><entry><title type="html">[Docker] 도커와 CI환경</title><link href="https://rere950303.github.io/docker/Docker&CI/" rel="alternate" type="text/html" title="[Docker] 도커와 CI환경" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker&amp;CI</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker&amp;CI/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 John Ahn 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/따라하며-배우는-도커-ci/dashboard&quot;&gt;따라하며 배우는 도커와 CI환경&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;도커-기본&quot;&gt;도커 기본&lt;/h2&gt;
@@ -3375,58 +3607,4 @@
   &lt;li&gt;candidate key는 super key중에서 최소성을 만족하는 key이다.&lt;/li&gt;
   &lt;li&gt;primary key는 candidate key중에 선택된 하나의 key이다. (null값을 가지면 안된다.)&lt;/li&gt;
   &lt;li&gt;외래키 제약조건: relation에 존재하는 외래키의 값은 참조되는 relation에 반드시 값이 존재해야 한다.(참조하는 r &amp;lt;-&amp;gt; 참조되는 r)&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="RDB" /></entry><entry><title type="html">[DB] DB Components, Architecture</title><link href="https://rere950303.github.io/db/DB_Components/" rel="alternate" type="text/html" title="[DB] DB Components, Architecture" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>https://rere950303.github.io/db/DB_Components</id><content type="html" xml:base="https://rere950303.github.io/db/DB_Components/">&lt;h2 id=&quot;storage-management&quot;&gt;Storage Management&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;저장 장치 관리자는 DB에 저장된 data와 App / query 사이에 인퍼테이스 역할을 하는 프로그램 모듈이다.&lt;/li&gt;
-  &lt;li&gt;file manager와 통신하면서 효율적인 data storing, retrieving, updating 역할을 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;query-processing&quot;&gt;Query Processing&lt;/h2&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/DB/3/1.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/DB/3/1.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;parser / translator 이용하여 관계대수표현으로 변환한다.&lt;/li&gt;
-  &lt;li&gt;통계자료를 통해 쿼리를 최적화하고 data를 얻기 위한 절차적 계획을 세운다.&lt;/li&gt;
-  &lt;li&gt;해당 계획을 실행하고 테이블 형태의 query output를 내놓는다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;transaction-management&quot;&gt;Transaction Management&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Database System Internal: user, query processor, storage manager, disk storage 로 구성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;half &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/DB/3/2.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/DB/3/2.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Transaction: DB App 에서 하나의 논리적 함수를 수행하기 위한 연산들의 집합을 말한다. DB 연산의 단위를 의미한다.&lt;/li&gt;
-  &lt;li&gt;Transaction-management component: system faulure / transaction faulre 에도 불구하고 data의 일관성을 유지시켜 준다.&lt;/li&gt;
-  &lt;li&gt;Concurrency-control manager: DB에 대한 동시 접근 제어함으로써 data의 일관성을 유지시키고 최대 많은 transaction을 허용함으로써 효율성을 극대화 시킨다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;database-architecture&quot;&gt;Database Architecture&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;DB의 구조는 DB가 실행되고 있는 컴퓨터 시스템에 큰 영향을 받는다.&lt;/li&gt;
-  &lt;li&gt;Centralized: DB의 모든 요소가 단일 시스템에 포함(DBMS, App, API)&lt;/li&gt;
-  &lt;li&gt;Client-Server: 사용자가 필요한 특정 서버에 접근하는 방식&lt;/li&gt;
-  &lt;li&gt;Parallel: 여러 disk와 하나의 공유 메모리를 통해 처리량을 높이는 방식&lt;/li&gt;
-  &lt;li&gt;Distributed: DB를 여러개의 노드로 분산한후 통신을 통해 하나의 논리적 DB를 구축하는 방식&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /></entry></feed>
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="RDB" /></entry></feed>

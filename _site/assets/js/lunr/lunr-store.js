@@ -196,4 +196,10 @@ var store = [{
         "tags": ["Batch","Spring"],
         "url": "https://rere950303.github.io/spring/batch/batch/",
         "teaser": null
+      },{
+        "title": "[Spring][Batch] Spring Batch Multithread",
+        "excerpt":"들어가며 영화 오픈 API를 이용한 프로젝트 진행 중 약 10000건 정도의 Batch 성 작업에 많은 시간이 소요됨에 따라 성능 개선을 위한 멀티 스레드 적용 여부 및 적용 스레드 개수 등의 테스트 Prometheus &amp; Grafana 이용한 모니터링 의존성 추가 implementation 'org.springframework.boot:spring-boot-starter-actuator' implementation 'io.micrometer:micrometer-registry-prometheus' Endpoint 활성화 management: endpoints: web: exposure: include: \"*\"...","categories": ["Spring/Batch"],
+        "tags": ["Batch","Spring","Thread"],
+        "url": "https://rere950303.github.io/spring/batch/SpringThreadTest/",
+        "teaser": null
       }]
