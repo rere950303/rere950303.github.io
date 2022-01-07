@@ -202,4 +202,10 @@ var store = [{
         "tags": ["Batch","Spring","Thread"],
         "url": "https://rere950303.github.io/spring/batch/SpringThreadTest/",
         "teaser": null
+      },{
+        "title": "[Spring][Batch] Spring Batch performance improvement",
+        "excerpt":"들어가며 영화 오픈 API를 이용한 프로젝트의 10000건 정도의 Batch 성 작업에 많은 시간이 소요됨에 따라 이를 해결하기 위한 포스팅 문제점 로그 결과 대부분의 시간은 외부 오픈 API 통신에서 소요 멀티 스레드는 동기화 문제로 효과가 미흡하거나 오히려 오버헤드 발생 DB 갱신 시 request 실시간 반응성 떨어짐 한 번에 10000건의 엔티티를 메모리로...","categories": ["Spring/Batch"],
+        "tags": ["Batch","Spring","Thread"],
+        "url": "https://rere950303.github.io/spring/batch/SpringBatchImprovement/",
+        "teaser": null
       }]

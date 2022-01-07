@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-05T00:05:26+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Batch] Spring Batch Multithread</title><link href="https://rere950303.github.io/spring/batch/SpringThreadTest/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch Multithread" /><published>2022-01-04T00:00:00+09:00</published><updated>2022-01-04T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/SpringThreadTest</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/SpringThreadTest/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-07T12:45:49+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Batch] Spring Batch performance improvement</title><link href="https://rere950303.github.io/spring/batch/SpringBatchImprovement/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch performance improvement" /><published>2022-01-07T00:00:00+09:00</published><updated>2022-01-07T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/SpringBatchImprovement</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/SpringBatchImprovement/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;영화 오픈 API를 이용한 프로젝트의 10000건 정도의 Batch 성 작업에 많은 시간이 소요됨에 따라 이를 해결하기 위한 포스팅&lt;/p&gt;
+
+&lt;h2 id=&quot;문제점&quot;&gt;문제점&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;로그 결과 대부분의 시간은 외부 오픈 API 통신에서 소요&lt;/li&gt;
+  &lt;li&gt;멀티 스레드는 동기화 문제로 효과가 미흡하거나 오히려 오버헤드 발생&lt;/li&gt;
+  &lt;li&gt;DB 갱신 시 request 실시간 반응성 떨어짐&lt;/li&gt;
+  &lt;li&gt;한 번에 10000건의 엔티티를 메모리로 올리기 너무 헤비하고 부담&lt;/li&gt;
+  &lt;li&gt;mariadb의 경우 기본키 할당 전략을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenerationType.SEQUENCE&lt;/code&gt;으로 할 경우 allocationSize가 1로 고정이 되므로 insert의 성능이 저하(약 14초 정도 딜레이 발생)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;공략법&quot;&gt;공략법&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;따라서 단일 스레드로 진행하고 한 번에 10000건의 Entity를 메모리에 올리면 부담이 되므로 4개의 Step으로 나누어 진행&lt;/li&gt;
+  &lt;li&gt;일정 기준으로 10000건의 DB를 갱신할 때 request 반응 딜레이를 최소화하기 위해 엔티티 indexing을 하여 Step 단위로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete&lt;/code&gt; 쿼리 실행&lt;/li&gt;
+  &lt;li&gt;따라서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Movie&lt;/code&gt; 엔티티의 경우 기본키 전략을 직접 할당으로 바꾸어서 해당 기본키로 indexing을 진행한다. 이 경우 불필요한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select&lt;/code&gt; 쿼리를 방지하기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Persistable&lt;/code&gt; 인터페이스 구현&lt;/li&gt;
+  &lt;li&gt;또한 Chunk 단위로 commit이 되기 때문에 jdbc의 batch insert 효과를 극대화하기 위해 chunk 사이즈를 100에서 500으로 증가&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;Query&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entityManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DELETE FROM Movie m where m.id &amp;gt; :firstIndex and m.id &amp;lt; :lastIndex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deleteCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;firstIndex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lastIndex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastIndex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;executeUpdate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;deleteCount: {}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deleteCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isNew&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createdDate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;고찰&quot;&gt;고찰&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;의도한 대로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select&lt;/code&gt; 쿼리는 나가지 않았으며 Chunk 단위로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;insert&lt;/code&gt; 쿼리가 나갔으며 정해진 범위의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete&lt;/code&gt; 쿼리로 데이터 중복 및 딜레이 현상을 방지했다.&lt;/li&gt;
+  &lt;li&gt;하루 단위로 DB를 갱신할 때 request에 대한 반응성이 좋았음&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChunkOrientedTasklet&lt;/code&gt; 이 실행될 때마다 매번 새로운 트랜잭션이 생성되어 처리가 이루어지고 Chunk 단위로 commit이 이루어지는데 다음 포스팅에서는 commit 순간의 batch insert flush의 원리 및 DB lock에 대해 알아보겠다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Batch" /><category term="Batch" /><category term="Spring" /><category term="Thread" /></entry><entry><title type="html">[Spring][Batch] Spring Batch Multithread</title><link href="https://rere950303.github.io/spring/batch/SpringThreadTest/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch Multithread" /><published>2022-01-04T00:00:00+09:00</published><updated>2022-01-04T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/SpringThreadTest</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/SpringThreadTest/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;영화 오픈 API를 이용한 프로젝트 진행 중 약 10000건 정도의 Batch 성 작업에 많은 시간이 소요됨에 따라 성능 개선을 위한 멀티 스레드 적용 여부 및 적용 스레드 개수 등의 테스트&lt;/p&gt;
 
 &lt;h2 id=&quot;prometheus--grafana-이용한-모니터링&quot;&gt;Prometheus &amp;amp; Grafana 이용한 모니터링&lt;/h2&gt;
@@ -790,7 +827,7 @@
   &lt;li&gt;start-limit의 디폴트 값은 Integer.MAX_VALUE&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;-taskletstep---allowstartifcomplete&quot;&gt;### TaskletStep - allowStartIfComplete()&lt;/h3&gt;
+&lt;h3 id=&quot;taskletstep---allowstartifcomplete&quot;&gt;TaskletStep - allowStartIfComplete()&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;재시작 가능한 job 에서 Step 의 이전 성공 여부와 상관없이 항상 step 을 실행하기 위한 설정&lt;/li&gt;
   &lt;li&gt;기본적으로 COMPLETED 상태를 가진 Step 은 Job 재시작 시 실행하지 않고 스킵한다.&lt;/li&gt;
@@ -2396,13 +2433,7 @@
 &lt;ul&gt;
   &lt;li&gt;JobExplorer, JobRepository, JobRegistry, JobLauncher 를 포함하고 있으며 배치의 시작, 중단, 재시작, job 요약 등의 모니터링이 가능하다.&lt;/li&gt;
   &lt;li&gt;기본 구현체로 SimpleJobOprerator 클래스를 제공한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Batch" /><category term="Batch" /><category term="Spring" /></entry><entry><title type="html">[Spring][RESTful] RESTful Web Services 개발</title><link href="https://rere950303.github.io/spring/restful/RESTful/" rel="alternate" type="text/html" title="[Spring][RESTful] RESTful Web Services 개발" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/restful/RESTful</id><content type="html" xml:base="https://rere950303.github.io/spring/restful/RESTful/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
-&lt;p&gt;해당 게시글은 인프런 Dowon Lee 강사님의 [Spring Boot를 이용한 RESTful Web Services 개발][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;web-service-개발-방법-soap과-rest의-이해&quot;&gt;Web Service 개발 방법 SOAP과 REST의 이해&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Web Service: 네트워크 상에서 서로 다른 종류의 컴퓨터들 간에 상효작용하기 위한 소프트웨어 시스템&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/RESTful" /><category term="RESTful" /><category term="Spring" /><category term="Microservices" /></entry><entry><title type="html">[Spring][Log] 로깅</title><link href="https://rere950303.github.io/spring/log/Log/" rel="alternate" type="text/html" title="[Spring][Log] 로깅" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/log/Log</id><content type="html" xml:base="https://rere950303.github.io/spring/log/Log/">&lt;h2 id=&quot;로깅-라이브러리&quot;&gt;로깅 라이브러리&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Batch" /><category term="Batch" /><category term="Spring" /></entry><entry><title type="html">[Spring][Log] 로깅</title><link href="https://rere950303.github.io/spring/log/Log/" rel="alternate" type="text/html" title="[Spring][Log] 로깅" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/log/Log</id><content type="html" xml:base="https://rere950303.github.io/spring/log/Log/">&lt;h2 id=&quot;로깅-라이브러리&quot;&gt;로깅 라이브러리&lt;/h2&gt;
 &lt;p&gt;스프링 부트 라이브러리를 사용하면 스프링 부트 로깅 라이브러리( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-boot-starter-logging&lt;/code&gt; )가 함께 포함된다. 스프링 부트 로깅 라이브러리는 기본으로 다음 로깅 라이브러리를 사용한다.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;SLF4J, Logback&lt;/li&gt;
@@ -2594,7 +2625,13 @@
 &lt;ul&gt;
   &lt;li&gt;WAS는 HTTP 요청이 들어오면 쓰레드풀에서 쓰레드를 할당한다. 만약 사용자 A의 HTTP요청이 끝나고 나갈때 쓰레드 로컬에서 해당 쓰레드에 대응되는 value(TraceId)값을 삭제하지 않는다면 사용자 A에 대한 데이터는 그대로 남게된다. 이후 사용자 B의 HTTP요청에 대해 같은 쓰레트가 할당된다면 사용자 B는 쓰레드 로컬에서 사용자 A에 대한 데이터를 조회할 수 있게 된다. 이는 매우 심각한 문제이다.&lt;/li&gt;
   &lt;li&gt;이런 문제를 예방하려면 사용자A의 요청이 끝날 때 쓰레드 로컬의 값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal.remove()&lt;/code&gt; 를 통해서 꼭 제거해야 한다. 쓰레드 로컬을 사용할 때는 이 부분을 꼭! 기억하자.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Log" /><category term="Spring" /><category term="Log" /><category term="SLF4J" /><category term="Logback" /></entry><entry><title type="html">[Docker] 도커와 CI환경</title><link href="https://rere950303.github.io/docker/Docker&CI/" rel="alternate" type="text/html" title="[Docker] 도커와 CI환경" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker&amp;CI</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker&amp;CI/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Log" /><category term="Spring" /><category term="Log" /><category term="SLF4J" /><category term="Logback" /></entry><entry><title type="html">[Spring][RESTful] RESTful Web Services 개발</title><link href="https://rere950303.github.io/spring/restful/RESTful/" rel="alternate" type="text/html" title="[Spring][RESTful] RESTful Web Services 개발" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/restful/RESTful</id><content type="html" xml:base="https://rere950303.github.io/spring/restful/RESTful/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;해당 게시글은 인프런 Dowon Lee 강사님의 [Spring Boot를 이용한 RESTful Web Services 개발][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;web-service-개발-방법-soap과-rest의-이해&quot;&gt;Web Service 개발 방법 SOAP과 REST의 이해&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Web Service: 네트워크 상에서 서로 다른 종류의 컴퓨터들 간에 상효작용하기 위한 소프트웨어 시스템&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/RESTful" /><category term="RESTful" /><category term="Spring" /><category term="Microservices" /></entry><entry><title type="html">[Docker] 도커와 CI환경</title><link href="https://rere950303.github.io/docker/Docker&CI/" rel="alternate" type="text/html" title="[Docker] 도커와 CI환경" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker&amp;CI</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker&amp;CI/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 John Ahn 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/따라하며-배우는-도커-ci/dashboard&quot;&gt;따라하며 배우는 도커와 CI환경&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;도커-기본&quot;&gt;도커 기본&lt;/h2&gt;
@@ -3572,39 +3609,4 @@
   &lt;li&gt;Cartesian product: 피연산자 두개의 relation을 곱해서 모든 pair를 가지는 relation을 생성한다. 일치하는 속성의 유무는 문제가 되지 않는다.&lt;/li&gt;
   &lt;li&gt;Union: relation이 가지는 tuple의 구조가 동일해야 연산이 가능하다. tuple의 합집합을 갖는 relation를 생성한다.&lt;/li&gt;
   &lt;li&gt;Natural Join: 공통되는 속성에서 같은 값을 가지는 두개의 tuple를 연결한 결과를 속성 합집합을 스키마로 갖는 relation의 tuple로 넣어주는 연산을 말한다.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="RDB" /></entry><entry><title type="html">[DB] Intro to Relational Model(1)</title><link href="https://rere950303.github.io/db/RDB_1/" rel="alternate" type="text/html" title="[DB] Intro to Relational Model(1)" /><published>2021-11-19T00:00:00+09:00</published><updated>2021-11-19T00:00:00+09:00</updated><id>https://rere950303.github.io/db/RDB_1</id><content type="html" xml:base="https://rere950303.github.io/db/RDB_1/">&lt;h2 id=&quot;relational-database-structure&quot;&gt;Relational Database Structure&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;RDB
-    &lt;ul&gt;
-      &lt;li&gt;relation: table(tuple 집합)&lt;/li&gt;
-      &lt;li&gt;tuple: a row of table(속성들의 집합을 의미하며 n개의 속성으로 이루어진 tuple를 n-tuple라고 부른다.)&lt;/li&gt;
-      &lt;li&gt;attribute: table의 열을 의미하낟.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;RDB는 tables의 집합으로 이루어진다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;attribute-types&quot;&gt;Attribute Types&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;각 속성별로 가질수 있는 값들의 집합을 domain이라고 부른다.&lt;/li&gt;
-  &lt;li&gt;속성들의 값은 atomic 해야하고 단 하나의 값만 가질수 있다.&lt;/li&gt;
-  &lt;li&gt;모든 domain은 null값을 가질수 있는데 여기서 null이라고 함은 unknown or does not exist를 의미한다.&lt;/li&gt;
-  &lt;li&gt;null값은 많은 연산에서 복잡함을 야기한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;relation-schema-and-instance&quot;&gt;Relation Schema and Instance&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;속성들과 해당 속성들의 도메인의 집합&lt;/li&gt;
-  &lt;li&gt;R = {A1, A2, …, An} -&amp;gt; instructor = {ID, name, dept_name, salary}&lt;/li&gt;
-  &lt;li&gt;relation r은 D1 * D2 * … * Dn의 부분집합이다.&lt;/li&gt;
-  &lt;li&gt;Instance는 r의 현재 값, 즉 스냅샷을 의미한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;keys&quot;&gt;Keys&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;key는 R의 부분집합이다.&lt;/li&gt;
-  &lt;li&gt;super key는 key 중에서 tuple의 유일성을 만족하는 key이다.&lt;/li&gt;
-  &lt;li&gt;candidate key는 super key중에서 최소성을 만족하는 key이다.&lt;/li&gt;
-  &lt;li&gt;primary key는 candidate key중에 선택된 하나의 key이다. (null값을 가지면 안된다.)&lt;/li&gt;
-  &lt;li&gt;외래키 제약조건: relation에 존재하는 외래키의 값은 참조되는 relation에 반드시 값이 존재해야 한다.(참조하는 r &amp;lt;-&amp;gt; 참조되는 r)&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="RDB" /></entry></feed>
+&lt;/ol&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="RDB" /></entry></feed>
