@@ -1,4 +1,190 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-07T12:45:49+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Batch] Spring Batch performance improvement</title><link href="https://rere950303.github.io/spring/batch/SpringBatchImprovement/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch performance improvement" /><published>2022-01-07T00:00:00+09:00</published><updated>2022-01-07T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/SpringBatchImprovement</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/SpringBatchImprovement/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-09T22:36:08+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Test] Spring JUnit</title><link href="https://rere950303.github.io/spring/test/SpringJUnit/" rel="alternate" type="text/html" title="[Spring][Test] Spring JUnit" /><published>2022-01-09T00:00:00+09:00</published><updated>2022-01-09T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/test/SpringJUnit</id><content type="html" xml:base="https://rere950303.github.io/spring/test/SpringJUnit/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;시큐리티, JPA, MVC 등 스프링을 이용한 JUnit, TDD의 정리 필요성을 느껴 작성한 포스팅&lt;/p&gt;
+
+&lt;h2 id=&quot;tdd에-대한-간단한-정리&quot;&gt;TDD에 대한 간단한 정리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;테스트 주도 개발&lt;/li&gt;
+  &lt;li&gt;테스트를 먼저 설계 및 구축 후 테스트를 통과할 수 있는 코드를 짜는 것&lt;/li&gt;
+  &lt;li&gt;애자일 개발 방식 중 하나
+    &lt;ul&gt;
+      &lt;li&gt;코드 설계시 원하는 단계적 목표에 대해 설정하여 진행하고자 하는 것에 대한 결정 방향의 갭을 줄이고자 함&lt;/li&gt;
+      &lt;li&gt;최초 목표에 맞춘 테스트를 구축하여 그에 맞게 코드를 설계하기 때문에 보다 적은 의견 충돌을 기대할 수 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;테스트-코드를-작성-목적&quot;&gt;테스트 코드를 작성 목적&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;코드의 안정성을 높일 수 있음&lt;/li&gt;
+  &lt;li&gt;기능을 추가하거나 변경하는 과정에서 발생할 수 있는 Side-Effect를 줄일 수 있음&lt;/li&gt;
+  &lt;li&gt;해당 코드가 작성된 목적을 명확하게 표현할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;junit이란&quot;&gt;JUnit이란&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Java 진영의 대표적인 Test Framework&lt;/li&gt;
+  &lt;li&gt;단위 테스트를 위한 도구를 제공
+    &lt;ul&gt;
+      &lt;li&gt;단위 테스트란 코드의 특정 모듈이 의도된 대로 동작하는지 테스트 하는 절차를 의미&lt;/li&gt;
+      &lt;li&gt;모든 함수와 메소드에 대한 각각의 테스트 케이스를 작성하는것&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;어노테이션을 기반으로 테스트를 지원&lt;/li&gt;
+  &lt;li&gt;단정문으로 테스트 케이스의 기대값에 대해 수행 결과를 확인할 수 있음&lt;/li&gt;
+  &lt;li&gt;Spring Boot 2.2부터 JUnit 5 버전을 사용&lt;/li&gt;
+  &lt;li&gt;JUnit 5은 크게 Jupiter, Platform, Vintage 모듈로 구성됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;junit-jupiter&quot;&gt;JUnit Jupiter&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;TestEngine API 구현체로 JUnit 5를 구성&lt;/li&gt;
+  &lt;li&gt;테스트의 실제 구현체는 별도 모듈 역할을 수행하는데, 그 모듈 중 하나가 Jupiter-Engine임&lt;/li&gt;
+  &lt;li&gt;이 모듈은 Jupiter-API를 사용하여 작성한 테스트 코드를 발견하고 실행하는 역할을 수행&lt;/li&gt;
+  &lt;li&gt;개발자가 테스트 코드를 작성할 떄 사용됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;junit-platform&quot;&gt;JUnit Platform&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Test를 실행하기 위한 뼈대&lt;/li&gt;
+  &lt;li&gt;Test를 발견하고 테스트 계획을 생성하는 TestEngine 인터페이스를 가지고 있음&lt;/li&gt;
+  &lt;li&gt;TestEngine을 통해 Test를 발견하고, 수행 및 결과를 보고함&lt;/li&gt;
+  &lt;li&gt;그리고 각종 IDE 연동을 보조하는 역할을 수행(콘솔 출력 등)&lt;/li&gt;
+  &lt;li&gt;Platform = TestEngine API + Console Launcher + JUnit 4 Based Runner 등&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;junit-vintage&quot;&gt;JUnit Vintage&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;TestEngine API 구현체로 JUnit 3, 4를 구성&lt;/li&gt;
+  &lt;li&gt;기존 JUnit 3, 4 버전으로 작성된 테스트 코드를 실행할 때 사용됨&lt;/li&gt;
+  &lt;li&gt;Vintage-Engine 모듈을 포함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;junit-lifecycle-annotation&quot;&gt;JUnit LifeCycle Annotation&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;JUnit 5는 아래와 같은 테스트 라이프 사이클을 가지고 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Annotation&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Test&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;테스트용 메소드를 표현하는 어노테이션&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforEach&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;각 테스트 메소드가 시작되기 전에 실행되어야 하는 메소드를 표현&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@AfterEach&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;각 테스트 메소드가 시작된 후 실행되어야 하는 메소드를 표현&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeAll&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;테스트 시작 전에 실행되어야 하는 메소드를 표현, static&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@AfterAll&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;테스트 종료 후에 실행되어야 하는 메소드를 표현, static&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;junit-main-annotation&quot;&gt;JUnit Main Annotation&lt;/h2&gt;
+&lt;h3 id=&quot;springboottest&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SpringBootTest&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;통합 테스트 용도로 사용됨&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SpringBootApplication&lt;/code&gt;을 찾아가 하위의 모든 Bean을 스캔하여 로드함&lt;/li&gt;
+  &lt;li&gt;그 후 Test용 Application Context를 만들어 Bean을 추가하고, MockBean을 찾아 교체&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;extendwith&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ExtendWith&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;JUnit2에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RunWith&lt;/code&gt;로 사용되던 어노테이션이 ExtendWith로 변경됨&lt;/li&gt;
+  &lt;li&gt;메인으로 실행될 Class를 지정할 수 있음&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SpringBootTest&lt;/code&gt;는 기본적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ExtendWith&lt;/code&gt;가 추가되어 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;webmvctestclass명class&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@WebMvcTest(Class명.class)&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;()에 작성된 클래스만 실제로 로드하여 테스트를 진행&lt;/li&gt;
+  &lt;li&gt;매개변수를 지정해주지 않으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Controller&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RestController&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RestControllerAdvice&lt;/code&gt; 등 컨트롤러와 연관된 Bean이 모두 로드됨&lt;/li&gt;
+  &lt;li&gt;스프링의 모든 Bean을 로드하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SpringBootTest&lt;/code&gt; 대신 컨트롤러 관련 코드만 테스트할 경우 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;autowired-about-mockbean&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Autowired about Mockbean&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Controller의 API를 테스트하는 용도인 MockMvc 객체를 주입 받음&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perform()&lt;/code&gt; 메소드를 활용하여 컨트롤러의 동작을 확인할 수 있음. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;andExpect()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;andDo()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;andReturn()&lt;/code&gt; 등의 메소드를 같이 활용함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mockbean&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MockBean&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;테스트할 클래스에서 주입 받고 있는 객체에 대해 가짜 객체를 생성해주는 어노테이션&lt;/li&gt;
+  &lt;li&gt;해당 객체는 실제 행위를 하지 않음&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;given()&lt;/code&gt; 메소드를 활용하여 가짜 객체의 동작에 대해 정의하여 사용할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mock&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Mock&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;해당 애노테이션을 통해 기대 행위를 작성하여 테스트에서 원하는 상황을 설정할 수 있다. 이러한 행위를 stubbing이라고 한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Answers.RETURNS_DEFAULTS&lt;/code&gt; 은 stub 되지 않은 메소드들에 대해서는 Mockito에서 메소드 타입별로 정의된 메소드들을 실행하게 됩니다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ExtendWith(MockitoExtension.class)&lt;/code&gt;와 함께 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;injectmocks&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@InjectMocks&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;해당 클래스가 필요한 의존성과 맞는 Mock 객체들을 감지하여 해당 클래스의 객체가 만들어질때 사용하여 객체를 만들고 해당 변수에 객체를 주입하게 된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;spy&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Spy&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;하나의 객체를 선택적으로 stub할 수 있도록 하는 기능을 갖는다.&lt;/li&gt;
+  &lt;li&gt;의존성에 따라 필드 초기화가 필요할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;autoconfiguremockmvc&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@AutoConfigureMockMvc&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;spring.test.mockmvc의 설정을 로드하면서 MockMvc의 의존성을 자동으로 주입&lt;/li&gt;
+  &lt;li&gt;MockMvc클래스는 REST API 테스트를 할 수 있는 클래스&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;import&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Import&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;필요한 Class들을 Configuration으로 만들어 사용할 수 있음&lt;/li&gt;
+  &lt;li&gt;Configuration Component 클래스도 의존성 설정할 수 있음&lt;/li&gt;
+  &lt;li&gt;Import된 클래스는 주입으로 사용 가능&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;통합-테스트&quot;&gt;통합 테스트&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;통합 테스트는 여러 기능을 조합하여 전체 비즈니스 로직이 제대로 동작하는지 확인하는 것을 의미&lt;/li&gt;
+  &lt;li&gt;통합 테스트의 경우, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SpringBootTest&lt;/code&gt;를 사용하여 진행
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@SpringBootApplication&lt;/code&gt;을 찾아가서 모든 Bean을 로드하게 됨&lt;/li&gt;
+      &lt;li&gt;이 방법을 대규모 프로젝트에서 사용할 경우, 테스트를 실행할 때마다 모든 빈을 스캔하고 로드하는 작업이 반복되어 매번 무거운 작업을 수행해야 함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;단위-테스트&quot;&gt;단위 테스트&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로젝트에 필요한 모든 기능에 대한 테스트를 각각 진행하는 것을 의미&lt;/li&gt;
+  &lt;li&gt;F.I.R.S.T 원칙
+    &lt;ul&gt;
+      &lt;li&gt;Fast: 테스트 코드의 실행은 빠르게 진행되어야 함&lt;/li&gt;
+      &lt;li&gt;independent: 독립적인 테스트가 가능해야 함&lt;/li&gt;
+      &lt;li&gt;Repeatable: 테스트는 매번 같은 결과를 만들어야 함&lt;/li&gt;
+      &lt;li&gt;Self-Validating: 테스트는 그 자체로 실행하여 결과를 확인할 수 있어야 함&lt;/li&gt;
+      &lt;li&gt;Timely: 코드가 완성되기 전부터 테스트가 따라와야 한다는 TDD의 원칙을 담고 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Test" /><category term="Spring" /><category term="Test" /><category term="Junit" /><category term="Jupiter" /></entry><entry><title type="html">[Spring][Batch] Spring Batch performance improvement</title><link href="https://rere950303.github.io/spring/batch/SpringBatchImprovement/" rel="alternate" type="text/html" title="[Spring][Batch] Spring Batch performance improvement" /><published>2022-01-07T00:00:00+09:00</published><updated>2022-01-07T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/batch/SpringBatchImprovement</id><content type="html" xml:base="https://rere950303.github.io/spring/batch/SpringBatchImprovement/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;영화 오픈 API를 이용한 프로젝트의 10000건 정도의 Batch 성 작업에 많은 시간이 소요됨에 따라 이를 해결하기 위한 포스팅&lt;/p&gt;
 
 &lt;h2 id=&quot;문제점&quot;&gt;문제점&lt;/h2&gt;
@@ -3593,20 +3779,4 @@
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;slave는 create read replica로 생성 가능&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="AWS" /><category term="AWS" /></entry><entry><title type="html">[DB] Intro to Relational Model(2)</title><link href="https://rere950303.github.io/db/RDB_2/" rel="alternate" type="text/html" title="[DB] Intro to Relational Model(2)" /><published>2021-11-22T00:00:00+09:00</published><updated>2021-11-22T00:00:00+09:00</updated><id>https://rere950303.github.io/db/RDB_2</id><content type="html" xml:base="https://rere950303.github.io/db/RDB_2/">&lt;h2 id=&quot;relational-query-languages&quot;&gt;Relational Query Languages&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Relataional algebra - Procedural
-    &lt;ul&gt;
-      &lt;li&gt;여러가지 relation 연산을 제공: Relational operation(Selection, Projection, Natural join, Cartesian product), Set operation(Union, Intersection, Set difference)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;relational calculs - non procedural&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Selection: tuple를 선택(σ)&lt;/li&gt;
-  &lt;li&gt;Projection: 속성을 선택(π) - relation은 집합 개념이므로 중복되는 tuple은 하나만 남고 삭제된다.&lt;/li&gt;
-  &lt;li&gt;Cartesian product: 피연산자 두개의 relation을 곱해서 모든 pair를 가지는 relation을 생성한다. 일치하는 속성의 유무는 문제가 되지 않는다.&lt;/li&gt;
-  &lt;li&gt;Union: relation이 가지는 tuple의 구조가 동일해야 연산이 가능하다. tuple의 합집합을 갖는 relation를 생성한다.&lt;/li&gt;
-  &lt;li&gt;Natural Join: 공통되는 속성에서 같은 값을 가지는 두개의 tuple를 연결한 결과를 속성 합집합을 스키마로 갖는 relation의 tuple로 넣어주는 연산을 말한다.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>yhw</name></author><category term="DB" /><category term="DB" /><category term="RDB" /></entry></feed>
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="AWS" /><category term="AWS" /></entry></feed>

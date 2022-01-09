@@ -208,4 +208,10 @@ var store = [{
         "tags": ["Batch","Spring","Thread"],
         "url": "https://rere950303.github.io/spring/batch/SpringBatchImprovement/",
         "teaser": null
+      },{
+        "title": "[Spring][Test] Spring JUnit",
+        "excerpt":"들어가며 시큐리티, JPA, MVC 등 스프링을 이용한 JUnit, TDD의 정리 필요성을 느껴 작성한 포스팅 TDD에 대한 간단한 정리 테스트 주도 개발 테스트를 먼저 설계 및 구축 후 테스트를 통과할 수 있는 코드를 짜는 것 애자일 개발 방식 중 하나 코드 설계시 원하는 단계적 목표에 대해 설정하여 진행하고자 하는 것에 대한...","categories": ["Spring/Test"],
+        "tags": ["Spring","Test","Junit","Jupiter"],
+        "url": "https://rere950303.github.io/spring/test/SpringJUnit/",
+        "teaser": null
       }]
