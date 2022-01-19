@@ -1,6 +1,6 @@
 ---
 title: "[Spring][Deploy] AWS에 Spring Boot App 배포하기"
-last\_modified\_at: 2022-01-18T 10:13 +09:00
+last\_modified\_at: 2022-01-17T 10:13 +09:00
 header:
   overlay\_color: "#333"
 categories:

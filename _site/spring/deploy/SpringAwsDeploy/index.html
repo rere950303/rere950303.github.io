@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[DB] Basic Query Structure - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Spring][Deploy] AWS에 Spring Boot App 배포하기 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[DB] Basic Query Structure">
-<meta property="og:url" content="https://rere950303.github.io/db/BasicQueryStructure/">
+<meta property="og:title" content="[Spring][Deploy] AWS에 Spring Boot App 배포하기">
+<meta property="og:url" content="https://rere950303.github.io/spring/deploy/SpringAwsDeploy/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-11-25T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-01-18T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/db/BasicQueryStructure/">
+<link rel="canonical" href="https://rere950303.github.io/spring/deploy/SpringAwsDeploy/">
 
 
 
@@ -188,7 +188,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#db" itemprop="item"><span itemprop="name">Db</span></a>
+          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -196,7 +196,17 @@
     
       
       
-        <li class="current">[DB] Basic Query Structure</li>
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#deploy" itemprop="item"><span itemprop="name">Deploy</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Spring][Deploy] AWS에 Spring Boot App 배포하기</li>
       
     
   </ol>
@@ -327,15 +337,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[DB] Basic Query Structure">
+    <meta itemprop="headline" content="[Spring][Deploy] AWS에 Spring Boot App 배포하기">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-11-25T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-01-18T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Basic Query Structure
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][Deploy] AWS에 Spring Boot App 배포하기
 </h1>
           
 
@@ -344,7 +354,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-25T00:00:00+09:00">November 25, 2021</time>
+        <time datetime="2022-01-18T00:00:00+09:00">January 18, 2022</time>
       </span>
     
 
@@ -357,7 +367,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -374,14 +384,12 @@
               
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
-  <li><a href="#data-manipulation-languagedml">Data-manipulation language(DML)</a></li>
-  <li><a href="#the-select-clause">The SELECT Clause</a></li>
-  <li><a href="#the-where-clause">The WHERE Clause</a></li>
-  <li><a href="#the-from-clause">The FROM Clause</a>
-    <ul>
-      <li><a href="#joins">Joins</a></li>
-    </ul>
-  </li>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#ec2--rds-생성">EC2 &amp; RDS 생성</a></li>
+  <li><a href="#iam-생성">IAM 생성</a></li>
+  <li><a href="#ssh-접속">SSH 접속</a></li>
+  <li><a href="#리눅스-서버-구축">리눅스 서버 구축</a></li>
+  <li><a href="#고찰">고찰</a></li>
 </ul>
 
               
@@ -391,61 +399,77 @@
             </nav>
           </aside>
         
-        <h2 id="data-manipulation-languagedml">Data-manipulation language(DML)</h2>
+        <h2 id="들어가며">들어가며</h2>
+<p>기존에 만들었던 RESTful API 프로젝트를 AWS EC2에 배포하는 방법과 그 과정을 기록하는 포스팅</p>
+
+<h2 id="ec2--rds-생성">EC2 &amp; RDS 생성</h2>
+<p>기존에 만들었던 AWS 계정을 탈퇴해서 새로운 이메일로 재가입을 했다. 인스턴스는 EC2 1개 RDS 1개 생성했다. 설정은 보안 그룹 말고는 크게 어렵지 않다. RDS의 기존 보안 그룹을 삭제하고 새로운 보안 그룹을 만든 후에 인바운드 규칙을 설정하고 생성한 RDS 인스턴스를 해당 보안 그룹에 넣는다. 인바운드 규칙은 EC2 보안 그룹과 로컬 PC 2개를 열어준다. 이때 주의할 점이 퍼블릭 액세스를 체크해야 한다. 아니면 인바운드 규칙을 설정해도 접근이 안된다.</p>
+
+<h2 id="iam-생성">IAM 생성</h2>
+<p>보안상의 이유로 ROOT 계정 이용을 권장하지 않는다. 따라서 admin 권한을 갖는 그룹을 생성하고 사용자를 만든다.</p>
+
+<h2 id="ssh-접속">SSH 접속</h2>
+<p>인스턴스 생성 시 받은 <code class="language-plaintext highlighter-rouge">*.pem</code>을 이용하여 인스턴스에 SSH 접속이 가능하다. <code class="language-plaintext highlighter-rouge">cd ~/.ssh</code>에서 <code class="language-plaintext highlighter-rouge">config</code> 파일을 통해 매번 키를 입력해야 하는 수고로움을 덜 수 있다.</p>
+
+<h2 id="리눅스-서버-구축">리눅스 서버 구축</h2>
 <ul>
-  <li>insert, delete, update tuples</li>
-  <li>typical SQL</li>
+  <li>먼저 자바 11을 설치해서 JVM 환경을 구축한다. (<code class="language-plaintext highlighter-rouge">yum -y install java-11-openjdk java-11-openjdk-devel</code>, <code class="language-plaintext highlighter-rouge">sudo /usr/sbin/alternatives --config java</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">git</code>을 설치한 후에 프로젝트가 있는 remote Rep을 <code class="language-plaintext highlighter-rouge">clone</code>한다. (<code class="language-plaintext highlighter-rouge">yum install git</code>) <code class="language-plaintext highlighter-rouge">Personal access token</code>이나 <code class="language-plaintext highlighter-rouge">SSH</code> 인증 방법이 있는데 나는 전자를 선택했다. remote Rep를 Tracking할 로컬 브랜치를 하나 생성하고 <code class="language-plaintext highlighter-rouge">pull</code>한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">git config credential.helper cache</code>, <code class="language-plaintext highlighter-rouge">git config credential.helper store</code>로 인증 정보를 저장하여 <code class="language-plaintext highlighter-rouge">pull</code>할 때 매번 인증해야 하는 수고로움을 덜 수 있다.</li>
+  <li>배포 스크립트 <code class="language-plaintext highlighter-rouge">deploy.sh</code>를 작성한다. build 시에 <code class="language-plaintext highlighter-rouge">gradle-wrapper.jar</code>, <code class="language-plaintext highlighter-rouge">gradle-wrapper.properties</code>가 없으면 오류가 발생하는데 gradle build가 관련이 있는 것 같다. 그 이유에 대해서 공부를 해봐야 될 것 같다.</li>
+  <li>이후 배포 스크립트에 권한을 부여한다. (<code class="language-plaintext highlighter-rouge">chmod 755 ./deploy.sh</code>)</li>
 </ul>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">An</span> <span class="o">//</span> <span class="n">attribute</span>
-<span class="k">FROM</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">rm</span> <span class="o">//</span> <span class="n">relation</span>
-<span class="k">WHERE</span> <span class="n">P</span> <span class="o">//</span> <span class="n">predicate</span>
-</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">REPOSITORY=/home/ec2-user/app/git/project-movierank-server</span>
 
-<h2 id="the-select-clause">The SELECT Clause</h2>
+<span class="s">cd $REPOSITORY</span>
+
+<span class="s">echo "&gt; Git Pull"</span>
+
+<span class="s">git pull</span>
+
+<span class="s">echo "&gt; 프로젝트 Build 시작"</span>
+
+<span class="s">cd $REPOSITORY/movierank/</span>
+
+<span class="s">./gradlew clean build -x test</span>
+
+<span class="s">echo "&gt; Build 파일 복사"</span>
+
+<span class="s">cp ./build/libs/*.jar $REPOSITORY/</span>
+
+<span class="s">echo "&gt; 현재 구동중인 애플리케이션 pid 확인"</span>
+
+<span class="s">CURRENT_PID=$(pgrep -f movierank)</span>
+
+<span class="s">echo "$CURRENT_PID"</span>
+
+<span class="s">if [ -z $CURRENT_PID ]; then</span>
+    <span class="s">echo "&gt; 현재 구동중인 애플리케이션이 없으므로 종료하지 않습니다."</span>
+<span class="s">else</span>
+    <span class="s">echo "&gt; kill -15 $CURRENT_PID"</span>
+    <span class="s">kill -15 $CURRENT_PID</span>
+    <span class="s">sleep </span><span class="m">5</span>
+<span class="s">fi</span>
+
+<span class="s">echo "&gt; 새 어플리케이션 배포"</span>
+
+<span class="s">JAR_NAME=$(ls $REPOSITORY/ |grep 'movierank' | tail -n 1)</span>
+
+<span class="s">echo "&gt; JAR Name</span><span class="pi">:</span> <span class="s">$JAR_NAME"</span>
+
+<span class="s">nohup java -jar $REPOSITORY/$JAR_NAME --active.profile='dev1' 환경변수</span>
+</code></pre></div></div>
 <ul>
-  <li>대소문자를 구별하지 않는다.</li>
-  <li><code class="language-plaintext highlighter-rouge">distinct</code> 키워드로 중복되는 값을 제거할 수 있다.</li>
-  <li>asterisk(*): 모든 속성을 선택</li>
-  <li>산술연산을 사용할 수 있다.(+, -, *, /)</li>
+  <li>나는 포트를 8081로 열었으므로 EC2 인바운드 규칙 설정이 필요하다.</li>
 </ul>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ID</span><span class="p">,</span> <span class="n">nmae</span><span class="p">,</span> <span class="n">salary</span> <span class="o">/</span> <span class="mi">12</span> <span class="o">//</span> <span class="err">기존</span> <span class="n">relation</span><span class="err">에는</span> <span class="err">영향</span> <span class="n">X</span>
-<span class="k">FROM</span> <span class="n">instructor</span>
-</code></pre></div></div>
-
-<h2 id="the-where-clause">The WHERE Clause</h2>
+<h2 id="고찰">고찰</h2>
 <ul>
-  <li>관계대수에서의 selection predicate에 대응</li>
-  <li>결과 relation에서 predicate를 만족하는 tuple만을 추출</li>
-  <li>logical connectives -&gt; and, or, not</li>
+  <li>8081 포트로 서버를 실행했는데 접속이 잘 되었다. Swagger API 문서도 접속이 잘 되었다.</li>
+  <li>RDS와 EC2 통신이 잘 수행되었고 DDL에 따라 테이블이 정상적으로 만들어지는 것을 볼 수 있었다.</li>
+  <li>다음으로는 <code class="language-plaintext highlighter-rouge">prometheus</code>, <code class="language-plaintext highlighter-rouge">grafana</code>를 통한 모니터링과 <code class="language-plaintext highlighter-rouge">Jenkins</code>를 이용한 CI-CD를 구현해 볼 계획이다.</li>
 </ul>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">name</span>
-<span class="k">FROM</span> <span class="n">instructor</span>
-<span class="k">WHERE</span> <span class="n">dept_name</span> <span class="o">=</span> <span class="n">Comp</span><span class="p">.</span> <span class="n">Sci</span><span class="p">.</span> <span class="k">and</span> <span class="n">salary</span> <span class="o">&gt;</span> <span class="mi">80000</span>
-</code></pre></div></div>
-
-<h2 id="the-from-clause">The FROM Clause</h2>
-<ul>
-  <li>쿼리에 필요한 relation를 나열</li>
-  <li>Cartesian product(공통되는 속성이 있을경우 속성 앞에 relation 이름을 붙여 구별한다.)</li>
-</ul>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">instructor</span><span class="p">,</span> <span class="n">teaches</span>
-</code></pre></div></div>
-
-<h3 id="joins">Joins</h3>
-<ul>
-  <li>원하는 data가 하나의 relation에 없을 경우 2개 이상의 relation을 join</li>
-  <li>Cartesian product와 where절 이용</li>
-</ul>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">course_id</span>
-<span class="k">FROM</span> <span class="n">instructor</span><span class="p">,</span> <span class="n">teaches</span>
-<span class="k">WHERE</span> <span class="n">instructor</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">teaches</span><span class="p">.</span><span class="n">ID</span> 
-</code></pre></div></div>
 
         
       </section>
@@ -466,7 +490,15 @@
     
       
       
-      <a href="/tags/#db" class="page__taxonomy-item" rel="tag">DB</a>
+      <a href="/tags/#aws" class="page__taxonomy-item" rel="tag">AWS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#deploy" class="page__taxonomy-item" rel="tag">Deploy</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -487,14 +519,14 @@
     
       
       
-      <a href="/categories/#db" class="page__taxonomy-item" rel="tag">DB</a>
+      <a href="/categories/#spring-deploy" class="page__taxonomy-item" rel="tag">Spring/Deploy</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-25T00:00:00+09:00">November 25, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-01-18T00:00:00+09:00">January 18, 2022</time></p>
 
 
       </footer>
@@ -504,23 +536,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Basic+Query+Structure%20https%3A%2F%2Frere950303.github.io%2Fdb%2FBasicQueryStructure%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BDeploy%5D+AWS%EC%97%90+Spring+Boot+App+%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fdeploy%2FSpringAwsDeploy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdb%2FBasicQueryStructure%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fdeploy%2FSpringAwsDeploy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdb%2FBasicQueryStructure%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fdeploy%2FSpringAwsDeploy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/db/IntroSQL/" class="pagination--pager" title="[DB] Introduction to SQL
+      <a href="/spring/deploy/JenkinsCICD/" class="pagination--pager" title="[Spring][Deploy] Jenkins를 이용한 CI, CD
 ">이전</a>
     
     
-      <a href="/docker/Docker&CI/" class="pagination--pager" title="[Docker] 도커와 CI환경
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -534,52 +565,6 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/deploy/SpringAwsDeploy/" rel="permalink">[Spring][Deploy] AWS에 Spring Boot App 배포하기
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-18T00:00:00+09:00">January 18, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -707,6 +692,52 @@
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/batch/SpringThreadTest/" rel="permalink">[Spring][Batch] Spring Batch Multithread
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-04T00:00:00+09:00">January 4, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
         
       </span>
     

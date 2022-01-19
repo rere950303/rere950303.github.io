@@ -214,4 +214,16 @@ var store = [{
         "tags": ["Spring","Test","Junit","Jupiter"],
         "url": "https://rere950303.github.io/spring/test/SpringJUnit/",
         "teaser": null
+      },{
+        "title": "[Spring][Deploy] Jenkins를 이용한 CI, CD",
+        "excerpt":"들어가며 저번에 배포한 스프링 App을 Jenkins를 이용하여 CI, CD 구현하는 과정을 기록하는 포스팅 동작 과정 배포하고자 하는 git의 branch를 정하고 Jenkins와 연동 push하는 경우 Jenkins에서 gradle 빌드 테스트 후에 jar 빌드 성공 시 셸스크립트를 통해 도커 이미지 빌드 후 hub에 업로드 Jenkins 서버와 배포 서버를 ssh 연동 후 도커로 서버...","categories": ["Spring/Deploy"],
+        "tags": ["Spring","Deploy","AWS","Jenkins","CI","CD"],
+        "url": "https://rere950303.github.io/spring/deploy/JenkinsCICD/",
+        "teaser": null
+      },{
+        "title": "[Spring][Deploy] AWS에 Spring Boot App 배포하기",
+        "excerpt":"들어가며 기존에 만들었던 RESTful API 프로젝트를 AWS EC2에 배포하는 방법과 그 과정을 기록하는 포스팅 EC2 &amp; RDS 생성 기존에 만들었던 AWS 계정을 탈퇴해서 새로운 이메일로 재가입을 했다. 인스턴스는 EC2 1개 RDS 1개 생성했다. 설정은 보안 그룹 말고는 크게 어렵지 않다. RDS의 기존 보안 그룹을 삭제하고 새로운 보안 그룹을 만든 후에...","categories": ["Spring/Deploy"],
+        "tags": ["Spring","Deploy","AWS"],
+        "url": "https://rere950303.github.io/spring/deploy/SpringAwsDeploy/",
+        "teaser": null
       }]

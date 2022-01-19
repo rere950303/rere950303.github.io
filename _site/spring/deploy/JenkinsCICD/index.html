@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring][Test] Spring JUnit - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Spring][Deploy] Jenkins를 이용한 CI, CD - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[Spring][Test] Spring JUnit">
-<meta property="og:url" content="https://rere950303.github.io/spring/test/SpringJUnit/">
+<meta property="og:title" content="[Spring][Deploy] Jenkins를 이용한 CI, CD">
+<meta property="og:url" content="https://rere950303.github.io/spring/deploy/JenkinsCICD/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-01-09T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-01-18T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/spring/test/SpringJUnit/">
+<link rel="canonical" href="https://rere950303.github.io/spring/deploy/JenkinsCICD/">
 
 
 
@@ -198,7 +198,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#test" itemprop="item"><span itemprop="name">Test</span></a>
+          <a href="/categories/#deploy" itemprop="item"><span itemprop="name">Deploy</span></a>
           <meta itemprop="position" content="3" />
         </li>
         <span class="sep">/</span>
@@ -206,7 +206,7 @@
     
       
       
-        <li class="current">[Spring][Test] Spring JUnit</li>
+        <li class="current">[Spring][Deploy] Jenkins를 이용한 CI, CD</li>
       
     
   </ol>
@@ -337,15 +337,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring][Test] Spring JUnit">
+    <meta itemprop="headline" content="[Spring][Deploy] Jenkins를 이용한 CI, CD">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2022-01-09T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-01-18T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][Test] Spring JUnit
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][Deploy] Jenkins를 이용한 CI, CD
 </h1>
           
 
@@ -354,7 +354,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-09T00:00:00+09:00">January 9, 2022</time>
+        <time datetime="2022-01-18T00:00:00+09:00">January 18, 2022</time>
       </span>
     
 
@@ -367,7 +367,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          3 분 소요
+          2 분 소요
         
       </span>
     
@@ -385,29 +385,12 @@
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
   <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#tdd에-대한-간단한-정리">TDD에 대한 간단한 정리</a></li>
-  <li><a href="#테스트-코드를-작성-목적">테스트 코드를 작성 목적</a></li>
-  <li><a href="#junit이란">JUnit이란</a></li>
-  <li><a href="#junit-jupiter">JUnit Jupiter</a></li>
-  <li><a href="#junit-platform">JUnit Platform</a></li>
-  <li><a href="#junit-vintage">JUnit Vintage</a></li>
-  <li><a href="#junit-lifecycle-annotation">JUnit LifeCycle Annotation</a></li>
-  <li><a href="#junit-main-annotation">JUnit Main Annotation</a>
-    <ul>
-      <li><a href="#springboottest">@SpringBootTest</a></li>
-      <li><a href="#extendwith">@ExtendWith</a></li>
-      <li><a href="#webmvctestclass명class">@WebMvcTest(Class명.class)</a></li>
-      <li><a href="#autowired-about-mockbean">@Autowired about Mockbean</a></li>
-      <li><a href="#mockbean">@MockBean</a></li>
-      <li><a href="#mock">@Mock</a></li>
-      <li><a href="#injectmocks">@InjectMocks</a></li>
-      <li><a href="#spy">@Spy</a></li>
-      <li><a href="#autoconfiguremockmvc">@AutoConfigureMockMvc</a></li>
-      <li><a href="#import">@Import</a></li>
-    </ul>
-  </li>
-  <li><a href="#통합-테스트">통합 테스트</a></li>
-  <li><a href="#단위-테스트">단위 테스트</a></li>
+  <li><a href="#동작-과정">동작 과정</a></li>
+  <li><a href="#인스턴스-준비">인스턴스 준비</a></li>
+  <li><a href="#jenkins-준비">Jenkins 준비</a></li>
+  <li><a href="#app-서버-준비">app 서버 준비</a></li>
+  <li><a href="#prometheus--grafana-연동">Prometheus &amp; Grafana 연동</a></li>
+  <li><a href="#고찰">고찰</a></li>
 </ul>
 
               
@@ -418,191 +401,138 @@
           </aside>
         
         <h2 id="들어가며">들어가며</h2>
-<p>시큐리티, JPA, MVC 등 스프링을 이용한 JUnit, TDD의 정리 필요성을 느껴 작성한 포스팅</p>
+<p>저번에 배포한 스프링 App을 Jenkins를 이용하여 CI, CD 구현하는 과정을 기록하는 포스팅</p>
 
-<h2 id="tdd에-대한-간단한-정리">TDD에 대한 간단한 정리</h2>
+<h2 id="동작-과정">동작 과정</h2>
 <ul>
-  <li>테스트 주도 개발</li>
-  <li>테스트를 먼저 설계 및 구축 후 테스트를 통과할 수 있는 코드를 짜는 것</li>
-  <li>애자일 개발 방식 중 하나
-    <ul>
-      <li>코드 설계시 원하는 단계적 목표에 대해 설정하여 진행하고자 하는 것에 대한 결정 방향의 갭을 줄이고자 함</li>
-      <li>최초 목표에 맞춘 테스트를 구축하여 그에 맞게 코드를 설계하기 때문에 보다 적은 의견 충돌을 기대할 수 있음</li>
-    </ul>
-  </li>
+  <li>배포하고자 하는 <code class="language-plaintext highlighter-rouge">git</code>의 branch를 정하고 <code class="language-plaintext highlighter-rouge">Jenkins</code>와 연동</li>
+  <li><code class="language-plaintext highlighter-rouge">push</code>하는 경우 <code class="language-plaintext highlighter-rouge">Jenkins</code>에서 <code class="language-plaintext highlighter-rouge">gradle</code> 빌드 테스트 후에 <code class="language-plaintext highlighter-rouge">jar</code> 빌드 성공 시 셸스크립트를 통해 도커 이미지 빌드 후 hub에 업로드</li>
+  <li><code class="language-plaintext highlighter-rouge">Jenkins</code> 서버와 배포 서버를 <code class="language-plaintext highlighter-rouge">ssh</code> 연동 후 도커로 서버 배포</li>
 </ul>
 
-<h2 id="테스트-코드를-작성-목적">테스트 코드를 작성 목적</h2>
+<h2 id="인스턴스-준비">인스턴스 준비</h2>
 <ul>
-  <li>코드의 안정성을 높일 수 있음</li>
-  <li>기능을 추가하거나 변경하는 과정에서 발생할 수 있는 Side-Effect를 줄일 수 있음</li>
-  <li>해당 코드가 작성된 목적을 명확하게 표현할 수 있음</li>
+  <li><code class="language-plaintext highlighter-rouge">Jenkins</code>, <code class="language-plaintext highlighter-rouge">app1</code>, <code class="language-plaintext highlighter-rouge">app2</code>, <code class="language-plaintext highlighter-rouge">RDS</code> 총 4개를 준비한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Jenkins</code> 서버에서 <code class="language-plaintext highlighter-rouge">ssh</code> 통신을 위한 <code class="language-plaintext highlighter-rouge">ssh-keygen</code>을 생성한다. 이것은 <code class="language-plaintext highlighter-rouge">github</code>, <code class="language-plaintext highlighter-rouge">app1</code>, <code class="language-plaintext highlighter-rouge">app2</code> 연동에 쓰인다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Jenkins</code> 서버에는 <code class="language-plaintext highlighter-rouge">jdk</code>, <code class="language-plaintext highlighter-rouge">git</code>, <code class="language-plaintext highlighter-rouge">docker</code>, <code class="language-plaintext highlighter-rouge">docker-compose</code>, <code class="language-plaintext highlighter-rouge">Jenkins</code>를 설치한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">app1</code>, <code class="language-plaintext highlighter-rouge">app1</code> 서버에는 <code class="language-plaintext highlighter-rouge">docker</code>와 <code class="language-plaintext highlighter-rouge">docker-compose</code>를 설치한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Jenkins</code> 서버의 경우 메모리 부족으로 원활한 빌드가 안될 수 있으니 <code class="language-plaintext highlighter-rouge">swap</code> 기능을 구현한다.</li>
 </ul>
 
-<h2 id="junit이란">JUnit이란</h2>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">sudo dd if=/dev/zero of=/swapfile bs=128M count=32 // swapfile 생성</span>
+<span class="s">sudo chmod 600 /swapfile</span>                            
+<span class="s">sudo mkswap /swapfile                              // swap 생성</span>
+<span class="s">sudo swapon /swapfile                              // swap 파일 추가, 이용</span>
+<span class="s">sudo swapon -s</span>
+<span class="s">sudo vi /etc/fstab                                 // 부팅 시 swap 파일 활성화</span>
+<span class="s">/swapfile swap swap defaults 0 </span><span class="m">0</span>
+<span class="s">free                                               // swap 확인</span>
+</code></pre></div></div>
+
+<h2 id="jenkins-준비"><code class="language-plaintext highlighter-rouge">Jenkins</code> 준비</h2>
 <ul>
-  <li>Java 진영의 대표적인 Test Framework</li>
-  <li>단위 테스트를 위한 도구를 제공
-    <ul>
-      <li>단위 테스트란 코드의 특정 모듈이 의도된 대로 동작하는지 테스트 하는 절차를 의미</li>
-      <li>모든 함수와 메소드에 대한 각각의 테스트 케이스를 작성하는것</li>
-    </ul>
-  </li>
-  <li>어노테이션을 기반으로 테스트를 지원</li>
-  <li>단정문으로 테스트 케이스의 기대값에 대해 수행 결과를 확인할 수 있음</li>
-  <li>Spring Boot 2.2부터 JUnit 5 버전을 사용</li>
-  <li>JUnit 5은 크게 Jupiter, Platform, Vintage 모듈로 구성됨</li>
+  <li>8080 포트로 접속 후 필요한 플러그인을 설치한다.</li>
+  <li>생성한 <code class="language-plaintext highlighter-rouge">ssh</code>키를 <code class="language-plaintext highlighter-rouge">git</code>과 <code class="language-plaintext highlighter-rouge">Jenkins</code>에 등록한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">git</code>에 webhook을 등록한다. 서버 인바운드 규칙으로 해당 webhook의 IP를 개방해야 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">gradle wrapper</code> 빌드를 선택한다.</li>
+  <li>셸 스크립트를 작성하여 <code class="language-plaintext highlighter-rouge">jar</code> 빌드 후 도커에 대한 명령어를 생성한다.</li>
 </ul>
 
-<h2 id="junit-jupiter">JUnit Jupiter</h2>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/bin/bash</span>
+
+<span class="s">DOCKER_REPOSITORY_NAME=$1</span>
+<span class="s">ID= ~</span>
+<span class="s">PW= ~</span>
+
+<span class="c1">#docker image의 첫 tag를 확인 후, 다음 버전의 image를 생성</span>
+<span class="c1">#만약 처음 생성되는 이름이라면 0.01 이름으로 생성해준다.</span>
+
+<span class="s">TAG=$(docker images | awk -v DOCKER_REPOSITORY_NAME=$DOCKER_REPOSITORY_NAME '{if ($1 == DOCKER_REPOSITORY_NAME) print $2;}')</span>
+
+<span class="c1"># 만약 [0-9]\.[0-9]{1,2} 으로 버전이 관리된 기존의 이미지 일 경우</span>
+<span class="s">if [[ $TAG =~ [0-9]\.[0-9]{1,2} ]]; then</span>
+    <span class="s">NEW_TAG_VER=$(echo $TAG 0.01 | awk '{print $1+$2}')</span>
+    <span class="s">echo "현재 버전은 $TAG 입니다."</span>
+    <span class="s">echo "새로운 버전은 $NEW_TAG_VER 입니다"</span>
+
+<span class="c1"># 그 외 새롭게 만들거나, lastest or lts 등 tag 일 때</span>
+<span class="s">else</span>
+    <span class="s"># echo "새롭게 만들어진 이미지 입니다."</span>
+    <span class="s">NEW_TAG_VER=0.01</span>
+<span class="s">fi</span>
+
+<span class="c1"># 현재 위치에 존재하는 DOCKER FILE을 사용하여 빌드</span>
+<span class="s">docker build -t $DOCKER_REPOSITORY_NAME:$NEW_TAG_VER .</span>
+
+<span class="c1"># docker hub에 push 하기위해 login</span>
+<span class="s">docker login -u $ID -p $PW</span>
+
+<span class="s">if [ $NEW_TAG_VER != "0.01" ]; then</span>
+    <span class="s">docker rmi $DOCKER_REPOSITORY_NAME:$TAG</span>
+<span class="s">fi</span>
+<span class="c1"># 새로운 태그를 설정한 image를 생성</span>
+<span class="s">docker tag $DOCKER_REPOSITORY_NAME:$NEW_TAG_VER $ID/$DOCKER_REPOSITORY_NAME:$NEW_TAG_VER</span>
+
+<span class="c1"># docker hub에 push</span>
+<span class="s">docker push $ID/$DOCKER_REPOSITORY_NAME:$NEW_TAG_VER</span>
+
+<span class="c1"># tag가 "latest"인 image를 최신 버전을 통해 생성</span>
+<span class="s">docker tag $DOCKER_REPOSITORY_NAME:$NEW_TAG_VER $ID/$DOCKER_REPOSITORY_NAME:latest</span>
+
+<span class="c1"># latest를 docker hub에 push</span>
+<span class="s">docker push $ID/$DOCKER_REPOSITORY_NAME:latest</span>
+
+<span class="c1"># 버전 관리에 문제가 있어 latest를 삭제</span>
+<span class="s">docker rmi $ID/$DOCKER_REPOSITORY_NAME:latest</span>
+<span class="s">docker rmi $ID/$DOCKER_REPOSITORY_NAME:$NEW_TAG_VER</span>
+</code></pre></div></div>
 <ul>
-  <li>TestEngine API 구현체로 JUnit 5를 구성</li>
-  <li>테스트의 실제 구현체는 별도 모듈 역할을 수행하는데, 그 모듈 중 하나가 Jupiter-Engine임</li>
-  <li>이 모듈은 Jupiter-API를 사용하여 작성한 테스트 코드를 발견하고 실행하는 역할을 수행</li>
-  <li>개발자가 테스트 코드를 작성할 떄 사용됨</li>
+  <li>hub의 경우 모든 버전이 누적되고 로컬에는 마지막 버전만이 관리된다.</li>
 </ul>
 
-<h2 id="junit-platform">JUnit Platform</h2>
+<h2 id="app-서버-준비"><code class="language-plaintext highlighter-rouge">app</code> 서버 준비</h2>
 <ul>
-  <li>Test를 실행하기 위한 뼈대</li>
-  <li>Test를 발견하고 테스트 계획을 생성하는 TestEngine 인터페이스를 가지고 있음</li>
-  <li>TestEngine을 통해 Test를 발견하고, 수행 및 결과를 보고함</li>
-  <li>그리고 각종 IDE 연동을 보조하는 역할을 수행(콘솔 출력 등)</li>
-  <li>Platform = TestEngine API + Console Launcher + JUnit 4 Based Runner 등</li>
+  <li><code class="language-plaintext highlighter-rouge">Public over ssh</code> 플러그인이 최근에 보안상의 문제로 지원되지 않는다고 한다.</li>
+  <li>따라서 직접 <code class="language-plaintext highlighter-rouge">ssh</code> 접속 후 <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>과 <code class="language-plaintext highlighter-rouge">.env</code>를 생성해서 컨테이너를 띄운다.</li>
 </ul>
 
-<h2 id="junit-vintage">JUnit Vintage</h2>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3"</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">app_8081</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">rere95/movierank:latest</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">app_8081</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="s">active.profile</span><span class="pi">:</span> <span class="s2">"</span><span class="s">dev1"</span>
+      <span class="s">jwt.key</span><span class="pi">:</span> <span class="s">${jwt_key}</span>
+      <span class="s">kobis.key</span><span class="pi">:</span> <span class="s">${kobis_key}</span>
+      <span class="s">quartz.time</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0</span><span class="nv"> </span><span class="s">51</span><span class="nv"> </span><span class="s">00</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?"</span>
+      <span class="s">kmdb.key</span><span class="pi">:</span> <span class="s">${kmdb_key}</span>
+      <span class="s">jwt.time</span><span class="pi">:</span> <span class="s2">"</span><span class="s">86400"</span>
+      <span class="s">jdbc.url</span><span class="pi">:</span> <span class="s">${jdbc_url}</span>
+      <span class="s">db.name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">rere"</span>
+      <span class="s">db.password</span><span class="pi">:</span> <span class="s">${db_password}</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8081:8081"</span>
+
+  <span class="na">redis</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">redis:alpine</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">composeRedis</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">6379:6379"</span>
+</code></pre></div></div>
+
+<h2 id="prometheus--grafana-연동">Prometheus &amp; Grafana 연동</h2>
 <ul>
-  <li>TestEngine API 구현체로 JUnit 3, 4를 구성</li>
-  <li>기존 JUnit 3, 4 버전으로 작성된 테스트 코드를 실행할 때 사용됨</li>
-  <li>Vintage-Engine 모듈을 포함</li>
+  <li><code class="language-plaintext highlighter-rouge">prometheus.yml</code>의 target을 AWS app 서버로 변동한다.</li>
+  <li>이후 로컬에서 Grafana를 실행시키면 monitoring이 가능하다.</li>
 </ul>
 
-<h2 id="junit-lifecycle-annotation">JUnit LifeCycle Annotation</h2>
+<h2 id="고찰">고찰</h2>
 <ul>
-  <li>JUnit 5는 아래와 같은 테스트 라이프 사이클을 가지고 있음</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Annotation</th>
-      <th style="text-align: center">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">@Test</code></td>
-      <td style="text-align: center">테스트용 메소드를 표현하는 어노테이션</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">@BeforEach</code></td>
-      <td style="text-align: center">각 테스트 메소드가 시작되기 전에 실행되어야 하는 메소드를 표현</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">@AfterEach</code></td>
-      <td style="text-align: center">각 테스트 메소드가 시작된 후 실행되어야 하는 메소드를 표현</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">@BeforeAll</code></td>
-      <td style="text-align: center">테스트 시작 전에 실행되어야 하는 메소드를 표현, static</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">@AfterAll</code></td>
-      <td style="text-align: center">테스트 종료 후에 실행되어야 하는 메소드를 표현, static</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="junit-main-annotation">JUnit Main Annotation</h2>
-<h3 id="springboottest"><code class="language-plaintext highlighter-rouge">@SpringBootTest</code></h3>
-<ul>
-  <li>통합 테스트 용도로 사용됨</li>
-  <li><code class="language-plaintext highlighter-rouge">@SpringBootApplication</code>을 찾아가 하위의 모든 Bean을 스캔하여 로드함</li>
-  <li>그 후 Test용 Application Context를 만들어 Bean을 추가하고, MockBean을 찾아 교체</li>
-</ul>
-
-<h3 id="extendwith"><code class="language-plaintext highlighter-rouge">@ExtendWith</code></h3>
-<ul>
-  <li>JUnit2에서 <code class="language-plaintext highlighter-rouge">@RunWith</code>로 사용되던 어노테이션이 ExtendWith로 변경됨</li>
-  <li>메인으로 실행될 Class를 지정할 수 있음</li>
-  <li><code class="language-plaintext highlighter-rouge">@SpringBootTest</code>는 기본적으로 <code class="language-plaintext highlighter-rouge">@ExtendWith</code>가 추가되어 있음</li>
-</ul>
-
-<h3 id="webmvctestclass명class"><code class="language-plaintext highlighter-rouge">@WebMvcTest(Class명.class)</code></h3>
-<ul>
-  <li>()에 작성된 클래스만 실제로 로드하여 테스트를 진행</li>
-  <li>매개변수를 지정해주지 않으면 <code class="language-plaintext highlighter-rouge">@Controller</code>, <code class="language-plaintext highlighter-rouge">@RestController</code>, <code class="language-plaintext highlighter-rouge">@RestControllerAdvice</code> 등 컨트롤러와 연관된 Bean이 모두 로드됨</li>
-  <li>스프링의 모든 Bean을 로드하는 <code class="language-plaintext highlighter-rouge">@SpringBootTest</code> 대신 컨트롤러 관련 코드만 테스트할 경우 사용</li>
-</ul>
-
-<h3 id="autowired-about-mockbean"><code class="language-plaintext highlighter-rouge">@Autowired about Mockbean</code></h3>
-<ul>
-  <li>Controller의 API를 테스트하는 용도인 MockMvc 객체를 주입 받음</li>
-  <li><code class="language-plaintext highlighter-rouge">perform()</code> 메소드를 활용하여 컨트롤러의 동작을 확인할 수 있음. <code class="language-plaintext highlighter-rouge">andExpect()</code>, <code class="language-plaintext highlighter-rouge">andDo()</code>, <code class="language-plaintext highlighter-rouge">andReturn()</code> 등의 메소드를 같이 활용함</li>
-</ul>
-
-<h3 id="mockbean"><code class="language-plaintext highlighter-rouge">@MockBean</code></h3>
-<ul>
-  <li>테스트할 클래스에서 주입 받고 있는 객체에 대해 가짜 객체를 생성해주는 어노테이션</li>
-  <li>해당 객체는 실제 행위를 하지 않음</li>
-  <li><code class="language-plaintext highlighter-rouge">given()</code> 메소드를 활용하여 가짜 객체의 동작에 대해 정의하여 사용할 수 있음</li>
-</ul>
-
-<h3 id="mock"><code class="language-plaintext highlighter-rouge">@Mock</code></h3>
-<ul>
-  <li>해당 애노테이션을 통해 기대 행위를 작성하여 테스트에서 원하는 상황을 설정할 수 있다. 이러한 행위를 stubbing이라고 한다.</li>
-  <li><code class="language-plaintext highlighter-rouge">Answers.RETURNS_DEFAULTS</code> 은 stub 되지 않은 메소드들에 대해서는 Mockito에서 메소드 타입별로 정의된 메소드들을 실행하게 됩니다.</li>
-  <li><code class="language-plaintext highlighter-rouge">@ExtendWith(MockitoExtension.class)</code>와 함께 사용</li>
-</ul>
-
-<h3 id="injectmocks"><code class="language-plaintext highlighter-rouge">@InjectMocks</code></h3>
-<ul>
-  <li>해당 클래스가 필요한 의존성과 맞는 Mock 객체들을 감지하여 해당 클래스의 객체가 만들어질때 사용하여 객체를 만들고 해당 변수에 객체를 주입하게 된다.</li>
-</ul>
-
-<h3 id="spy"><code class="language-plaintext highlighter-rouge">@Spy</code></h3>
-<ul>
-  <li>하나의 객체를 선택적으로 stub할 수 있도록 하는 기능을 갖는다.</li>
-  <li>의존성에 따라 필드 초기화가 필요할 수 있다.</li>
-</ul>
-
-<h3 id="autoconfiguremockmvc"><code class="language-plaintext highlighter-rouge">@AutoConfigureMockMvc</code></h3>
-<ul>
-  <li>spring.test.mockmvc의 설정을 로드하면서 MockMvc의 의존성을 자동으로 주입</li>
-  <li>MockMvc클래스는 REST API 테스트를 할 수 있는 클래스</li>
-</ul>
-
-<h3 id="import"><code class="language-plaintext highlighter-rouge">@Import</code></h3>
-<ul>
-  <li>필요한 Class들을 Configuration으로 만들어 사용할 수 있음</li>
-  <li>Configuration Component 클래스도 의존성 설정할 수 있음</li>
-  <li>Import된 클래스는 주입으로 사용 가능</li>
-</ul>
-
-<h2 id="통합-테스트">통합 테스트</h2>
-<ul>
-  <li>통합 테스트는 여러 기능을 조합하여 전체 비즈니스 로직이 제대로 동작하는지 확인하는 것을 의미</li>
-  <li>통합 테스트의 경우, <code class="language-plaintext highlighter-rouge">@SpringBootTest</code>를 사용하여 진행
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">@SpringBootApplication</code>을 찾아가서 모든 Bean을 로드하게 됨</li>
-      <li>이 방법을 대규모 프로젝트에서 사용할 경우, 테스트를 실행할 때마다 모든 빈을 스캔하고 로드하는 작업이 반복되어 매번 무거운 작업을 수행해야 함</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="단위-테스트">단위 테스트</h2>
-<ul>
-  <li>프로젝트에 필요한 모든 기능에 대한 테스트를 각각 진행하는 것을 의미</li>
-  <li>F.I.R.S.T 원칙
-    <ul>
-      <li>Fast: 테스트 코드의 실행은 빠르게 진행되어야 함</li>
-      <li>independent: 독립적인 테스트가 가능해야 함</li>
-      <li>Repeatable: 테스트는 매번 같은 결과를 만들어야 함</li>
-      <li>Self-Validating: 테스트는 그 자체로 실행하여 결과를 확인할 수 있어야 함</li>
-      <li>Timely: 코드가 완성되기 전부터 테스트가 따라와야 한다는 TDD의 원칙을 담고 있음</li>
-    </ul>
-  </li>
+  <li>배포는 크게 어려운 건 없는데 희한하게 시간이 많이 걸린다. 터미널 조작이나 명령이 아직 미숙한 부분이 있고 AWS도 많이 다뤄보지 않아서 그런 것 같다.</li>
+  <li>다음에는 <code class="language-plaintext highlighter-rouge">Nginx</code> 또는 <code class="language-plaintext highlighter-rouge">Kubernetes</code>를 통해서 무중단 배포를 해볼 생각이다.</li>
 </ul>
 
         
@@ -624,19 +554,27 @@
     
       
       
-      <a href="/tags/#junit" class="page__taxonomy-item" rel="tag">Junit</a><span class="sep">, </span>
+      <a href="/tags/#aws" class="page__taxonomy-item" rel="tag">AWS</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#jupiter" class="page__taxonomy-item" rel="tag">Jupiter</a><span class="sep">, </span>
+      <a href="/tags/#cd" class="page__taxonomy-item" rel="tag">CD</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a><span class="sep">, </span>
+      <a href="/tags/#ci" class="page__taxonomy-item" rel="tag">CI</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#test" class="page__taxonomy-item" rel="tag">Test</a>
+      <a href="/tags/#deploy" class="page__taxonomy-item" rel="tag">Deploy</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#jenkins" class="page__taxonomy-item" rel="tag">Jenkins</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -657,14 +595,14 @@
     
       
       
-      <a href="/categories/#spring-test" class="page__taxonomy-item" rel="tag">Spring/Test</a>
+      <a href="/categories/#spring-deploy" class="page__taxonomy-item" rel="tag">Spring/Deploy</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-01-09T00:00:00+09:00">January 9, 2022</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-01-18T00:00:00+09:00">January 18, 2022</time></p>
 
 
       </footer>
@@ -674,22 +612,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BTest%5D+Spring+JUnit%20https%3A%2F%2Frere950303.github.io%2Fspring%2Ftest%2FSpringJUnit%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BDeploy%5D+Jenkins%EB%A5%BC+%EC%9D%B4%EC%9A%A9%ED%95%9C+CI%2C+CD%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fdeploy%2FJenkinsCICD%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Ftest%2FSpringJUnit%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fdeploy%2FJenkinsCICD%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Ftest%2FSpringJUnit%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fdeploy%2FJenkinsCICD%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/batch/SpringBatchImprovement/" class="pagination--pager" title="[Spring][Batch] Spring Batch performance improvement
+      <a href="/spring/test/SpringJUnit/" class="pagination--pager" title="[Spring][Test] Spring JUnit
 ">이전</a>
     
     
-      <a href="/spring/deploy/JenkinsCICD/" class="pagination--pager" title="[Spring][Deploy] Jenkins를 이용한 CI, CD
+      <a href="/spring/deploy/SpringAwsDeploy/" class="pagination--pager" title="[Spring][Deploy] AWS에 Spring Boot App 배포하기
 ">다음</a>
     
   </nav>
@@ -760,7 +698,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/spring/deploy/JenkinsCICD/" rel="permalink">[Spring][Deploy] Jenkins를 이용한 CI, CD
+        <a href="/spring/test/SpringJUnit/" rel="permalink">[Spring][Test] Spring JUnit
 </a>
       
     </h2>
@@ -771,7 +709,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-18T00:00:00+09:00">January 18, 2022</time>
+        <time datetime="2022-01-09T00:00:00+09:00">January 9, 2022</time>
       </span>
     
 
@@ -784,7 +722,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          2 분 소요
+          3 분 소요
         
       </span>
     
