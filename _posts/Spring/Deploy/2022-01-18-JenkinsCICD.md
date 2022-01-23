@@ -25,7 +25,7 @@ tags:
 - `Jenkins`, `app1`, `app2`, `RDS` 총 4개를 준비한다. 
 - `Jenkins` 서버에서 `ssh` 통신을 위한 `ssh-keygen`을 생성한다. 이것은 `github`, `app1`, `app2` 연동에 쓰인다.
 - `Jenkins` 서버에는 `jdk`, `git`, `docker`, `docker-compose`, `Jenkins`를 설치한다.
-- `app1`, `app1` 서버에는 `docker`와 `docker-compose`를 설치한다.
+- `app1`, `app2` 서버에는 `docker`와 `docker-compose`를 설치한다.
 - `Jenkins` 서버의 경우 메모리 부족으로 원활한 빌드가 안될 수 있으니 `swap` 기능을 구현한다.
 
 ```yaml

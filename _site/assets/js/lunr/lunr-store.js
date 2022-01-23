@@ -29,12 +29,6 @@ var store = [{
         "url": "https://rere950303.github.io/sql/where&having/",
         "teaser": null
       },{
-        "title": "[Spring][Core] 스프링 핵심 원리-고급편",
-        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 [스프링 핵심 원리 - 고급편][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다. 예제 만들기 로그 추적기 - 요구사항 분석 모든 PUBLIC 메서드의 호출과 응답 정보를 로그로 출력 애플리케이션의 흐름을 변경하면 안됨(로그를 남긴다고 해서 비즈니스 로직의 동작에 영향을 주면 안됨) 메서드 호출에 걸린 시간 정상 흐름과 예외...","categories": ["Spring/Core"],
-        "tags": ["Object-oriented","Spring"],
-        "url": "https://rere950303.github.io/spring/core/SpringCore_advanced/",
-        "teaser": null
-      },{
         "title": "[Spring][Core] 스프링 핵심 원리-기본편",
         "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 핵심 원리 - 기본편 강의를 바탕으로 쓰였음을 미리 밝힙니다. 객체 지향 설계와 스프링 좋은 객체 지향 프로그래밍 스프링은 객체 지향 언어가 가진 강력한 특징을 살려내는 프레임워크 객체 지향 언어의 특징: 캡슐화, 다형성, 추상화, 상속 역할과 구현의 분리 -&gt; 인터페이스와 구현클래스 다형성으로 인터페이스를 구현한...","categories": ["Spring/Core"],
         "tags": ["Object-oriented","Spring"],
@@ -215,15 +209,21 @@ var store = [{
         "url": "https://rere950303.github.io/spring/test/SpringJUnit/",
         "teaser": null
       },{
+        "title": "[Spring][Deploy] AWS에 Spring Boot App 배포하기",
+        "excerpt":"들어가며 기존에 만들었던 RESTful API 프로젝트를 AWS EC2에 배포하는 방법과 그 과정을 기록하는 포스팅 EC2 &amp; RDS 생성 기존에 만들었던 AWS 계정을 탈퇴해서 새로운 이메일로 재가입을 했다. 인스턴스는 EC2 1개 RDS 1개 생성했다. 설정은 보안 그룹 말고는 크게 어렵지 않다. RDS의 기존 보안 그룹을 삭제하고 새로운 보안 그룹을 만든 후에...","categories": ["Spring/Deploy"],
+        "tags": ["Spring","Deploy","AWS"],
+        "url": "https://rere950303.github.io/spring/deploy/SpringAwsDeploy/",
+        "teaser": null
+      },{
         "title": "[Spring][Deploy] Jenkins를 이용한 CI, CD",
         "excerpt":"들어가며 저번에 배포한 스프링 App을 Jenkins를 이용하여 CI, CD 구현하는 과정을 기록하는 포스팅 동작 과정 배포하고자 하는 git의 branch를 정하고 Jenkins와 연동 push하는 경우 Jenkins에서 gradle 빌드 테스트 후에 jar 빌드 성공 시 셸스크립트를 통해 도커 이미지 빌드 후 hub에 업로드 Jenkins 서버와 배포 서버를 ssh 연동 후 도커로 서버...","categories": ["Spring/Deploy"],
         "tags": ["Spring","Deploy","AWS","Jenkins","CI","CD"],
         "url": "https://rere950303.github.io/spring/deploy/JenkinsCICD/",
         "teaser": null
       },{
-        "title": "[Spring][Deploy] AWS에 Spring Boot App 배포하기",
-        "excerpt":"들어가며 기존에 만들었던 RESTful API 프로젝트를 AWS EC2에 배포하는 방법과 그 과정을 기록하는 포스팅 EC2 &amp; RDS 생성 기존에 만들었던 AWS 계정을 탈퇴해서 새로운 이메일로 재가입을 했다. 인스턴스는 EC2 1개 RDS 1개 생성했다. 설정은 보안 그룹 말고는 크게 어렵지 않다. RDS의 기존 보안 그룹을 삭제하고 새로운 보안 그룹을 만든 후에...","categories": ["Spring/Deploy"],
-        "tags": ["Spring","Deploy","AWS"],
-        "url": "https://rere950303.github.io/spring/deploy/SpringAwsDeploy/",
+        "title": "[Spring][Core] 스프링 핵심 원리-고급편",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 핵심 원리 - 고급편 강의를 바탕으로 쓰였음을 미리 밝힙니다. 예제 만들기 로그 추적기 - 요구사항 분석 모든 PUBLIC 메서드의 호출과 응답 정보를 로그로 출력 애플리케이션의 흐름을 변경하면 안됨(로그를 남긴다고 해서 비즈니스 로직의 동작에 영향을 주면 안됨) 메서드 호출에 걸린 시간 정상 흐름과 예외...","categories": ["Spring/Core"],
+        "tags": ["Object-oriented","Spring","AOP","Aspect","Pointcut","Advice","Proxy"],
+        "url": "https://rere950303.github.io/spring/core/SpringCore_advanced/",
         "teaser": null
       }]

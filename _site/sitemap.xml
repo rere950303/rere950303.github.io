@@ -3,9 +3,9 @@
   
   
   <url>
-    <loc>https://rere950303.github.io/spring/deploy/SpringAwsDeploy/</loc>
+    <loc>https://rere950303.github.io/spring/core/SpringCore_advanced/</loc>
     
-    <lastmod>2022-01-18T00:00:00+09:00</lastmod>
+    <lastmod>2022-01-23T00:00:00+09:00</lastmod>
     
   </url>
   
@@ -13,6 +13,13 @@
     <loc>https://rere950303.github.io/spring/deploy/JenkinsCICD/</loc>
     
     <lastmod>2022-01-18T00:00:00+09:00</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://rere950303.github.io/spring/deploy/SpringAwsDeploy/</loc>
+    
+    <lastmod>2022-01-17T00:00:00+09:00</lastmod>
     
   </url>
   
@@ -221,13 +228,6 @@
   
   <url>
     <loc>https://rere950303.github.io/spring/core/SpringCore_basic/</loc>
-    
-    <lastmod>2021-09-22T00:00:00+09:00</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://rere950303.github.io/spring/core/SpringCore_advanced/</loc>
     
     <lastmod>2021-09-22T00:00:00+09:00</lastmod>
     
