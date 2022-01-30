@@ -626,7 +626,7 @@
     <ul>
       <li><code class="language-plaintext highlighter-rouge">@StepScope</code>가 아닌 <code class="language-plaintext highlighter-rouge">ThreadLocal</code>을 이용한 paritioning을 생각해보았다. StepListener를 이용하여 Step 시작 전에 paging 변수를 스레드 단위 변수로 저장하려고 했지만 결국 처음 빈 생성시에 <code class="language-plaintext highlighter-rouge">NullPointerEx</code>이 발생했다.</li>
       <li><code class="language-plaintext highlighter-rouge">@Async</code>를 통한 AOP를 활용하여 비동기적으로 하면 어떨가 생각해보았다. 시간이 많이 소요되는 지점은 API 통신을 하는 부분인데 non-blocking 방식으로 코딩하면 <code class="language-plaintext highlighter-rouge">itemreader.read()</code> 순간에 <code class="language-plaintext highlighter-rouge">ReadEx</code>이 발생했다.</li>
-      <li><code class="language-plaintext highlighter-rouge">Job</code>을 여러 개로 나눠서 병렬 처리하는 경우 결국 빈 생성 초기화나 <code class="language-plaintext highlighter-rouge">@StepScope</code>로 인한 병목현상은 여전했다.</li>
+      <li><code class="language-plaintext highlighter-rouge">Job</code>을 여러 개로 나눠서 <code class="language-plaintext highlighter-rouge">Quartz</code> 멀티 스레드 병렬 처리도 생각해보았다. 하지만 일정 간격으로 새로운 <code class="language-plaintext highlighter-rouge">item</code>을 갖는 <code class="language-plaintext highlighter-rouge">itemreader</code>를 새로 생성하기 위해서는 결국 <code class="language-plaintext highlighter-rouge">@StepScope</code>를 통한 지연 로딩이 필요했다.</li>
     </ul>
   </li>
   <li>다음 포스팅에서는 <code class="language-plaintext highlighter-rouge">Quartz</code>를 통한 <code class="language-plaintext highlighter-rouge">Job</code>의 스케줄링으로 위와 같은 문제를 개선해 보겠다.</li>
@@ -737,6 +737,98 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/aws/AWS_EBS/" rel="permalink">[AWS] EBS
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-30T00:00:00+09:00">January 30, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/security/SpringSecurity2/" rel="permalink">[Spring][Security] 스프링 시큐리티
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-25T00:00:00+09:00">January 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
         <a href="/spring/core/SpringCore_advanced/" rel="permalink">[Spring][Core] 스프링 핵심 원리-고급편
 </a>
       
@@ -808,98 +900,6 @@
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           2 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/deploy/SpringAwsDeploy/" rel="permalink">[Spring][Deploy] AWS에 Spring Boot App 배포하기
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-17T00:00:00+09:00">January 17, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/test/SpringJUnit/" rel="permalink">[Spring][Test] Spring JUnit
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-09T00:00:00+09:00">January 9, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          3 분 소요
         
       </span>
     

@@ -707,7 +707,7 @@
 <h3 id="빈-등록-초기화-소멸-메서드">빈 등록 초기화, 소멸 메서드</h3>
 <ul>
   <li>설정 정보에 <code class="language-plaintext highlighter-rouge">@Bean(initMethod = "init", destroyMethod = "close")</code> 처럼 초기화, 소멸 메서드를 지정할 수 있다.</li>
-  <li>코드가 아니라 사용하기 때문에 코드를 고칠 수 없는 외부 라이브러리에도 적용할 수 있다.</li>
+  <li>코드가 아니라 설정 정보를 사용하기 때문에 코드를 고칠 수 없는 외부 라이브러리에도 적용할 수 있다.</li>
   <li><code class="language-plaintext highlighter-rouge">@Bean</code>의 destroyMethod는 기본값이 <code class="language-plaintext highlighter-rouge">(inferred)</code> 으로 등록되어 있다. 이 추론 기능은 <code class="language-plaintext highlighter-rouge">close</code> , <code class="language-plaintext highlighter-rouge">shutdown</code> 라는 이름의 메서드를 자동으로 호출해준다. 이름 그대로 종료 메서드를 추론해서 호출해준다. 따라서 직접 스프링 빈으로 등록하면 종료 메서드는 따로 적어주지 않아도 잘 동작한다. 추론 기능을 사용하기 싫으면<code class="language-plaintext highlighter-rouge">destroyMethod=""</code> 처럼 빈 공백을 지정하면 된다.</li>
 </ul>
 
@@ -956,6 +956,98 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/aws/AWS_EBS/" rel="permalink">[AWS] EBS
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-30T00:00:00+09:00">January 30, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/security/SpringSecurity2/" rel="permalink">[Spring][Security] 스프링 시큐리티
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-25T00:00:00+09:00">January 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
         <a href="/spring/core/SpringCore_advanced/" rel="permalink">[Spring][Core] 스프링 핵심 원리-고급편
 </a>
       
@@ -1027,98 +1119,6 @@
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           2 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/deploy/SpringAwsDeploy/" rel="permalink">[Spring][Deploy] AWS에 Spring Boot App 배포하기
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-17T00:00:00+09:00">January 17, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/test/SpringJUnit/" rel="permalink">[Spring][Test] Spring JUnit
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-09T00:00:00+09:00">January 9, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          3 분 소요
         
       </span>
     

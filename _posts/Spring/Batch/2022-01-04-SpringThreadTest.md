@@ -157,5 +157,5 @@ public Object get(String name, ObjectFactory<?> objectFactory) {
 - 해결 방안 모색
   - `@StepScope`가 아닌 `ThreadLocal`을 이용한 paritioning을 생각해보았다. StepListener를 이용하여 Step 시작 전에 paging 변수를 스레드 단위 변수로 저장하려고 했지만 결국 처음 빈 생성시에 `NullPointerEx`이 발생했다.
   - `@Async`를 통한 AOP를 활용하여 비동기적으로 하면 어떨가 생각해보았다. 시간이 많이 소요되는 지점은 API 통신을 하는 부분인데 non-blocking 방식으로 코딩하면 `itemreader.read()` 순간에 `ReadEx`이 발생했다.
-  - `Job`을 여러 개로 나눠서 병렬 처리하는 경우 결국 빈 생성 초기화나 `@StepScope`로 인한 병목현상은 여전했다.
+  - `Job`을 여러 개로 나눠서 `Quartz` 멀티 스레드 병렬 처리도 생각해보았다. 하지만 일정 간격으로 새로운 `item`을 갖는 `itemreader`를 새로 생성하기 위해서는 결국 `@StepScope`를 통한 지연 로딩이 필요했다.
 - 다음 포스팅에서는 `Quartz`를 통한 `Job`의 스케줄링으로 위와 같은 문제를 개선해 보겠다.

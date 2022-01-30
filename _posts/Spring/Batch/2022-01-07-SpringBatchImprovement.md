@@ -18,7 +18,7 @@ tags:
 - 멀티 스레드는 동기화 문제로 효과가 미흡하거나 오히려 오버헤드 발생
 - DB 갱신 시 request 실시간 반응성 떨어짐
 - 한 번에 10000건의 엔티티를 메모리로 올리기 너무 헤비하고 부담
-- mariadb의 경우 기본키 할당 전략을 `GenerationType.SEQUENCE`으로 할 경우 allocationSize가 1로 고정이 되므로 insert의 성능이 저하(약 14초 정도 딜레이 발생)
+- mariadb의 경우 기본키 할당 전략을 `GenerationType.SEQUENCE`으로 할 경우 allocationSize가 1로 고정이 되므로 insert의 성능이 저하
 
 ## 공략법
 - 따라서 단일 스레드로 진행하고 한 번에 10000건의 Entity를 메모리에 올리면 부담이 되므로 4개의 Step으로 나누어 진행

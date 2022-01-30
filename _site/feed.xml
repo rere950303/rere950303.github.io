@@ -1,4 +1,530 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-23T18:25:47+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][Core] 스프링 핵심 원리-고급편</title><link href="https://rere950303.github.io/spring/core/SpringCore_advanced/" rel="alternate" type="text/html" title="[Spring][Core] 스프링 핵심 원리-고급편" /><published>2022-01-23T00:00:00+09:00</published><updated>2022-01-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/core/SpringCore_advanced</id><content type="html" xml:base="https://rere950303.github.io/spring/core/SpringCore_advanced/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-01-30T16:20:30+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[AWS] EBS</title><link href="https://rere950303.github.io/aws/AWS_EBS/" rel="alternate" type="text/html" title="[AWS] EBS" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>https://rere950303.github.io/aws/AWS_EBS</id><content type="html" xml:base="https://rere950303.github.io/aws/AWS_EBS/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;도커 이미지 빌드시 디스크 용량 부족으로 에러가 발생함에 따라 ec2 디스크 볼륨 사이즈를 증가시키는 과정을 기록하기 위한 포스팅&lt;/p&gt;
+
+&lt;h2 id=&quot;ebs-볼륨이란&quot;&gt;EBS 볼륨이란&lt;/h2&gt;
+&lt;p&gt;Elastic Block Store의 약자로써 ec2에서 디스크처럼 사용할 수 있는 블록 수준 스토리지를 말한다. AWS에서는 볼륨이라고 말하는데 EBS로 생성한 디스크 하나하나 저장 단위를 말한다. 볼륨을 하나 생성하여 ec2와 연결하면 하나의 디스크 디바이스가 된다고 볼 수 있으므로 EBS볼륨이라고 한다. &lt;br /&gt;
+디스크, 파티션, 볼륨, 파일 시스템에 관한 내용은 구글링을 하면 자세하고 다양한 자료를 공부할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;디스크-볼륨-사이즈-증가&quot;&gt;디스크 볼륨 사이즈 증가&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;df -h&lt;/code&gt; 명령어로 현재 파일시스템을 확인할 수 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lsblk&lt;/code&gt; 명령어로 디스크와 파티션의 현재 사이즈를 확인할 수 있다. AWS에서 볼륨을 8기가에서 16기가로 증가시키고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;growpart /dev/xvda 1&lt;/code&gt; 명령어로 디스크 용량을 증가시킨다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo file -s /dev/xvda1&lt;/code&gt; 명령어로 파티션 파일시스템의 유형을 확인하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xfs_growfs /dev/xvda1&lt;/code&gt; 명령어로 파일시스템에 반영한다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="AWS" /><category term="AWS" /><category term="EBS" /></entry><entry><title type="html">[Spring][Security] 스프링 시큐리티</title><link href="https://rere950303.github.io/spring/security/SpringSecurity2/" rel="alternate" type="text/html" title="[Spring][Security] 스프링 시큐리티" /><published>2022-01-25T00:00:00+09:00</published><updated>2022-01-25T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/security/SpringSecurity2</id><content type="html" xml:base="https://rere950303.github.io/spring/security/SpringSecurity2/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;해당 게시글은 인프런 정수원 강사님의 [스프링 시큐리티 - Spring Boot 기반으로 개발하는 Spring Security][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;스프링-시큐리티-기본-api-및-filter-이해&quot;&gt;스프링 시큐리티 기본 API 및 Filter 이해&lt;/h2&gt;
+&lt;h3 id=&quot;사용자-정의-보안-기능-구현&quot;&gt;사용자 정의 보안 기능 구현&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WebSecurityConfigurerAdapter&lt;/code&gt; 상속&lt;/li&gt;
+  &lt;li&gt;인증 API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;formLogin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csrf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;httpBasic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SessionManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RememberMe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ExceptionHandling&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;인가 API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;authorizeRequests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;antMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasRole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;permitAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;authenticated&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fullyAuthentication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;acess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasRole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;http-basic-인증-basicauthenticationfilter&quot;&gt;HTTP Basic 인증, BasicAuthenticationFilter&lt;/h3&gt;
+&lt;h4 id=&quot;http-basic-인증&quot;&gt;HTTP Basic 인증&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTTP는 자체적인 인증 관련 기능을 제공하며 HTTP 표준에 정의된 가장 단순한 인증 기법이다&lt;/li&gt;
+  &lt;li&gt;간단한 설정과 Stateless가 장점 - Session Cookie(JSESSIONID) 사용하지 않음&lt;/li&gt;
+  &lt;li&gt;보호자원 접근시 서버가 클라이언트에게 401 Unauthorized 응답과 함께 WWW-Authenticate header를 기술해서 인증요구를 보냄&lt;/li&gt;
+  &lt;li&gt;Client는 ID:Password 값을 Base64로 Encoding한 문자열을 Authorization Header에 추가한 뒤 Server에게 Resource를 요청(Authorization: Basic cmVzdDpyZXN0)&lt;/li&gt;
+  &lt;li&gt;ID, Password가 Base64로 Encoding되어 있어 ID, Password가 외부에 쉽게 노출되는 구조이기 때문에 SSL이나 TLS는 필수이다&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;httpBasic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;basicauthenticationfilter&quot;&gt;BasicAuthenticationFilter&lt;/h4&gt;
+&lt;p&gt;이미지 1번&lt;/p&gt;
+
+&lt;h3 id=&quot;form-인증&quot;&gt;Form 인증&lt;/h3&gt;
+&lt;p&gt;이미지 2번&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;세션 아이디(JSESSIONID)를 키로 해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 세션 저장소에 저장&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;formLogin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;loginPage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/login.html&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// URI 설정도 가능&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;defaultSuccessUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/home&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;failureUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/login.html?error=true&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;usernameParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;passwordParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;usernamepasswordauthenticationfilter&quot;&gt;UsernamePasswordAuthenticationFilter&lt;/h3&gt;
+&lt;p&gt;이미지 3번&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UserDetails&lt;/code&gt; 구현체&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UsernamePasswordAuthenticationFilter&lt;/code&gt;에서 발생한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationException&lt;/code&gt;의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AbstractAuthenticationProcessingFilter&lt;/code&gt;에서 처리&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;logout-logoutfilter&quot;&gt;Logout, LogoutFilter&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;세션 저장소에 있는 세션을 없애고 쿠키 정보를 삭제&lt;/li&gt;
+  &lt;li&gt;로그인 페이지로 리다이렉트&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logoutUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/logout&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logoutSuccessUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/login&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 여러가지 기본 구현체를 제공&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;deleteCookies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;JSESSIONID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;remember-me&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addLogoutHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logoutHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 여러가지 기본 구현체를 제공&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logoutSuccessHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logoutSuccessHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이미지 4번, 5번&lt;/p&gt;
+
+&lt;h3 id=&quot;remember-me--remembermeauthenticationfilter&quot;&gt;Remember Me &amp;amp; RememberMeAuthenticationFilter&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;세션이 만료되고 웹 브라우저가 종료된 후에도 어플리케이션이 사용자를 기억하는 기능&lt;/li&gt;
+  &lt;li&gt;Remember-Me 쿠키에 대한 Http 요청을 확인한 후 토큰 유효성 검사후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RememberMeAuthenticationToken&lt;/code&gt;를 생성해서 인증 과정을 진행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rememberMe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rememberMeParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remember&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 기본 파라미터명은 remember-me&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tokenValiditySeconds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3600&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Default 는 14일&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;alwaysRemember&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;userDetailsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userDetailsService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;현재 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication&lt;/code&gt;이 null이고 http 헤더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remember-me&lt;/code&gt; 쿠키값이 있을때만 필터를 거친다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationManager&lt;/code&gt;(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProvideManager&lt;/code&gt;)를 통한 인증이 성공하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RememberMeAuthenticationToken&lt;/code&gt;를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에 저장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;anonymousauthenticationfilter&quot;&gt;AnonymousAuthenticationFilter&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;익명사용자 인증 처리 필터&lt;/li&gt;
+  &lt;li&gt;익명사용자와 인증 사용자를 구분해서 처리하기 위한 용도로 사용&lt;/li&gt;
+  &lt;li&gt;화면에서 인증 여부를 구현할 때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isAnonymous()&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isAuthenticated()&lt;/code&gt;로 구분해서 사용&lt;/li&gt;
+  &lt;li&gt;인증객체를 세션에 저장하지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 8번&lt;/p&gt;
+
+&lt;h3 id=&quot;동시-세션-제어--세션고정보호--세션-정책&quot;&gt;동시 세션 제어 / 세션고정보호 / 세션 정책&lt;/h3&gt;
+&lt;h4 id=&quot;동시-세션-제어&quot;&gt;동시 세션 제어&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;최대 세션 허용 개수 초과
+    &lt;ul&gt;
+      &lt;li&gt;이전 사용자 세션 만료&lt;/li&gt;
+      &lt;li&gt;현재 사용자 인증 실패&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sessionManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;maximumSessions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 최대 허용 가능 세션 수 , -1 : 무제한 로그인 세션 허용&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;maxSessionsPreventsLogin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 동시 로그인 차단함, false : 기존 세션 만료(default)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;invalidSessionUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/invalid&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;expiredUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/expired &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;세션-고정-보호-사용자&quot;&gt;세션 고정 보호 사용자&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;공격자가 본인의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JSESSIONID&lt;/code&gt;를 사용자 쿠키에 심어넣고 해당 사용자가 공격자의 쿠키로 로그인시에 공격자는 사용자의 정보 공유 가능&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sessionManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sessionFixation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;changeSessionId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 기본값 // none, migrateSession, newSession&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;세션-정책&quot;&gt;세션 정책&lt;/h4&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sessionManagement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sessionCreationPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SessionCreationPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;If_Required&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SessionCreationPolicy.Always&lt;/code&gt;: 스프링 시큐리티가 항상 세션 생성&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SessionCreationPolicy.If_Required&lt;/code&gt;: 스프링 시큐리티가 필요시 생성(기본값)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SessionCreationPolicy.Never&lt;/code&gt;: 스프링 시큐리티가 생성하지 않지만 이미 존재하면 사용&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SessionCreationPolicy.Stateless&lt;/code&gt;: 스프링 시큐리티가 생성하지 않고 존재해도 사용하지 않음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sessionmanagementfilter--concurrentsessionfilter&quot;&gt;SessionManagementFilter &amp;amp; ConcurrentSessionFilter&lt;/h3&gt;
+&lt;h4 id=&quot;sessionmanagementfilter&quot;&gt;SessionManagementFilter&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;세션 관리: 인증 시 사용자의 세션정보를 등록, 조회, 삭제 등의 세션 이력을 관리한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpSession&lt;/code&gt;이 아니라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SessionRegistry&lt;/code&gt;의 기본 구현체인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SessionRegistryImpl&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Map&amp;lt;String, SessionInformation&amp;gt; sessionIds&lt;/code&gt;에 JSESSIONID를 키로 하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;principal&lt;/code&gt;를 포함하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SessionInformation&lt;/code&gt;를 값으로 해서 저장한다.&lt;/li&gt;
+  &lt;li&gt;동시적 세션 제어: 동일 계정으로 접속이 허용되는 최대 세션수를 제한&lt;/li&gt;
+  &lt;li&gt;세션 고정 보호: 인증 할 때마다 세션쿠키를 새로 발급하여 공격자의 쿠키 조작을 방지&lt;/li&gt;
+  &lt;li&gt;세션 생성 정책: Always, If_Required, Never, Stateless&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;concurrentsessionfilter&quot;&gt;ConcurrentSessionFilter&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;매 요청 마다 현재 사용자의 세션 만료 여부 체크&lt;/li&gt;
+  &lt;li&gt;세션이 만료로 설정되었을 경우 즉시 로그아웃 처리&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;session.isExpired() == true&lt;/code&gt;: 로그아웃 처리, 오류 페이지 응답&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 9번&lt;/p&gt;
+
+&lt;h3 id=&quot;권한-설정-및-표현식&quot;&gt;권한 설정 및 표현식&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;선언적 방식
+    &lt;ul&gt;
+      &lt;li&gt;URL: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http.antMatchers(&quot;/users/**&quot;).hasRole(“USER&quot;)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Method: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PreAuthorize(&quot;hasRole(‘USER’)&quot;)&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;동적 방식 – DB 연동 프로그래밍
+    &lt;ul&gt;
+      &lt;li&gt;URL&lt;/li&gt;
+      &lt;li&gt;Method&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;authorizeRequests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;antMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/shop/login&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/shop/users/**&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;permitAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;antMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; / shop / mypage&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasRole&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;USER&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;antMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/shop/admin/pay&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hasRole(&apos;ADMIN&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;antMatchers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/shop/admin/**&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hasRole(&apos;ADMIN&apos;) or hasRole(&apos;SYS&apos;)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;anyRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;authenticated&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이미지 10번&lt;/p&gt;
+
+&lt;h3 id=&quot;exceptiontranslationfilter--requestcacheawarefilter&quot;&gt;ExceptionTranslationFilter &amp;amp; RequestCacheAwareFilter&lt;/h3&gt;
+&lt;h4 id=&quot;exceptiontranslationfilter&quot;&gt;ExceptionTranslationFilter&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;AuthenticationException
+    &lt;ul&gt;
+      &lt;li&gt;인증 예외 처리&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationEntryPoint&lt;/code&gt; 호출: 로그인 페이지 이동, 401 오류 코드 전달 등&lt;/li&gt;
+      &lt;li&gt;인증 예외가 발생하기 전의 요청 정보를 저장&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestCache&lt;/code&gt; - 사용자의 이전 요청 정보을 세션에 &lt;strong&gt;저장&lt;/strong&gt;하고 이를 &lt;strong&gt;꺼내&lt;/strong&gt; 오는 캐시 메카니즘&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SavedRequest&lt;/code&gt; - 사용자가 요청했던 request 파라미터 값들, 그 당시의 헤더값들 등이 저장&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;AccessDeniedException
+    &lt;ul&gt;
+      &lt;li&gt;인가 예외 처리&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AccessDeniedHandler&lt;/code&gt;에서 예외 처리하도록 제공&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 11번&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;익명 사용자는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AccessDeniedException&lt;/code&gt;이 발생해도 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationException&lt;/code&gt;으로 처리해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationEntryPoint&lt;/code&gt; 실행&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;exceptionHandling&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;authenticationEntryPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;authenticationEntryPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;accessDeniedHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accessDeniedHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;requestcacheawarefilter&quot;&gt;RequestCacheAwareFilter&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpSessionRequestCache&lt;/code&gt;에서 세션에 저장된 ` DefaultSavedRequest`를 조회하고 있다면 캐쉬단 URI로 보낸다.&lt;/p&gt;
+
+&lt;h2 id=&quot;스프링-시큐리티-주요-아키텍처-이해&quot;&gt;스프링 시큐리티 주요 아키텍처 이해&lt;/h2&gt;
+&lt;h3 id=&quot;delegatingfilterproxy--filterchainproxy&quot;&gt;DelegatingFilterProxy &amp;amp; FilterChainProxy&lt;/h3&gt;
+&lt;h4 id=&quot;delegatingfilterproxy&quot;&gt;DelegatingFilterProxy&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;서블릿 필터는 스프링에서 정의된 빈을 주입해서 사용할 수 없음&lt;/li&gt;
+  &lt;li&gt;특정한 이름을 가진 스프링 빈을 찾아 그 빈에게 요청을 위임
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;springSecurityFilterChain&lt;/code&gt; 이름으로 생성된 빈을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ApplicationContext&lt;/code&gt; 에서 찾아 요청을 위임&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DelegatingFilterProxy&lt;/code&gt;는 서블리과 스프링의 징검다리 역할을 한다고 보면 된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;filterchainproxy&quot;&gt;FilterChainProxy&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;springSecurityFilterChain&lt;/code&gt;의 이름으로 생성되는 필터 빈&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DelegatingFilterProxy&lt;/code&gt;으로 부터 요청을 위임 받고 실제 보안 처리&lt;/li&gt;
+  &lt;li&gt;스프링 시큐리티 초기화 시 생성되는 필터들을 관리하고 제어
+    &lt;ul&gt;
+      &lt;li&gt;스프링 시큐리티가 기본적으로 생성하는 필터&lt;/li&gt;
+      &lt;li&gt;설정 클래스에서 API 추가 시 생성되는 필터&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;사용자의 요청을 필터 순서대로 호출하여 전달&lt;/li&gt;
+  &lt;li&gt;사용자정의 필터를 생성해서 기존의 필터 전.후로 추가 가능&lt;/li&gt;
+  &lt;li&gt;마지막 필터까지 인증 및 인가 예외가 발생하지 않으면 보안 통과&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 12번&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;spring secuirty 검증을 통과하면 이후 여러가지 서블릿 필터를 거친후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DispatcherServlet&lt;/code&gt;을 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controller&lt;/code&gt;에 매핑된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;필터-초기화와-다중-보안-설정&quot;&gt;필터 초기화와 다중 보안 설정&lt;/h3&gt;
+&lt;p&gt;이미지 13번&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;설정클래스 별로 보안 기능이 각각 작동&lt;/li&gt;
+  &lt;li&gt;설정클래스 별로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMatcher&lt;/code&gt; 설정 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http.antMatcher(&quot;/admin/**&quot;)&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;설정클래스 별로 필터체인 생성&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FilterChainProxy&lt;/code&gt;가 각 필터체인들 가지고 있음&lt;/li&gt;
+  &lt;li&gt;요청에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMatcher&lt;/code&gt;와 매칭되는 필터가 작동하도록 함&lt;/li&gt;
+  &lt;li&gt;여러개의 필터체인을 생성하기 위해서는 여러개의 설정 클래스를 작성해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;authentication&quot;&gt;Authentication&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;사용자의 인증 정보를 저장하는 토큰 개념&lt;/li&gt;
+  &lt;li&gt;인증 시 id와 password를 담고 인증 검증을 위해 전달되어 사용된다.&lt;/li&gt;
+  &lt;li&gt;인증 후 최종 인증 결과 (user 객체, 권한정보) 를 담고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에 저장되어 전역적으로 참조가 가능하다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication authentication = SecurityContexHolder.getContext().getAuthentication()&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;구조
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;principal&lt;/code&gt;: 사용자 아이디 혹은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;User&lt;/code&gt; 객체를 저장&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;credentials&lt;/code&gt;: 사용자 비밀번호&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;authorities&lt;/code&gt;: 인증된 사용자의 권한 목록&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;details&lt;/code&gt;: 인증 부가 정보&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authenticated&lt;/code&gt;: 인증 여부&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 14번&lt;/p&gt;
+
+&lt;h3 id=&quot;securitycontextholder-securitycontext&quot;&gt;SecurityContextHolder, SecurityContext&lt;/h3&gt;
+&lt;h4 id=&quot;securitycontext&quot;&gt;SecurityContext&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication&lt;/code&gt; 객체가 저장되는 보관소로 필요 시 언제든지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication&lt;/code&gt; 객체를 꺼내어 쓸 수 있도록 제공되는 인터페이스&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal&lt;/code&gt;에 저장되어 아무 곳에서나 참조가 가능하도록 설계함&lt;/li&gt;
+  &lt;li&gt;인증이 완료되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpSession&lt;/code&gt;에 저장되어 어플리케이션 전반에 걸쳐 전역적인 참조가 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;securitycontextholder&quot;&gt;SecurityContextHolder&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 객체 저장 방식
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MODE_THREADLOCAL&lt;/code&gt; : 스레드당 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 객체를 할당, 기본값&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MODE_INHERITABLETHREADLOCAL&lt;/code&gt; : 메인 스레드와 자식 스레드에 관하여 동일한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 유지&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MODE_GLOBAL&lt;/code&gt;: 응용 프로그램에서 단 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 저장한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextHolder.clearContext()&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 기존 정보 초기화&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 15번&lt;/p&gt;
+
+&lt;h3 id=&quot;securitycontextpersistencefilter&quot;&gt;SecurityContextPersistenceFilter&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 객체의 생성, 저장, 조회&lt;/li&gt;
+  &lt;li&gt;익명 사용자
+    &lt;ul&gt;
+      &lt;li&gt;새로운 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 객체를 생성하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextHolder&lt;/code&gt;에 저장&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AnonymousAuthenticationFilter&lt;/code&gt; 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AnonymousAuthenticationToken&lt;/code&gt; 객체를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에 저장&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인증 시
+    &lt;ul&gt;
+      &lt;li&gt;새로운 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 객체를 생성하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextHolder&lt;/code&gt;에 저장&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UsernamePasswordAuthenticationFilter&lt;/code&gt;에서 인증 성공 후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UsernamePasswordAuthentication&lt;/code&gt; 객체를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에 저장&lt;/li&gt;
+      &lt;li&gt;인증이 최종 완료되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpSession&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 저장&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인증 후
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Session&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 꺼내어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextHolder&lt;/code&gt;에서 저장&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; 안에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication&lt;/code&gt; 객체가 존재하면 계속 인증을 유지한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;최종 응답시 공통: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextHolder.clearContext()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 16번&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpSecurityContextRepository&lt;/code&gt;는 세션이 존재하면 기존 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 반환하고 세션이 없다면 새로운 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 생성해서 반환한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextPersistenceFilter&lt;/code&gt;는 반환된 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextHolder&lt;/code&gt;에 담고 그 다음 필터를 호출한다.&lt;/li&gt;
+  &lt;li&gt;응답시에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AnonymousAuthenticationToken&lt;/code&gt;이 아니라면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 세션에 저장하고 응답한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;authentication-flow&quot;&gt;Authentication Flow&lt;/h3&gt;
+&lt;p&gt;이미지 17번&lt;/p&gt;
+
+&lt;h3 id=&quot;authenticationmanager&quot;&gt;AuthenticationManager&lt;/h3&gt;
+&lt;p&gt;이미지 18번&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationProvider&lt;/code&gt; 목록 중에서 인증 처리 요건에 맞는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationProvider&lt;/code&gt;를 찾아 인증 처리를 위임한다.&lt;/li&gt;
+  &lt;li&gt;부모 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProviderManager&lt;/code&gt;를 설정하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationProvider&lt;/code&gt;를 계속 탐색 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;스프링 시큐리티 초기화 과정에서 부모 관계를 적절히 커스텀하면 커스텀한 모든 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationProvider&lt;/code&gt; 탐색이 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;authenticationprovider&quot;&gt;AuthenticationProvider&lt;/h3&gt;
+&lt;p&gt;이미지 19번&lt;/p&gt;
+
+&lt;h3 id=&quot;authorization-filtersecurityinterceptor&quot;&gt;Authorization, FilterSecurityInterceptor&lt;/h3&gt;
+&lt;h4 id=&quot;authorization&quot;&gt;Authorization&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;스프링 시큐리티가 지원하는 권한 계층
+    &lt;ul&gt;
+      &lt;li&gt;웹 계층: URL 요청에 따른 메뉴 혹은 화면단위의 레벨 보안&lt;/li&gt;
+      &lt;li&gt;서비스 계층: 화면 단위가 아닌 메소드 같은 기능 단위의 레벨 보안&lt;/li&gt;
+      &lt;li&gt;도메인 계층(Access Control List, 접근제어목록): 객체 단위의 레벨 보안&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;filtersecurityinterceptor&quot;&gt;FilterSecurityInterceptor&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;마지막에 위치한 필터로써 인증된 사용자에 대하여 특정 요청의 승인 / 거부 여부를 최종적으로 결정&lt;/li&gt;
+  &lt;li&gt;인증 객체 없이 보호자원에 접근을 시도할 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationException&lt;/code&gt;을 발생&lt;/li&gt;
+  &lt;li&gt;인증후 자원에 접근 가능한 권한이 존재하지 않을 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AccessDeniedException&lt;/code&gt;을 발생, 여러번 말하지만 익명 사용자의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationException&lt;/code&gt;로 처리하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AuthenticationEntryPoint&lt;/code&gt; 실행&lt;/li&gt;
+  &lt;li&gt;권한 제어 방식중 HTTP 자원의 보안을 처리하는 필터&lt;/li&gt;
+  &lt;li&gt;권한처리를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AccessDecisionManager&lt;/code&gt;에게 맡김&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 20번, 21번&lt;/p&gt;
+
+&lt;h3 id=&quot;accessdecisionmanager-accessdecisionvoter&quot;&gt;AccessDecisionManager, AccessDecisionVoter&lt;/h3&gt;
+&lt;h4 id=&quot;accessdecisionmanager&quot;&gt;AccessDecisionManager&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;인증 정보, 요청정보, 권한정보를 이용해서 사용자의 자원접근을 허용할 것인지 거부할 것인지를 최종 결정하는 주체&lt;/li&gt;
+  &lt;li&gt;여러 개의 Voter 들을 가질 수있으며 Voter 들로부터 접근허용, 거부, 보류에 해당하는 각각의 값을 리턴받고 판단 및 결정&lt;/li&gt;
+  &lt;li&gt;최종 접근 거부 시 예외 발생&lt;/li&gt;
+  &lt;li&gt;접근결정의 세가지 유형
+    &lt;ul&gt;
+      &lt;li&gt;AffirmativeBased: 여러개의 Voter 클래스 중 하나라도 접근 허가로 결론을 내면 접근 허가로 판단한다.&lt;/li&gt;
+      &lt;li&gt;ConsensusBased: 다수표(승인 및 거부)에 의해 최종 결정을 판단한다. 동수일경우 기본은 접근허가이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;allowIfEqualGrantedDeniedDecisions&lt;/code&gt;을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;false&lt;/code&gt;로 설정할 경우 접근거부로 결정된다.&lt;/li&gt;
+      &lt;li&gt;UnanimousBased: 모든 Voter가 만장일치로 접근을 승인해야 하며 그렇지 않은 경우 접근을 거부한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;accessdecisionvoter&quot;&gt;AccessDecisionVoter&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Voter가 권한 부여 과정에서 판단하는 자료
+    &lt;ul&gt;
+      &lt;li&gt;Authentication - 인증 정보(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anonymous&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;admin&lt;/code&gt;)&lt;/li&gt;
+      &lt;li&gt;FilterInvocation – 요청 정보(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;antMatcher(&quot;/user&quot;)&lt;/code&gt;)&lt;/li&gt;
+      &lt;li&gt;ConfigAttributes - 권한 정보 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasRole(&quot;USER&quot;)&lt;/code&gt;)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;결정 방식
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACCESS_GRANTED&lt;/code&gt;: 접근허용(1)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACCESS_DENIED&lt;/code&gt;: 접근 거부(-1)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACCESS_ABSTAIN&lt;/code&gt;: 접근 보류(0)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;커스텀한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AccessDecisionVoter&lt;/code&gt; 추가도 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이미지 22번&lt;/p&gt;
+
+&lt;h3 id=&quot;스프링-시큐리티-필터-및-아키텍처-정리&quot;&gt;스프링 시큐리티 필터 및 아키텍처 정리&lt;/h3&gt;
+&lt;p&gt;이미지 23번&lt;/p&gt;
+
+&lt;h2 id=&quot;실전프로젝트--인증-프로세스-form-인증-구현&quot;&gt;실전프로젝트 -인증 프로세스 Form 인증 구현&lt;/h2&gt;
+&lt;h3 id=&quot;customauthenticationprovider&quot;&gt;CustomAuthenticationProvider&lt;/h3&gt;
+&lt;p&gt;이미지 24번&lt;/p&gt;
+
+&lt;h3 id=&quot;로그아웃&quot;&gt;로그아웃&lt;/h3&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Controller&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoginController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/logout&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpServletRequest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpServletResponse&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;Authentication&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;authentication&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityContextHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAuthentication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;authentication&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SecurityContextLogoutHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;redirect:/login&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;로그아웃 방법
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;form&amp;gt;&lt;/code&gt; 태그를 사용해서 POST로 요청&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;a&amp;gt;&lt;/code&gt; 태크를 사용해서 GET으로 요청 – &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContextLogoutHandler&lt;/code&gt; 활용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;webauthenticationdetails-authenticationdetailssource&quot;&gt;WebAuthenticationDetails, AuthenticationDetailsSource&lt;/h3&gt;
+&lt;p&gt;이미지 25번&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;WebAuthenticationDetails(클래스)
+    &lt;ul&gt;
+      &lt;li&gt;인증 과정 중 전달된 데이터를 저장&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;details&lt;/code&gt; 속성에 저장&lt;/li&gt;
+      &lt;li&gt;상속으로 커스텀한 클래스를 만들수 있다. 따라서 기본적으로 갖고 있는 프로퍼티외 파라미터 등 인증 단계에서 필요한 데이터를 추가할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;AuthenticationDetailsSource(인터페이스)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WebAuthenticationDetails&lt;/code&gt; 객체를 생성&lt;/li&gt;
+      &lt;li&gt;인터페이스 구현으로 커스텀한 클래스를 만들 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@EnableWebSecurity&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityConfig&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WebSecurityConfigurerAdapter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthenticationDetailsSource&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;authenticationDetailsSource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpSecurity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;formLogin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;loginPage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/login&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;permitAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;loginProcessingUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/login_proc&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;authenticationDetailsSource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;authenticationDetailsSource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;defaultSuccessUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;customauthenticationsuccesshandler&quot;&gt;CustomAuthenticationSuccessHandler&lt;/h3&gt;</content><author><name>yhw</name></author><category term="Spring/Security" /><category term="Security" /><category term="Spring" /></entry><entry><title type="html">[Spring][Core] 스프링 핵심 원리-고급편</title><link href="https://rere950303.github.io/spring/core/SpringCore_advanced/" rel="alternate" type="text/html" title="[Spring][Core] 스프링 핵심 원리-고급편" /><published>2022-01-23T00:00:00+09:00</published><updated>2022-01-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/core/SpringCore_advanced</id><content type="html" xml:base="https://rere950303.github.io/spring/core/SpringCore_advanced/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 김영한 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/스프링-핵심-원리-고급편/dashboard&quot;&gt;스프링 핵심 원리 - 고급편&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;예제-만들기&quot;&gt;예제 만들기&lt;/h2&gt;
@@ -1686,7 +2212,7 @@
 &lt;h2 id=&quot;aspect-aop&quot;&gt;@Aspect AOP&lt;/h2&gt;
 &lt;h3 id=&quot;aspect-프록시---적용&quot;&gt;@Aspect 프록시 - 적용&lt;/h3&gt;
 &lt;p&gt;스프링 애플리케이션에 프록시를 적용하려면 포인트컷과 어드바이스로 구성되어 있는 어드바이저 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Advisor&lt;/code&gt;)를 만들어서 스프링 빈으로 등록하면 된다. 그러면 나머지는 앞서 배운 자동 프록시 생성기가 모두 자동으로 처리해준다. 자동 프록시 생성기는 스프링 빈으로 등록된 어드바이저들을 찾고, 스프링 빈들에 자동으로 프록시를 적용해준다. (물론 포인트컷이 매칭되는 경우에 프록시를 생성한다.)
-스프링은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Aspect&lt;/code&gt; 애노테이션으로 매우 편리하게 포인트컷과 어드바이스로 구성되어 있는 어드바이저 생성 기능을 지원한다. &amp;lt;/br&amp;gt;
+스프링은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Aspect&lt;/code&gt; 애노테이션으로 매우 편리하게 포인트컷과 어드바이스로 구성되어 있는 어드바이저 생성 기능을 지원한다. &lt;br /&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Aspect&lt;/code&gt;는 관점 지향 프로그래밍(AOP)을 가능하게 하는 AspectJ 프로젝트에서 제공하는 애노테이션이다. 스프링은 이것을 차용해서 프록시를 통한 AOP를 가능하게 한다.&lt;/p&gt;
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Slf4j&lt;/span&gt;
 &lt;span class=&quot;nd&quot;&gt;@Aspect&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Advisor로 등록되기 위해서는 빈으로 등록되어야 한다.&lt;/span&gt;
@@ -3269,7 +3795,7 @@ AOP를 적용하면 스프링은 대상 객체 대신에 프록시를 스프링 
   &lt;li&gt;멀티 스레드는 동기화 문제로 효과가 미흡하거나 오히려 오버헤드 발생&lt;/li&gt;
   &lt;li&gt;DB 갱신 시 request 실시간 반응성 떨어짐&lt;/li&gt;
   &lt;li&gt;한 번에 10000건의 엔티티를 메모리로 올리기 너무 헤비하고 부담&lt;/li&gt;
-  &lt;li&gt;mariadb의 경우 기본키 할당 전략을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenerationType.SEQUENCE&lt;/code&gt;으로 할 경우 allocationSize가 1로 고정이 되므로 insert의 성능이 저하(약 14초 정도 딜레이 발생)&lt;/li&gt;
+  &lt;li&gt;mariadb의 경우 기본키 할당 전략을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenerationType.SEQUENCE&lt;/code&gt;으로 할 경우 allocationSize가 1로 고정이 되므로 insert의 성능이 저하&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;공략법&quot;&gt;공략법&lt;/h2&gt;
@@ -3525,7 +4051,7 @@ AOP를 적용하면 스프링은 대상 객체 대신에 프록시를 스프링 
     &lt;ul&gt;
       &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@StepScope&lt;/code&gt;가 아닌 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal&lt;/code&gt;을 이용한 paritioning을 생각해보았다. StepListener를 이용하여 Step 시작 전에 paging 변수를 스레드 단위 변수로 저장하려고 했지만 결국 처음 빈 생성시에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NullPointerEx&lt;/code&gt;이 발생했다.&lt;/li&gt;
       &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Async&lt;/code&gt;를 통한 AOP를 활용하여 비동기적으로 하면 어떨가 생각해보았다. 시간이 많이 소요되는 지점은 API 통신을 하는 부분인데 non-blocking 방식으로 코딩하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;itemreader.read()&lt;/code&gt; 순간에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReadEx&lt;/code&gt;이 발생했다.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Job&lt;/code&gt;을 여러 개로 나눠서 병렬 처리하는 경우 결국 빈 생성 초기화나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@StepScope&lt;/code&gt;로 인한 병목현상은 여전했다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Job&lt;/code&gt;을 여러 개로 나눠서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quartz&lt;/code&gt; 멀티 스레드 병렬 처리도 생각해보았다. 하지만 일정 간격으로 새로운 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;item&lt;/code&gt;을 갖는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;itemreader&lt;/code&gt;를 새로 생성하기 위해서는 결국 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@StepScope&lt;/code&gt;를 통한 지연 로딩이 필요했다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;다음 포스팅에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quartz&lt;/code&gt;를 통한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Job&lt;/code&gt;의 스케줄링으로 위와 같은 문제를 개선해 보겠다.&lt;/li&gt;
@@ -5701,769 +6227,4 @@ AOP를 적용하면 스프링은 대상 객체 대신에 프록시를 스프링 
 &lt;h2 id=&quot;web-service-개발-방법-soap과-rest의-이해&quot;&gt;Web Service 개발 방법 SOAP과 REST의 이해&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Web Service: 네트워크 상에서 서로 다른 종류의 컴퓨터들 간에 상효작용하기 위한 소프트웨어 시스템&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/RESTful" /><category term="RESTful" /><category term="Spring" /><category term="Microservices" /></entry><entry><title type="html">[Spring][Log] 로깅</title><link href="https://rere950303.github.io/spring/log/Log/" rel="alternate" type="text/html" title="[Spring][Log] 로깅" /><published>2021-12-23T00:00:00+09:00</published><updated>2021-12-23T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/log/Log</id><content type="html" xml:base="https://rere950303.github.io/spring/log/Log/">&lt;h2 id=&quot;로깅-라이브러리&quot;&gt;로깅 라이브러리&lt;/h2&gt;
-&lt;p&gt;스프링 부트 라이브러리를 사용하면 스프링 부트 로깅 라이브러리( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-boot-starter-logging&lt;/code&gt; )가 함께 포함된다. 스프링 부트 로깅 라이브러리는 기본으로 다음 로깅 라이브러리를 사용한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;SLF4J, Logback&lt;/li&gt;
-  &lt;li&gt;로그 라이브러리는 Logback, Log4J, Log4J2 등등 수 많은 라이브러리가 있는데, 그것을 통합해서 인터페이스로 제공하는 것이 바로 SLF4J 라이브러리다. 쉽게 이야기해서 SLF4J는 인터페이스이고, 그 구현체로 Logback 같은 로그 라이브러리를 선택하면 된다. 실무에서는 스프링 부트가 기본으로 제공하는 Logback을 대부분 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;로그-선언&quot;&gt;로그 선언&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private Logger log = LoggerFactory.getLogger(getClass());&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Slf4j&lt;/code&gt; : 롬복 사용 가능&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//@Slf4j&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LogTestController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logger&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoggerFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getLogger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/log-test&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Spring&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;trace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;trace log={}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;debug log={}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; info log={}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;warn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; warn log={}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;error log={}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;//로그를 사용하지 않아도 a+b 계산 로직이 먼저 실행됨, 이런 방식으로 사용하면 X &lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;String concat log=&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ok&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;LEVEL: TRACE &amp;gt; DEBUG &amp;gt; INFO &amp;gt; WARN &amp;gt; ERROR&lt;/li&gt;
-  &lt;li&gt;개발 서버는 debug 출력&lt;/li&gt;
-  &lt;li&gt;운영 서버는 info 출력&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;로그-레벨-설정&quot;&gt;로그 레벨 설정&lt;/h2&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#전체 로그 레벨 설정(기본 info) &lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;logging.level.root=info&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;#hello.springmvc 패키지와 그 하위 로그 레벨 설정 &lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;logging.level.hello.springmvc=debug&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;올바른-로그-사용법&quot;&gt;올바른 로그 사용법&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log.debug(&quot;data=&quot;+data)&lt;/code&gt;: 로그 출력 레벨을 info로 설정해도 해당 코드에 있는 “data=”+data가 실제 실행이 되어 버린다. 결과적으로 문자 더하기 연산이 발생한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log.debug(&quot;data={}&quot;, data)&lt;/code&gt;: 로그 출력 레벨을 info로 설정하면 아무일도 발생하지 않는다. 따라서 앞과 같은 의미없는 연산이 발생하지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;쓰레드-로컬---threadlocal&quot;&gt;쓰레드 로컬 - ThreadLocal&lt;/h2&gt;
-&lt;h3 id=&quot;필드-동기화---개발&quot;&gt;필드 동기화 - 개발&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TraceId&lt;/code&gt; 를 파라미터로 넘기지 않고 동기화를 할 수 없을까?&lt;/p&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Slf4j&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FieldLogTrace&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LogTrace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;START_PREFIX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;--&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;COMPLETE_PREFIX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;--&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;EX_PREFIX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;X-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TraceStatus&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;syncTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startTimeMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentTimeMillis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;[{}] {}{}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;addSpace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;START_PREFIX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getLevel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;TraceStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startTimeMs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;syncTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createNextId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TraceStatus&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;releaseTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;releaseTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isFirstLevel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createPreviousId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LogTraceConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LogTrace&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;FieldLogTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TraceId&lt;/code&gt; 를 동기화 하는 부분만 파라미터를 사용하는 것에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TraceId traceIdHolder&lt;/code&gt; 필드를 사용하도록 변경되었다.&lt;/li&gt;
-  &lt;li&gt;이제 직전 로그의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TraceId&lt;/code&gt; 는 파라미터로 전달되는 것이 아니라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FieldLogTrace&lt;/code&gt; 의 필드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;traceIdHolder&lt;/code&gt; 에 저장된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;필드-동기화---동시성-문제&quot;&gt;필드 동기화 - 동시성 문제&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FieldLogTrace&lt;/code&gt; 는 싱글톤으로 등록된 스프링 빈이다. 이 객체의 인스턴스가 애플리케이션에 딱 1 존재한다는 뜻이다. 이렇게 하나만 있는 인스턴스의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FieldLogTrace.traceIdHolder&lt;/code&gt; 필드를 여러 쓰레드가 동시에 접근하기 때문에 문제가 발생한다.&lt;/li&gt;
-  &lt;li&gt;결과적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Thread-A&lt;/code&gt; 입장에서는 저장한 데이터와 조회한 데이터가 다른 문제가 발생한다. 이처럼 여러 쓰레드가 동시에 같은 인스턴스의 필드 값을 변경하면서 발생하는 문제를 동시성 문제라 한다. 이런 동시성 문제는 여러 쓰레드가 같은 인스턴스의 필드에 접근해야 하기 때문에 트래픽이 적은 상황에서는 확률상 잘 나타나지 않고, 트래픽이 점점 많아질 수 록 자주 발생한다.
-특히 스프링 빈 처럼 싱글톤 객체의 필드를 변경하며 사용할 때 이러한 동시성 문제를 조심해야 한다.&lt;/li&gt;
-  &lt;li&gt;동시성 문제가 발생하는 곳은 같은 인스턴스의 필드(주로 싱글톤에서 자주 발생), 또는 static 같은 공용 필드에 접근할 때 발생한다. 동시성 문제는 값을 읽기만 하면 발생하지 않는다. 어디선가 값을 변경하기 때문에 발생한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;threadlocal---소개&quot;&gt;ThreadLocal - 소개&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;쓰레드 로컬은 해당 쓰레드만 접근할 수 있는 특별한 저장소를 말한다. 쉽게 이야기해서 물건 보관 창구를 떠올리면 된다. 쓰레드 단위로 map를 이용하여 필드값을 저장한다.&lt;/li&gt;
-  &lt;li&gt;자바는 언어차원에서 쓰레드 로컬을 지원하기 위한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;java.lang.ThreadLocal&lt;/code&gt; 클래스를 제공한다.&lt;/li&gt;
-  &lt;li&gt;ThreadLocal 사용법
-    &lt;ul&gt;
-      &lt;li&gt;값 저장: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal.set(xxx)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;값 조회: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal.get()&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;값 제거: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal.remove()&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;쓰레드-로컬-동기화---개발&quot;&gt;쓰레드 로컬 동기화 - 개발&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FieldLogTrace&lt;/code&gt; 에서 발생했던 동시성 문제를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal&lt;/code&gt; 로 해결해보자. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TraceId traceIdHolder&lt;/code&gt; 필드를 쓰레드 로컬을 사용하도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal&amp;lt;TraceId&amp;gt; traceIdHolder&lt;/code&gt; 로 변경하면 된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Slf4j&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt;  &lt;span class=&quot;nc&quot;&gt;ThreadLocalLogTrace&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LogTrace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;START_PREFIX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;--&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;COMPLETE_PREFIX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;--&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;EX_PREFIX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;X-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadLocal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TraceStatus&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;syncTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startTimeMs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentTimeMillis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;[{}] {}{}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;addSpace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;START_PREFIX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getLevel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;TraceStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startTimeMs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;syncTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createNextId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TraceStatus&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;releaseTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;releaseTraceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;TraceId&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isFirstLevel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;traceIdHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;traceId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createPreviousId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;쓰레드-로컬-동기화---적용&quot;&gt;쓰레드 로컬 동기화 - 적용&lt;/h3&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LogTraceConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LogTrace&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;//return new FieldLogTrace();&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ThreadLocalLogTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;쓰레드-로컬---주의사항&quot;&gt;쓰레드 로컬 - 주의사항&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;WAS는 HTTP 요청이 들어오면 쓰레드풀에서 쓰레드를 할당한다. 만약 사용자 A의 HTTP요청이 끝나고 나갈때 쓰레드 로컬에서 해당 쓰레드에 대응되는 value(TraceId)값을 삭제하지 않는다면 사용자 A에 대한 데이터는 그대로 남게된다. 이후 사용자 B의 HTTP요청에 대해 같은 쓰레트가 할당된다면 사용자 B는 쓰레드 로컬에서 사용자 A에 대한 데이터를 조회할 수 있게 된다. 이는 매우 심각한 문제이다.&lt;/li&gt;
-  &lt;li&gt;이런 문제를 예방하려면 사용자A의 요청이 끝날 때 쓰레드 로컬의 값을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ThreadLocal.remove()&lt;/code&gt; 를 통해서 꼭 제거해야 한다. 쓰레드 로컬을 사용할 때는 이 부분을 꼭! 기억하자.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Log" /><category term="Spring" /><category term="Log" /><category term="SLF4J" /><category term="Logback" /></entry><entry><title type="html">[Docker] 도커와 CI환경</title><link href="https://rere950303.github.io/docker/Docker&CI/" rel="alternate" type="text/html" title="[Docker] 도커와 CI환경" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>https://rere950303.github.io/docker/Docker&amp;CI</id><content type="html" xml:base="https://rere950303.github.io/docker/Docker&amp;CI/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
-&lt;p&gt;해당 게시글은 인프런 John Ahn 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/따라하며-배우는-도커-ci/dashboard&quot;&gt;따라하며 배우는 도커와 CI환경&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;도커-기본&quot;&gt;도커 기본&lt;/h2&gt;
-&lt;h3 id=&quot;도커를-쓰는-이유&quot;&gt;도커를 쓰는 이유&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Installer를 통한 설치의 경우 갖고 있는 서버, 패키지 버전, 운영체제 등에 따라 프로그램을 설치하는 과정중에 많은 에러들이 발생한다. 또한 그 과정이 복합하다.&lt;/li&gt;
-  &lt;li&gt;도커를 이용하여 예상치 못한 에러를 줄일 수 있으며 그 과정이 매우 간단하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커란-무엇인가&quot;&gt;도커란 무엇인가?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;컨테이너를 사용하여 응용프로그램을 더 쉽게 만들고 배포하고 실행할 수 있도록 설계된 도구이며 컨테이너 기반의 오프소스 가상화 플랫폼을 말한다.&lt;/li&gt;
-  &lt;li&gt;다양한 프로그램, 실행환경을 컨테이너로 추상화하고 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해준다. AWS, Google cloud 등 어디에서든 실행 가능하게 해준다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커-이미지와-도커-컨테이너-정의&quot;&gt;도커 이미지와 도커 컨테이너 정의&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Docker_CI/1.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Docker_CI/1.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;컨테이너는 코드와 모든 종속성을 패키지화하여 응용 프로그램이 한 컴퓨팅 환경에서 다른 컴퓨팅 환경으로 빠르고 안정적으로 실행되도록 하는 스프트웨어의 표준 단위&lt;/li&gt;
-  &lt;li&gt;이미지는 코드, 런타임, 시스템 도구, 시스템 라이브러리 및 설정과 같은 응용 프로그램을 실행하는 데 필요한 모든 것을 포함하는 가볍고 독립적이며 실행 가능한 소프트웨어 패키지&lt;/li&gt;
-  &lt;li&gt;컨테이너는 소프트웨어를 환경으로부터 격리시키고 개발과 스테이징의 차이에도 불구하고 균일하게 작동하도록 보장&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커를-사용할-때의-흐름&quot;&gt;도커를 사용할 때의 흐름&lt;/h3&gt;
-&lt;p&gt;먼저 도커 CLI에 커맨드를 입력 -&amp;gt; 도커 서버(도커 데몬)이 그 커맨드를 받아서 그것에 따라 이미지를 생성하든 컨테이너를 실행하든 모든 작업을 하게된다. -&amp;gt; 이미지 캐쉬 보관 장소에 해당되는 이미지가 없다면 도커허브에서 이미지를 pull&lt;/p&gt;
-
-&lt;h3 id=&quot;도커와-기존의-가상화-기술과의-차이를-통한-컨테이너-이해&quot;&gt;도커와 기존의 가상화 기술과의 차이를 통한 컨테이너 이해&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;하이퍼 바이저 기반의 VM 구조: 하드웨어 및 호스트 OS 위에 하이퍼바이저가 있고 그 위에 VM을 띄우고 여기서 게스트 OS를 띄운다. 하이퍼바이저에 의해 구동되는 각 VM은 CPU, MEMORY 등 하드웨어 자원을 게스트 OS에 에뮬레이트 하는 방식으로 할당받는데 오버헤드가 크다.&lt;/li&gt;
-  &lt;li&gt;도커 컨테이너의 구조: 하이퍼바이저와 게스트 OS가 필요하지 않아 가볍다. 호스트 OS위에 이미지를 통한 컨테이너를 띄운다. 다른 컨테이너와 호스트 OS의 동일한 커널을 공유한다. 따라서 컨테이너 내부에서 실행되는 프로세스는 호스트 시스템에서 디버그나 로깅이 가능하다.&lt;/li&gt;
-  &lt;li&gt;컨테이너 격리 기술: 리눅스의 가상화 기술
-    &lt;ul&gt;
-      &lt;li&gt;C Group: CPU, 메모리 등 프로세스 그룹의 시스템 리소스 사용량을 관리&lt;/li&gt;
-      &lt;li&gt;네임스페이스: 하나의 시스템에서 프로세스를 격리시키는 가상화 기술, 별개의 독립된 공간을 사용하는 것처럼 격리된 환경을 제공하는 경량 프로세스 가상화 기술&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;이미지로-컨테이너-만들기&quot;&gt;이미지로 컨테이너 만들기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;이미지: 시작시 실행 될 명령어(run maraidb) + 파일 스냅샷(mariadb 파일)&lt;/li&gt;
-  &lt;li&gt;파일 스냅샷을 컨테이너로 카피 후에 명령어도 카피하여 maradb를 실행&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;리눅스의-cgroup-네임스페이스-커널-기능을-쓸-수-있는-이유&quot;&gt;리눅스의 Cgroup, 네임스페이스 커널 기능을 쓸 수 있는 이유&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Docker_CI/2.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Docker_CI/2.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Cgroup 기능을 통해 호스트의 리소스를 컨테이너 단위로 할당하고 네임스페이스 기능을 통해 프로세스를 컨테이너에 격리&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;기본적인-도커-클라이언트-명령어&quot;&gt;기본적인 도커 클라이언트 명령어&lt;/h2&gt;
-&lt;h3 id=&quot;도커-이미지-내부-파일-구조&quot;&gt;도커 이미지 내부 파일 구조&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run 이미지이름&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;docker: 도커 클라이언트 언급&lt;/li&gt;
-      &lt;li&gt;run: 컨테이너 생성 및 실행&lt;/li&gt;
-      &lt;li&gt;이미지이름: 컨테이너를 위한 이미지&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run 이미지이름 ls&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;ls: 원래 이미지가 가지고 있는 시작 명령어(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;run hello-world&lt;/code&gt;)를 무시하고 여기에 있는 커맨드를 실행&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hello-world&lt;/code&gt;이미지로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt; 명령어 사용 불가: 해당 환경에서 실행 가능한 명령어만 입력&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;컨테이너-나열&quot;&gt;컨테이너 나열&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CTAINER ID + IMAGE + COMMAND + CREATED + STATUS + PORTS + NAMES&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;COMMAND: 컨테이너 시작시 실행될 명령어, 대부분 이미지에 내장되어 있어 별도 설정이 필요 없다.&lt;/li&gt;
-      &lt;li&gt;PORTS: 컨테이너가 개방한 포트와 호스트에 연결한 포트&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;원하는 항목만 보기: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker ps --format &apos;table\table&apos;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커-컨테이너의-생명주기&quot;&gt;도커 컨테이너의 생명주기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker create 이미지이름&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker start 컨테이너아이디/이름&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;create: 이미지의 파일스냅샷을 컨테이너를 생성하고 할당된 하드디스크에 카피&lt;/li&gt;
-      &lt;li&gt;start: 이미지 명령어를 실행&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker start -a 이미지이름&lt;/code&gt;: -a 옵션의 경우 터미널에서 컨테이너 아웃풋을 볼 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;docker-stop-vs-docker-kill&quot;&gt;Docker Stop vs Docker Kill&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker stop&lt;/code&gt;: gracefully하게 중지 시킨다. 그동안 하던 작업을 마무리하고 중지 시킨다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker kill&lt;/code&gt;: 바로 중지 시킨다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;컨테이너-삭제하기&quot;&gt;컨테이너 삭제하기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rm 아이디/이름&lt;/code&gt;: 실행중인 컨테이너는 먼저 중지한 후에 삭제 가능&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rm docker ps -a -q&lt;/code&gt;: 모든 컨테이너 삭제&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker system prune&lt;/code&gt;: 한번에 모든 컨테이너, 이미지 삭제, 실행중인 컨테이너에는 영향을 주지 않음&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;실행-중인-컨테이너에-명령어-전달&quot;&gt;실행 중인 컨테이너에 명령어 전달&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;docker exec 컨테이너아이디 명령어: 이미 실행중인 컨테이너에 명령어를 전달&lt;/li&gt;
-  &lt;li&gt;docker run의 경우 컨테이너를 새로 생성항여 명령어를 실행&lt;/li&gt;
-  &lt;li&gt;컨테이너 CLI(셸 환경)를 실행시키려면 명령어 자리에 sh, bash, zsh 등을 넣으면 된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;도커-이미지-만들어보기&quot;&gt;도커 이미지 만들어보기&lt;/h2&gt;
-&lt;h3 id=&quot;도커-이미지-생성-순서&quot;&gt;도커 이미지 생성 순서&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Dockerfile -&amp;gt; 도커 클라이언트 -&amp;gt; 도커 서버 -&amp;gt; 이미지 생성
-    &lt;ul&gt;
-      &lt;li&gt;Dockerfile: 이미지 생성을 위한 설정 파일, 컨테이너가 어떻게 행동해야 하는지에 대한 설정들을 정의&lt;/li&gt;
-      &lt;li&gt;도커 서버: 클라이언트에 전달된 작업을 처리&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;dockerfile-만들기&quot;&gt;Dockerfile 만들기&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Docker_CI/3.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Docker_CI/3.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;도커 파일 만드는 순서
-    &lt;ul&gt;
-      &lt;li&gt;베이스 이미지를 명시(FROM)&lt;/li&gt;
-      &lt;li&gt;추가적으로 필요한 파일을 다운 받기 위한 몇가지 명령어를 명시(RUN)&lt;/li&gt;
-      &lt;li&gt;컨테이너 시작시 실행 될 명령어를 명시(CMD)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;베이스 이미지란
-    &lt;ul&gt;
-      &lt;li&gt;도커 이미지는 여러개의 레이어로 되어있다. 그중에서 베이스 이미지는 기반이 되는 부분이다.&lt;/li&gt;
-      &lt;li&gt;레이어는 중간 단계의 이미지라고 생각하면 된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커-파일로-도커-이미지-만들기&quot;&gt;도커 파일로 도커 이미지 만들기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Dockerfile -&amp;gt; 도커 클라이언트 -&amp;gt; 도커 서버 -&amp;gt; 이미지&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker build ./&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker build .&lt;/code&gt;(./ . 는 현재 디렉토리를 의미)&lt;/li&gt;
-  &lt;li&gt;이미지 만드는 순서
-    &lt;ol&gt;
-      &lt;li&gt;FROM 베이스 이미지로 임시 컨테이너 생성&lt;/li&gt;
-      &lt;li&gt;이미지에 다른 레이어가 존재하면 해당 레이어의 파일 스냅샷 또한 컨테이너에 추가&lt;/li&gt;
-      &lt;li&gt;시작시 실행할 명령어(CMD)를 컨테이너에 추가&lt;/li&gt;
-      &lt;li&gt;이를 토대로 새로운 이미지를 만들고 임시 컨테이너 삭제&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;즉 이미지로 컨테이너를 만들 수 있고, 컨테이너로 이미지도 만들 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;이미지-이름-부여&quot;&gt;이미지 이름 부여&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker build -t 도커아이디/이미지이름:태그 ./&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;docker-volumes&quot;&gt;Docker Volumes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run -p 5000:8080 -v /usr/src/app/node_modules -v $(pwd):/usr/src/app 이미지 아이디&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/usr/src/app/node_modules&lt;/code&gt;: 호스트 디렉토리에 없으므로 매핑 제외&lt;/li&gt;
-      &lt;li&gt;pwd는 현재 디렉토리를 의미&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;docker-compose&quot;&gt;Docker Compose&lt;/h2&gt;
-&lt;h3 id=&quot;docker-compose란&quot;&gt;Docker Compose란&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;다중 컨테이너 도커 애플리케이션을 정의하고 실행하기 위한 도구&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;레디스&quot;&gt;레디스&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리 기반의 키-값 구조 데이터 관리 시스템이며, 데이터를 메모리에 저장하고 빠르게 조회할 수 있는 비관계형 데이터베이스이다.&lt;/li&gt;
-  &lt;li&gt;메모리에 저장을 하기 때문에 데이터를 저장하는것과 로딩하는데 훨씬 빠르게 처리할 수가 있으며, 비록 메모리에 저장하지만 영속적으로도 보관이 가능하다.&lt;/li&gt;
-  &lt;li&gt;레디스 클라이언트 생성
-    &lt;ul&gt;
-      &lt;li&gt;도커 환경이 아닌 경우: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;host: &quot;https://redis-server.com&quot;&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;도커 환경인 경우: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;host: &quot;redis-server&quot;&lt;/code&gt;, docker-compose.yml 파일에 명시한 컨테이너 이름으로 주면된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커-컨테이너-사이의-통신&quot;&gt;도커 컨테이너 사이의 통신&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose build&lt;/code&gt;: 이미지를 빌드하기만 하며 컨테이너를 시작하지 않는다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up&lt;/code&gt;: 이미지가 존재하지 않을 경우에만 빌드하며, 컨테이너를 시작한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose -d up&lt;/code&gt;: 백그라운드에서 실행&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up --build&lt;/code&gt;: 이미지를 강제로 빌드하며, 컨테이너를 시작한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose up -- no --build&lt;/code&gt;: 이미지 빌드 없이, 컨테이너를 시작한다. 이미지가 없을시 실패&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;간단한-어플-배포&quot;&gt;간단한 어플 배포&lt;/h2&gt;
-&lt;h3 id=&quot;리액트-앱-설치&quot;&gt;리액트 앱 설치&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npx create-react-app ./&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;개발 단계: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm run start&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;테스트 단계: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm run test&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;배포 단계: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm run build&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커를-이용하여-리액트-앱-실행&quot;&gt;도커를 이용하여 리액트 앱 실행&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Dockerfile.dev&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;FROM node:alpine&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;WORKDIR /usr/src/app&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;COPY package.json ./&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;RUN npm install // 여기서 node_modules 생성되므로 로컬에서는 node_modules 지우고 이를 통해 COPY에서 시간 단축&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;COPY ./ ./&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;CMD [&quot;npm&quot;, &quot;run&quot;, &quot;start&quot;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker build -f Dockerfile.dev ./&lt;/code&gt;: -f는 이미지를 빌드할 때 쓰일 도커 파일을 지정해준다.&lt;/li&gt;
-  &lt;li&gt;package.json변경: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;start&quot;: &quot;react-scripts --openssl-legacy-provider start&quot;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커-볼륨을-이용한-소스-코드-변경&quot;&gt;도커 볼륨을 이용한 소스 코드 변경&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run -it -p 3000:3000 -v /usr/src/app/node_modules -v $(pwd):/usr/src/app react&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;도커-컴포즈-이용&quot;&gt;도커 컴포즈 이용&lt;/h3&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;react&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
-    &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;.&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Dockerfile.dev&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3000:3000&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/usr/src/app/node_modules&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./:/usr/src/app&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;stdin_open&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;운영환경을-위한-nginx&quot;&gt;운영환경을 위한 Nginx&lt;/h3&gt;
-
-&lt;figure class=&quot; &quot;&gt;
-  
-    
-      &lt;a href=&quot;/assets/images/post/Docker_CI/4.png&quot;&gt;
-          &lt;img src=&quot;/assets/images/post/Docker_CI/4.png&quot; alt=&quot;&quot; /&gt;
-      &lt;/a&gt;
-    
-  
-  
-&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;개발 서버는 소스 변경시 자동으로 다시 빌드하여 변경 소스를 반영해줌으로써 개발 환경에 특화된 기능들이 있다. 하지만 운영 환경에서는 소스 변경시 바로 다시 반영해줄 필요가 없으며 개발에 필요한 기능들이 필요하지 않기에 더 깔끔하고 빠른 Nginx를 웹 서버로 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;운영환경-도커-이미지를-위한-dockerfile-작성하기&quot;&gt;운영환경 도커 이미지를 위한 Dockerfile 작성하기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm run build&lt;/code&gt;로 생성한 빌드 파일을 Nginx 서버가 브라우저에서 보일수 있게 설정&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;FROM node:alpine as builder&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;WORKDIR /usr/src/app&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;COPY package.json ./&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;RUN npm install&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;COPY ./ ./&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;CMD [&quot;npm&quot;, &quot;run&quot;, &quot;build&quot;]&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;FROM nginx&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;COPY --from=builder /usr/src/app/build /usr/share/nginx/html&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--from=builder&lt;/code&gt;: 다른 stage에 있는 파일을 복사할때 다른 stage 이름을 명시&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;간단한-어플을-실제로-배포해보기테스트--배포-부분&quot;&gt;간단한 어플을 실제로 배포해보기(테스트 &amp;amp; 배포 부분)&lt;/h2&gt;
-&lt;h3 id=&quot;travis-ci-설명&quot;&gt;Travis CI 설명&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Travis CI를 이용하면 원격 저장소에 있는 프로젝트를 특정 이벤트에 따라 자동으로 테스트, 빌드하거나 배포할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;로컬저장소에 있는 소스를 깃허브에 push한다&lt;/li&gt;
-  &lt;li&gt;Travis CI에게 소스가 push 되었다고 알려준다.&lt;/li&gt;
-  &lt;li&gt;Travis CI는 업데이트 된 소스를 깃허브에서 가져온다.&lt;/li&gt;
-  &lt;li&gt;깃허브에서 가져온 소스를 테스트 코드를 실행해본다.&lt;/li&gt;
-  &lt;li&gt;테스트가 성공하면 AWS같은 호스팅 사이트로 보내서 배포한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;travisyml-파일-작성하기-테스트까지&quot;&gt;.travis.yml 파일 작성하기 (테스트까지)&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;도커환경에서 리액트앱을 실행하고 있으니 Travis CI에서도 도커환경 구성&lt;/li&gt;
-  &lt;li&gt;구성된 도커 환경에서 Dockerfile.dev를 이용해서 도커 이미지 생성&lt;/li&gt;
-  &lt;li&gt;어떻게 Test를 수행할 것이지 설정해주기&lt;/li&gt;
-  &lt;li&gt;어떻게 AWS에 소스코드를 배포할 것인지 설정해주기&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;required&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;generic&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;before_install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;start creating an image with dockerfile&quot;&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t react -f Dockerfile.dev .&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker run -e CI=true react npm run test -- --coverage // 실행할 스크립트(테스트 실행)&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;after_success&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;test success&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;aws-알아보기&quot;&gt;AWS 알아보기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;EC2란: Amazon Elastic Compute Cloud(Amazon EC2)는 AWS 클라우드에서 확장식 컴퓨팅을 제공한다. Amazon EC2를 사용하면 하드웨어에 선투자할 필요가 없어 더 빠르게 앱을 개발하고 배포할 수 있다. Amazon EC2를 통해 원하는 만큼 가상 서버를 구축하고 보안 및 네트쿼크 구성과 스토리지 관리가 가능하다.
-    &lt;ul&gt;
-      &lt;li&gt;Amazon EC2는 한대의 컴퓨터를 임대한다고 생각하면 된다. 그리고 그 컴퓨터에 OS를 설치하고 웹서비스를 위한 프로그램들(WAS, DB)을 설치해서 사용할 수 있다. 1대의 컴퓨터를 하나의 EC2 인스턴스라고 부른다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;EB란: AWS Elastic Beanstalk는 Apache, nginx 같은 친숙한 서버에서 Java, NET. PHP, Node.js, Python, Ruby, GO 및 Docker와 함께 개발된 웹 응용 프로그램 및 서비스를 배포하고 확장하기 쉬운 서비스이다. EC2 인스턴스나 데이터베이스 같이 많은 것들을 포함한 환경을 구성하며 만들고 있는 소프트웨어를 업데이트 할때마다 자동으로 이 환경을 관리해준다.&lt;/li&gt;
-  &lt;li&gt;Travis CI에서 도커 이미지 생성 -&amp;gt; 도커 허브 저장 -&amp;gt; 해당 이미지를 AWS EB에서 받아서 컨테이너 생성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;elastic-beanstalk-환경-구성하기&quot;&gt;Elastic Beanstalk 환경 구성하기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;로드 발란서 -&amp;gt; EC2 인스턴스(64bit Amazon Linux) -&amp;gt; 도커 컨테이너 -&amp;gt; 어플리케이션&lt;/li&gt;
-  &lt;li&gt;트래픽이 많을 경우 EB 환경에 있는 로드 발란서가 각 EC2로 트래픽을 분산&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;travisyml-파일-작성하기-배포-부분&quot;&gt;.travis.yml 파일 작성하기 (배포 부분)&lt;/h3&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;required&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;generic&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;before_install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;start creating an image with dockerfile&quot;&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t react -f Dockerfile.dev .&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker run -e CI=true react npm run test -- --coverage // dockerfile의 CMD &quot;npm&quot; &quot;run&quot; &quot;start&quot; 를 덮어씀&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elasticbeanstalk&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;region&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;us-east-2&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;react&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;React-env&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;bucket_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elasticbeanstalk-us-east-2-601633539824&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;bucket_path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;react&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;all_branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;provider&lt;/code&gt;: 외부 서비스 표시&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;region&lt;/code&gt;: 현재 사용하고 있는 AWS의 서비스가 위치하고 있는 물리적 장소&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt;: 생성된 앱 이름&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bucket_name&lt;/code&gt;: 해당 EB를 위한 s3 버켓 이름 (Travics CI는 가지고 있는 파일을 압축해서 먼저 s3에 보낸다.)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bucket_path&lt;/code&gt;: 앱 이름과 동일&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;branch&lt;/code&gt;: 어떤 브랜치에 push를 할때 AWS에 배포를 할것인지.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;travis-ci의-aws접근을-위한-api-생성&quot;&gt;Travis CI의 AWS접근을 위한 API 생성&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;깃허브 -&amp;gt; Travis CI -&amp;gt; AWS: Travis CI 아이디 로그인시 깃허브 연동으로 인증을 하고, AWS에서 제공해주는 secret key를 travis.yml 파일에다가 적어주면 된다.&lt;/li&gt;
-  &lt;li&gt;Seceret, Access API Key 받는 순서
-    &lt;ul&gt;
-      &lt;li&gt;IAM USER 생성: Identity and Access Management의 약자로써 AWS 리소스에 대한 액세스를 안전하게 제어할 수 있는 웹 서비스이다. IAM을 사용하여 리소스를 사용하도록 인증 및 인가된 대상을 제어한다.
-        &lt;ul&gt;
-          &lt;li&gt;Root 생성자: 현재 우리가 처음 가입하여 사용하고 있는 계정, AWS 서비스 및 리소스에 대한 완전한 액세스 권한이 있음&lt;/li&gt;
-          &lt;li&gt;IAM 사용자: root 사용자가 부여한 권한만 가지고 있음&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;API키를 yml 파일에 적어주기
-        &lt;ul&gt;
-          &lt;li&gt;직접 키를 Travis.yml 파일에 적으면 노출 위험이 있기 때문에 Travis 웹사이트 해당 저장소에 저장하고 yml파일에서 불러오는 형태를 취해야 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Amazon Linux2 플랫폼 사용시 EB는 docker-compose.yml 을 보고 처리한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;복잡한-어플을-실제로-배포해보기개발-환경-부분&quot;&gt;복잡한 어플을 실제로 배포해보기(개발 환경 부분)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Nginx의 Proxy를 이용한 설계(요청 라우팅): client -&amp;gt; Nginx(80) -&amp;gt; location/ 의 경우 React에서 정적 리소스 처리(3000), location/api 의 경우 DB(3306)와 연동된 백엔드 서버에서 처리(5000)&lt;/li&gt;
-  &lt;li&gt;Dockerfile.dev / Dockerfile: Front -&amp;gt; Server -&amp;gt; Mysql -&amp;gt; Nginx&lt;/li&gt;
-  &lt;li&gt;Travis CI 에서 테스트 성공시 Dockerfile를 이용하여 이미지 생성후 도커 허브에 저장 -&amp;gt; EB 에서 해당 이미지를 통해 배포&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;frontend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Dockerfile.dev&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./frontend&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/app/node_modules&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./frontend:/app&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;stdin_open&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;// proxy 역할&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Dockerfile&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./nginx&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3000:80&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
-      &lt;span class=&quot;na&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Dockerfile.dev&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./backend&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;app_backend&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/app/node_modules&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./backend:/app&lt;/span&gt;
-    
-  &lt;span class=&quot;na&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;platform&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;linux/amd64&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./mysql&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;unless-stopped&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;app_mysql&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3306:3306&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./mysql/mysql_data:/var/lib/mysql&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./mysql/sqls/:/docker-entrypoint-initdb.d/&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_ROOT_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;johnahn&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_DATABASE&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;myapp&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;복잡한-어플을-실제로-배포해보기테스트--배포-부분&quot;&gt;복잡한 어플을 실제로 배포해보기(테스트 &amp;amp; 배포 부분)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;소스 파일을 github에 올린후 travis CI를 이용해서 테스트 후 도커 이미지를 빌드한다. 이후 해다 이미지를 docker hub에 올린후 AWS EB에서 pull하여 서비스를 배포한다.&lt;/li&gt;
-  &lt;li&gt;.travis.yml&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;generic&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;required&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;before_install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t rere95/react-test-app -f ./frontend/Dockerfile.dev ./frontend&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker run -e CI=true rere95/react-test-app npm test&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;after_success&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t rere95/docker-frontend ./frontend&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t rere95/docker-backend ./backend&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker build -t rere95/docker-nginx ./nginx&lt;/span&gt;
-
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;echo &quot;$DOCKER_HUB_PASSWORD&quot; | docker login -u &quot;$DOCKER_HUB_ID&quot; --password-stdin&lt;/span&gt;
-
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker push rere95/docker-frontend&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker push rere95/docker-backend&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker push rere95/docker-nginx&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elasticbeanstalk // 외부 서비스&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;region&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ap-northeast-2&quot;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;// 외부 서비스가 위치한 물리적 장소&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;docker-fullstack-app&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;DockerFullstackApp-env&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;bucket_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elasticbeanstalk-ap-northeast-2-972153559337&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;bucket_path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;docker-fullstack-app&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master // 어떤 브랜치에 Push 할때 AWS에 배포할 것인지&lt;/span&gt;
-  
-  &lt;span class=&quot;na&quot;&gt;access_key_id&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$AWS_ACCESS_KEY&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;secret_access_key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$AWS_SECRET_ACCESS_KEY&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;docker-compose.yml&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2.4&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;frotend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rere95/docker-frontend&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/app/node_modules&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./frontend:/app&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;stdin_open&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;mem limit&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;128m&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rere95/docker-nginx&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;-80:80&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;mem limit&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;128m&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;links&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;frontend&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;backend&lt;/span&gt;
-  
-  &lt;span class=&quot;na&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rere95/docker-backend&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;app_backend&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/app/node_modules&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./backend:/app&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_HOST&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker-fullstack-mysql.cmok.ap-northest-2.rds.com&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_USER&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;root&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_ROOT_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1234&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_DATABASE&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;myapp&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_PORT&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3306&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;mem limit&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;128m&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;vpcvirtual-private-cloud와-security-group-설정하기&quot;&gt;VPC(virtual private cloud)와 Security Group 설정하기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;AWS와 RDS를 이용하여 MYSQL를 앱과 연결시켜야 하는데 그거을 하기위해서 VPC와 Security Group을 설정해주어야 한다.&lt;/li&gt;
-  &lt;li&gt;VPC: AWS 클라우드에서 논리적으로 격리된 공간을 프로비저닝하여 고객이 정의하는 가상 네트워크에서 리소스를 시작할 수 있다. 내가 AWS에서 EC2, EB, RDS 인스턴스를 만들었다면 이러한 인스턴스들을 나의 아이디에서만 접근이 가능하게 논리적으로 격리된 네트워크에서 생성이 되게 해준다. 따라서 다른 아이디로는 접근 불가능하다.&lt;/li&gt;
-  &lt;li&gt;Security Group
-    &lt;ul&gt;
-      &lt;li&gt;Inbound: 외부에서 EB 인스턴스로 요청을 보내는 트래픽을 말한다.(HTTP, HTTPS, SSH 등)&lt;/li&gt;
-      &lt;li&gt;Outbound: EB 인스턴스에서 외부로 나가는 트래픽을 말한다. 파일을 다운로드 하거나 inbound로 들어온 트래픽을 처리하여 응답하는 경우도 포함된다.&lt;/li&gt;
-      &lt;li&gt;같은 VPC에서 오는 트래픽은 모두 허용하여 같은 VPC에 있는 EB 인스턴스와 RDS 인스턴스가 통신 가능하도록 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Docker" /><category term="Docker" /><category term="CI" /></entry></feed>
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/RESTful" /><category term="RESTful" /><category term="Spring" /><category term="Microservices" /></entry></feed>
