@@ -227,15 +227,15 @@ var store = [{
         "url": "https://rere950303.github.io/spring/core/SpringCore_advanced/",
         "teaser": null
       },{
-        "title": "[Spring][Security] 스프링 시큐리티",
-        "excerpt":"들어가며 해당 게시글은 인프런 정수원 강사님의 [스프링 시큐리티 - Spring Boot 기반으로 개발하는 Spring Security][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다. 스프링 시큐리티 기본 API 및 Filter 이해 사용자 정의 보안 기능 구현 WebSecurityConfigurerAdapter 상속 인증 API http.formLogin() http.logout() http.csrf() http.httpBasic() http.SessionManagement() http.RememberMe() http.ExceptionHandling () http.addFilter() 인가 API http.authorizeRequests() .antMatchers(/admin) .hasRole(USER)...","categories": ["Spring/Security"],
-        "tags": ["Security","Spring"],
-        "url": "https://rere950303.github.io/spring/security/SpringSecurity2/",
-        "teaser": null
-      },{
         "title": "[AWS] EBS",
         "excerpt":"들어가며 도커 이미지 빌드시 디스크 용량 부족으로 에러가 발생함에 따라 ec2 디스크 볼륨 사이즈를 증가시키는 과정을 기록하기 위한 포스팅 EBS 볼륨이란 Elastic Block Store의 약자로써 ec2에서 디스크처럼 사용할 수 있는 블록 수준 스토리지를 말한다. AWS에서는 볼륨이라고 말하는데 EBS로 생성한 디스크 하나하나 저장 단위를 말한다. 볼륨을 하나 생성하여 ec2와 연결하면 하나의...","categories": ["AWS"],
         "tags": ["AWS","EBS"],
         "url": "https://rere950303.github.io/aws/AWS_EBS/",
+        "teaser": null
+      },{
+        "title": "[Spring][Security] 스프링 시큐리티 재정리",
+        "excerpt":"들어가며 해당 게시글은 인프런 정수원 강사님의 스프링 시큐리티 - Spring Boot 기반으로 개발하는 Spring Security 강의를 바탕으로 쓰였음을 미리 밝힙니다. 스프링 시큐리티 기본 API 및 Filter 이해 사용자 정의 보안 기능 구현 WebSecurityConfigurerAdapter 상속 인증 API http.formLogin() http.logout() http.csrf() http.httpBasic() http.SessionManagement() http.RememberMe() http.ExceptionHandling () http.addFilter() 인가 API http.authorizeRequests() .antMatchers(/admin) .hasRole(USER)...","categories": ["Spring/Security"],
+        "tags": ["Security","Spring"],
+        "url": "https://rere950303.github.io/spring/security/SpringSecurity2/",
         "teaser": null
       }]
