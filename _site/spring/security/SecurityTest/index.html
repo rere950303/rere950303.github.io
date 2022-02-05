@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring][JPA] 변경 감지와 병합 - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Spring][Security] 스프링 시큐리티 테스트 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[Spring][JPA] 변경 감지와 병합">
-<meta property="og:url" content="https://rere950303.github.io/spring/jpa/save&merge/">
+<meta property="og:title" content="[Spring][Security] 스프링 시큐리티 테스트">
+<meta property="og:url" content="https://rere950303.github.io/spring/security/SecurityTest/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-10-24T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-02-05T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/spring/jpa/save&merge/">
+<link rel="canonical" href="https://rere950303.github.io/spring/security/SecurityTest/">
 
 
 
@@ -198,7 +198,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#jpa" itemprop="item"><span itemprop="name">Jpa</span></a>
+          <a href="/categories/#security" itemprop="item"><span itemprop="name">Security</span></a>
           <meta itemprop="position" content="3" />
         </li>
         <span class="sep">/</span>
@@ -206,7 +206,7 @@
     
       
       
-        <li class="current">[Spring][JPA] 변경 감지와 병합</li>
+        <li class="current">[Spring][Security] 스프링 시큐리티 테스트</li>
       
     
   </ol>
@@ -337,15 +337,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring][JPA] 변경 감지와 병합">
+    <meta itemprop="headline" content="[Spring][Security] 스프링 시큐리티 테스트">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-10-24T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-02-05T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][JPA] 변경 감지와 병합
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][Security] 스프링 시큐리티 테스트
 </h1>
           
 
@@ -354,7 +354,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-10-24T00:00:00+09:00">October 24, 2021</time>
+        <time datetime="2022-02-05T00:00:00+09:00">February 5, 2022</time>
       </span>
     
 
@@ -367,7 +367,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          최대 1 분 소요
         
       </span>
     
@@ -384,9 +384,10 @@
               
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
-  <li><a href="#준영속-엔티티">준영속 엔티티</a></li>
-  <li><a href="#준영속-엔티티를-수정하는-2가지-방법">준영속 엔티티를 수정하는 2가지 방법</a></li>
-  <li><a href="#가장-좋은-해결-방법">가장 좋은 해결 방법</a></li>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#withsecuritycontext">@WithSecurityContext</a></li>
+  <li><a href="#withmockcustomusersecuritycontextfactory">WithMockCustomUserSecurityContextFactory</a></li>
+  <li><a href="#사용법">사용법</a></li>
 </ul>
 
               
@@ -396,39 +397,91 @@
             </nav>
           </aside>
         
-        <h2 id="준영속-엔티티">준영속 엔티티</h2>
-<p>식별자(ID)를 가지고 있는 엔티티로써 영속성 컨텍스트가 더는 관리하지 않는것을 말한다. 따라서 해당 엔티티의 속성을 변경해도 변경감지를 통한 update쿼리가 생성되지 않는다.</p>
+        <h2 id="들어가며">들어가며</h2>
+<p>MockUser를 이용하여 메소드 보안 단위 테스트 하는 방법과 과정을 기록하기 위한 포스팅</p>
 
-<h2 id="준영속-엔티티를-수정하는-2가지-방법">준영속 엔티티를 수정하는 2가지 방법</h2>
-<ol>
-  <li>변경 감지 기능 사용
-    <ul>
-      <li>영속성 컨텍스트에서 영속상태인 엔티티를 조회한 후에 트랜잭션 안에서 속성을 변경하고 변경 감지 기능을 통해 트랜잭션 시점의 플러쉬로 데이터베이스 UPDATE SQL 실행</li>
-    </ul>
-  </li>
-  <li>병합 사용(<code class="language-plaintext highlighter-rouge">merge()</code>)
-    <ul>
-      <li>이는 준영속 상태의 엔티티를 영속 상태로 변경할 떄 사용하는 기능이다.</li>
-      <li>파라미터로 넘어온 준영속 엔티티의 식별자 값으로 1차 캐시에서 엔티티를 조회한다.</li>
-      <li>만약 1차 캐시에 엔티티가 없으면 데이터베이스에서 엔티티를 조회하고, 1차 캐시에 저장한다.</li>
-      <li>조회한 영속 엔티티( mergeMember )에 member 엔티티의 값을 채워 넣는다.</li>
-      <li>영속 상태인 mergeMember를 반환한다.</li>
-      <li>트랜잭션 커밋 시점에 변경 감지 기능이 동작해서 데이터베이스에 UPDATE SQL 실행</li>
-    </ul>
-  </li>
-</ol>
+<h2 id="withsecuritycontext">@WithSecurityContext</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="o">({</span> <span class="nc">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">,</span> <span class="nc">ElementType</span><span class="o">.</span><span class="na">TYPE</span> <span class="o">})</span>
+<span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Inherited</span>
+<span class="nd">@Documented</span>
+<span class="nd">@WithSecurityContext</span><span class="o">(</span><span class="n">factory</span> <span class="o">=</span> <span class="nc">WithMockCustomUserSecurityContextFactory</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">WithMockCustomUser</span> <span class="o">{</span>
 
+    <span class="nc">String</span> <span class="nf">username</span><span class="o">()</span> <span class="k">default</span> <span class="s">"yhw"</span><span class="o">;</span>
+
+    <span class="nc">String</span> <span class="nf">studentId</span><span class="o">()</span> <span class="k">default</span> <span class="s">"~"</span><span class="o">;</span>
+
+    <span class="nc">String</span> <span class="nf">password</span><span class="o">()</span> <span class="k">default</span> <span class="s">"~"</span><span class="o">;</span>
+
+    <span class="nc">String</span> <span class="nf">passwordConfirm</span><span class="o">()</span> <span class="k">default</span> <span class="s">"~"</span><span class="o">;</span>
+
+    <span class="nc">String</span> <span class="nf">role</span><span class="o">()</span> <span class="k">default</span> <span class="s">"ROLE_USER"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="withmockcustomusersecuritycontextfactory">WithMockCustomUserSecurityContextFactory</h2>
 <ul>
-  <li>변경 감지 기능을 사용하면 원하는 속성만 선택해서 변경할 수 있지만, 병합을 사용하면 모든 속성이 변경된다. 병합시 값이 없으면 <code class="language-plaintext highlighter-rouge">null</code> 로 업데이트 할 위험도 있다. (병합은 모든 필드를 교체한다.)</li>
-  <li><code class="language-plaintext highlighter-rouge">save()</code> 메서드는 식별자 값이 없으면( <code class="language-plaintext highlighter-rouge">null</code> ) 새로운 엔티티로 판단해서 영속화(persist)하고 식별자가 있으면 병합(<code class="language-plaintext highlighter-rouge">merge</code>)
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">save()</code> 메서드는 식별자를 자동 생성해야 정상 동작한다. <code class="language-plaintext highlighter-rouge">@GeneratedValue</code> 사용시 식별자 없이 <code class="language-plaintext highlighter-rouge">save()</code> 메서드를 호출하면 <code class="language-plaintext highlighter-rouge">persist()</code> 가 호출되면서 식별자 값이 자동으로 할당된다. 반면에 식별자를 직접 할당하도록 <code class="language-plaintext highlighter-rouge">@Id</code> 만 선언 했다고 가정하자. 이 경우 식별자를 직접 할당하지 않고, <code class="language-plaintext highlighter-rouge">save()</code> 메서드를 호출하면 식별자가 없는 상태로 <code class="language-plaintext highlighter-rouge">persist()</code> 를 호출한다. 그러면 식별자가 없다는 예외가 발생한다.</li>
-    </ul>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">WithMockCustomUser</code>를 매개변수로 받아서 애노테이션의 값을 이용해 <code class="language-plaintext highlighter-rouge">SecurityContext</code>를 반환하다. <code class="language-plaintext highlighter-rouge">SecurityContext</code>에는 <code class="language-plaintext highlighter-rouge">Authentication</code>이 담겨 있다. 스프링이 기본으로 제공하는 <code class="language-plaintext highlighter-rouge">@WithMockUser</code>, <code class="language-plaintext highlighter-rouge">@WithAnonyMous</code> 등도 이와 같은 방법으로 구성되어 있다.</li>
 </ul>
 
-<h2 id="가장-좋은-해결-방법">가장 좋은 해결 방법</h2>
-<p>가급적 변경 감지 기능을 사용하는 것이 좋다. 이를 위해서는 트랜잭션 단위인 서비스 계층에 준영속 엔티티의 식별자와 변경할 속성값을 파라미터나 DTO형태로 명확하게 전달해주는 것이 매우 중요하다. 병합의 경우 의도치 않는 변경이나 <code class="language-plaintext highlighter-rouge">null</code> 값 주입의 우려가 있기 때문이다.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WithMockCustomUserSecurityContextFactory</span> <span class="kd">implements</span> <span class="nc">WithSecurityContextFactory</span><span class="o">&lt;</span><span class="nc">WithMockCustomUser</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">SecurityContext</span> <span class="nf">createSecurityContext</span><span class="o">(</span><span class="nc">WithMockCustomUser</span> <span class="n">annotation</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SecurityContext</span> <span class="n">context</span> <span class="o">=</span> <span class="nc">SecurityContextHolder</span><span class="o">.</span><span class="na">createEmptyContext</span><span class="o">();</span>
+        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="k">new</span> <span class="nc">SignUpDTO</span><span class="o">(</span><span class="n">annotation</span><span class="o">.</span><span class="na">username</span><span class="o">(),</span> <span class="n">annotation</span><span class="o">.</span><span class="na">studentId</span><span class="o">(),</span> <span class="n">annotation</span><span class="o">.</span><span class="na">password</span><span class="o">(),</span>
+                <span class="n">annotation</span><span class="o">.</span><span class="na">passwordConfirm</span><span class="o">()),</span> <span class="k">new</span> <span class="nc">BCryptPasswordEncoder</span><span class="o">());</span>
+
+        <span class="nc">UserContext</span> <span class="n">userContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserContext</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+        <span class="nc">UsernamePasswordAuthenticationToken</span> <span class="n">usernamePasswordAuthenticationToken</span> <span class="o">=</span>
+                <span class="k">new</span> <span class="nf">UsernamePasswordAuthenticationToken</span><span class="o">(</span><span class="n">userContext</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">new</span> <span class="nc">SimpleGrantedAuthority</span><span class="o">(</span><span class="n">annotation</span><span class="o">.</span><span class="na">role</span><span class="o">())));</span>
+
+        <span class="n">context</span><span class="o">.</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">usernamePasswordAuthenticationToken</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">context</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="사용법">사용법</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@WebMvcTest</span><span class="o">(</span><span class="nc">AuthController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@Import</span><span class="o">({</span><span class="nc">ObjectMapper</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">JwtAuthenticationEntryPoint</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">HttpEncodingAutoConfiguration</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+<span class="kd">class</span> <span class="nc">AuthControllerTest</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="nc">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="nc">ObjectMapper</span> <span class="n">objectMapper</span><span class="o">;</span>
+
+    <span class="nd">@MockBean</span>
+    <span class="nc">AuthService</span> <span class="n">authService</span><span class="o">;</span>
+
+    <span class="nd">@MockBean</span>
+    <span class="nc">TokenProvider</span> <span class="n">tokenProvider</span><span class="o">;</span>
+
+    <span class="nd">@MockBean</span>
+    <span class="kd">private</span> <span class="nc">JwtAccessDeniedHandler</span> <span class="n">jwtAccessDeniedHandler</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"withdrawalFailTest"</span><span class="o">)</span>
+    <span class="nd">@WithMockCustomUser</span><span class="o">(</span><span class="n">studentId</span> <span class="o">=</span> <span class="s">"1234"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">withdrawalFailTest</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/api/authentication/withdrawal/{studentId}"</span><span class="o">,</span> <span class="s">"123"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isForbidden</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getResolvedException</span><span class="o">()).</span><span class="na">isInstanceOf</span><span class="o">(</span><span class="nc">AccessDeniedException</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"withdrawalSuccessTest"</span><span class="o">)</span>
+    <span class="nd">@WithMockCustomUser</span><span class="o">(</span><span class="n">studentId</span> <span class="o">=</span> <span class="s">"1234"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">withdrawalSuccessTest</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/api/authentication/withdrawal/{studentId}"</span><span class="o">,</span> <span class="s">"1234"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
         
       </section>
@@ -449,15 +502,7 @@
     
       
       
-      <a href="/tags/#jpa" class="page__taxonomy-item" rel="tag">JPA</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#merge" class="page__taxonomy-item" rel="tag">merge</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#save" class="page__taxonomy-item" rel="tag">save</a><span class="sep">, </span>
+      <a href="/tags/#security" class="page__taxonomy-item" rel="tag">Security</a><span class="sep">, </span>
     
       
       
@@ -482,14 +527,14 @@
     
       
       
-      <a href="/categories/#spring-jpa" class="page__taxonomy-item" rel="tag">Spring/JPA</a>
+      <a href="/categories/#spring-security" class="page__taxonomy-item" rel="tag">Spring/Security</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-10-24T00:00:00+09:00">October 24, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-02-05T00:00:00+09:00">February 5, 2022</time></p>
 
 
       </footer>
@@ -499,22 +544,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BJPA%5D+%EB%B3%80%EA%B2%BD+%EA%B0%90%EC%A7%80%EC%99%80+%EB%B3%91%ED%95%A9%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2Fsave%26merge%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BSecurity%5D+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0+%ED%85%8C%EC%8A%A4%ED%8A%B8%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fsecurity%2FSecurityTest%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2Fsave%26merge%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fsecurity%2FSecurityTest%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fjpa%2Fsave%26merge%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fsecurity%2FSecurityTest%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/jpa/SpringDataJPA/" class="pagination--pager" title="[Spring][JPA] 스프링 데이터 JPA
+      <a href="/aws/AWS_EBS/" class="pagination--pager" title="[AWS] EBS
 ">이전</a>
     
     
-      <a href="/spring/jpa/querydsl/Querydsl/" class="pagination--pager" title="[Spring][JPA][Querydsl] Querydsl
+      <a href="/spring/security/SpringSecurity2/" class="pagination--pager" title="[Spring][Security] 스프링 시큐리티 재정리
 ">다음</a>
     
   </nav>
@@ -564,52 +609,6 @@
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           21 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/security/SecurityTest/" rel="permalink">[Spring][Security] 스프링 시큐리티 테스트
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-02-05T00:00:00+09:00">February 5, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          최대 1 분 소요
         
       </span>
     
@@ -701,7 +700,53 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          50 분 소요
+          53 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/deploy/JenkinsCICD/" rel="permalink">[Spring][Deploy] Jenkins를 이용한 CI, CD
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-01-18T00:00:00+09:00">January 18, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
         
       </span>
     

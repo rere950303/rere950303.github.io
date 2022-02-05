@@ -233,6 +233,12 @@ var store = [{
         "url": "https://rere950303.github.io/aws/AWS_EBS/",
         "teaser": null
       },{
+        "title": "[Spring][Security] 스프링 시큐리티 테스트",
+        "excerpt":"들어가며 MockUser를 이용하여 메소드 보안 단위 테스트 하는 방법과 과정을 기록하기 위한 포스팅 @WithSecurityContext @Target({ ElementType.METHOD, ElementType.TYPE }) @Retention(RetentionPolicy.RUNTIME) @Inherited @Documented @WithSecurityContext(factory = WithMockCustomUserSecurityContextFactory.class) public @interface WithMockCustomUser { String username() default \"yhw\"; String studentId() default \"~\"; String password() default \"~\"; String passwordConfirm() default \"~\"; String role() default \"ROLE_USER\"; } WithMockCustomUserSecurityContextFactory...","categories": ["Spring/Security"],
+        "tags": ["Spring","Security"],
+        "url": "https://rere950303.github.io/spring/security/SecurityTest/",
+        "teaser": null
+      },{
         "title": "[Spring][Security] 스프링 시큐리티 재정리",
         "excerpt":"들어가며 해당 게시글은 인프런 정수원 강사님의 스프링 시큐리티 - Spring Boot 기반으로 개발하는 Spring Security 강의를 바탕으로 쓰였음을 미리 밝힙니다. 스프링 시큐리티 기본 API 및 Filter 이해 사용자 정의 보안 기능 구현 WebSecurityConfigurerAdapter 상속 인증 API http.formLogin() http.logout() http.csrf() http.httpBasic() http.SessionManagement() http.RememberMe() http.ExceptionHandling () http.addFilter() 인가 API http.authorizeRequests() .antMatchers(/admin) .hasRole(USER)...","categories": ["Spring/Security"],
         "tags": ["Security","Spring"],
