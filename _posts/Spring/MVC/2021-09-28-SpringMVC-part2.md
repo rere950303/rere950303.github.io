@@ -372,7 +372,7 @@ public ObjectError(String objectName, String defaultMessage) {}
 ### BindingResult2
 - `BindingResult` 가 있으면 `@ModelAttribute` 에 데이터 바인딩 시 오류가 발생해도 컨트롤러가 호출된다.
 - BindingResult에 검증 오류를 적용하는 3가지 방법
-	- @ModelAttribute 의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 FieldError 생성해서 BindingResult 에 넣어준다.
+	- `@ModelAttribute`의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 FieldError 생성해서 BindingResult 에 넣어준다.
 	- 개발자가 직접 넣어준다.
 	- `Validator` 사용 -\> 이것은 뒤에서 설명
 
@@ -864,7 +864,7 @@ Bean Validation을 적용하고 `bindingResult` 에 등록된 검증 오류 코�
 	- NotBlank.itemName
 	- NotBlank.java.lang.String
 	- NotBlank
-- @Range
+- `@Range`
 	- Range.item.price
 	- Range.price
 	- Range.java.lang.Integer
@@ -1445,7 +1445,7 @@ public interface HandlerInterceptor {
 }
 ```
 - 인터셉터는 컨트롤러 호출 전( `preHandle` ), 호출 후( `postHandle` ), 요청 완료 이후( `afterCompletion` )와 같이 단계적으로 잘 세분화 되어 있다.
-- `preHandle` : 컨트롤러 호출 전에 호출된다. (더 정확히는 핸들러 어댑터 호출 전에 호출된다.) `preHandle` 의 응답값이 `true` 이면 다음으로 진행하고, `false` 이면 더는 진행하지 않는다. `false`인 경우 나머지 인터셉터는 물론이고, 핸들러 어댑터도 호출되지 않는다. 그림에서 1번에서 끝이 나버린다.
+- `preHandle` : 컨트롤러 호출 전에 호출된다. (더 정확히는 핸들러 어댑터 호출 전에 호출된다.) `preHandle` 의 응답값이 `true` 이면 다음으로 진행하고, `false` 이면 더는 진행하지 않는다. `false`인 경우 나머지 인터셉터는 물론이고, 핸들러 어댑터도 호출되지 않는다.
 - `postHandle` : 컨트롤러 호출 후에 호출된다. (더 정확히는 핸들러 어댑터 호출 후에 호출된다.)
 - `afterCompletion` : 뷰가 렌더링 된 이후에 호출된다.
 - 예외가 발생시

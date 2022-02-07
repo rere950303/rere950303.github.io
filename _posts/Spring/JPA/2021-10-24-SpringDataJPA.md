@@ -276,9 +276,22 @@ public class BaseEntity {
 }
 ```
 ```java
-@Bean
-public AuditorAware<String> auditorProvider() {
-    return () -> Optional.of(UUID.randomUUID().toString());
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements AuditorAware<String> {
+    ...
+
+    @Override
+    public Optional<String> getCurrentAuditor() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return null;
+        } else {
+            return Optional.ofNullable(authentication.getName());
+        }
+    }
+    
+    ...
 }
 ```
 - 실무에서는 세션 정보나, 스프링 시큐리티 로그인 정보에서 ID를 받음
@@ -368,7 +381,7 @@ public class SimpleJpaRepository<T, ID> {
 }
 ```
 - `@Repository` 적용: JPA 예외를 스프링이 추상화한 예외로 변환
-- @Transactional 트랜잭션 적용
+- `@Transactional` 트랜잭션 적용
   - JPA의 모든 변경은 트랜잭션 안에서 동작해야 한다.
   - 스프링 데이터 JPA는 변경(등록, 수정, 삭제) 메서드를 트랜잭션 처리
   - 서비스 계층에서 트랜잭션을 시작하지 않으면 리파지토리에서 트랜잭션 시작
