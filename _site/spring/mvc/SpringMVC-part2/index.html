@@ -866,7 +866,7 @@
   <li><code class="language-plaintext highlighter-rouge">BindingResult</code> 가 있으면 <code class="language-plaintext highlighter-rouge">@ModelAttribute</code> 에 데이터 바인딩 시 오류가 발생해도 컨트롤러가 호출된다.</li>
   <li>BindingResult에 검증 오류를 적용하는 3가지 방법
     <ul>
-      <li>@ModelAttribute 의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 FieldError 생성해서 BindingResult 에 넣어준다.</li>
+      <li><code class="language-plaintext highlighter-rouge">@ModelAttribute</code>의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 FieldError 생성해서 BindingResult 에 넣어준다.</li>
       <li>개발자가 직접 넣어준다.</li>
       <li><code class="language-plaintext highlighter-rouge">Validator</code> 사용 -&gt; 이것은 뒤에서 설명</li>
     </ul>
@@ -1409,7 +1409,7 @@
       <li>NotBlank</li>
     </ul>
   </li>
-  <li>@Range
+  <li><code class="language-plaintext highlighter-rouge">@Range</code>
     <ul>
       <li>Range.item.price</li>
       <li>Range.price</li>
@@ -2085,7 +2085,7 @@
 </code></pre></div>    </div>
   </li>
   <li>인터셉터는 컨트롤러 호출 전( <code class="language-plaintext highlighter-rouge">preHandle</code> ), 호출 후( <code class="language-plaintext highlighter-rouge">postHandle</code> ), 요청 완료 이후( <code class="language-plaintext highlighter-rouge">afterCompletion</code> )와 같이 단계적으로 잘 세분화 되어 있다.</li>
-  <li><code class="language-plaintext highlighter-rouge">preHandle</code> : 컨트롤러 호출 전에 호출된다. (더 정확히는 핸들러 어댑터 호출 전에 호출된다.) <code class="language-plaintext highlighter-rouge">preHandle</code> 의 응답값이 <code class="language-plaintext highlighter-rouge">true</code> 이면 다음으로 진행하고, <code class="language-plaintext highlighter-rouge">false</code> 이면 더는 진행하지 않는다. <code class="language-plaintext highlighter-rouge">false</code>인 경우 나머지 인터셉터는 물론이고, 핸들러 어댑터도 호출되지 않는다. 그림에서 1번에서 끝이 나버린다.</li>
+  <li><code class="language-plaintext highlighter-rouge">preHandle</code> : 컨트롤러 호출 전에 호출된다. (더 정확히는 핸들러 어댑터 호출 전에 호출된다.) <code class="language-plaintext highlighter-rouge">preHandle</code> 의 응답값이 <code class="language-plaintext highlighter-rouge">true</code> 이면 다음으로 진행하고, <code class="language-plaintext highlighter-rouge">false</code> 이면 더는 진행하지 않는다. <code class="language-plaintext highlighter-rouge">false</code>인 경우 나머지 인터셉터는 물론이고, 핸들러 어댑터도 호출되지 않는다.</li>
   <li><code class="language-plaintext highlighter-rouge">postHandle</code> : 컨트롤러 호출 후에 호출된다. (더 정확히는 핸들러 어댑터 호출 후에 호출된다.)</li>
   <li><code class="language-plaintext highlighter-rouge">afterCompletion</code> : 뷰가 렌더링 된 이후에 호출된다.</li>
   <li>예외가 발생시
@@ -3241,7 +3241,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/spring/security/SpringSecurity2/" rel="permalink">[Spring][Security] 스프링 시큐리티 재정리
+        <a href="/spring/security/CORS/" rel="permalink">[Spring][Security] CORS
 </a>
       
     </h2>
@@ -3252,7 +3252,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-02-05T00:00:00+09:00">February 5, 2022</time>
+        <time datetime="2022-02-17T00:00:00+09:00">February 17, 2022</time>
       </span>
     
 
@@ -3265,7 +3265,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          21 분 소요
+          2 분 소요
         
       </span>
     
@@ -3287,7 +3287,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/spring/security/SecurityTest/" rel="permalink">[Spring][Security] 스프링 시큐리티 테스트
+        <a href="/linux/" rel="permalink">Linux
 </a>
       
     </h2>
@@ -3298,7 +3298,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-02-05T00:00:00+09:00">February 5, 2022</time>
+        <time datetime="2022-02-12T00:00:00+09:00">February 12, 2022</time>
       </span>
     
 
@@ -3333,7 +3333,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/aws/AWS_EBS/" rel="permalink">[AWS] EBS
+        <a href="/kubernetes/Kubernetes/" rel="permalink">[Kubernetes] 쿠버네티스
 </a>
       
     </h2>
@@ -3344,7 +3344,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-30T00:00:00+09:00">January 30, 2022</time>
+        <time datetime="2022-02-10T00:00:00+09:00">February 10, 2022</time>
       </span>
     
 
@@ -3357,7 +3357,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          20 분 소요
         
       </span>
     
@@ -3379,7 +3379,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/spring/core/SpringCore_advanced/" rel="permalink">[Spring][Core] 스프링 핵심 원리-고급편
+        <a href="/kubernetes/Kubernetes2/" rel="permalink">[Kubernetes] 쿠버네티스
 </a>
       
     </h2>
@@ -3390,7 +3390,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-01-23T00:00:00+09:00">January 23, 2022</time>
+        <time datetime="2022-02-08T00:00:00+09:00">February 8, 2022</time>
       </span>
     
 
@@ -3403,7 +3403,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          50 분 소요
+          2 분 소요
         
       </span>
     
