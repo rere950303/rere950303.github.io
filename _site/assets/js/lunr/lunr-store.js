@@ -264,7 +264,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[Spring][Security] CORS",
-        "excerpt":"들어가며 CORS 문제를 백엔드 단계에서 해결하는 과정을 기록하기 위한 포스팅 CORS란 Cross-Origin Resource Shaing의 약자로써 출처가 다른 서버의 리소스에 대한 접근을 통제하는 브라우저 메커니즘을 말한다. 출처라 함은 프로토콜 + 호스트 + 포트를 의미한다. OPTIONS 요청을 통해 response 헤더의 Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Methods 등으로 접근 가능 여부를 판단하고 실제 본 요청을 보낸다....","categories": ["Spring/Security"],
+        "excerpt":"들어가며 CORS 문제를 백엔드 단계에서 해결하는 과정을 기록하기 위한 포스팅 CORS란 Cross-Origin Resource Shaing의 약자로써 출처가 다른 서버의 리소스에 대한 접근을 통제하는 브라우저 메커니즘을 말한다. 출처라 함은 프로토콜 + 호스트 + 포트를 의미한다. OPTIONS(Origin, Access-Control-Request-Method 헤더값) 요쳥을 통해 response 헤더의 Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Methods 등으로 접근 가능 여부를 판단하고 실제 본...","categories": ["Spring/Security"],
         "tags": ["Spring","Security","CORS"],
         "url": "https://rere950303.github.io/spring/security/CORS/",
         "teaser": null

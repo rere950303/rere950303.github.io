@@ -406,7 +406,7 @@
 
 <h2 id="cors란">CORS란</h2>
 <p>Cross-Origin Resource Shaing의 약자로써 출처가 다른 서버의 리소스에 대한 접근을 통제하는 브라우저 메커니즘을 말한다. 출처라 함은 <code class="language-plaintext highlighter-rouge">프로토콜 + 호스트 + 포트</code>를 의미한다.
-OPTIONS 요청을 통해 response 헤더의 <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Origin</code>, <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Credentials</code>, <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Methods</code> 등으로 접근 가능 여부를 판단하고 실제 본 요청을 보낸다. 허용되지 않을 경우 403 에러가 발생한다. 이러한 요청 기작을 pre-flight라고 한다.</p>
+OPTIONS(<code class="language-plaintext highlighter-rouge">Origin</code>, <code class="language-plaintext highlighter-rouge">Access-Control-Request-Method</code> 헤더값) 요쳥을 통해 response 헤더의 <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Origin</code>, <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Credentials</code>, <code class="language-plaintext highlighter-rouge">Access-Control-Allow-Methods</code> 등으로 접근 가능 여부를 판단하고 실제 본 요청을 보낸다. 허용되지 않을 경우 403 에러가 발생한다. 이러한 요청 기작을 pre-flight라고 한다.</p>
 
 <h2 id="해결방법">해결방법</h2>
 <h3 id="프론트">프론트</h3>
