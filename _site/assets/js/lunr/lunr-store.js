@@ -251,12 +251,6 @@ var store = [{
         "url": "https://rere950303.github.io/kubernetes/Kubernetes2/",
         "teaser": null
       },{
-        "title": "[Kubernetes] 쿠버네티스",
-        "excerpt":"들어가며 해당 게시글은 인프런 subicura 강사님의 초보를 위한 쿠버네티스 안내서 강의를 바탕으로 쓰였음을 미리 밝힙니다. 쿠버네티스 시작하기 컨테이너 오케스트레이션 1/4(서버를 관리한다는 것) 문서화 -&gt; 서버 관리 도구 -&gt; VM -&gt; 컨테이너 문서화를 통해 서버 관리 메뉴얼을 만들수 있지만 누락된 부분이나 버전 변경, 업데이트 누락 등으로 문제가 발생할 수 있다. 서버...","categories": ["Kubernetes"],
-        "tags": ["Docker","Kubernetes"],
-        "url": "https://rere950303.github.io/kubernetes/Kubernetes/",
-        "teaser": null
-      },{
         "title": "Linux",
         "excerpt":"들어가며   리눅스의 기초   ","categories": [],
         "tags": [],
@@ -267,5 +261,11 @@ var store = [{
         "excerpt":"들어가며 CORS 문제를 백엔드 단계에서 해결하는 과정을 기록하기 위한 포스팅 CORS란 Cross-Origin Resource Shaing의 약자로써 출처가 다른 서버의 리소스에 대한 접근을 통제하는 브라우저 메커니즘을 말한다. 출처라 함은 프로토콜 + 호스트 + 포트를 의미한다. OPTIONS(Origin, Access-Control-Request-Method 헤더값) 요쳥을 통해 response 헤더의 Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Methods 등으로 접근 가능 여부를 판단하고 실제 본...","categories": ["Spring/Security"],
         "tags": ["Spring","Security","CORS"],
         "url": "https://rere950303.github.io/spring/security/CORS/",
+        "teaser": null
+      },{
+        "title": "[Kubernetes] 쿠버네티스",
+        "excerpt":"들어가며 해당 게시글은 인프런 subicura 강사님의 초보를 위한 쿠버네티스 안내서 강의를 바탕으로 쓰였음을 미리 밝힙니다. 쿠버네티스 시작하기 컨테이너 오케스트레이션 1/4(서버를 관리한다는 것) 문서화 -&gt; 서버 관리 도구 -&gt; VM -&gt; 컨테이너 문서화를 통해 서버 관리 메뉴얼을 만들수 있지만 누락된 부분이나 버전 변경, 업데이트 누락 등으로 문제가 발생할 수 있다. 서버...","categories": ["Kubernetes"],
+        "tags": ["Docker","Kubernetes"],
+        "url": "https://rere950303.github.io/kubernetes/Kubernetes/",
         "teaser": null
       }]
