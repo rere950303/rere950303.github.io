@@ -1,12 +1,12 @@
 ---
-title: "[JAVA] equals()&hashCode() 오버라이딩"
+title: "[Java] equals()&hashCode() 오버라이딩"
 last\_modified\_at: 2021-09-18T 6:31 +09:00
 header:
   overlay\_color: "#333"
 categories:
-  - JAVA
+  - Java
 tags:
-  - JAVA
+  - Java
   - equals
   - hashCode
 toc: false
@@ -18,7 +18,7 @@ Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다.
 ---
 1. 동일한 객체에 대해 여러 번 hashCode()를 호출해도 동일한 값을 반환해야 한다.
 2. equals()가 참인 두 객체의 hashCode() 결과는 반드시 같아야 한다.
-3. equals()가 거짓인 두 객체의 hashCode() 결과가 같을 수 있지만 HastMap등에서 검색 속도가 떨어져 성능이 저하될 수 있으므로 서로 다른 값을 반환하도록 적절히 오버라이딩 해야한다.
+3. equals()가 거짓인 두 객체의 hashCode() 결과가 같을 수 있지만 HashMap등에서 검색 속도가 떨어져 성능이 저하될 수 있으므로 서로 다른 값을 반환하도록 적절히 오버라이딩 해야한다.
 
 ---
 

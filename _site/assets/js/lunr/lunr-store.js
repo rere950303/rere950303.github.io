@@ -11,9 +11,9 @@ var store = [{
         "url": "https://rere950303.github.io/git/git(amend)/",
         "teaser": null
       },{
-        "title": "[JAVA] equals()&hashCode() 오버라이딩",
-        "excerpt":"해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다. 동일한 객체에 대해 여러 번 hashCode()를 호출해도 동일한 값을 반환해야 한다. equals()가 참인 두 객체의 hashCode()...","categories": ["JAVA"],
-        "tags": ["JAVA","equals","hashCode"],
+        "title": "[Java] equals()&hashCode() 오버라이딩",
+        "excerpt":"해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다. 동일한 객체에 대해 여러 번 hashCode()를 호출해도 동일한 값을 반환해야 한다. equals()가 참인 두 객체의 hashCode()...","categories": ["Java"],
+        "tags": ["Java","equals","hashCode"],
         "url": "https://rere950303.github.io/java/equals()&hashCode()/",
         "teaser": null
       },{
@@ -53,9 +53,9 @@ var store = [{
         "url": "https://rere950303.github.io/spring/thymeleaf/Thymeleaf/",
         "teaser": null
       },{
-        "title": "[JAVA] Optional 클래스의 filter()메서드",
-        "excerpt":"public Optional&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate) { Objects.requireNonNull(predicate); if (!isPresent()) { return this; } else { return predicate.test(value) ? this : empty(); } } public static&lt;T&gt; Optional&lt;T&gt; empty() { @SuppressWarnings(\"unchecked\") Optional&lt;T&gt; t = (Optional&lt;T&gt;) EMPTY; return t; } private static final Optional&lt;?&gt; EMPTY = new Optional&lt;&gt;(); private Optional() { this.value...","categories": ["JAVA"],
-        "tags": ["JAVA","Optional","filter"],
+        "title": "[Java] Optional 클래스의 filter()메서드",
+        "excerpt":"public Optional&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate) { Objects.requireNonNull(predicate); if (!isPresent()) { return this; } else { return predicate.test(value) ? this : empty(); } } public static&lt;T&gt; Optional&lt;T&gt; empty() { @SuppressWarnings(\"unchecked\") Optional&lt;T&gt; t = (Optional&lt;T&gt;) EMPTY; return t; } private static final Optional&lt;?&gt; EMPTY = new Optional&lt;&gt;(); private Optional() { this.value...","categories": ["Java"],
+        "tags": ["Java","Optional","filter"],
         "url": "https://rere950303.github.io/java/Optional-T-.filter()/",
         "teaser": null
       },{
@@ -267,5 +267,11 @@ var store = [{
         "excerpt":"들어가며 해당 게시글은 인프런 subicura 강사님의 초보를 위한 쿠버네티스 안내서 강의를 바탕으로 쓰였음을 미리 밝힙니다. 쿠버네티스 시작하기 컨테이너 오케스트레이션 1/4(서버를 관리한다는 것) 문서화 -&gt; 서버 관리 도구 -&gt; VM -&gt; 컨테이너 문서화를 통해 서버 관리 메뉴얼을 만들수 있지만 누락된 부분이나 버전 변경, 업데이트 누락 등으로 문제가 발생할 수 있다. 서버...","categories": ["Kubernetes"],
         "tags": ["Docker","Kubernetes"],
         "url": "https://rere950303.github.io/kubernetes/Kubernetes/",
+        "teaser": null
+      },{
+        "title": "[Java] 메모리 해제",
+        "excerpt":"배열을 이용한 스택의 메모리 누수 방지 Object[] stack과 같은 객체 참조 배열을 이용한 스택의 경우 pop연산시 메모리 누수가 발생한다. 따라서 pop과 같은 연산을 할 때에는 배열 값에 null을 대입하여 GC의 대상이 되도록 해야 한다. (LRU) 캐시 메모리 누수 방지 강한 참조 변수를 키로 하는 HashMap의 경우 null이 되더라도 컬랙션 클래스에...","categories": ["Java"],
+        "tags": ["Java","WeakHashMap","GC","Memory","Reference Object"],
+        "url": "https://rere950303.github.io/java/memoryfree/",
         "teaser": null
       }]

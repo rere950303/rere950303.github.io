@@ -1,12 +1,12 @@
 ---
-title: "[JAVA] Optional 클래스의 filter()메서드"
+title: "[Java] Optional 클래스의 filter()메서드"
 last\_modified\_at: 2021-09-27T 3:29 +09:00
 header:
   overlay\_color: "#333"
 categories:
-  - JAVA
+  - Java
 tags:
-  - JAVA
+  - Java
   - Optional
   - filter
 toc: false

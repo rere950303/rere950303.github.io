@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-02-26T23:47:20+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Kubernetes] 쿠버네티스</title><link href="https://rere950303.github.io/kubernetes/Kubernetes/" rel="alternate" type="text/html" title="[Kubernetes] 쿠버네티스" /><published>2022-02-26T00:00:00+09:00</published><updated>2022-02-26T00:00:00+09:00</updated><id>https://rere950303.github.io/kubernetes/Kubernetes</id><content type="html" xml:base="https://rere950303.github.io/kubernetes/Kubernetes/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-03-18T14:24:21+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Java] 메모리 해제</title><link href="https://rere950303.github.io/java/memoryfree/" rel="alternate" type="text/html" title="[Java] 메모리 해제" /><published>2022-03-18T00:00:00+09:00</published><updated>2022-03-18T00:00:00+09:00</updated><id>https://rere950303.github.io/java/memoryfree</id><content type="html" xml:base="https://rere950303.github.io/java/memoryfree/">&lt;h2 id=&quot;배열을-이용한-스택의-메모리-누수-방지&quot;&gt;배열을 이용한 스택의 메모리 누수 방지&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Object[] stack&lt;/code&gt;과 같은 객체 참조 배열을 이용한 스택의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pop&lt;/code&gt;연산시 메모리 누수가 발생한다. 따라서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pop&lt;/code&gt;과 같은 연산을 할 때에는 배열 값에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;을 대입하여 GC의 대상이 되도록 해야 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;lru-캐시-메모리-누수-방지&quot;&gt;(LRU) 캐시 메모리 누수 방지&lt;/h2&gt;
+&lt;p&gt;강한 참조 변수를 키로 하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HashMap&lt;/code&gt;의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;이 되더라도 컬랙션 클래스에 담겨있다면 GC의 대상이 되지 않는다. 따라서 이럴 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WeakHashMap&lt;/code&gt;를 이용해야 한다. 약한 참조 변수를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key&lt;/code&gt;로 저장하며 강한 참조 변수가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;이 되면 GC의 대상이 되고 해당 엔트리가 삭제된다. 하지만 Constant pool이라는 메모리 공간에 존재하는 특정 범위의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Integer&lt;/code&gt; 인스턴스나 문자열 리터럴의 경우는 제거되지 않는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;주의점&quot;&gt;주의점&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WeakHashMap&lt;/code&gt;과 같이 객체 재사용을 지원하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reference Object&lt;/code&gt;을 이용한 컬랙션 클래스의 경우 오버헤드가 존재한다. 주기적으로 미참조 데이터를 삭제해야 하고 경우에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReferenceQueue&lt;/code&gt;를 관리하면서 리소스에 대한 후처리 작업이 필요할 수도 있기 때문이다. 따라서 메모리 누수를 방지하거나 객체 재사용의 경우 이러한 트레이드 오프를 고려해서 신중히 사용해야 한다.&lt;/p&gt;</content><author><name>yhw</name></author><category term="Java" /><category term="Java" /><category term="WeakHashMap" /><category term="GC" /><category term="Memory" /><category term="Reference Object" /></entry><entry><title type="html">[Kubernetes] 쿠버네티스</title><link href="https://rere950303.github.io/kubernetes/Kubernetes/" rel="alternate" type="text/html" title="[Kubernetes] 쿠버네티스" /><published>2022-02-26T00:00:00+09:00</published><updated>2022-02-26T00:00:00+09:00</updated><id>https://rere950303.github.io/kubernetes/Kubernetes</id><content type="html" xml:base="https://rere950303.github.io/kubernetes/Kubernetes/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 subicura 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/쿠버네티스-입문/dashboard&quot;&gt;초보를 위한 쿠버네티스 안내서&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;쿠버네티스-시작하기&quot;&gt;쿠버네티스 시작하기&lt;/h2&gt;
@@ -1760,7 +1767,91 @@ OPTIONS(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Origi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;기초편-기본-오브젝트&quot;&gt;[기초편] 기본 오브젝트&lt;/h2&gt;
-&lt;h3 id=&quot;pod---container-label-nodeschedule&quot;&gt;Pod - Container, Label, NodeSchedule&lt;/h3&gt;</content><author><name>yhw</name></author><category term="Kubernetes" /><category term="Docker" /><category term="Kubernetes" /></entry><entry><title type="html">[Spring][Security] 스프링 시큐리티 재정리</title><link href="https://rere950303.github.io/spring/security/SpringSecurity2/" rel="alternate" type="text/html" title="[Spring][Security] 스프링 시큐리티 재정리" /><published>2022-02-05T00:00:00+09:00</published><updated>2022-02-05T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/security/SpringSecurity2</id><content type="html" xml:base="https://rere950303.github.io/spring/security/SpringSecurity2/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;h3 id=&quot;pod---container-label-nodeschedule&quot;&gt;Pod - Container, Label, NodeSchedule&lt;/h3&gt;</content><author><name>yhw</name></author><category term="Kubernetes" /><category term="Docker" /><category term="Kubernetes" /></entry><entry><title type="html">[Spring][Security] 스프링 시큐리티 테스트</title><link href="https://rere950303.github.io/spring/security/SecurityTest/" rel="alternate" type="text/html" title="[Spring][Security] 스프링 시큐리티 테스트" /><published>2022-02-05T00:00:00+09:00</published><updated>2022-02-05T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/security/SecurityTest</id><content type="html" xml:base="https://rere950303.github.io/spring/security/SecurityTest/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;MockUser를 이용하여 메소드 보안 단위 테스트 하는 방법과 과정을 기록하기 위한 포스팅&lt;/p&gt;
+
+&lt;h2 id=&quot;withsecuritycontext&quot;&gt;@WithSecurityContext&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;METHOD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Retention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RetentionPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RUNTIME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Inherited&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Documented&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@WithSecurityContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;factory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMockCustomUserSecurityContextFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMockCustomUser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;yhw&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;studentId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;~&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;~&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;passwordConfirm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;~&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ROLE_USER&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;withmockcustomusersecuritycontextfactory&quot;&gt;WithMockCustomUserSecurityContextFactory&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WithMockCustomUser&lt;/code&gt;를 매개변수로 받아서 애노테이션의 값을 이용해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 반환하다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication&lt;/code&gt;이 담겨 있다. 스프링이 기본으로 제공하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@WithMockUser&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@WithAnonyMous&lt;/code&gt; 등도 이와 같은 방법으로 구성되어 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMockCustomUserSecurityContextFactory&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithSecurityContextFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WithMockCustomUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityContext&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createSecurityContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WithMockCustomUser&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;SecurityContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityContextHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createEmptyContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SignUpDTO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;studentId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;passwordConfirm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BCryptPasswordEncoder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+        &lt;span class=&quot;nc&quot;&gt;UserContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userContext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;UsernamePasswordAuthenticationToken&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;usernamePasswordAuthenticationToken&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UsernamePasswordAuthenticationToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleGrantedAuthority&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())));&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAuthentication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;usernamePasswordAuthenticationToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;사용법&quot;&gt;사용법&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@WebMvcTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AuthController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Import&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ObjectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JwtAuthenticationEntryPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpEncodingAutoConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthControllerTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;MockMvc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mockMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;ObjectMapper&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@MockBean&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;AuthService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;authService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@MockBean&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;TokenProvider&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@MockBean&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JwtAccessDeniedHandler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jwtAccessDeniedHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;withdrawalFailTest&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@WithMockCustomUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;studentId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1234&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;withdrawalFailTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mockMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api/authentication/withdrawal/{studentId}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;123&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andExpect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isForbidden&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andExpect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResolvedException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isInstanceOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AccessDeniedException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andDo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;withdrawalSuccessTest&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@WithMockCustomUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;studentId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1234&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;withdrawalSuccessTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mockMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api/authentication/withdrawal/{studentId}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1234&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andExpect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isOk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andDo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Spring/Security" /><category term="Spring" /><category term="Security" /></entry><entry><title type="html">[Spring][Security] 스프링 시큐리티 재정리</title><link href="https://rere950303.github.io/spring/security/SpringSecurity2/" rel="alternate" type="text/html" title="[Spring][Security] 스프링 시큐리티 재정리" /><published>2022-02-05T00:00:00+09:00</published><updated>2022-02-05T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/security/SpringSecurity2</id><content type="html" xml:base="https://rere950303.github.io/spring/security/SpringSecurity2/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 정수원 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/코어-스프링-시큐리티/dashboard&quot;&gt;스프링 시큐리티 - Spring Boot 기반으로 개발하는 Spring Security&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;스프링-시큐리티-기본-api-및-filter-이해&quot;&gt;스프링 시큐리티 기본 API 및 Filter 이해&lt;/h2&gt;
@@ -3463,91 +3554,7 @@ OPTIONS(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Origi
     
   
   
-&lt;/figure&gt;</content><author><name>yhw</name></author><category term="Spring/Security" /><category term="Security" /><category term="Spring" /></entry><entry><title type="html">[Spring][Security] 스프링 시큐리티 테스트</title><link href="https://rere950303.github.io/spring/security/SecurityTest/" rel="alternate" type="text/html" title="[Spring][Security] 스프링 시큐리티 테스트" /><published>2022-02-05T00:00:00+09:00</published><updated>2022-02-05T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/security/SecurityTest</id><content type="html" xml:base="https://rere950303.github.io/spring/security/SecurityTest/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
-&lt;p&gt;MockUser를 이용하여 메소드 보안 단위 테스트 하는 방법과 과정을 기록하기 위한 포스팅&lt;/p&gt;
-
-&lt;h2 id=&quot;withsecuritycontext&quot;&gt;@WithSecurityContext&lt;/h2&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;METHOD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Retention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RetentionPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RUNTIME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Inherited&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Documented&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@WithSecurityContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;factory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMockCustomUserSecurityContextFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMockCustomUser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;yhw&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;studentId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;~&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;~&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;passwordConfirm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;~&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ROLE_USER&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;withmockcustomusersecuritycontextfactory&quot;&gt;WithMockCustomUserSecurityContextFactory&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WithMockCustomUser&lt;/code&gt;를 매개변수로 받아서 애노테이션의 값을 이용해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;를 반환하다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt;에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authentication&lt;/code&gt;이 담겨 있다. 스프링이 기본으로 제공하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@WithMockUser&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@WithAnonyMous&lt;/code&gt; 등도 이와 같은 방법으로 구성되어 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMockCustomUserSecurityContextFactory&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithSecurityContextFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WithMockCustomUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityContext&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createSecurityContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WithMockCustomUser&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;SecurityContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityContextHolder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createEmptyContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SignUpDTO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;studentId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;passwordConfirm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BCryptPasswordEncoder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-
-        &lt;span class=&quot;nc&quot;&gt;UserContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userContext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;UsernamePasswordAuthenticationToken&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;usernamePasswordAuthenticationToken&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UsernamePasswordAuthenticationToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleGrantedAuthority&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())));&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAuthentication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;usernamePasswordAuthenticationToken&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;사용법&quot;&gt;사용법&lt;/h2&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@WebMvcTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AuthController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Import&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ObjectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JwtAuthenticationEntryPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpEncodingAutoConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AuthControllerTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;MockMvc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mockMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;ObjectMapper&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@MockBean&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;AuthService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;authService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@MockBean&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;TokenProvider&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@MockBean&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JwtAccessDeniedHandler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jwtAccessDeniedHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;withdrawalFailTest&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@WithMockCustomUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;studentId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1234&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;withdrawalFailTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;mockMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api/authentication/withdrawal/{studentId}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;123&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andExpect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isForbidden&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andExpect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResolvedException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isInstanceOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AccessDeniedException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andDo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@DisplayName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;withdrawalSuccessTest&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@WithMockCustomUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;studentId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1234&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;withdrawalSuccessTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;mockMvc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api/authentication/withdrawal/{studentId}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1234&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andExpect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isOk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;andDo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>yhw</name></author><category term="Spring/Security" /><category term="Spring" /><category term="Security" /></entry><entry><title type="html">[AWS] EBS</title><link href="https://rere950303.github.io/aws/AWS_EBS/" rel="alternate" type="text/html" title="[AWS] EBS" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>https://rere950303.github.io/aws/AWS_EBS</id><content type="html" xml:base="https://rere950303.github.io/aws/AWS_EBS/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;/figure&gt;</content><author><name>yhw</name></author><category term="Spring/Security" /><category term="Security" /><category term="Spring" /></entry><entry><title type="html">[AWS] EBS</title><link href="https://rere950303.github.io/aws/AWS_EBS/" rel="alternate" type="text/html" title="[AWS] EBS" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>https://rere950303.github.io/aws/AWS_EBS</id><content type="html" xml:base="https://rere950303.github.io/aws/AWS_EBS/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;도커 이미지 빌드시 디스크 용량 부족으로 에러가 발생함에 따라 ec2 디스크 볼륨 사이즈를 증가시키는 과정을 기록하기 위한 포스팅&lt;/p&gt;
 
 &lt;h2 id=&quot;ebs-볼륨이란&quot;&gt;EBS 볼륨이란&lt;/h2&gt;
@@ -6561,74 +6568,4 @@ AOP를 적용하면 스프링은 대상 객체 대신에 프록시를 스프링 
 &lt;ul&gt;
   &lt;li&gt;배포는 크게 어려운 건 없는데 희한하게 시간이 많이 걸린다. 터미널 조작이나 명령이 아직 미숙한 부분이 있고 AWS도 많이 다뤄보지 않아서 그런 것 같다.&lt;/li&gt;
   &lt;li&gt;다음에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Nginx&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Kubernetes&lt;/code&gt;를 통해서 무중단 배포를 해볼 생각이다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Deploy" /><category term="Spring" /><category term="Deploy" /><category term="AWS" /><category term="Jenkins" /><category term="CI" /><category term="CD" /></entry><entry><title type="html">[Spring][Deploy] AWS에 Spring Boot App 배포하기</title><link href="https://rere950303.github.io/spring/deploy/SpringAwsDeploy/" rel="alternate" type="text/html" title="[Spring][Deploy] AWS에 Spring Boot App 배포하기" /><published>2022-01-17T00:00:00+09:00</published><updated>2022-01-17T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/deploy/SpringAwsDeploy</id><content type="html" xml:base="https://rere950303.github.io/spring/deploy/SpringAwsDeploy/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
-&lt;p&gt;기존에 만들었던 RESTful API 프로젝트를 AWS EC2에 배포하는 방법과 그 과정을 기록하는 포스팅&lt;/p&gt;
-
-&lt;h2 id=&quot;ec2--rds-생성&quot;&gt;EC2 &amp;amp; RDS 생성&lt;/h2&gt;
-&lt;p&gt;기존에 만들었던 AWS 계정을 탈퇴해서 새로운 이메일로 재가입을 했다. 인스턴스는 EC2 1개 RDS 1개 생성했다. 설정은 보안 그룹 말고는 크게 어렵지 않다. RDS의 기존 보안 그룹을 삭제하고 새로운 보안 그룹을 만든 후에 인바운드 규칙을 설정하고 생성한 RDS 인스턴스를 해당 보안 그룹에 넣는다. 인바운드 규칙은 EC2 보안 그룹과 로컬 PC 2개를 열어준다. 이때 주의할 점이 퍼블릭 액세스를 체크해야 한다. 아니면 인바운드 규칙을 설정해도 접근이 안된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;iam-생성&quot;&gt;IAM 생성&lt;/h2&gt;
-&lt;p&gt;보안상의 이유로 ROOT 계정 이용을 권장하지 않는다. 따라서 admin 권한을 갖는 그룹을 생성하고 사용자를 만든다.&lt;/p&gt;
-
-&lt;h2 id=&quot;ssh-접속&quot;&gt;SSH 접속&lt;/h2&gt;
-&lt;p&gt;인스턴스 생성 시 받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*.pem&lt;/code&gt;을 이용하여 인스턴스에 SSH 접속이 가능하다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd ~/.ssh&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt; 파일을 통해 매번 키를 입력해야 하는 수고로움을 덜 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;리눅스-서버-구축&quot;&gt;리눅스 서버 구축&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;먼저 자바 11을 설치해서 JVM 환경을 구축한다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yum -y install java-11-openjdk java-11-openjdk-devel&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo /usr/sbin/alternatives --config java&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git&lt;/code&gt;을 설치한 후에 프로젝트가 있는 remote Rep을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clone&lt;/code&gt;한다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yum install git&lt;/code&gt;) &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Personal access token&lt;/code&gt;이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SSH&lt;/code&gt; 인증 방법이 있는데 나는 전자를 선택했다. remote Rep를 Tracking할 로컬 브랜치를 하나 생성하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pull&lt;/code&gt;한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git config credential.helper cache&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git config credential.helper store&lt;/code&gt;로 인증 정보를 저장하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pull&lt;/code&gt;할 때 매번 인증해야 하는 수고로움을 덜 수 있다.&lt;/li&gt;
-  &lt;li&gt;배포 스크립트 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy.sh&lt;/code&gt;를 작성한다. build 시에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gradle-wrapper.jar&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gradle-wrapper.properties&lt;/code&gt;가 없으면 오류가 발생하는데 gradle build가 관련이 있는 것 같다. 그 이유에 대해서 공부를 해봐야 될 것 같다.&lt;/li&gt;
-  &lt;li&gt;이후 배포 스크립트에 권한을 부여한다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chmod 755 ./deploy.sh&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;REPOSITORY=/home/ec2-user/app/git/project-movierank-server&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;cd $REPOSITORY&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; Git Pull&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;git pull&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; 프로젝트 Build 시작&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;cd $REPOSITORY/movierank/&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;./gradlew clean build -x test&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; Build 파일 복사&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;cp ./build/libs/*.jar $REPOSITORY/&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; 현재 구동중인 애플리케이션 pid 확인&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;CURRENT_PID=$(pgrep -f movierank)&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;echo &quot;$CURRENT_PID&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;if [ -z $CURRENT_PID ]; then&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; 현재 구동중인 애플리케이션이 없으므로 종료하지 않습니다.&quot;&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;else&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; kill -15 $CURRENT_PID&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;kill -15 $CURRENT_PID&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;sleep &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;fi&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; 새 어플리케이션 배포&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;JAR_NAME=$(ls $REPOSITORY/ |grep &apos;movierank&apos; | tail -n 1)&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;echo &quot;&amp;gt; JAR Name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$JAR_NAME&quot;&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;nohup java -jar $REPOSITORY/$JAR_NAME --active.profile=&apos;dev1&apos; 환경변수&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;나는 포트를 8081로 열었으므로 EC2 인바운드 규칙 설정이 필요하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;고찰&quot;&gt;고찰&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;8081 포트로 서버를 실행했는데 접속이 잘 되었다. Swagger API 문서도 접속이 잘 되었다.&lt;/li&gt;
-  &lt;li&gt;RDS와 EC2 통신이 잘 수행되었고 DDL에 따라 테이블이 정상적으로 만들어지는 것을 볼 수 있었다.&lt;/li&gt;
-  &lt;li&gt;다음으로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prometheus&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grafana&lt;/code&gt;를 통한 모니터링과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jenkins&lt;/code&gt;를 이용한 CI-CD를 구현해 볼 계획이다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Deploy" /><category term="Spring" /><category term="Deploy" /><category term="AWS" /></entry></feed>
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/Deploy" /><category term="Spring" /><category term="Deploy" /><category term="AWS" /><category term="Jenkins" /><category term="CI" /><category term="CD" /></entry></feed>
