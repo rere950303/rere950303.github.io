@@ -269,6 +269,12 @@ var store = [{
         "url": "https://rere950303.github.io/kubernetes/Kubernetes/",
         "teaser": null
       },{
+        "title": "[Java] 리소스 반환",
+        "excerpt":"finalizer와 cleaner(자바 9)의 사용 주의 객체 소멸시 자원을 반환할 때 안정성, 성능, 보안, 즉시성 등을 고려할때 그 사용을 최소한으로 하고 안전망 역할이나 GC의 대상이 되지 않는 네이티브 피어의 자원 회수용으로만 사용해야 한다. try-with-resources AutoCloseable의 close 메소드를 구현하고 try-with-resources 구문을 이용하여 자동적으로 리소스가 반환되도록 하고 client에서의 실수를 방지하기 위한 안전망으로 cleaner를...","categories": ["Java"],
+        "tags": ["Java","finalizer","GC","cleaner","AutoCloseable"],
+        "url": "https://rere950303.github.io/java/cleaner/",
+        "teaser": null
+      },{
         "title": "[Java] 메모리 해제",
         "excerpt":"배열을 이용한 스택의 메모리 누수 방지 Object[] stack과 같은 객체 참조 배열을 이용한 스택의 경우 pop연산시 메모리 누수가 발생한다. 따라서 pop과 같은 연산을 할 때에는 배열 값에 null을 대입하여 GC의 대상이 되도록 해야 한다. (LRU) 캐시 메모리 누수 방지 강한 참조 변수를 키로 하는 HashMap의 경우 null이 되더라도 컬랙션 클래스에...","categories": ["Java"],
         "tags": ["Java","WeakHashMap","GC","Memory","Reference Object"],

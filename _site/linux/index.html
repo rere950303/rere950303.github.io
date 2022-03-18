@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Java] equals()&amp;hashCode() 오버라이딩 - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>Linux - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[Java] equals()&amp;hashCode() 오버라이딩">
-<meta property="og:url" content="https://rere950303.github.io/java/equals()&hashCode()/">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="https://rere950303.github.io/linux/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-09-18T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-02-12T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/java/equals()&hashCode()/">
+<link rel="canonical" href="https://rere950303.github.io/linux/">
 
 
 
@@ -186,17 +186,7 @@
         <span class="sep">/</span>
       
       
-        
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#java" itemprop="item"><span itemprop="name">Java</span></a>
-          <meta itemprop="position" content="2" />
-        </li>
-        <span class="sep">/</span>
-      
-    
-      
-      
-        <li class="current">[Java] equals()&hashCode() 오버라이딩</li>
+        <li class="current">Linux</li>
       
     
   </ol>
@@ -327,15 +317,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Java] equals()&amp;hashCode() 오버라이딩">
+    <meta itemprop="headline" content="Linux">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-09-18T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-02-12T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[Java] equals()&amp;hashCode() 오버라이딩
+          <h1 id="page-title" class="page__title" itemprop="headline">Linux
 </h1>
           
 
@@ -344,7 +334,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-09-18T00:00:00+09:00">September 18, 2021</time>
+        <time datetime="2022-02-12T00:00:00+09:00">February 12, 2022</time>
       </span>
     
 
@@ -369,25 +359,26 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다.<br />
-해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. 
-Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다.</p>
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#리눅스의-기초">리눅스의 기초</a></li>
+</ul>
 
-<hr />
-<ol>
-  <li>동일한 객체에 대해 여러 번 hashCode()를 호출해도 동일한 값을 반환해야 한다.</li>
-  <li>equals()가 참인 두 객체의 hashCode() 결과는 반드시 같아야 한다.</li>
-  <li>equals()가 거짓인 두 객체의 hashCode() 결과가 같을 수 있지만 HashMap등에서 검색 속도가 떨어져 성능이 저하될 수 있으므로 서로 다른 값을 반환하도록 적절히 오버라이딩 해야한다.</li>
-</ol>
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="들어가며">들어가며</h2>
 
-<hr />
+<h2 id="리눅스의-기초">리눅스의 기초</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>위와 같은 방식으로 오버라이딩 할 수 있다.</p>
 
         
       </section>
@@ -395,56 +386,10 @@ Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다.
       <footer class="page__meta">
         
         
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#equals" class="page__taxonomy-item" rel="tag">equals</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#hashcode" class="page__taxonomy-item" rel="tag">hashCode</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">Java</a>
-    
-    </span>
-  </p>
-
-
-
-
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
-    
-    </span>
-  </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-18T00:00:00+09:00">September 18, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-02-12T00:00:00+09:00">February 12, 2022</time></p>
 
 
       </footer>
@@ -454,22 +399,22 @@ Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다.
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BJava%5D+equals%28%29%26hashCode%28%29+%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9%20https%3A%2F%2Frere950303.github.io%2Fjava%2Fequals%28%29%26hashCode%28%29%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Linux%20https%3A%2F%2Frere950303.github.io%2Flinux%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fjava%2Fequals%28%29%26hashCode%28%29%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Flinux%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fjava%2Fequals%28%29%26hashCode%28%29%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Flinux%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/git/git(amend)/" class="pagination--pager" title="[Git] commit 수정하기
+      <a href="/kubernetes/Kubernetes2/" class="pagination--pager" title="[Kubernetes] 쿠버네티스
 ">이전</a>
     
     
-      <a href="/sql/on&where/" class="pagination--pager" title="[SQL] ON과 WHERE의 차이
+      <a href="/spring/security/CORS/" class="pagination--pager" title="[Spring][Security] CORS
 ">다음</a>
     
   </nav>
