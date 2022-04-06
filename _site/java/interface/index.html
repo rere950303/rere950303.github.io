@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[DB] Intro to Relational Model(2) - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Java] 추상 클래스보다는 인터페이스 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[DB] Intro to Relational Model(2)">
-<meta property="og:url" content="https://rere950303.github.io/db/RDB_2/">
+<meta property="og:title" content="[Java] 추상 클래스보다는 인터페이스">
+<meta property="og:url" content="https://rere950303.github.io/java/interface/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-11-22T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-03-25T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/db/RDB_2/">
+<link rel="canonical" href="https://rere950303.github.io/java/interface/">
 
 
 
@@ -188,7 +188,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#db" itemprop="item"><span itemprop="name">Db</span></a>
+          <a href="/categories/#java" itemprop="item"><span itemprop="name">Java</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -196,7 +196,7 @@
     
       
       
-        <li class="current">[DB] Intro to Relational Model(2)</li>
+        <li class="current">[Java] 추상 클래스보다는 인터페이스</li>
       
     
   </ol>
@@ -327,15 +327,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[DB] Intro to Relational Model(2)">
+    <meta itemprop="headline" content="[Java] 추상 클래스보다는 인터페이스">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-11-22T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-03-25T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[DB] Intro to Relational Model(2)
+          <h1 id="page-title" class="page__title" itemprop="headline">[Java] 추상 클래스보다는 인터페이스
 </h1>
           
 
@@ -344,7 +344,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-11-22T00:00:00+09:00">November 22, 2021</time>
+        <time datetime="2022-03-25T00:00:00+09:00">March 25, 2022</time>
       </span>
     
 
@@ -357,7 +357,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -369,23 +369,50 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="relational-query-languages">Relational Query Languages</h2>
-<ul>
-  <li>Relataional algebra - Procedural
-    <ul>
-      <li>여러가지 relation 연산을 제공: Relational operation(Selection, Projection, Natural join, Cartesian product), Set operation(Union, Intersection, Set difference)</li>
-    </ul>
-  </li>
-  <li>relational calculs - non procedural</li>
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#추상-클래스-상속의-문제점">추상 클래스 상속의 문제점</a></li>
+  <li><a href="#기능-확장">기능 확장</a></li>
+  <li><a href="#계층구조의-파괴">계층구조의 파괴</a></li>
+  <li><a href="#템플릿-메서드-패턴">템플릿 메서드 패턴</a></li>
+  <li><a href="#주의점">주의점</a></li>
 </ul>
 
-<ol>
-  <li>Selection: tuple를 선택(σ)</li>
-  <li>Projection: 속성을 선택(π) - relation은 집합 개념이므로 중복되는 tuple은 하나만 남고 삭제된다.</li>
-  <li>Cartesian product: 피연산자 두개의 relation을 곱해서 모든 pair를 가지는 relation을 생성한다. 일치하는 속성의 유무는 문제가 되지 않는다.</li>
-  <li>Union: relation이 가지는 tuple의 구조가 동일해야 연산이 가능하다. tuple의 합집합을 갖는 relation를 생성한다.</li>
-  <li>Natural Join: 공통되는 속성에서 같은 값을 가지는 두개의 tuple를 연결한 결과를 속성 합집합을 스키마로 갖는 relation의 tuple로 넣어주는 연산을 말한다.</li>
-</ol>
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="추상-클래스-상속의-문제점">추상 클래스 상속의 문제점</h2>
+<ul>
+  <li>상속용 클래스는 오버라이딩할 수 있는 메서드가 내부적으로 어떻게 이용되는지 문서로 남겨야 한다. 클래스를 상속한 클라이언트가 특정 메서드를 오버라이딩 한 경우 부모 클래스의 특정 메서드에서 해당 메서드를 내부 호출한다면 의도치 않은 오류가 생길 수 있기 때문이다.</li>
+  <li>부모 클래스의 설계가 바뀌면 자손 클래스에도 의도치 않은 영향을 미치게 되고 부모 클래스에 설계 결함이 있다면 그대로 자손 클래스에 승계된다.</li>
+  <li>효율성을 위해 자손 클래스에서 오버라이딩이 가능하도록 <code class="language-plaintext highlighter-rouge">protected</code> 메서드를 제공해야 할 수도 있다.</li>
+  <li>부모 클래스의 구현이 자손에게 공개되어 캡슐화 원칙이 깨지며 자손 클래스가 부모 클래스에게 강하게 결합하게 된다. 또한 클라이언트가 부모 클래스의 메서드에 직접 접근하여 자손 클래스의 불변식을 해칠 수도 있다.</li>
+  <li>자바는 다중 상속을 허용하지 않으며 여러 개 클래스의 공통된 분모를 추상화하기 위해서는 계층 구조가 매우 복잡해질 수 있다.</li>
+</ul>
+
+<h2 id="기능-확장">기능 확장</h2>
+<p>추상 클래스의 상속과 달리 기존 클래스에도 손쉽게 새로운 인터페이스를 구현해 넣을 수 있다. 또한 믹스인(mixin) 정의에 안성맞춤이다. 믹스인은 대상 타입의 주된 기능에 더하여 선택적 부가 기능을 혼합할 수 있다. 예를 들어 <code class="language-plaintext highlighter-rouge">Comparable</code> 인터페이스를 구현하게 되면 이를 구현한 클래스 인스턴스와 비교하여 순서를 정할 수 있다.</p>
+
+<h2 id="계층구조의-파괴">계층구조의 파괴</h2>
+<p>기능을 기준으로 정의된 인터페이스 또는 다른 인터페이스를 (다중) 상속한 인터페이스를 이용하면 복잡한 계층구조 없이 필요한 기능을 구현하고 타입 프레임워크를 만들 수 있다.</p>
+
+<h2 id="템플릿-메서드-패턴">템플릿 메서드 패턴</h2>
+<p>자바 8버전부터 인터페이스도 디폴트, <code class="language-plaintext highlighter-rouge">static</code> 메서드를 지원한다. 따라서 기반 메서드로 구현할 수 있는 모든 메서드를 디폴트 메서드로 제공한다. 기반 메서드는 인터페이스를 상속한 추상 골격 클래스에서 추상 메서드가 되며 기반 메서드나 디폴트 메서드로 구현하지 못한 메서드는 골격 클래스에서 구현한다.
+이를 통해 클라이언트는 추상 클래스를 상속하고 단 몇 개의 추상 메서드를 구현함으로써 기능 이용이 가능해진다.</p>
+
+<h2 id="주의점">주의점</h2>
+<ul>
+  <li>디폴트 메서드는 <code class="language-plaintext highlighter-rouge">@ImplSpec</code> 자바독 태그를 이용해서 문서화해야 한다.</li>
+  <li>부모 클래스와 인터페이스의 디폴트 메서드가 충돌할 경우 전자가 우위에 있으므로 <code class="language-plaintext highlighter-rouge">Object</code>의 <code class="language-plaintext highlighter-rouge">equal</code>, <code class="language-plaintext highlighter-rouge">clone</code>과 같은 메서드는 디폴트로 제공해서는 안 된다.</li>
+  <li>직접 만든 인터페이스가 아니라면 디폴트 메서드를 추가할 수 없다.</li>
+</ul>
 
         
       </section>
@@ -406,11 +433,15 @@
     
       
       
-      <a href="/tags/#db" class="page__taxonomy-item" rel="tag">DB</a><span class="sep">, </span>
+      <a href="/tags/#abstract-class" class="page__taxonomy-item" rel="tag">Abstract class</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#rdb" class="page__taxonomy-item" rel="tag">RDB</a>
+      <a href="/tags/#interface" class="page__taxonomy-item" rel="tag">Interface</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
@@ -431,14 +462,14 @@
     
       
       
-      <a href="/categories/#db" class="page__taxonomy-item" rel="tag">DB</a>
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-22T00:00:00+09:00">November 22, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-03-25T00:00:00+09:00">March 25, 2022</time></p>
 
 
       </footer>
@@ -448,22 +479,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BDB%5D+Intro+to+Relational+Model%282%29%20https%3A%2F%2Frere950303.github.io%2Fdb%2FRDB_2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJava%5D+%EC%B6%94%EC%83%81+%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B3%B4%EB%8B%A4%EB%8A%94+%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%20https%3A%2F%2Frere950303.github.io%2Fjava%2Finterface%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fdb%2FRDB_2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fjava%2Finterface%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fdb%2FRDB_2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fjava%2Finterface%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/db/RDB_1/" class="pagination--pager" title="[DB] Intro to Relational Model(1)
+      <a href="/java/comparable/" class="pagination--pager" title="[Java] Comparable 구현
 ">이전</a>
     
     
-      <a href="/aws/AWS/" class="pagination--pager" title="[AWS] AWS
+      <a href="/spring/docs/restdocs/" class="pagination--pager" title="[Spring][Docs] Spring REST Docs
 ">다음</a>
     
   </nav>
@@ -534,52 +565,6 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/interface/" rel="permalink">[Java] 추상 클래스보다는 인터페이스
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-03-25T00:00:00+09:00">March 25, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
         <a href="/java/comparable/" rel="permalink">[Java] Comparable 구현
 </a>
       
@@ -627,6 +612,52 @@
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/java/memoryfree/" rel="permalink">[Java] 메모리 해제
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-03-18T00:00:00+09:00">March 18, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/cleaner/" rel="permalink">[Java] 리소스 반환
 </a>
       
     </h2>

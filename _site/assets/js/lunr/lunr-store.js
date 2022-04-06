@@ -280,4 +280,22 @@ var store = [{
         "tags": ["Java","WeakHashMap","GC","Memory","Reference Object"],
         "url": "https://rere950303.github.io/java/memoryfree/",
         "teaser": null
+      },{
+        "title": "[Java] Comparable 구현",
+        "excerpt":"박싱된 기본 타입 클래스의 compare 이용하기 자바 7부터 박싱된 기본 타입 클래스에서 정적 메서드인 compare를 지원한다. @Override public int compareTo(PhoneNumber pn) { int result = Short.compare(areaCode, pn.areaCode); if (result == 0) { result = Short.compare(prefix, pn.prefix); if (result == 0) { result = Short.compare(lineNum, pn.lineNum); } } return result; }...","categories": ["Java"],
+        "tags": ["Java","Comparable","Comparator"],
+        "url": "https://rere950303.github.io/java/comparable/",
+        "teaser": null
+      },{
+        "title": "[Java] 추상 클래스보다는 인터페이스",
+        "excerpt":"추상 클래스 상속의 문제점 상속용 클래스는 오버라이딩할 수 있는 메서드가 내부적으로 어떻게 이용되는지 문서로 남겨야 한다. 클래스를 상속한 클라이언트가 특정 메서드를 오버라이딩 한 경우 부모 클래스의 특정 메서드에서 해당 메서드를 내부 호출한다면 의도치 않은 오류가 생길 수 있기 때문이다. 부모 클래스의 설계가 바뀌면 자손 클래스에도 의도치 않은 영향을 미치게 되고...","categories": ["Java"],
+        "tags": ["Java","Abstract class","Interface"],
+        "url": "https://rere950303.github.io/java/interface/",
+        "teaser": null
+      },{
+        "title": "[Spring][Docs] Spring REST Docs",
+        "excerpt":"들어가며 디프만 11기 백엔드 개발자로 합류하면서 API 문서화를 Spring REST Docs로 진행하게 되었다. 따라서 기존에 사용하던 Swagger와 더불어 그 사용법과 원리를 기록하기 위한 포스팅이다. 출처 Spring REST Docs 적용 및 최적화 하기, 공식문서, 우아한형제들 기술 블로그 Swagger vs REST Docs Swagger 테스트 기반이 아니므로 실제 API와 다를 수 있으며 접근...","categories": ["Spring/Docs"],
+        "tags": ["Spring","Junit","REST","Docs","Test","Asciidoc"],
+        "url": "https://rere950303.github.io/spring/docs/restdocs/",
+        "teaser": null
       }]
