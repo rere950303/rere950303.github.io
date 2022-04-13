@@ -298,4 +298,10 @@ var store = [{
         "tags": ["Spring","Junit","REST","Docs","Test","Asciidoc"],
         "url": "https://rere950303.github.io/spring/docs/restdocs/",
         "teaser": null
+      },{
+        "title": "[Spring][Security] 인터셉터, Oauth2, JWT를 통한 인증 구현",
+        "excerpt":"들어가며 이번 동아리 프로젝트에서 Security 모듈을 담당하게 되어서 코딩 과정을 기록하기 위한 포스팅 Workflow 다른 팀원분이 구현해 주신 Oatuh2를 통해서 유저 카카오톡의 id, email 등을 이용하여 JWT를 발급해 준다. 인터셉터를 통해서 헤더값의 JWT를 검증하고 유효하지 않은 경우 AuthenticationException을 발생시킨다. 클라이언트에서 refreshToken을 통해 /refresh 요청이 들어오면 refreshToken의 유효성 검증을 하고 유효한...","categories": ["Spring/Security"],
+        "tags": ["Spring","Security","Oauth2","JWT","Interceptor"],
+        "url": "https://rere950303.github.io/spring/security/interceptor/",
+        "teaser": null
       }]
