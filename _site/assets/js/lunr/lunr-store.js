@@ -304,4 +304,10 @@ var store = [{
         "tags": ["Spring","Security","Oauth2","JWT","Interceptor"],
         "url": "https://rere950303.github.io/spring/security/interceptor/",
         "teaser": null
+      },{
+        "title": "[Spring][Security] AOP를 통한 메소드 시큐리티 구현",
+        "excerpt":"들어가며 AOP를 통한 메소드 시큐리티를 구현하는 과정에서 느낀 점을 기록하기 위한 포스팅 Spring Security를 통한 구현 이번 동아리 프로젝트에서 인터셉터와 JWT를 통한 세션 리스 인증 방법을 구현했기 때문에 Spring Security 의존성을 받지 않았다. MethodSecurityInterceptor를 이용하기 위해 의존성을 주입받아봤는데 필터를 제거하는 방법을 모르겠다.. web.ingnoring()를 통해 필터를 거치지 않고 통과하게 할 수는...","categories": ["Spring/Security"],
+        "tags": ["Spring","Security","AOP"],
+        "url": "https://rere950303.github.io/spring/security/aop/",
+        "teaser": null
       }]
