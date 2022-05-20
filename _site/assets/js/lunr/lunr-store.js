@@ -310,4 +310,10 @@ var store = [{
         "tags": ["Spring","Security","AOP"],
         "url": "https://rere950303.github.io/spring/security/aop/",
         "teaser": null
+      },{
+        "title": "[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라",
+        "excerpt":"들어가며 많은 선택적 매개변수를 갖는 생성자에 대한 대응 방법을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 이펙티브 자바 완벽 공략 1부 강의를 바탕으로 쓰였음을 미리 밝힙니다. 생성자 체인닝 매개변수의 개수가 적은 생성자에서 매개변수의 개수가 큰 생성자를 점층적으로 호출하는 방식으로 설계할 수 있다. 이 경우 매개변수의 개수가 몇 개인지, 각...","categories": ["Java"],
+        "tags": ["Java","Constructor","Builder","Chaining"],
+        "url": "https://rere950303.github.io/java/builder/",
+        "teaser": null
       }]

@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[SQL] WHERE과 HAVING의 차이 - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[SQL] WHERE과 HAVING의 차이">
-<meta property="og:url" content="https://rere950303.github.io/sql/where&having/">
+<meta property="og:title" content="[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라">
+<meta property="og:url" content="https://rere950303.github.io/java/builder/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-09-19T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-05-20T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/sql/where&having/">
+<link rel="canonical" href="https://rere950303.github.io/java/builder/">
 
 
 
@@ -188,7 +188,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#sql" itemprop="item"><span itemprop="name">Sql</span></a>
+          <a href="/categories/#java" itemprop="item"><span itemprop="name">Java</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -196,7 +196,7 @@
     
       
       
-        <li class="current">[SQL] WHERE과 HAVING의 차이</li>
+        <li class="current">[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라</li>
       
     
   </ol>
@@ -327,15 +327,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[SQL] WHERE과 HAVING의 차이">
+    <meta itemprop="headline" content="[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-09-19T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-05-20T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[SQL] WHERE과 HAVING의 차이
+          <h1 id="page-title" class="page__title" itemprop="headline">[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라
 </h1>
           
 
@@ -344,7 +344,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-09-19T00:00:00+09:00">September 19, 2021</time>
+        <time datetime="2022-05-20T00:00:00+09:00">May 20, 2022</time>
       </span>
     
 
@@ -357,7 +357,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -374,8 +374,11 @@
               
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
-  <li><a href="#where">WHERE</a></li>
-  <li><a href="#having">HAVING</a></li>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#생성자-체인닝">생성자 체인닝</a></li>
+  <li><a href="#자바빈즈-패턴">자바빈즈 패턴</a></li>
+  <li><a href="#빌더-패턴">빌더 패턴</a></li>
+  <li><a href="#계층적-빌더">계층적 빌더</a></li>
 </ul>
 
               
@@ -385,28 +388,38 @@
             </nav>
           </aside>
         
-        <h2 id="where">WHERE</h2>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
-<span class="k">FROM</span> <span class="err">테이블</span>
-<span class="k">WHERE</span> <span class="o">~</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
-</code></pre></div></div>
+        <h2 id="들어가며">들어가며</h2>
+<p>많은 선택적 매개변수를 갖는 생성자에 대한 대응 방법을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 <a href="https://www.inflearn.com/course/이펙티브-자바-1/dashboard">이펙티브 자바 완벽 공략 1부</a> 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
 
-<p>FROM의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다.</p>
+<h2 id="생성자-체인닝">생성자 체인닝</h2>
+<ul>
+  <li>매개변수의 개수가 적은 생성자에서 매개변수의 개수가 큰 생성자를 점층적으로 호출하는 방식으로 설계할 수 있다.</li>
+  <li>이 경우 매개변수의 개수가 몇 개인지, 각 매개변수가 의미하는 값의 의미가 무엇인지 헷갈릴 수 있다.</li>
+  <li>매개변수의 순서나 개수가 다르더라도 컴파일 시점에 알아채기 어렵다.</li>
+</ul>
 
-<h2 id="having">HAVING</h2>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
-<span class="k">FROM</span> <span class="err">테이블</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
-<span class="k">HAVING</span> <span class="o">~</span>
-</code></pre></div></div>
+<h2 id="자바빈즈-패턴">자바빈즈 패턴</h2>
+<ul>
+  <li>기본 생성자와 setter를 통해 필드 초기화를 할 수 있다.</li>
+  <li>객체 생성 시 초기화되어야 하는 필드값을 명시 및 강제하기 어렵다.</li>
+  <li>많은 setter 메소드를 호출해야 하고 불변 객체를 만들기 어렵다. 따라서 런타임 도중 원치 않는 값의 변경이 발생할 수 있다.</li>
+</ul>
 
-<p>FROM의 테이블에서 먼저 그룹화를 진행하고 HAVING 절에서 <code class="language-plaintext highlighter-rouge">count(*) &gt; 1</code> 과 같은 조건으로 그룹 걸러낸다.</p>
+<h2 id="빌더-패턴">빌더 패턴</h2>
+<ul>
+  <li>복잡한 객체를 만드는 프로세스를 독립적으로 분리</li>
+  <li>필수 매개변수를 갖는 클래스의 빌더를 활용할 수 있다.</li>
+  <li>빌더의 필수 매개변수를 통해 초기화되어야 하는 필드값을 강제할 수 있고 <code class="language-plaintext highlighter-rouge">return this</code> 구문을 통해 체이닝 형식으로 매개변수를 설정하여 객체를 생성할 수 있다.</li>
+  <li>이 방법은 코드의 가독성이 조금은 떨어지고 코드 양이 많아진다.</li>
+  <li>lombok의 <code class="language-plaintext highlighter-rouge">@Builder</code> 애노테이션을 클래스 단위 또는 생성자 단위에 사용하게 되면 손쉽게 빌더 구현이 가능한다. 하지만 필수 매개변수를 강제할 수 없는 단점이 존재한다.</li>
+</ul>
 
-<hr />
-
-<p>즉 요약하면 WHERE은 그룹화 전에 HAVING은 그룹화 후에 실행된다.</p>
-
+<h2 id="계층적-빌더">계층적 빌더</h2>
+<ul>
+  <li>공통되는 빌더 메소드를 추상형 빌더 클래스로 단일화할 수 있다.</li>
+  <li>부모 클래스에서의 빌더는 재귀적 제네릭 타입과 <code class="language-plaintext highlighter-rouge">self()</code> 구문을 통해 자손 클래스의 빌더를 반환할 수 있도록 한다.</li>
+  <li>위와 같은 방법으로 자손 클래스에만 존재하는 빌더의 메소드를 형변환 없이 간단히 사용할 수 있게 된다.</li>
+</ul>
 
         
       </section>
@@ -427,19 +440,19 @@
     
       
       
-      <a href="/tags/#group-by" class="page__taxonomy-item" rel="tag">GROUP BY</a><span class="sep">, </span>
+      <a href="/tags/#builder" class="page__taxonomy-item" rel="tag">Builder</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#having" class="page__taxonomy-item" rel="tag">HAVING</a><span class="sep">, </span>
+      <a href="/tags/#chaining" class="page__taxonomy-item" rel="tag">Chaining</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#sql" class="page__taxonomy-item" rel="tag">SQL</a><span class="sep">, </span>
+      <a href="/tags/#constructor" class="page__taxonomy-item" rel="tag">Constructor</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#where" class="page__taxonomy-item" rel="tag">WHERE</a>
+      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
@@ -460,14 +473,14 @@
     
       
       
-      <a href="/categories/#sql" class="page__taxonomy-item" rel="tag">SQL</a>
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-19T00:00:00+09:00">September 19, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-05-20T00:00:00+09:00">May 20, 2022</time></p>
 
 
       </footer>
@@ -477,23 +490,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSQL%5D+WHERE%EA%B3%BC+HAVING%EC%9D%98+%EC%B0%A8%EC%9D%B4%20https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJava%5D+%EC%83%9D%EC%84%B1%EC%9E%90%EC%9D%98+%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98%EA%B0%80+%EB%A7%8E%EC%9D%84+%EB%95%8C%EB%8A%94+%EB%B9%8C%EB%8D%94%EB%A5%BC+%EA%B3%A0%EB%A0%A4%ED%95%B4%EB%9D%BC%20https%3A%2F%2Frere950303.github.io%2Fjava%2Fbuilder%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fjava%2Fbuilder%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fjava%2Fbuilder%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/sql/on&where/" class="pagination--pager" title="[SQL] ON과 WHERE의 차이
+      <a href="/spring/security/aop/" class="pagination--pager" title="[Spring][Security] AOP를 통한 메소드 시큐리티 구현
 ">이전</a>
     
     
-      <a href="/spring/core/SpringCore_basic/" class="pagination--pager" title="[Spring][Core] 스프링 핵심 원리-기본편
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -507,52 +519,6 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/builder/" rel="permalink">[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-05-20T00:00:00+09:00">May 20, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -587,7 +553,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          2 분 소요
+          1 분 소요
         
       </span>
     
@@ -679,7 +645,53 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          4 분 소요
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/interface/" rel="permalink">[Java] 추상 클래스보다는 인터페이스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-03-25T00:00:00+09:00">March 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
         
       </span>
     
