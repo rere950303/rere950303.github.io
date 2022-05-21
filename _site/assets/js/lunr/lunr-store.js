@@ -316,4 +316,10 @@ var store = [{
         "tags": ["Java","Constructor","Builder","Chaining"],
         "url": "https://rere950303.github.io/java/builder/",
         "teaser": null
+      },{
+        "title": "[Java] 생성자나 열거 타입으로 싱글턴임을 보증하라",
+        "excerpt":"들어가며 싱글턴임을 보장하기 위한 방법을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 이펙티브 자바 완벽 공략 1부 강의를 바탕으로 쓰였음을 미리 밝힙니다. 생성자를 사용하는 방법 1 private 생성자를 생성해서 외부에서의 객체 생성을 막는다. pulic static final 객체 하나를 생성함으로써 싱글턴임을 보장 받는다. 인터페이스의 다형성과 목객체를 활용하여 테스트의 비용을 절감한다....","categories": ["Java"],
+        "tags": ["Java","Singleton","Enum","Constructor"],
+        "url": "https://rere950303.github.io/java/singleton/",
+        "teaser": null
       }]

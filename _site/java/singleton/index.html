@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[SQL] WHERE과 HAVING의 차이 - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Java] 생성자나 열거 타입으로 싱글턴임을 보증하라 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[SQL] WHERE과 HAVING의 차이">
-<meta property="og:url" content="https://rere950303.github.io/sql/where&having/">
+<meta property="og:title" content="[Java] 생성자나 열거 타입으로 싱글턴임을 보증하라">
+<meta property="og:url" content="https://rere950303.github.io/java/singleton/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-09-19T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-05-21T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/sql/where&having/">
+<link rel="canonical" href="https://rere950303.github.io/java/singleton/">
 
 
 
@@ -188,7 +188,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#sql" itemprop="item"><span itemprop="name">Sql</span></a>
+          <a href="/categories/#java" itemprop="item"><span itemprop="name">Java</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -196,7 +196,7 @@
     
       
       
-        <li class="current">[SQL] WHERE과 HAVING의 차이</li>
+        <li class="current">[Java] 생성자나 열거 타입으로 싱글턴임을 보증하라</li>
       
     
   </ol>
@@ -327,15 +327,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[SQL] WHERE과 HAVING의 차이">
+    <meta itemprop="headline" content="[Java] 생성자나 열거 타입으로 싱글턴임을 보증하라">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-09-19T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-05-21T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[SQL] WHERE과 HAVING의 차이
+          <h1 id="page-title" class="page__title" itemprop="headline">[Java] 생성자나 열거 타입으로 싱글턴임을 보증하라
 </h1>
           
 
@@ -344,7 +344,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-09-19T00:00:00+09:00">September 19, 2021</time>
+        <time datetime="2022-05-21T00:00:00+09:00">May 21, 2022</time>
       </span>
     
 
@@ -357,7 +357,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -374,8 +374,13 @@
               
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
-  <li><a href="#where">WHERE</a></li>
-  <li><a href="#having">HAVING</a></li>
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#생성자를-사용하는-방법-1">생성자를 사용하는 방법 1</a></li>
+  <li><a href="#생성자를-사용하는-방법-2">생성자를 사용하는 방법 2</a></li>
+  <li><a href="#생성자를-사용하는-방법-3">생성자를 사용하는 방법 3</a></li>
+  <li><a href="#열거-타입">열거 타입</a></li>
+  <li><a href="#메서드-참조">메서드 참조</a></li>
+  <li><a href="#객체-직렬화">객체 직렬화</a></li>
 </ul>
 
               
@@ -385,27 +390,69 @@
             </nav>
           </aside>
         
-        <h2 id="where">WHERE</h2>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
-<span class="k">FROM</span> <span class="err">테이블</span>
-<span class="k">WHERE</span> <span class="o">~</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
+        <h2 id="들어가며">들어가며</h2>
+<p>싱글턴임을 보장하기 위한 방법을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 <a href="https://www.inflearn.com/course/이펙티브-자바-1/dashboard">이펙티브 자바 완벽 공략 1부</a> 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
+
+<h2 id="생성자를-사용하는-방법-1">생성자를 사용하는 방법 1</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">private</code> 생성자를 생성해서 외부에서의 객체 생성을 막는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">pulic static final</code> 객체 하나를 생성함으로써 싱글턴임을 보장 받는다.</li>
+  <li>인터페이스의 다형성과 목객체를 활용하여 테스트의 비용을 절감한다.</li>
+</ul>
+
+<h2 id="생성자를-사용하는-방법-2">생성자를 사용하는 방법 2</h2>
+<ul>
+  <li>리플렉션 기법을 통해 싱글턴을 깰 수 있다.</li>
+  <li>이를 방지하기 위해서는 <code class="language-plaintext highlighter-rouge">private static boolean</code> 변수를 선언해서 처음 초기화 이후부터의 2번째 생성자 호출을 막을 수 있다.</li>
+  <li>역직렬화의 경우도 싱글턴을 깰 수 있다. 이 경우 <code class="language-plaintext highlighter-rouge">private Object readResolve()</code> 메서드 정의해서 싱글턴 객체를 반환하게 함으로써 막을 수 있다.</li>
+</ul>
+
+<h2 id="생성자를-사용하는-방법-3">생성자를 사용하는 방법 3</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">private static final</code> 객체 생성 후 정적 팩토리 메서드 통해 구현할 수도 있다.</li>
+  <li>위와 같은 방법으로 클라이언트 코드에 영향 없이 싱글턴이 아니게 변경할 수도 있다.</li>
+  <li>제네릭 싱글톤 정적 팩토리를 통해 싱글톤의 형변환이 가능하다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MetaElvis</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">MetaElvis</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="no">INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MetaElvis</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;();</span>
+
+    <span class="kd">private</span> <span class="nf">MetaElvis</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
+
+    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"unchecked"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="nc">MetaElvis</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="nc">MetaElvis</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;)</span> <span class="no">INSTANCE</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">(</span><span class="no">T</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
+<ul>
+  <li>정적 팩토리를 람다 또는 메서드 참조를 통해 함수형 인터페이스인 <code class="language-plaintext highlighter-rouge">Suppler</code>로 공급할 수 있다.</li>
+</ul>
 
-<p>FROM의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다.</p>
+<h2 id="열거-타입">열거 타입</h2>
+<ul>
+  <li>열거 타입으로도 싱글턴을 보장받을 수 있고 리플렉션과 역질렬화에 안전하다.</li>
+  <li>Enum도 인터페이스 구현이 가능하므로 테스트 시 인터페이스를 구현한 목객체를 통해 비용 절감이 가능하다.</li>
+</ul>
 
-<h2 id="having">HAVING</h2>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">~</span>
-<span class="k">FROM</span> <span class="err">테이블</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="o">~</span>
-<span class="k">HAVING</span> <span class="o">~</span>
-</code></pre></div></div>
+<h2 id="메서드-참조">메서드 참조</h2>
+<ul>
+  <li>함수형 인터페이스를 구현한 익명 클래스 객체를 람다식으로 구현할 수 있다.</li>
+  <li>람다식 안에서 하나의 메서드만 사용되는 경우 클래스 이름 또는 참조 변수를 활용한 메서드 참조로 변경할 수 있다.</li>
+  <li>또한 매개변수를 하나만 받는 인스턴스 메서드의 경우 예외적으로 클래스 이름으로 참조가 가능하다.</li>
+</ul>
 
-<p>FROM의 테이블에서 먼저 그룹화를 진행하고 HAVING 절에서 <code class="language-plaintext highlighter-rouge">count(*) &gt; 1</code> 과 같은 조건으로 그룹 걸러낸다.</p>
-
-<hr />
-
-<p>즉 요약하면 WHERE은 그룹화 전에 HAVING은 그룹화 후에 실행된다.</p>
+<h2 id="객체-직렬화">객체 직렬화</h2>
+<ul>
+  <li>바이트 스트림으로 변환한 객체를 파일로 저장하거나 네트워트를 통해 다른 시스템으로 전송할 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">transient</code>, <code class="language-plaintext highlighter-rouge">static</code> 키워드가 붙은 필드는 직렬화되지 않는다.</li>
+  <li>직렬화 후에 클래스 변경 시 serialVersionUID의 변경으로 역직렬화 되지 않는다. 이경우 필드로 serialVersionUID 값을 설정하게 되면 클래스가 변경되어도 역직렬화 가능하다.</li>
+</ul>
 
 
         
@@ -427,19 +474,19 @@
     
       
       
-      <a href="/tags/#group-by" class="page__taxonomy-item" rel="tag">GROUP BY</a><span class="sep">, </span>
+      <a href="/tags/#constructor" class="page__taxonomy-item" rel="tag">Constructor</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#having" class="page__taxonomy-item" rel="tag">HAVING</a><span class="sep">, </span>
+      <a href="/tags/#enum" class="page__taxonomy-item" rel="tag">Enum</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#sql" class="page__taxonomy-item" rel="tag">SQL</a><span class="sep">, </span>
+      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">Java</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#where" class="page__taxonomy-item" rel="tag">WHERE</a>
+      <a href="/tags/#singleton" class="page__taxonomy-item" rel="tag">Singleton</a>
     
     </span>
   </p>
@@ -460,14 +507,14 @@
     
       
       
-      <a href="/categories/#sql" class="page__taxonomy-item" rel="tag">SQL</a>
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-19T00:00:00+09:00">September 19, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-05-21T00:00:00+09:00">May 21, 2022</time></p>
 
 
       </footer>
@@ -477,23 +524,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSQL%5D+WHERE%EA%B3%BC+HAVING%EC%9D%98+%EC%B0%A8%EC%9D%B4%20https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJava%5D+%EC%83%9D%EC%84%B1%EC%9E%90%EB%82%98+%EC%97%B4%EA%B1%B0+%ED%83%80%EC%9E%85%EC%9C%BC%EB%A1%9C+%EC%8B%B1%EA%B8%80%ED%84%B4%EC%9E%84%EC%9D%84+%EB%B3%B4%EC%A6%9D%ED%95%98%EB%9D%BC%20https%3A%2F%2Frere950303.github.io%2Fjava%2Fsingleton%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fjava%2Fsingleton%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fsql%2Fwhere%26having%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fjava%2Fsingleton%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/sql/on&where/" class="pagination--pager" title="[SQL] ON과 WHERE의 차이
+      <a href="/java/builder/" class="pagination--pager" title="[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라
 ">이전</a>
     
     
-      <a href="/spring/core/SpringCore_basic/" class="pagination--pager" title="[Spring][Core] 스프링 핵심 원리-기본편
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -507,52 +553,6 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/singleton/" rel="permalink">[Java] 생성자나 열거 타입으로 싱글턴임을 보증하라
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-05-21T00:00:00+09:00">May 21, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -633,7 +633,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          2 분 소요
+          1 분 소요
         
       </span>
     
@@ -680,6 +680,52 @@
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/docs/restdocs/" rel="permalink">[Spring][Docs] Spring REST Docs
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-04-06T00:00:00+09:00">April 6, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
         
       </span>
     
