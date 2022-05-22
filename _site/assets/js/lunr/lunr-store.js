@@ -322,4 +322,10 @@ var store = [{
         "tags": ["Java","Singleton","Enum","Constructor"],
         "url": "https://rere950303.github.io/java/singleton/",
         "teaser": null
+      },{
+        "title": "[Java] 인스턴스화를 막으려거든 private 생성자를 사용하라",
+        "excerpt":"들어가며 유틸성 클래스의 인스턴스화를 막는 방법을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 이펙티브 자바 완벽 공략 1부 강의를 바탕으로 쓰였음을 미리 밝힙니다. 추상 클래스 abstract 키워드를 통해 인스턴스화를 막을 수 있다. 하지만 상속을 통해 자손 클래스의 객체를 생성하는 것은 막을 수 없다. private 생성자 private 생성자를 통해 인스턴스화를...","categories": ["Java"],
+        "tags": ["Java","Utility","Constructor"],
+        "url": "https://rere950303.github.io/java/utility/",
+        "teaser": null
       }]
