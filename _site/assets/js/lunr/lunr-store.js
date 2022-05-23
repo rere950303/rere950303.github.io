@@ -328,4 +328,10 @@ var store = [{
         "tags": ["Java","Utility","Constructor"],
         "url": "https://rere950303.github.io/java/utility/",
         "teaser": null
+      },{
+        "title": "[Java] 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라",
+        "excerpt":"들어가며 의존 객체 주입을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 이펙티브 자바 완벽 공략 1부 강의를 바탕으로 쓰였음을 미리 밝힙니다. 의존 객체 주입 클래스 내부에서 직접 자원을 명시하는 경우 코드의 재사용성이 떨어지고 테스트의 비용이 증가한다. 인터페이스의 다형성과 생성자를 통한 의존 객체 주입을 이용하면 코드의 재사용성이 증가한다. 인터페이스를 구현한...","categories": ["Java"],
+        "tags": ["Java","DI","FactoryMethod"],
+        "url": "https://rere950303.github.io/java/di/",
+        "teaser": null
       }]

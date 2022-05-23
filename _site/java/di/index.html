@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring][RESTful] RESTful Web Services 개발 - YHW Blog</title>
+<!-- begin _includes/seo.html --><title>[Java] 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라 - YHW Blog</title>
 <meta name="description" content="새로운 배움을 기록하고 공유합니다">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="YHW Blog">
-<meta property="og:title" content="[Spring][RESTful] RESTful Web Services 개발">
-<meta property="og:url" content="https://rere950303.github.io/spring/restful/RESTful/">
+<meta property="og:title" content="[Java] 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라">
+<meta property="og:url" content="https://rere950303.github.io/java/di/">
 
 
   <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-12-23T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-05-23T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://rere950303.github.io/spring/restful/RESTful/">
+<link rel="canonical" href="https://rere950303.github.io/java/di/">
 
 
 
@@ -188,7 +188,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
+          <a href="/categories/#java" itemprop="item"><span itemprop="name">Java</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -196,17 +196,7 @@
     
       
       
-        
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/categories/#restful" itemprop="item"><span itemprop="name">Restful</span></a>
-          <meta itemprop="position" content="3" />
-        </li>
-        <span class="sep">/</span>
-      
-    
-      
-      
-        <li class="current">[Spring][RESTful] RESTful Web Services 개발</li>
+        <li class="current">[Java] 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라</li>
       
     
   </ol>
@@ -337,15 +327,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring][RESTful] RESTful Web Services 개발">
+    <meta itemprop="headline" content="[Java] 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2021-12-23T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2022-05-23T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][RESTful] RESTful Web Services 개발
+          <h1 id="page-title" class="page__title" itemprop="headline">[Java] 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라
 </h1>
           
 
@@ -354,7 +344,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-12-23T00:00:00+09:00">December 23, 2021</time>
+        <time datetime="2022-05-23T00:00:00+09:00">May 23, 2022</time>
       </span>
     
 
@@ -385,7 +375,9 @@
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
                 <ul class="toc__menu">
   <li><a href="#들어가며">들어가며</a></li>
-  <li><a href="#web-service-개발-방법-soap과-rest의-이해">Web Service 개발 방법 SOAP과 REST의 이해</a></li>
+  <li><a href="#의존-객체-주입">의존 객체 주입</a></li>
+  <li><a href="#팩토리-메서드">팩토리 메서드</a></li>
+  <li><a href="#스프링-ioc">스프링 IoC</a></li>
 </ul>
 
               
@@ -396,12 +388,31 @@
           </aside>
         
         <h2 id="들어가며">들어가며</h2>
-<p>해당 게시글은 인프런 Dowon Lee 강사님의 [Spring Boot를 이용한 RESTful Web Services 개발][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
+<p>의존 객체 주입을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 <a href="https://www.inflearn.com/course/이펙티브-자바-1/dashboard">이펙티브 자바 완벽 공략 1부</a> 강의를 바탕으로 쓰였음을 미리 밝힙니다.</p>
 
-<h2 id="web-service-개발-방법-soap과-rest의-이해">Web Service 개발 방법 SOAP과 REST의 이해</h2>
+<h2 id="의존-객체-주입">의존 객체 주입</h2>
 <ul>
-  <li>Web Service: 네트워크 상에서 서로 다른 종류의 컴퓨터들 간에 상효작용하기 위한 소프트웨어 시스템</li>
+  <li>클래스 내부에서 직접 자원을 명시하는 경우 코드의 재사용성이 떨어지고 테스트의 비용이 증가한다.</li>
+  <li>인터페이스의 다형성과 생성자를 통한 의존 객체 주입을 이용하면 코드의 재사용성이 증가한다.</li>
+  <li>인터페이스를 구현한 다양한 객체의 주입으로 유연성이 증가하고 목객체를 통한 테스트가 가능해진다.</li>
 </ul>
+
+<h2 id="팩토리-메서드">팩토리 메서드</h2>
+<ul>
+  <li>단순히 구현 객체를 주입 받는 것이 아니라 한번 더 추상화해서 객체를 반환하는 팩토리 메서드를 주입받을수 있다.</li>
+  <li>팩토리 메서드를 인터페이스로 추상화 한다면 클라이언트는 코드의 변경 없이 팩토리 내지 팩토리에서 반환하는 객체를 확장할 수 있다.</li>
+  <li>또한 팩토리 메서드 패턴을 통해 객체 생성이 복잡한 경우 이를 단일화 할 수 있고 다양한 객체를 반환할 수 있다는 장점도 있다.</li>
+  <li>함수형 인터페이스인 <code class="language-plaintext highlighter-rouge">Supplier</code>를 구현한 람다식 또는 메서드 참조를 생성자의 매개변수로 넘겨줄 수도 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">SpellChecker</span> <span class="n">spellChecker1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpellChecker</span><span class="o">(</span><span class="nl">MockDictionary:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+<span class="nc">SpellChecker</span> <span class="n">spellChecker2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpellChecker</span><span class="o">(</span><span class="nl">DictionaryFactory:</span><span class="o">:</span><span class="n">get</span><span class="o">);</span>
+</code></pre></div></div>
+<ul>
+  <li>또한 한정적 와일드카드를 이용하여 제네릭 형변환을 통한 매개변수의 다형성을 이용할 수도 있다. 하지만 어차피 인터페이스를 구현한 객체의 경우 인터페이스의 다형성을 이용하면 된다.</li>
+</ul>
+
+<h2 id="스프링-ioc">스프링 IoC</h2>
 
         
       </section>
@@ -422,15 +433,15 @@
     
       
       
-      <a href="/tags/#microservices" class="page__taxonomy-item" rel="tag">Microservices</a><span class="sep">, </span>
+      <a href="/tags/#di" class="page__taxonomy-item" rel="tag">DI</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#restful" class="page__taxonomy-item" rel="tag">RESTful</a><span class="sep">, </span>
+      <a href="/tags/#factorymethod" class="page__taxonomy-item" rel="tag">FactoryMethod</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#spring" class="page__taxonomy-item" rel="tag">Spring</a>
+      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
@@ -451,14 +462,14 @@
     
       
       
-      <a href="/categories/#spring-restful" class="page__taxonomy-item" rel="tag">Spring/RESTful</a>
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-12-23T00:00:00+09:00">December 23, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-05-23T00:00:00+09:00">May 23, 2022</time></p>
 
 
       </footer>
@@ -468,23 +479,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BRESTful%5D+RESTful+Web+Services+%EA%B0%9C%EB%B0%9C%20https%3A%2F%2Frere950303.github.io%2Fspring%2Frestful%2FRESTful%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJava%5D+%EC%9E%90%EC%9B%90%EC%9D%84+%EC%A7%81%EC%A0%91+%EB%AA%85%EC%8B%9C%ED%95%98%EC%A7%80+%EB%A7%90%EA%B3%A0+%EC%9D%98%EC%A1%B4+%EA%B0%9D%EC%B2%B4+%EC%A3%BC%EC%9E%85%EC%9D%84+%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC%20https%3A%2F%2Frere950303.github.io%2Fjava%2Fdi%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Frestful%2FRESTful%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fjava%2Fdi%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Frestful%2FRESTful%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fjava%2Fdi%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/log/Log/" class="pagination--pager" title="[Spring][Log] 로깅
+      <a href="/java/utility/" class="pagination--pager" title="[Java] 인스턴스화를 막으려거든 private 생성자를 사용하라
 ">이전</a>
     
     
-      <a href="/spring/batch/batch/" class="pagination--pager" title="[Spring][Batch] Spring Batch
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -498,52 +508,6 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/di/" rel="permalink">[Java] 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-05-23T00:00:00+09:00">May 23, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          최대 1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -658,6 +622,52 @@
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2022-05-20T00:00:00+09:00">May 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/security/aop/" rel="permalink">[Spring][Security] AOP를 통한 메소드 시큐리티 구현
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-04-17T00:00:00+09:00">April 17, 2022</time>
       </span>
     
 
