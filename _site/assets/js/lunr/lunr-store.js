@@ -334,4 +334,10 @@ var store = [{
         "tags": ["Java","DI","FactoryMethod"],
         "url": "https://rere950303.github.io/java/di/",
         "teaser": null
+      },{
+        "title": "[Java] 불필요한 객체 생성을 피하라",
+        "excerpt":"들어가며 불필요한 객체 생성을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 이펙티브 자바 완벽 공략 1부 강의를 바탕으로 쓰였음을 미리 밝힙니다. 기존 객체의 재활용 String 클래스의 경우 new 연산은 객체를 생성할 때마다 새로운 메모리가 할당되지만 문자열 리터럴은 여러 개의 참조 변수가 같은 객체를 가리킨다. class 파일이 클래스 로더에 의해...","categories": ["Java"],
+        "tags": ["Java","String","Literal","JVM","Regularexpression"],
+        "url": "https://rere950303.github.io/java/newoperaiton/",
+        "teaser": null
       }]
