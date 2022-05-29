@@ -275,12 +275,6 @@ var store = [{
         "url": "https://rere950303.github.io/java/cleaner/",
         "teaser": null
       },{
-        "title": "[Java] 메모리 해제",
-        "excerpt":"배열을 이용한 스택의 메모리 누수 방지 Object[] stack과 같은 객체 참조 배열을 이용한 스택의 경우 pop연산시 메모리 누수가 발생한다. 따라서 pop과 같은 연산을 할 때에는 배열 값에 null을 대입하여 GC의 대상이 되도록 해야 한다. (LRU) 캐시 메모리 누수 방지 강한 참조 변수를 키로 하는 HashMap의 경우 null이 되더라도 컬랙션 클래스에...","categories": ["Java"],
-        "tags": ["Java","WeakHashMap","GC","Memory","Reference Object"],
-        "url": "https://rere950303.github.io/java/memoryfree/",
-        "teaser": null
-      },{
         "title": "[Java] Comparable 구현",
         "excerpt":"박싱된 기본 타입 클래스의 compare 이용하기 자바 7부터 박싱된 기본 타입 클래스에서 정적 메서드인 compare를 지원한다. @Override public int compareTo(PhoneNumber pn) { int result = Short.compare(areaCode, pn.areaCode); if (result == 0) { result = Short.compare(prefix, pn.prefix); if (result == 0) { result = Short.compare(lineNum, pn.lineNum); } } return result; }...","categories": ["Java"],
         "tags": ["Java","Comparable","Comparator"],
@@ -339,5 +333,11 @@ var store = [{
         "excerpt":"들어가며 불필요한 객체 생성을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 이펙티브 자바 완벽 공략 1부 강의를 바탕으로 쓰였음을 미리 밝힙니다. 기존 객체의 재활용 String 클래스의 경우 new 연산은 객체를 생성할 때마다 새로운 메모리가 할당되지만 문자열 리터럴은 여러 개의 참조 변수가 같은 객체를 가리킨다. class 파일이 클래스 로더에 의해...","categories": ["Java"],
         "tags": ["Java","String","Literal","JVM","Regularexpression"],
         "url": "https://rere950303.github.io/java/newoperaiton/",
+        "teaser": null
+      },{
+        "title": "[Java] 다 쓴 객체를 해제하라",
+        "excerpt":"들어가며 메모리 누수를 방지하는 방법을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 이펙티브 자바 완벽 공략 1부 강의를 바탕으로 쓰였음을 미리 밝힙니다. 메모리 누수 방지 배열 또는 리스트와 같은 컬렉션 클래스의 경우 메모리 누수를 조심해야 한다. null 처리를 통해 gc의 대상이 되게 함으로써 메모리 누수를 방지할 수 있다. WeakHashMap과...","categories": ["Java"],
+        "tags": ["Java","Memory","gc","WeakHashMap","Reference"],
+        "url": "https://rere950303.github.io/java/clear/",
         "teaser": null
       }]
