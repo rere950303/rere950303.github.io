@@ -340,4 +340,16 @@ var store = [{
         "tags": ["Java","Memory","gc","WeakHashMap","Reference"],
         "url": "https://rere950303.github.io/java/clear/",
         "teaser": null
+      },{
+        "title": "[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 [스프링 DB 1편 - 데이터 접근 핵심 원리][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다. JDBC 이해 JDBC 등장 이유 데이터베이스를 다른 종류의 데이터베이스로 변경하면 애플리케이션 서버에 개발된 데이터베이스 사용 코드도 함께 변경해야 한다. 개발자가 각각의 데이터베이스마다 커넥션 연결, SQL 전달, 그리고 그 결과를 응답 받는...","categories": ["Spring/DB"],
+        "tags": ["Spring","JDBC","JPA","ORM"],
+        "url": "https://rere950303.github.io/spring/db/springdb/",
+        "teaser": null
+      },{
+        "title": "[Daily] 웍스 모바일 인턴 합격 후기",
+        "excerpt":"들어가며 웍스 모바일 하계 채용형 인턴십에 지원하여 합격하는 과정을 기록하기 위한 포스팅 개발 공부 과정 본전공인 화공생명공학과를 졸업하고 개발 공부를 하고 싶어서 컴퓨터학과를 복수 전공을 하게 되었다. 남들보다는 조금 늦은 감이 있어서 마음이 조급하기도 했고 초조하기도 했다. 컴퓨터에 ㅋ 자도 모르던 상태였는데…. 진짜 수많은 삽질을 했던 것 같다. 컴퓨터 개론...","categories": ["Daily"],
+        "tags": ["Daily","Java","worksmobile"],
+        "url": "https://rere950303.github.io/daily/intern/",
+        "teaser": null
       }]
