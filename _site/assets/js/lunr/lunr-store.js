@@ -358,4 +358,10 @@ var store = [{
         "tags": ["Spring","JDBC","JPA","ORM"],
         "url": "https://rere950303.github.io/spring/db/springdb/",
         "teaser": null
+      },{
+        "title": "[CleanCode] 어댑터 패턴",
+        "excerpt":"들어가며 외부 라이브러리 활용시 사용하는 어댑터 패턴을 알아보기 위한 포스팅 어댑터 패턴 외부 라이브러리를 사용하는 클라이언트 입장에서는 외부 라이브러리를 뜯어보고 사용방법을 익혀야 한다. 만약 라이브러리가 교체되거나 구현체가 바뀐다면 클라이언트는 사용법을 처음부터 다시 공부해야 한다. 어댑터 패턴을 이용하면 위와 같은 문제를 해결할 수 있다. 라이브러리를 이용하는 클라이언트에게는 추상화된 인터페이스를 제공하고 해당...","categories": ["CleanCode"],
+        "tags": ["Adapter","CleanCode"],
+        "url": "https://rere950303.github.io/cleancode/adapter/",
+        "teaser": null
       }]
