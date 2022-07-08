@@ -8,43 +8,43 @@ var store = [{
         "title": "[Git] commit 수정하기",
         "excerpt":"push 하지 않은 경우 가장 최근 commit 수정 git commit --amend 과거 commit 또는 한 번에 여러개의 commit 수정 git log 로 수정하고자 하는 commit 확인 git rebase -i HEAD~n 수정하고자 하는 commit의 개수를 입력 수정하고 싶은 커밋 옆에 pick 을 reword 로 수정 :wq 로 커밋 리스트를 저장하고 순서대로...","categories": ["Git"],
         "tags": ["Git","amend","rebase"],
-        "url": "https://rere950303.github.io/git/git(amend)/",
+        "url": "https://rere950303.github.io/git/gitamend/",
         "teaser": null
       },{
         "title": "[Java] equals()&hashCode() 오버라이딩",
         "excerpt":"해싱이란 해시함수를 이용해서 데이터를 해시테이블에 링크드리스트 형태로 저장하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려 주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다. Objects클래스의 hashCode() 메소드가 해시함수를 구현하고 있다. 동일한 객체에 대해 여러 번 hashCode()를 호출해도 동일한 값을 반환해야 한다. equals()가 참인 두 객체의 hashCode()...","categories": ["Java"],
         "tags": ["Java","equals","hashCode"],
-        "url": "https://rere950303.github.io/java/equals()&hashCode()/",
+        "url": "https://rere950303.github.io/java/equalshashCode/",
         "teaser": null
       },{
         "title": "[SQL] ON과 WHERE의 차이",
         "excerpt":"ON ON을 사용하면 조인 대상을 필터링 하고 조인할 수 있다. SELECT d.deptno, sum(e.sal) FROM dept d LEFT OUTER JOIN emp e ON d.deptno = e.deptno AND e.sal &gt; 2000 GROUP BY d.deptno ORDER BY d.deptno 급여가 2000이 넘는 직원만 dept 테이블과 조인하여 SELECT절을 실행시킬 수 있다. ON은 조인조건이므로 부서에 직원이...","categories": ["SQL"],
         "tags": ["SQL","ON","WHERE"],
-        "url": "https://rere950303.github.io/sql/on&where/",
+        "url": "https://rere950303.github.io/sql/onwhere/",
         "teaser": null
       },{
         "title": "[SQL] WHERE과 HAVING의 차이",
         "excerpt":"WHERE SELECT ~ FROM 테이블 WHERE ~ GROUP BY ~ FROM의 테이블에서 GROUP BY 전에 테이블의 행을 걸러내고 그룹화를 진행한다. HAVING SELECT ~ FROM 테이블 GROUP BY ~ HAVING ~ FROM의 테이블에서 먼저 그룹화를 진행하고 HAVING 절에서 count(*) &gt; 1 과 같은 조건으로 그룹 걸러낸다. 즉 요약하면 WHERE은 그룹화 전에...","categories": ["SQL"],
         "tags": ["SQL","HAVING","WHERE","GROUP BY"],
-        "url": "https://rere950303.github.io/sql/where&having/",
+        "url": "https://rere950303.github.io/sql/wherehaving/",
         "teaser": null
       },{
         "title": "[Spring][Core] 스프링 핵심 원리-기본편",
         "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 핵심 원리 - 기본편 강의를 바탕으로 쓰였음을 미리 밝힙니다. 객체 지향 설계와 스프링 좋은 객체 지향 프로그래밍 스프링은 객체 지향 언어가 가진 강력한 특징을 살려내는 프레임워크 객체 지향 언어의 특징: 캡슐화, 다형성, 추상화, 상속 역할과 구현의 분리 -&gt; 인터페이스와 구현클래스 다형성으로 인터페이스를 구현한...","categories": ["Spring/Core"],
         "tags": ["Object-oriented","Spring"],
-        "url": "https://rere950303.github.io/spring/core/SpringCore_basic/",
+        "url": "https://rere950303.github.io/spring/core/SpringCorebasic/",
         "teaser": null
       },{
         "title": "[Spring][MVC] SpringMVC-part1",
         "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술 강의를 바탕으로 쓰였음을 미리 밝힙니다. 웹 애플리케이션 이해 웹 서버, 웹 애플리케이션 서버 HTTP 기반 서버간에 데이터를 주고 받을 때도 대부분 HTTP 사용 웹 서버: HTTP 기반으로 동작(NGINX, APACHE) 웹 애플리케이션 서버(WAS): HTTP 기반으로 동작,...","categories": ["Spring/MVC"],
         "tags": ["MVC","Spring"],
-        "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part1/",
+        "url": "https://rere950303.github.io/spring/mvc/SpringMVCpart1/",
         "teaser": null
       },{
         "title": "[WEB] 절대경로와 상대경로",
         "excerpt":"절대경로     html과 같은 웹 페이지나 파일이 가지고 있는 고유한 경로를 말한다.   ex: /Users/hyungwook/Desktop/AbsoulutePath.txt   상대경로     현재 위치를 기준으로 정한 파일 등의 경로를 말한다.            / : 루트 경로       ./ : 현재 경로       ../ :  상단 폴더의 경로           ex: /Users/hyungwook/Desktop/ 위치에서            / : /Users/       ./ : /Users/hyungwook/Desktop/       ../ : /Users/hyungwook/           ","categories": ["WEB"],
         "tags": ["WEB"],
-        "url": "https://rere950303.github.io/web/Relative-path&-Absolute-path/",
+        "url": "https://rere950303.github.io/web/path/",
         "teaser": null
       },{
         "title": "[Spring][Thymeleaf] Thymeleaf 네츄럴 템플릿",
@@ -56,13 +56,13 @@ var store = [{
         "title": "[Java] Optional 클래스의 filter()메서드",
         "excerpt":"public Optional&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate) { Objects.requireNonNull(predicate); if (!isPresent()) { return this; } else { return predicate.test(value) ? this : empty(); } } public static&lt;T&gt; Optional&lt;T&gt; empty() { @SuppressWarnings(\"unchecked\") Optional&lt;T&gt; t = (Optional&lt;T&gt;) EMPTY; return t; } private static final Optional&lt;?&gt; EMPTY = new Optional&lt;&gt;(); private Optional() { this.value...","categories": ["Java"],
         "tags": ["Java","Optional","filter"],
-        "url": "https://rere950303.github.io/java/Optional-T-.filter()/",
+        "url": "https://rere950303.github.io/java/Optionalfilter/",
         "teaser": null
       },{
         "title": "[Spring][MVC] SpringMVC-part2",
         "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 MVC 2편 - 백엔드 웹 개발 활용 기술 강의를 바탕으로 쓰였음을 미리 밝힙니다. 메시지, 국제화 메시지, 국제화 소개 메시지: 여러 화면에 보이는 상품명, 가격, 수량 등 label 에 있는 단어를 변경하려면 다음 화면들을 다 찾아가면서 모두 변경해야 한다. 화면 수가 적으면 문제가 되지...","categories": ["Spring/MVC"],
         "tags": ["MVC","Spring"],
-        "url": "https://rere950303.github.io/spring/mvc/SpringMVC-part2/",
+        "url": "https://rere950303.github.io/spring/mvc/SpringMVCpart2/",
         "teaser": null
       },{
         "title": "[Spring][JPA] 자바 ORM 표준 JPA",
@@ -86,7 +86,7 @@ var store = [{
         "title": "[Spring][JPA] 변경 감지와 병합",
         "excerpt":"준영속 엔티티 식별자(ID)를 가지고 있는 엔티티로써 영속성 컨텍스트가 더는 관리하지 않는것을 말한다. 따라서 해당 엔티티의 속성을 변경해도 변경감지를 통한 update쿼리가 생성되지 않는다. 준영속 엔티티를 수정하는 2가지 방법 변경 감지 기능 사용 영속성 컨텍스트에서 영속상태인 엔티티를 조회한 후에 트랜잭션 안에서 속성을 변경하고 변경 감지 기능을 통해 트랜잭션 시점의 플러쉬로 데이터베이스 UPDATE...","categories": ["Spring/JPA"],
         "tags": ["JPA","Spring","save","merge"],
-        "url": "https://rere950303.github.io/spring/jpa/save&merge/",
+        "url": "https://rere950303.github.io/spring/jpa/savemerge/",
         "teaser": null
       },{
         "title": "[Spring][JPA][Querydsl] Querydsl",
@@ -110,7 +110,7 @@ var store = [{
         "title": "[Docker][Spring] Spring WAS 도커로 띄우기",
         "excerpt":"ubuntu + jdk 이미지 Dockerfile Spring의 .jar 파일을 실행하는 이미지 생성 한글 사진 파일 업로드를 위한 locale 설정 FROM ubuntu RUN apt-get update RUN apt-get install -y openjdk-11-jdk RUN apt-get -y install locales RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen &amp;&amp; \\ locale-gen ENV LANG en_US.UTF-8 ENV LANGUAGE en_US:en ENV LC_ALL...","categories": ["Docker/Spring"],
         "tags": ["Docker","Spring"],
-        "url": "https://rere950303.github.io/docker/spring/Spring&Docker/",
+        "url": "https://rere950303.github.io/docker/spring/SpringDocker/",
         "teaser": null
       },{
         "title": "[Javascript] Javascript",
@@ -134,19 +134,19 @@ var store = [{
         "title": "[DB] DB Components, Architecture",
         "excerpt":"Storage Management 저장 장치 관리자는 DB에 저장된 data와 App / query 사이에 인퍼테이스 역할을 하는 프로그램 모듈이다. file manager와 통신하면서 효율적인 data storing, retrieving, updating 역할을 한다. Query Processing parser / translator 이용하여 관계대수표현으로 변환한다. 통계자료를 통해 쿼리를 최적화하고 data를 얻기 위한 절차적 계획을 세운다. 해당 계획을 실행하고 테이블 형태의...","categories": ["DB"],
         "tags": ["DB"],
-        "url": "https://rere950303.github.io/db/DB_Components/",
+        "url": "https://rere950303.github.io/db/DBComponents/",
         "teaser": null
       },{
         "title": "[DB] Intro to Relational Model(1)",
         "excerpt":"Relational Database Structure RDB relation: table(tuple 집합) tuple: a row of table(속성들의 집합을 의미하며 n개의 속성으로 이루어진 tuple를 n-tuple라고 부른다.) attribute: table의 열을 의미하낟. RDB는 tables의 집합으로 이루어진다. Attribute Types 각 속성별로 가질수 있는 값들의 집합을 domain이라고 부른다. 속성들의 값은 atomic 해야하고 단 하나의 값만 가질수 있다. 모든 domain은 null값을...","categories": ["DB"],
         "tags": ["DB","RDB"],
-        "url": "https://rere950303.github.io/db/RDB_1/",
+        "url": "https://rere950303.github.io/db/RDB1/",
         "teaser": null
       },{
         "title": "[DB] Intro to Relational Model(2)",
         "excerpt":"Relational Query Languages Relataional algebra - Procedural 여러가지 relation 연산을 제공: Relational operation(Selection, Projection, Natural join, Cartesian product), Set operation(Union, Intersection, Set difference) relational calculs - non procedural Selection: tuple를 선택(σ) Projection: 속성을 선택(π) - relation은 집합 개념이므로 중복되는 tuple은 하나만 남고 삭제된다. Cartesian product: 피연산자 두개의 relation을 곱해서 모든...","categories": ["DB"],
         "tags": ["DB","RDB"],
-        "url": "https://rere950303.github.io/db/RDB_2/",
+        "url": "https://rere950303.github.io/db/RDB2/",
         "teaser": null
       },{
         "title": "[AWS] AWS",
@@ -170,7 +170,7 @@ var store = [{
         "title": "[Docker] 도커와 CI환경",
         "excerpt":"들어가며 해당 게시글은 인프런 John Ahn 강사님의 따라하며 배우는 도커와 CI환경 강의를 바탕으로 쓰였음을 미리 밝힙니다. 도커 기본 도커를 쓰는 이유 Installer를 통한 설치의 경우 갖고 있는 서버, 패키지 버전, 운영체제 등에 따라 프로그램을 설치하는 과정중에 많은 에러들이 발생한다. 또한 그 과정이 복합하다. 도커를 이용하여 예상치 못한 에러를 줄일 수...","categories": ["Docker"],
         "tags": ["Docker","CI"],
-        "url": "https://rere950303.github.io/docker/Docker&CI/",
+        "url": "https://rere950303.github.io/docker/DockerCI/",
         "teaser": null
       },{
         "title": "[Spring][Log] 로깅",
@@ -224,13 +224,13 @@ var store = [{
         "title": "[Spring][Core] 스프링 핵심 원리-고급편",
         "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 핵심 원리 - 고급편 강의를 바탕으로 쓰였음을 미리 밝힙니다. 예제 만들기 로그 추적기 - 요구사항 분석 모든 PUBLIC 메서드의 호출과 응답 정보를 로그로 출력 애플리케이션의 흐름을 변경하면 안됨(로그를 남긴다고 해서 비즈니스 로직의 동작에 영향을 주면 안됨) 메서드 호출에 걸린 시간 정상 흐름과 예외...","categories": ["Spring/Core"],
         "tags": ["Object-oriented","Spring","AOP","Aspect","Pointcut","Advice","Proxy"],
-        "url": "https://rere950303.github.io/spring/core/SpringCore_advanced/",
+        "url": "https://rere950303.github.io/spring/core/SpringCoreadvanced/",
         "teaser": null
       },{
         "title": "[AWS] EBS",
         "excerpt":"들어가며 도커 이미지 빌드시 디스크 용량 부족으로 에러가 발생함에 따라 ec2 디스크 볼륨 사이즈를 증가시키는 과정을 기록하기 위한 포스팅 EBS 볼륨이란 Elastic Block Store의 약자로써 ec2에서 디스크처럼 사용할 수 있는 블록 수준 스토리지를 말한다. AWS에서는 볼륨이라고 말하는데 EBS로 생성한 디스크 하나하나 저장 단위를 말한다. 볼륨을 하나 생성하여 ec2와 연결하면 하나의...","categories": ["AWS"],
         "tags": ["AWS","EBS"],
-        "url": "https://rere950303.github.io/aws/AWS_EBS/",
+        "url": "https://rere950303.github.io/aws/awsebs/",
         "teaser": null
       },{
         "title": "[Spring][Security] 스프링 시큐리티 테스트",
@@ -341,15 +341,21 @@ var store = [{
         "url": "https://rere950303.github.io/java/clear/",
         "teaser": null
       },{
-        "title": "[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리",
-        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 [스프링 DB 1편 - 데이터 접근 핵심 원리][1] 강의를 바탕으로 쓰였음을 미리 밝힙니다. JDBC 이해 JDBC 등장 이유 데이터베이스를 다른 종류의 데이터베이스로 변경하면 애플리케이션 서버에 개발된 데이터베이스 사용 코드도 함께 변경해야 한다. 개발자가 각각의 데이터베이스마다 커넥션 연결, SQL 전달, 그리고 그 결과를 응답 받는...","categories": ["Spring/DB"],
-        "tags": ["Spring","JDBC","JPA","ORM"],
-        "url": "https://rere950303.github.io/spring/db/springdb/",
-        "teaser": null
-      },{
         "title": "[Daily] 웍스 모바일 인턴 합격 후기",
         "excerpt":"들어가며 웍스 모바일 하계 채용형 인턴십에 지원하여 합격하는 과정을 기록하기 위한 포스팅 개발 공부 과정 본전공인 화공생명공학과를 졸업하고 개발 공부를 하고 싶어서 컴퓨터학과를 복수 전공을 하게 되었다. 남들보다는 조금 늦은 감이 있어서 마음이 조급하기도 했고 초조하기도 했다. 컴퓨터에 ㅋ 자도 모르던 상태였는데…. 진짜 수많은 삽질을 했던 것 같다. 컴퓨터 개론...","categories": ["Daily"],
         "tags": ["Daily","Java","worksmobile"],
         "url": "https://rere950303.github.io/daily/intern/",
+        "teaser": null
+      },{
+        "title": "[CleanCode] 오류 처리",
+        "excerpt":"들어가며 우아하게 예외를 처리하기 위한 방법을 알아보기 위한 포스팅 Checked 예외를 Unchecked 예외로 변경 Checked 예외의 경우 try ~ catch 또는 throws로 예외 처리가 강요된다. 이 과정에서 모든 중간단계 메서드에서 예외를 던져야 하며 OCP에 위배된다. 따라서 Checked 예외를 던지는 메서드의 경우 예외를 감싸는 클래스의 생성 후 RuntimeException을 상속한 Unchecked 예외로...","categories": ["CleanCode"],
+        "tags": ["Exception","CleanCode","Checked","Unchecked"],
+        "url": "https://rere950303.github.io/cleancode/exception/",
+        "teaser": null
+      },{
+        "title": "[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리",
+        "excerpt":"들어가며 해당 게시글은 인프런 김영한 강사님의 스프링 DB 1편 - 데이터 접근 핵심 원리 강의를 바탕으로 쓰였음을 미리 밝힙니다. JDBC 이해 JDBC 등장 이유 데이터베이스를 다른 종류의 데이터베이스로 변경하면 애플리케이션 서버에 개발된 데이터베이스 사용 코드도 함께 변경해야 한다. 개발자가 각각의 데이터베이스마다 커넥션 연결, SQL 전달, 그리고 그 결과를 응답 받는...","categories": ["Spring/DB"],
+        "tags": ["Spring","JDBC","JPA","ORM"],
+        "url": "https://rere950303.github.io/spring/db/springdb/",
         "teaser": null
       }]
