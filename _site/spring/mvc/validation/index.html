@@ -1,0 +1,878 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Spring][MVC] Validation - YHW Blog</title>
+<meta name="description" content="새로운 배움을 기록하고 공유합니다">
+
+
+  <meta name="author" content="yhw">
+  
+  <meta property="article:author" content="yhw">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="YHW Blog">
+<meta property="og:title" content="[Spring][MVC] Validation">
+<meta property="og:url" content="https://rere950303.github.io/spring/mvc/validation/">
+
+
+  <meta property="og:description" content="새로운 배움을 기록하고 공유합니다">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-07-09T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://rere950303.github.io/spring/mvc/validation/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "yhw",
+      "url": "https://rere950303.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="YHW Blog Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          YHW Blog
+          <span class="site-subtitle">새로운 배움을 기록하고 공유합니다</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://rere950303.github.io/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#spring" itemprop="item"><span itemprop="name">Spring</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#mvc" itemprop="item"><span itemprop="name">Mvc</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Spring][MVC] Validation</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio/photo.jpg" alt="yhw" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">yhw</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>어제와 다른 오늘, 오늘 같은 내일</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:yhwjjang1995@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Spring][MVC] Validation">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2022-07-09T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Spring][MVC] Validation
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-09T00:00:00+09:00">July 9, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+                <ul class="toc__menu">
+  <li><a href="#들어가며">들어가며</a></li>
+  <li><a href="#고민하게-된-계기">고민하게 된 계기</a></li>
+  <li><a href="#bean-validation-커스텀하기">Bean Validation 커스텀하기</a></li>
+  <li><a href="#검증기-추가하기">검증기 추가하기</a></li>
+  <li><a href="#고찰">고찰</a></li>
+</ul>
+
+              
+            </nav>
+            <nav class="toc-custom">
+              
+            </nav>
+          </aside>
+        
+        <h2 id="들어가며">들어가며</h2>
+<p>검증기를 추가하는 과정을 기록하기 위한 포스팅</p>
+
+<h2 id="고민하게-된-계기">고민하게 된 계기</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">spring-boot-starter-validation</code> 의존성을 추가하게 되면 <code class="language-plaintext highlighter-rouge">LocalValidatorFactoryBean</code>(<code class="language-plaintext highlighter-rouge">SpringValidatorAdapter</code> 상속)을 <code class="language-plaintext highlighter-rouge">DataBinder</code>의 <code class="language-plaintext highlighter-rouge">validators</code>에 추가해 준다.</li>
+  <li><code class="language-plaintext highlighter-rouge">RequestMappingHandlerAdapter</code>에서 <code class="language-plaintext highlighter-rouge">RequestResponseBodyMethodProcessor</code>(<code class="language-plaintext highlighter-rouge">HandlerMethodArgumentResolver</code> 구현체)를 이용하여 핸들러의 매개변수를 만들고 <code class="language-plaintext highlighter-rouge">DataBinder</code>에 등록된 검증기로 검증을 시도하게 된다.</li>
+  <li>단순한 검증의 경우 <code class="language-plaintext highlighter-rouge">javax.validation.ConstraintValidator</code>를 구현하여 자신만의 검증 어노테이션을 만들 수 있다.</li>
+  <li>하지만 애플리케이션 로직이 필요한 검증의 경우 어떻게 설계하면 좋을지에 대해 고민을 하게 되었다.</li>
+</ul>
+
+<h2 id="bean-validation-커스텀하기">Bean Validation 커스텀하기</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="o">(</span><span class="nc">ElementType</span><span class="o">.</span><span class="na">FIELD</span><span class="o">)</span>
+<span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Constraint</span><span class="o">(</span><span class="n">validatedBy</span> <span class="o">=</span> <span class="nc">PhoneValidator</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@Documented</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Phone</span> <span class="o">{</span>
+
+    <span class="nc">String</span> <span class="nf">message</span><span class="o">()</span> <span class="k">default</span> <span class="s">"invalid Phone"</span><span class="o">;</span>
+
+    <span class="nc">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">groups</span><span class="o">()</span> <span class="k">default</span> <span class="o">{};</span>
+
+    <span class="nc">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">Payload</span><span class="o">&gt;[]</span> <span class="nf">payload</span><span class="o">()</span> <span class="k">default</span> <span class="o">{};</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PhoneValidator</span> <span class="kd">implements</span> <span class="nc">ConstraintValidator</span><span class="o">&lt;</span><span class="nc">Phone</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Pattern</span> <span class="n">pattern</span> <span class="o">=</span> <span class="nc">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">"\\d{3}-\\d{4}-\\d{4}"</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">(</span><span class="nc">String</span> <span class="n">value</span><span class="o">,</span> <span class="nc">ConstraintValidatorContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">pattern</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">value</span><span class="o">).</span><span class="na">matches</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SpringValidatorAdapter</code> 어댑터는 <code class="language-plaintext highlighter-rouge">javax.validation.Validator</code>를 구현한 <code class="language-plaintext highlighter-rouge">org.hibernate.validator.internal.engine.ValidatorImpl</code>를 가지고 있다.</li>
+  <li>즉 Bean Validation 표준 인터페이스를 구현한 하이버네이트에 대한 어댑터 역할을 해준다.</li>
+  <li>여기서 어노테이션을 통한 검증이 이루어진다.</li>
+</ul>
+
+<h2 id="검증기-추가하기">검증기 추가하기</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PasswordValidator</span> <span class="kd">implements</span> <span class="nc">Validator</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">supports</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">ValidationDTO</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">isAssignableFrom</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="nc">Object</span> <span class="n">target</span><span class="o">,</span> <span class="nc">Errors</span> <span class="n">errors</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ValidationDTO</span> <span class="n">dto</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ValidationDTO</span><span class="o">)</span> <span class="n">target</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(!</span><span class="n">dto</span><span class="o">.</span><span class="na">getPassword</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">dto</span><span class="o">.</span><span class="na">getPasswordConfirm</span><span class="o">()))</span> <span class="o">{</span>
+            <span class="n">errors</span><span class="o">.</span><span class="na">reject</span><span class="o">(</span><span class="s">"passwordMatch"</span><span class="o">,</span> <span class="s">"비밀번호가 일치하지 않습니다."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ValidationController</span> <span class="o">{</span>
+
+    <span class="o">...</span>
+
+    <span class="nd">@InitBinder</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="nc">WebDataBinder</span> <span class="n">dataBinder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dataBinder</span><span class="o">.</span><span class="na">addValidators</span><span class="o">(</span><span class="k">new</span> <span class="nc">PasswordValidator</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>위와 같이 설계하면 <code class="language-plaintext highlighter-rouge">HandlerMethodArgumentResolver</code>에서 <code class="language-plaintext highlighter-rouge">WebDataBinderFactory</code>는 총 2개의 검증기를 포함한 <code class="language-plaintext highlighter-rouge">WebDataBinder</code>를 생성하게 된다.</li>
+  <li>이후 해당 <code class="language-plaintext highlighter-rouge">WebDataBinder</code>로 <code class="language-plaintext highlighter-rouge">for</code>문을 돌면서 여러 개의 검증기를 통해 검증을 진행한다.</li>
+  <li>만약 검증에서 오류가 발생하면 <code class="language-plaintext highlighter-rouge">MethodArgumentNotValidException</code> 예외를 던진다.</li>
+  <li>핵심 로직은 다음과 같다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// RequestResponseBodyMethodProcessor (HandlerMethodArgumentResolver 구현체)</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="nc">Object</span> <span class="nf">resolveArgument</span><span class="o">(</span><span class="nc">MethodParameter</span> <span class="n">parameter</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="nc">ModelAndViewContainer</span> <span class="n">mavContainer</span><span class="o">,</span>
+                              <span class="nc">NativeWebRequest</span> <span class="n">webRequest</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="nc">WebDataBinderFactory</span> <span class="n">binderFactory</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+
+    <span class="n">parameter</span> <span class="o">=</span> <span class="n">parameter</span><span class="o">.</span><span class="na">nestedIfOptional</span><span class="o">();</span>
+    <span class="nc">Object</span> <span class="n">arg</span> <span class="o">=</span> <span class="n">readWithMessageConverters</span><span class="o">(</span><span class="n">webRequest</span><span class="o">,</span> <span class="n">parameter</span><span class="o">,</span> <span class="n">parameter</span><span class="o">.</span><span class="na">getNestedGenericParameterType</span><span class="o">());</span>
+    <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="nc">Conventions</span><span class="o">.</span><span class="na">getVariableNameForParameter</span><span class="o">(</span><span class="n">parameter</span><span class="o">);</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">binderFactory</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">WebDataBinder</span> <span class="n">binder</span> <span class="o">=</span> <span class="n">binderFactory</span><span class="o">.</span><span class="na">createBinder</span><span class="o">(</span><span class="n">webRequest</span><span class="o">,</span> <span class="n">arg</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">arg</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">validateIfApplicable</span><span class="o">(</span><span class="n">binder</span><span class="o">,</span> <span class="n">parameter</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">binder</span><span class="o">.</span><span class="na">getBindingResult</span><span class="o">().</span><span class="na">hasErrors</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">isBindExceptionRequired</span><span class="o">(</span><span class="n">binder</span><span class="o">,</span> <span class="n">parameter</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">MethodArgumentNotValidException</span><span class="o">(</span><span class="n">parameter</span><span class="o">,</span> <span class="n">binder</span><span class="o">.</span><span class="na">getBindingResult</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span><span class="n">ㄴ</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">mavContainer</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mavContainer</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="nc">BindingResult</span><span class="o">.</span><span class="na">MODEL_KEY_PREFIX</span> <span class="o">+</span> <span class="n">name</span><span class="o">,</span> <span class="n">binder</span><span class="o">.</span><span class="na">getBindingResult</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="nf">adaptArgumentIfNecessary</span><span class="o">(</span><span class="n">arg</span><span class="o">,</span> <span class="n">parameter</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="고찰">고찰</h2>
+<ul>
+  <li>위와 같은 방법으로 간단한 검증의 경우 Bean Validation을, 로직이 필요한 경우 새로운 검증기 등록으로 해결할 수 있다.</li>
+  <li>이를 통해 서비스 계층에는 순수한 서비스 로직만 설계가 가능해지고 본격적인 서비스 로직이 시작되기 전, 즉 핸들러 호출전에 필요한 모든 검증을 진행함으로써 순수한 서비스 계층 유지가 가능해진다.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#validation" class="page__taxonomy-item" rel="tag">Validation</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#spring-mvc" class="page__taxonomy-item" rel="tag">Spring/MVC</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-07-09T00:00:00+09:00">July 9, 2022</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D%5BMVC%5D+Validation%20https%3A%2F%2Frere950303.github.io%2Fspring%2Fmvc%2Fvalidation%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frere950303.github.io%2Fspring%2Fmvc%2Fvalidation%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frere950303.github.io%2Fspring%2Fmvc%2Fvalidation%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/cleancode/adapter/" class="pagination--pager" title="[CleanCode] 어댑터 패턴
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">연관글</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cleancode/adapter/" rel="permalink">[CleanCode] 어댑터 패턴
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-08T00:00:00+09:00">July 8, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/db/springdb/" rel="permalink">[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-08T00:00:00+09:00">July 8, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          35 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cleancode/exception/" rel="permalink">[CleanCode] 오류 처리
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-06T00:00:00+09:00">July 6, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/daily/intern/" rel="permalink">[Daily] 웍스 모바일 인턴 합격 후기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-04T00:00:00+09:00">July 4, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/rere950303" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 yhw. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'rere950303/rere950303.github.io');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

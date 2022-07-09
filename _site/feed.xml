@@ -1,4 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-07-08T18:50:30+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리</title><link href="https://rere950303.github.io/spring/db/springdb/" rel="alternate" type="text/html" title="[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리" /><published>2022-07-08T00:00:00+09:00</published><updated>2022-07-08T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/db/springdb</id><content type="html" xml:base="https://rere950303.github.io/spring/db/springdb/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rere950303.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rere950303.github.io/" rel="alternate" type="text/html" /><updated>2022-07-09T18:39:05+09:00</updated><id>https://rere950303.github.io/feed.xml</id><title type="html">YHW Blog</title><subtitle>새로운 배움을 기록하고 공유합니다</subtitle><author><name>yhw</name></author><entry><title type="html">[Spring][MVC] Validation</title><link href="https://rere950303.github.io/spring/mvc/validation/" rel="alternate" type="text/html" title="[Spring][MVC] Validation" /><published>2022-07-09T00:00:00+09:00</published><updated>2022-07-09T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/mvc/validation</id><content type="html" xml:base="https://rere950303.github.io/spring/mvc/validation/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;검증기를 추가하는 과정을 기록하기 위한 포스팅&lt;/p&gt;
+
+&lt;h2 id=&quot;고민하게-된-계기&quot;&gt;고민하게 된 계기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-boot-starter-validation&lt;/code&gt; 의존성을 추가하게 되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LocalValidatorFactoryBean&lt;/code&gt;(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpringValidatorAdapter&lt;/code&gt; 상속)을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataBinder&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;validators&lt;/code&gt;에 추가해 준다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMappingHandlerAdapter&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestResponseBodyMethodProcessor&lt;/code&gt;(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HandlerMethodArgumentResolver&lt;/code&gt; 구현체)를 이용하여 핸들러의 매개변수를 만들고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataBinder&lt;/code&gt;에 등록된 검증기로 검증을 시도하게 된다.&lt;/li&gt;
+  &lt;li&gt;단순한 검증의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;javax.validation.ConstraintValidator&lt;/code&gt;를 구현하여 자신만의 검증 어노테이션을 만들 수 있다.&lt;/li&gt;
+  &lt;li&gt;하지만 애플리케이션 로직이 필요한 검증의 경우 어떻게 설계하면 좋을지에 대해 고민을 하게 되었다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;bean-validation-커스텀하기&quot;&gt;Bean Validation 커스텀하기&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;FIELD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Retention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RetentionPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RUNTIME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Constraint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;validatedBy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PhoneValidator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Documented&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Phone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;invalid Phone&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&amp;gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;groups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{};&lt;/span&gt;
+
+    &lt;span class=&quot;nc&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;[]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{};&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PhoneValidator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConstraintValidator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Phone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Pattern&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Pattern&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;\\d{3}-\\d{4}-\\d{4}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isValid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConstraintValidatorContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;matcher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpringValidatorAdapter&lt;/code&gt; 어댑터는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;javax.validation.Validator&lt;/code&gt;를 구현한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;org.hibernate.validator.internal.engine.ValidatorImpl&lt;/code&gt;를 가지고 있다.&lt;/li&gt;
+  &lt;li&gt;즉 Bean Validation 표준 인터페이스를 구현한 하이버네이트에 대한 어댑터 역할을 해준다.&lt;/li&gt;
+  &lt;li&gt;여기서 어노테이션을 통한 검증이 이루어진다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;검증기-추가하기&quot;&gt;검증기 추가하기&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PasswordValidator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Validator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;supports&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ValidationDTO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isAssignableFrom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Errors&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;ValidationDTO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ValidationDTO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPasswordConfirm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;passwordMatch&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;비밀번호가 일치하지 않습니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ValidationController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@InitBinder&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WebDataBinder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataBinder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;dataBinder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addValidators&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PasswordValidator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;위와 같이 설계하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HandlerMethodArgumentResolver&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WebDataBinderFactory&lt;/code&gt;는 총 2개의 검증기를 포함한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WebDataBinder&lt;/code&gt;를 생성하게 된다.&lt;/li&gt;
+  &lt;li&gt;이후 해당 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WebDataBinder&lt;/code&gt;로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt;문을 돌면서 여러 개의 검증기를 통해 검증을 진행한다.&lt;/li&gt;
+  &lt;li&gt;만약 검증에서 오류가 발생하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MethodArgumentNotValidException&lt;/code&gt; 예외를 던진다.&lt;/li&gt;
+  &lt;li&gt;핵심 로직은 다음과 같다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// RequestResponseBodyMethodProcessor (HandlerMethodArgumentResolver 구현체)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;resolveArgument&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MethodParameter&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ModelAndViewContainer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mavContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                              &lt;span class=&quot;nc&quot;&gt;NativeWebRequest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;webRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WebDataBinderFactory&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binderFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nestedIfOptional&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readWithMessageConverters&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getNestedGenericParameterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Conventions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getVariableNameForParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;binderFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;WebDataBinder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binderFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createBinder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;validateIfApplicable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;binder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;binder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBindingResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasErrors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isBindExceptionRequired&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;binder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MethodArgumentNotValidException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBindingResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ㄴ&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mavContainer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;mavContainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAttribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;BindingResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MODEL_KEY_PREFIX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;binder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBindingResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;adaptArgumentIfNecessary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;고찰&quot;&gt;고찰&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;위와 같은 방법으로 간단한 검증의 경우 Bean Validation을, 로직이 필요한 경우 새로운 검증기 등록으로 해결할 수 있다.&lt;/li&gt;
+  &lt;li&gt;이를 통해 서비스 계층에는 순수한 서비스 로직만 설계가 가능해지고 본격적인 서비스 로직이 시작되기 전, 즉 핸들러 호출전에 필요한 모든 검증을 진행함으로써 순수한 서비스 계층 유지가 가능해진다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Spring/MVC" /><category term="Validation" /></entry><entry><title type="html">[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리</title><link href="https://rere950303.github.io/spring/db/springdb/" rel="alternate" type="text/html" title="[Spring][DB] 스프링 DB 1편 - 데이터 접근 핵심 원리" /><published>2022-07-08T00:00:00+09:00</published><updated>2022-07-08T00:00:00+09:00</updated><id>https://rere950303.github.io/spring/db/springdb</id><content type="html" xml:base="https://rere950303.github.io/spring/db/springdb/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;해당 게시글은 인프런 김영한 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1/dashboard&quot;&gt;스프링 DB 1편 - 데이터 접근 핵심 원리&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;jdbc-이해&quot;&gt;JDBC 이해&lt;/h2&gt;
@@ -2098,7 +2206,7 @@
   &lt;li&gt;이후 클라이언트라고 할 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dispatcherservlet&lt;/code&gt;는 인터페이스인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HandlerAdapter&lt;/code&gt;로 추상화된 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;handle&lt;/code&gt; 메서드만 호출하여 애플리케이션의 결과인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAndView&lt;/code&gt;를 결과로 반환받을 수 있게 된다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;-&amp;gt; 위와 같은 설계는 무엇이 장점일까?? 먼저 말 그대로 추상화이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dispatcherservlet&lt;/code&gt;는 어댑터를 찾고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;handle&lt;/code&gt;만 호출하면 원하는 결과를 얻을 수 있다. 그 다음 장점으로는 확정성이다. 만약 새로운 핸들러가 추가된다면 해당 핸들러를 처리할 수 있는 어댑터만 목록에 추가해 주면 된다. 대박&lt;/p&gt;</content><author><name>yhw</name></author><category term="CleanCode" /><category term="Adapter" /><category term="CleanCode" /></entry><entry><title type="html">[CleanCode] 오류 처리</title><link href="https://rere950303.github.io/cleancode/exception/" rel="alternate" type="text/html" title="[CleanCode] 오류 처리" /><published>2022-07-06T00:00:00+09:00</published><updated>2022-07-06T00:00:00+09:00</updated><id>https://rere950303.github.io/cleancode/exception</id><content type="html" xml:base="https://rere950303.github.io/cleancode/exception/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;-&amp;gt; 위와 같은 설계는 무엇이 장점일까?? 먼저 말 그대로 추상화이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dispatcherservlet&lt;/code&gt;는 어댑터를 찾고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;handle&lt;/code&gt;만 호출하면 원하는 결과를 얻을 수 있다. 그 다음 장점으로는 확장성이다. 만약 새로운 핸들러가 추가된다면 해당 핸들러를 처리할 수 있는 어댑터만 목록에 추가해 주면 된다. 대박&lt;/p&gt;</content><author><name>yhw</name></author><category term="CleanCode" /><category term="Adapter" /><category term="CleanCode" /></entry><entry><title type="html">[CleanCode] 오류 처리</title><link href="https://rere950303.github.io/cleancode/exception/" rel="alternate" type="text/html" title="[CleanCode] 오류 처리" /><published>2022-07-06T00:00:00+09:00</published><updated>2022-07-06T00:00:00+09:00</updated><id>https://rere950303.github.io/cleancode/exception</id><content type="html" xml:base="https://rere950303.github.io/cleancode/exception/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
 &lt;p&gt;우아하게 예외를 처리하기 위한 방법을 알아보기 위한 포스팅&lt;/p&gt;
 
 &lt;h2 id=&quot;checked-예외를-unchecked-예외로-변경&quot;&gt;Checked 예외를 Unchecked 예외로 변경&lt;/h2&gt;
@@ -2308,35 +2416,4 @@
   &lt;li&gt;바이트 스트림으로 변환한 객체를 파일로 저장하거나 네트워트를 통해 다른 시스템으로 전송할 수 있다.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transient&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;static&lt;/code&gt; 키워드가 붙은 필드는 직렬화되지 않는다.&lt;/li&gt;
   &lt;li&gt;직렬화 후에 클래스 변경 시 serialVersionUID의 변경으로 역직렬화 되지 않는다. 이경우 필드로 serialVersionUID 값을 설정하게 되면 클래스가 변경되어도 역직렬화 가능하다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Java" /><category term="Java" /><category term="Singleton" /><category term="Enum" /><category term="Constructor" /></entry><entry><title type="html">[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라</title><link href="https://rere950303.github.io/java/builder/" rel="alternate" type="text/html" title="[Java] 생성자의 매개변수가 많을 때는 빌더를 고려해라" /><published>2022-05-20T00:00:00+09:00</published><updated>2022-05-20T00:00:00+09:00</updated><id>https://rere950303.github.io/java/builder</id><content type="html" xml:base="https://rere950303.github.io/java/builder/">&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
-&lt;p&gt;많은 선택적 매개변수를 갖는 생성자에 대한 대응 방법을 알아보기 위한 포스팅이며 해당 게시글은 인프런 백기선 강사님의 &lt;a href=&quot;https://www.inflearn.com/course/이펙티브-자바-1/dashboard&quot;&gt;이펙티브 자바 완벽 공략 1부&lt;/a&gt; 강의를 바탕으로 쓰였음을 미리 밝힙니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;생성자-체인닝&quot;&gt;생성자 체인닝&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;매개변수의 개수가 적은 생성자에서 매개변수의 개수가 큰 생성자를 점층적으로 호출하는 방식으로 설계할 수 있다.&lt;/li&gt;
-  &lt;li&gt;이 경우 매개변수의 개수가 몇 개인지, 각 매개변수가 의미하는 값의 의미가 무엇인지 헷갈릴 수 있다.&lt;/li&gt;
-  &lt;li&gt;매개변수의 순서나 개수가 다르더라도 컴파일 시점에 알아채기 어렵다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;자바빈즈-패턴&quot;&gt;자바빈즈 패턴&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;기본 생성자와 setter를 통해 필드 초기화를 할 수 있다.&lt;/li&gt;
-  &lt;li&gt;객체 생성 시 초기화되어야 하는 필드값을 명시 및 강제하기 어렵다.&lt;/li&gt;
-  &lt;li&gt;많은 setter 메소드를 호출해야 하고 불변 객체를 만들기 어렵다. 따라서 런타임 도중 원치 않는 값의 변경이 발생할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;빌더-패턴&quot;&gt;빌더 패턴&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;복잡한 객체를 만드는 프로세스를 독립적으로 분리&lt;/li&gt;
-  &lt;li&gt;필수 매개변수를 갖는 클래스의 빌더를 활용할 수 있다.&lt;/li&gt;
-  &lt;li&gt;빌더의 필수 매개변수를 통해 초기화되어야 하는 필드값을 강제할 수 있고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;return this&lt;/code&gt; 구문을 통해 체이닝 형식으로 매개변수를 설정하여 객체를 생성할 수 있다.&lt;/li&gt;
-  &lt;li&gt;이 방법은 코드의 가독성이 조금은 떨어지고 코드 양이 많아진다.&lt;/li&gt;
-  &lt;li&gt;lombok의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Builder&lt;/code&gt; 애노테이션을 클래스 단위 또는 생성자 단위에 사용하게 되면 손쉽게 빌더 구현이 가능한다. 하지만 필수 매개변수를 강제할 수 없는 단점이 존재한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;계층적-빌더&quot;&gt;계층적 빌더&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;공통되는 빌더 메소드를 추상형 빌더 클래스로 단일화할 수 있다.&lt;/li&gt;
-  &lt;li&gt;부모 클래스에서의 빌더는 재귀적 제네릭 타입과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;self()&lt;/code&gt; 구문을 통해 자손 클래스의 빌더를 반환할 수 있도록 한다.&lt;/li&gt;
-  &lt;li&gt;위와 같은 방법으로 자손 클래스에만 존재하는 빌더의 메소드를 형변환 없이 간단히 사용할 수 있게 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Java" /><category term="Java" /><category term="Constructor" /><category term="Builder" /><category term="Chaining" /></entry></feed>
+&lt;/ul&gt;</content><author><name>yhw</name></author><category term="Java" /><category term="Java" /><category term="Singleton" /><category term="Enum" /><category term="Constructor" /></entry></feed>

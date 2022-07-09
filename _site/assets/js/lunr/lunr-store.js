@@ -364,4 +364,10 @@ var store = [{
         "tags": ["Adapter","CleanCode"],
         "url": "https://rere950303.github.io/cleancode/adapter/",
         "teaser": null
+      },{
+        "title": "[Spring][MVC] Validation",
+        "excerpt":"들어가며 검증기를 추가하는 과정을 기록하기 위한 포스팅 고민하게 된 계기 spring-boot-starter-validation 의존성을 추가하게 되면 LocalValidatorFactoryBean(SpringValidatorAdapter 상속)을 DataBinder의 validators에 추가해 준다. RequestMappingHandlerAdapter에서 RequestResponseBodyMethodProcessor(HandlerMethodArgumentResolver 구현체)를 이용하여 핸들러의 매개변수를 만들고 DataBinder에 등록된 검증기로 검증을 시도하게 된다. 단순한 검증의 경우 javax.validation.ConstraintValidator를 구현하여 자신만의 검증 어노테이션을 만들 수 있다. 하지만 애플리케이션 로직이 필요한 검증의 경우...","categories": ["Spring/MVC"],
+        "tags": ["Validation"],
+        "url": "https://rere950303.github.io/spring/mvc/validation/",
+        "teaser": null
       }]
