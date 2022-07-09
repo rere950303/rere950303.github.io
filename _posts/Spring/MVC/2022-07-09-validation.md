@@ -101,13 +101,60 @@ public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewC
             if (binder.getBindingResult().hasErrors() && isBindExceptionRequired(binder, parameter)) {
                 throw new MethodArgumentNotValidException(parameter, binder.getBindingResult());
             }
-        }ㄴ
+        }
         if (mavContainer != null) {
             mavContainer.addAttribute(BindingResult.MODEL_KEY_PREFIX + name, binder.getBindingResult());
         }
     }
 
     return adaptArgumentIfNecessary(arg, parameter);
+}
+```
+
+## 테스트 코드
+```java
+class ValidationControllerTest {
+
+    MockMvc mockMvc;
+
+    @BeforeEach
+    public void setUp() {
+        this.mockMvc = MockMvcBuilders
+                .standaloneSetup(new ValidationController())
+                .setControllerAdvice(new ControllerAdvice())
+                .alwaysDo(print())
+                .build();
+    }
+
+    @Test
+    public void validation_PhoneNumFormatNotMatch() throws Exception {
+        String json = getJson(ValidationDTO.builder().phoneNum("1234").password("123").passwordConfirm("123").build());
+
+        mockMvc.perform(get("/validation")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void validation_passwordNotMatch() throws Exception {
+        String json = getJson(ValidationDTO.builder().phoneNum("010-2815-2145").password("123").passwordConfirm("321").build());
+
+        mockMvc.perform(get("/validation")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void validation_isOk() throws Exception {
+        String json = getJson(ValidationDTO.builder().phoneNum("010-2815-2145").password("123").passwordConfirm("123").build());
+
+        mockMvc.perform(get("/validation")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk());
+    }
 }
 ```
 
