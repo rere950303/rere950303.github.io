@@ -47,8 +47,8 @@ public class AuthorizeController {
 - `#` 키워드를 통해 SpEL 표현식에 변수를 설정한다.
 
 ```java
-@Slf4j
 @Aspect
+@Slf4j
 public class AccessCheckAspect {
 
     private static final ExpressionParser expressionParser = new SpelExpressionParser();
@@ -64,23 +64,24 @@ public class AccessCheckAspect {
         }
     }
 
-    private StandardEvaluationContext getEvaluationContext(JoinPoint joinPoint, String SpELExpression) {
+    private StandardEvaluationContext getEvaluationContext(JoinPoint joinPoint, String SpEL) {
         StandardEvaluationContext evaluationContext = new StandardEvaluationContext();
-        setVariables(evaluationContext, joinPoint, SpELExpression);
+        setVariables(evaluationContext, joinPoint, SpEL);
 
         return evaluationContext;
     }
 
-    private void setVariables(StandardEvaluationContext evaluationContext, JoinPoint joinPoint, String SpELExpression) {
+    private void setVariables(StandardEvaluationContext evaluationContext, JoinPoint joinPoint, String SpEL) {
+        int variableCount = SpEL.length() - SpEL.replace("#", "").length();
         String[] parameterNames = ((MethodSignature) joinPoint.getSignature()).getParameterNames();
         Object[] args = joinPoint.getArgs();
         HashMap<String, Object> map = new HashMap<>();
 
-        for (int i = 0; i < parameterNames.length; i++) {
+        for (int i = 0; i < variableCount; i++) {
             String parameterName = parameterNames[i];
             Object arg = args[i];
 
-            if (!SpELExpression.contains(parameterName)) {
+            if (!isValidSpEL(SpEL, parameterName)) {
                 throw new SpELExpressionException();
             }
             map.put(parameterName, arg);
@@ -88,11 +89,17 @@ public class AccessCheckAspect {
 
         evaluationContext.setVariables(map);
     }
+
+    private boolean isValidSpEL(String SpEL, String parameterName) {
+        int index = SpEL.indexOf(parameterName);
+
+        return index > 0 && SpEL.charAt(index - 1) == '#';
+    }
 }
 ```
 - `@annotation` 기반 포인트컷을 설정한다. 어노테이션 값을 이용하여 SpEL 표현식을 넘겨준다.
 - `JoinPoint`을 이용하여 메서드의 파라미터 이름과 인자 값을 `Map`으로 하여 `StandardEvaluationContext`의 변수를 설정한다.
-- 이때 잘못된 SpEL 표현식을 사용한 경우 컴파일 오류가 아닌 런타임 오류가 발생하므로 안전한 개발을 위해 SpELExpression과 파라미터 이름을 비교하여 `SpELExpressionException`을 던지도록 설계한다.
+- 이때 잘못된 SpEL 표현식을 사용한 경우 컴파일 오류가 아닌 런타임 오류가 발생하므로 안전한 개발을 위해 SpEL 표현식과 파라미터 이름을 비교하여 `SpELExpressionException`을 던지도록 설계한다. 이를 위해서는 핸들러 매개변수 작성시 SpEL 표현식에서 사용되는 인자 값부터 작성해주어야 한다.
 - 표현식을 평가하여 `Boolean` 타입으로 결과를 받는다.
 
 ## 테스트 코드
