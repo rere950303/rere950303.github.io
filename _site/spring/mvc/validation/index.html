@@ -367,7 +367,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          2 분 소요
         
       </span>
     
@@ -388,6 +388,7 @@
   <li><a href="#고민하게-된-계기">고민하게 된 계기</a></li>
   <li><a href="#bean-validation-커스텀하기">Bean Validation 커스텀하기</a></li>
   <li><a href="#검증기-추가하기">검증기 추가하기</a></li>
+  <li><a href="#테스트-코드">테스트 코드</a></li>
   <li><a href="#고찰">고찰</a></li>
 </ul>
 
@@ -492,13 +493,59 @@
             <span class="k">if</span> <span class="o">(</span><span class="n">binder</span><span class="o">.</span><span class="na">getBindingResult</span><span class="o">().</span><span class="na">hasErrors</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">isBindExceptionRequired</span><span class="o">(</span><span class="n">binder</span><span class="o">,</span> <span class="n">parameter</span><span class="o">))</span> <span class="o">{</span>
                 <span class="k">throw</span> <span class="k">new</span> <span class="nf">MethodArgumentNotValidException</span><span class="o">(</span><span class="n">parameter</span><span class="o">,</span> <span class="n">binder</span><span class="o">.</span><span class="na">getBindingResult</span><span class="o">());</span>
             <span class="o">}</span>
-        <span class="o">}</span><span class="n">ㄴ</span>
+        <span class="o">}</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">mavContainer</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">mavContainer</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="nc">BindingResult</span><span class="o">.</span><span class="na">MODEL_KEY_PREFIX</span> <span class="o">+</span> <span class="n">name</span><span class="o">,</span> <span class="n">binder</span><span class="o">.</span><span class="na">getBindingResult</span><span class="o">());</span>
         <span class="o">}</span>
     <span class="o">}</span>
 
     <span class="k">return</span> <span class="nf">adaptArgumentIfNecessary</span><span class="o">(</span><span class="n">arg</span><span class="o">,</span> <span class="n">parameter</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="테스트-코드">테스트 코드</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ValidationControllerTest</span> <span class="o">{</span>
+
+    <span class="nc">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+
+    <span class="nd">@BeforeEach</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mockMvc</span> <span class="o">=</span> <span class="nc">MockMvcBuilders</span>
+                <span class="o">.</span><span class="na">standaloneSetup</span><span class="o">(</span><span class="k">new</span> <span class="nc">ValidationController</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">setControllerAdvice</span><span class="o">(</span><span class="k">new</span> <span class="nc">ControllerAdvice</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">alwaysDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validation_phoneNumFormatNotMatch</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">getJson</span><span class="o">(</span><span class="nc">ValidationDTO</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">phoneNum</span><span class="o">(</span><span class="s">"1234"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"123"</span><span class="o">).</span><span class="na">passwordConfirm</span><span class="o">(</span><span class="s">"123"</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/validation"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="nc">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="n">json</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isBadRequest</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validation_passwordNotMatch</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">getJson</span><span class="o">(</span><span class="nc">ValidationDTO</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">phoneNum</span><span class="o">(</span><span class="s">"010-2815-2145"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"123"</span><span class="o">).</span><span class="na">passwordConfirm</span><span class="o">(</span><span class="s">"321"</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/validation"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="nc">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="n">json</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isBadRequest</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">validation_isOk</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">getJson</span><span class="o">(</span><span class="nc">ValidationDTO</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">phoneNum</span><span class="o">(</span><span class="s">"010-2815-2145"</span><span class="o">).</span><span class="na">password</span><span class="o">(</span><span class="s">"123"</span><span class="o">).</span><span class="na">passwordConfirm</span><span class="o">(</span><span class="s">"123"</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/validation"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="nc">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="n">json</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">());</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
@@ -580,7 +627,8 @@
 ">이전</a>
     
     
-      <a href="#" class="pagination--pager disabled">다음</a>
+      <a href="/spring/core/methodsecurity/" class="pagination--pager" title="[Spring][Core] SpEL, AOP를 통한 메서드 시큐리티 구현
+">다음</a>
     
   </nav>
 
@@ -594,6 +642,52 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/core/methodsecurity/" rel="permalink">[Spring][Core] SpEL, AOP를 통한 메서드 시큐리티 구현
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-10T00:00:00+09:00">July 10, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
         
           
 
@@ -708,52 +802,6 @@
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         <time datetime="2022-07-06T00:00:00+09:00">July 6, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/daily/intern/" rel="permalink">[Daily] 웍스 모바일 인턴 합격 후기
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-07-04T00:00:00+09:00">July 4, 2022</time>
       </span>
     
 

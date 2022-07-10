@@ -127,7 +127,7 @@ class ValidationControllerTest {
     }
 
     @Test
-    public void validation_PhoneNumFormatNotMatch() throws Exception {
+    public void validation_phoneNumFormatNotMatch() throws Exception {
         String json = getJson(ValidationDTO.builder().phoneNum("1234").password("123").passwordConfirm("123").build());
 
         mockMvc.perform(get("/validation")

@@ -370,4 +370,10 @@ var store = [{
         "tags": ["Validation"],
         "url": "https://rere950303.github.io/spring/mvc/validation/",
         "teaser": null
+      },{
+        "title": "[Spring][Core] SpEL, AOP를 통한 메서드 시큐리티 구현",
+        "excerpt":"들어가며 SpEL 표현식과 AOP를 통한 메서드 시큐리티를 구현하는 과정을 기록하기 위한 포스팅 고민하게 된 계기 기존에 직접 구현한 AOP 메서드 시큐리티의 경우 서로 다른 엔티티를 위해 여러 개의 Advice를 개발해야 한다는 단점이 존재했다. 따라서 SpEL 표현식을 이용하여 추상화된 메서드 시큐리티로 조금 더 범용성을 갖는 설계를 고민하게 되었다. 접근 방법 엔티티의...","categories": ["Spring/Core"],
+        "tags": ["SpEL","AOP"],
+        "url": "https://rere950303.github.io/spring/core/methodsecurity/",
+        "teaser": null
       }]
