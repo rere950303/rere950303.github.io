@@ -299,8 +299,8 @@ var store = [{
         "url": "https://rere950303.github.io/spring/security/interceptor/",
         "teaser": null
       },{
-        "title": "[Spring][Security] AOP를 통한 메소드 시큐리티 구현",
-        "excerpt":"들어가며 AOP를 통한 메소드 시큐리티를 구현하는 과정에서 느낀 점을 기록하기 위한 포스팅 Spring Security를 통한 구현 이번 동아리 프로젝트에서 인터셉터와 JWT를 통한 세션 리스 인증 방법을 구현했기 때문에 Spring Security 의존성을 받지 않았다. MethodSecurityInterceptor를 이용하기 위해 의존성을 주입받아봤는데 필터를 제거하는 방법을 모르겠다.. web.ingnoring()를 통해 필터를 거치지 않고 통과하게 할 수는...","categories": ["Spring/Security"],
+        "title": "[Spring][Security] AOP를 통한 메서드 시큐리티 구현",
+        "excerpt":"들어가며 AOP를 통한 메서드 시큐리티를 구현하는 과정에서 느낀 점을 기록하기 위한 포스팅 Spring Security를 통한 구현 이번 동아리 프로젝트에서 인터셉터와 JWT를 통한 세션 리스 인증 방법을 구현했기 때문에 Spring Security 의존성을 받지 않았다. MethodSecurityInterceptor를 이용하기 위해 의존성을 주입받아봤는데 필터를 제거하는 방법을 모르겠다.. web.ingnoring()를 통해 필터를 거치지 않고 통과하게 할 수는...","categories": ["Spring/Security"],
         "tags": ["Spring","Security","AOP"],
         "url": "https://rere950303.github.io/spring/security/aop/",
         "teaser": null
@@ -375,5 +375,11 @@ var store = [{
         "excerpt":"들어가며 SpEL 표현식과 AOP를 통한 메서드 시큐리티를 구현하는 과정을 기록하기 위한 포스팅 고민하게 된 계기 기존에 직접 구현한 AOP 메서드 시큐리티의 경우 서로 다른 엔티티를 위해 여러 개의 Advice를 개발해야 한다는 단점이 존재했다. 따라서 SpEL 표현식을 이용하여 추상화된 메서드 시큐리티로 조금 더 범용성을 갖는 설계를 고민하게 되었다. 접근 방법 엔티티의...","categories": ["Spring/Core"],
         "tags": ["SpEL","AOP"],
         "url": "https://rere950303.github.io/spring/core/methodsecurity/",
+        "teaser": null
+      },{
+        "title": "[Spring][Core] 라이브러리 배포 준비",
+        "excerpt":"들어가며 RESTful API 설계 시 자주 사용되는 로직과 설계를 라이브러리로 만들어 배포하기 전 준비 사항을 기록하기 위한 포스팅 고민하게 된 계기 그렇게 많은 프로젝트를 해본 경험은 없지만 Spring Boot로 3개 정도의 프로젝트를 해보면서 공통되는 로직을 발견하였다. response 반환 시 예외 또는 정상 응답의 경우 공통되는 api 스펙 검증 시 발생하는...","categories": ["Spring/Core"],
+        "tags": ["library","AOP","ExceptionHandler","API"],
+        "url": "https://rere950303.github.io/spring/core/library/",
         "teaser": null
       }]

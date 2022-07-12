@@ -442,8 +442,8 @@
   <li><code class="language-plaintext highlighter-rouge">#</code> 키워드를 통해 SpEL 표현식에 변수를 설정한다.</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Slf4j</span>
-<span class="nd">@Aspect</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Aspect</span>
+<span class="nd">@Slf4j</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">AccessCheckAspect</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ExpressionParser</span> <span class="n">expressionParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpelExpressionParser</span><span class="o">();</span>
@@ -459,23 +459,24 @@
         <span class="o">}</span>
     <span class="o">}</span>
 
-    <span class="kd">private</span> <span class="nc">StandardEvaluationContext</span> <span class="nf">getEvaluationContext</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">String</span> <span class="nc">SpELExpression</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">StandardEvaluationContext</span> <span class="nf">getEvaluationContext</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">String</span> <span class="nc">SpEL</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">StandardEvaluationContext</span> <span class="n">evaluationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StandardEvaluationContext</span><span class="o">();</span>
-        <span class="n">setVariables</span><span class="o">(</span><span class="n">evaluationContext</span><span class="o">,</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">SpELExpression</span><span class="o">);</span>
+        <span class="n">setVariables</span><span class="o">(</span><span class="n">evaluationContext</span><span class="o">,</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">SpEL</span><span class="o">);</span>
 
         <span class="k">return</span> <span class="n">evaluationContext</span><span class="o">;</span>
     <span class="o">}</span>
 
-    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">setVariables</span><span class="o">(</span><span class="nc">StandardEvaluationContext</span> <span class="n">evaluationContext</span><span class="o">,</span> <span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">String</span> <span class="nc">SpELExpression</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">setVariables</span><span class="o">(</span><span class="nc">StandardEvaluationContext</span> <span class="n">evaluationContext</span><span class="o">,</span> <span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">String</span> <span class="nc">SpEL</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">variableCount</span> <span class="o">=</span> <span class="nc">SpEL</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="nc">SpEL</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">"#"</span><span class="o">,</span> <span class="s">""</span><span class="o">).</span><span class="na">length</span><span class="o">();</span>
         <span class="nc">String</span><span class="o">[]</span> <span class="n">parameterNames</span> <span class="o">=</span> <span class="o">((</span><span class="nc">MethodSignature</span><span class="o">)</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">getSignature</span><span class="o">()).</span><span class="na">getParameterNames</span><span class="o">();</span>
         <span class="nc">Object</span><span class="o">[]</span> <span class="n">args</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">getArgs</span><span class="o">();</span>
         <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
 
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">parameterNames</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">variableCount</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
             <span class="nc">String</span> <span class="n">parameterName</span> <span class="o">=</span> <span class="n">parameterNames</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
             <span class="nc">Object</span> <span class="n">arg</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
 
-            <span class="k">if</span> <span class="o">(!</span><span class="nc">SpELExpression</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">parameterName</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">isValidSpEL</span><span class="o">(</span><span class="nc">SpEL</span><span class="o">,</span> <span class="n">parameterName</span><span class="o">))</span> <span class="o">{</span>
                 <span class="k">throw</span> <span class="k">new</span> <span class="nf">SpELExpressionException</span><span class="o">();</span>
             <span class="o">}</span>
             <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">parameterName</span><span class="o">,</span> <span class="n">arg</span><span class="o">);</span>
@@ -483,12 +484,18 @@
 
         <span class="n">evaluationContext</span><span class="o">.</span><span class="na">setVariables</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
     <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isValidSpEL</span><span class="o">(</span><span class="nc">String</span> <span class="nc">SpEL</span><span class="o">,</span> <span class="nc">String</span> <span class="n">parameterName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="nc">SpEL</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">parameterName</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nc">SpEL</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'#'</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">@annotation</code> 기반 포인트컷을 설정한다. 어노테이션 값을 이용하여 SpEL 표현식을 넘겨준다.</li>
   <li><code class="language-plaintext highlighter-rouge">JoinPoint</code>을 이용하여 메서드의 파라미터 이름과 인자 값을 <code class="language-plaintext highlighter-rouge">Map</code>으로 하여 <code class="language-plaintext highlighter-rouge">StandardEvaluationContext</code>의 변수를 설정한다.</li>
-  <li>이때 잘못된 SpEL 표현식을 사용한 경우 컴파일 오류가 아닌 런타임 오류가 발생하므로 안전한 개발을 위해 SpELExpression과 파라미터 이름을 비교하여 <code class="language-plaintext highlighter-rouge">SpELExpressionException</code>을 던지도록 설계한다.</li>
+  <li>이때 잘못된 SpEL 표현식을 사용한 경우 컴파일 오류가 아닌 런타임 오류가 발생하므로 안전한 개발을 위해 SpEL 표현식과 파라미터 이름을 비교하여 <code class="language-plaintext highlighter-rouge">SpELExpressionException</code>을 던지도록 설계한다. 이를 위해서는 핸들러 매개변수 작성시 SpEL 표현식에서 사용되는 인자 값부터 작성해주어야 한다.</li>
   <li>표현식을 평가하여 <code class="language-plaintext highlighter-rouge">Boolean</code> 타입으로 결과를 받는다.</li>
 </ul>
 
@@ -642,7 +649,8 @@
 ">이전</a>
     
     
-      <a href="#" class="pagination--pager disabled">다음</a>
+      <a href="/spring/core/library/" class="pagination--pager" title="[Spring][Core] 라이브러리 배포 준비
+">다음</a>
     
   </nav>
 
@@ -656,6 +664,52 @@
     <div class="page__related">
       <h4 class="page__related-title">연관글</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/core/library/" rel="permalink">[Spring][Core] 라이브러리 배포 준비
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2022-07-12T00:00:00+09:00">July 12, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
         
           
 
@@ -783,52 +837,6 @@
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           35 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/cleancode/exception/" rel="permalink">[CleanCode] 오류 처리
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2022-07-06T00:00:00+09:00">July 6, 2022</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
         
       </span>
     
