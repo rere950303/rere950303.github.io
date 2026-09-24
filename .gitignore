@@ -5,3 +5,5 @@ _posts/.Ulysses-Settings.plist
 .Ulysses-Settings.plist
 .jekyll-cache
 .Ulysses-Group.plist
+_site/
+nohup.out
