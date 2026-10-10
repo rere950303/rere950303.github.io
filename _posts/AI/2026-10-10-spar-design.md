@@ -1,14 +1,14 @@
 ---
 title: "[AI] spar. — AI 스파링 파트너 앱 설계 (OpenAI 멀티 페르소나 대화방)"
-last_modified_at: 2026-10-10T 22:00 +09:00
+last_modified_at: 2026-10-10T 22:30 +09:00
 header:
   overlay_color: "#0B0B10"
 categories:
   - AI
 tags:
   - OpenAI
-  - Kotlin Multiplatform
-  - Compose Multiplatform
+  - Android
+  - Jetpack Compose
   - LLM
   - Claude Code
 ---
@@ -20,8 +20,7 @@ tags:
 - 모델 라인업과 가격은 현시점(2026-10) OpenAI 공식 문서 기준이다. 모델은 자주 바뀌므로 구현 직전에 한 번 더 확인한다.
 
 ## 결론부터: 만들 수 있나?
-- **만들 수 있다.** 범위는 **나 혼자 쓰는 PoC**로 정했다. 스토어 출시는 하지 않는다.
-  - **iOS 빌드에는 Xcode가 필요하다.** App Store에서 Xcode를 설치하고 iOS 시뮬레이터 런타임을 받는다. (아래 M0 명령 참고) 내 아이폰에 설치할 때는 무료 Apple ID로 7일짜리 개발 서명을 쓰고, 계속 쓰게 되면 Apple Developer Program(연 $99)을 고려한다.
+- **만들 수 있다.** 범위는 **나 혼자 쓰는 안드로이드 PoC**로 정했다. 스토어 출시는 하지 않는다.
   - **OpenAI 키는 기기 안에 둔다.** PoC라서 서버 없이 이전 `stock-summary-app`처럼 키를 암호화해 저장한다. (아래 "키 관리" 참고)
 - 안드로이드 쪽은 이전 앱에서 쓰던 환경(SDK, `Galaxy_S23` 에뮬레이터, Roborazzi, Maestro)을 그대로 쓸 수 있다.
 
@@ -82,38 +81,26 @@ tags:
 
 ## 아키텍처
 
-### 기술 스택: Kotlin Multiplatform + Compose Multiplatform
+### 기술 스택: 안드로이드 네이티브 (Kotlin + Jetpack Compose)
+- 이전 `stock-summary-app`과 같은 스택이다. OpenAI 클라이언트, Keystore 키 저장, Room, DataStore, 테스트 구조(FakeBackend, Roborazzi, Maestro)를 그대로 가져온다.
+- 구현은 Claude Code가 전부 하므로 **Claude Code가 빌드·테스트·실행까지 자동으로 돌릴 수 있는 구조**가 중요하다. Gradle 하나로 빌드·단위 테스트를 돌리고, 에뮬레이터(`Galaxy_S23`)로 UI·E2E 테스트를 돌린다.
 
-| 대안 | 장점 | 단점 | 채택 |
-|---|---|---|---|
-| **KMP + Compose Multiplatform** | 이전 앱(Kotlin, Compose, Room, DataStore) 코드와 경험을 그대로 재사용. UI까지 공유. Room·DataStore·Ktor 모두 KMP 지원 | 녹음·재생·Keychain 같은 플랫폼 기능은 `expect/actual`로 따로 짜야 함 | ✅ |
-| Flutter | 양 플랫폼 성숙도 높음 | Dart로 새로 시작, 기존 테스트 인프라 재사용 불가 | |
-| React Native (Expo) | iOS 배포(EAS) 편함 | 기존 Kotlin 자산과 무관, 오디오 쪽 네이티브 모듈 의존 | |
-| 안드로이드 네이티브만 | 가장 빠름 | 아이폰 요구사항 불충족 | |
-
-- 구현은 Claude Code가 전부 하므로 "내가 익숙한 언어"보다 **Claude Code가 빌드·테스트·실행까지 자동으로 돌릴 수 있는 구조**가 중요하다. KMP는 Gradle 하나로 Android 빌드·단위 테스트를 돌리고, iOS는 `xcodebuild` + 시뮬레이터로 돌릴 수 있다.
-
-### 모듈 구조
+### 패키지 구조
 
 ```
-spar/
-├── shared/                      # KMP 공통 코드 (Android + iOS)
-│   ├── commonMain/
-│   │   ├── data/db/             # Room KMP: room, participant, message, feedback
-│   │   ├── data/prefs/          # DataStore: 설정, 모델 프리셋
-│   │   ├── data/net/            # Ktor: OpenAI Responses / Audio API 클라이언트
-│   │   ├── domain/
-│   │   │   ├── draft/           # 프롬프트 → 대화방 초안
-│   │   │   ├── turn/            # 다음 발언자 결정 + 페르소나 발언 생성
-│   │   │   ├── memory/          # 긴 대화 롤링 요약
-│   │   │   ├── voice/           # STT / TTS 호출, 재생 큐
-│   │   │   ├── feedback/        # 종료 피드백 생성
-│   │   │   └── progress/        # 회차별 점수 집계
-│   │   └── ui/                  # Compose 화면: Home, Draft, Room, Feedback, Progress, Settings
-│   ├── androidMain/             # 녹음(MediaRecorder), 재생(ExoPlayer), Keystore
-│   └── iosMain/                 # 녹음·재생(AVAudioEngine), Keychain
-├── androidApp/
-└── iosApp/                      # Xcode 프로젝트 (SwiftUI 진입점에서 Compose 호스팅)
+spar/app/src/main/.../
+├── data/db/             # Room: room, participant, message, feedback, feedback_score
+├── data/prefs/          # DataStore 설정, Keystore 로 암호화한 API 키
+├── data/net/            # OpenAI Responses / Audio API 클라이언트
+├── audio/               # 녹음(MediaRecorder), 재생(ExoPlayer)
+├── domain/
+│   ├── draft/           # 프롬프트 → 대화방 초안
+│   ├── turn/            # 다음 발언자 결정 + 페르소나 발언 생성
+│   ├── memory/          # 긴 대화 롤링 요약
+│   ├── voice/           # STT / TTS 호출, 재생 큐
+│   ├── feedback/        # 종료 피드백 생성
+│   └── progress/        # 회차별 점수 집계
+└── ui/                  # Compose 화면: Home, Draft, Room, Feedback, Progress, Settings
 ```
 
 ### 데이터 모델 (로컬 DB)
@@ -121,12 +108,11 @@ spar/
 
 | 테이블 | 주요 컬럼 |
 |---|---|
-| `room` | `id, seriesId, round, title, mode, topic, goal, userRole, language, status(ACTIVE/ENDED), preset, createdAt, updatedAt` |
-| `practice_series` | `id, title, mode, language, createdAt` (같은 연습을 반복한 대화방 묶음) |
+| `room` | `id, seriesId(1회차 대화방 id), round(회차), title, mode, topic, goal, userRole, language, status(ACTIVE/ENDED), preset, createdAt, updatedAt` |
 | `participant` | `id, roomId, name, role, stance, speakingStyle, voice, isUser, sortOrder` |
 | `message` | `id, roomId, participantId, text, inputType(TEXT/VOICE), audioPath?, createdAt, tokensIn, tokensOut` |
 | `room_memory` | `roomId, summary, coveredUntilMessageId` (긴 대화 롤링 요약) |
-| `feedback` | `id, roomId, model, rubricVersion, overallScore, json(리포트 본문), createdAt` |
+| `feedback` | `id, roomId, model, json(리포트 본문), createdAt` |
 | `feedback_score` | `feedbackId, criterion, score` (그래프용으로 점수만 따로 저장) |
 
 - 피드백 본문은 구조가 바뀔 수 있어서 JSON 한 칸에 넣는다. 화면은 JSON 스키마 버전을 보고 그린다.
@@ -209,22 +195,38 @@ spar/
 - 음성으로 말한 발언은 STT 결과가 들어가므로 "음, 어" 같은 군말 빈도도 피드백에 넣을 수 있다. (STT에서 군말을 지우지 않도록 설정)
 
 ### 4) 회차별 성장 그래프 (FR-7)
-- 피드백 화면에 **"같은 설정으로 다시 연습"** 버튼을 둔다. 누르면 참여자·주제를 그대로 복사한 새 대화방이 같은 `seriesId`에 `round + 1`로 생긴다.
-- 처음부터 직접 만든 대화방도 나중에 기존 시리즈에 묶을 수 있다. (모드와 언어가 같을 때만)
-- 회차끼리 점수를 비교할 수 있도록 **평가 기준(rubric)은 모드·언어별로 고정**하고 버전을 붙인다. 기준이 바뀌면 `rubricVersion`이 다른 회차는 그래프에서 점선으로 구분한다.
+- **무엇을 묶나:** 같은 연습을 반복한 대화방들. 자동으로 "비슷한 주제"를 찾아 묶지는 않는다. 잘못 묶이면 그래프가 의미 없어지기 때문이다.
+- **어떻게 묶나:** 피드백 화면의 **"다시 연습하기"** 버튼으로만 묶는다. 누르면 주제·참여자·모드·언어를 그대로 복사한 새 대화방이 생기고, 이전 대화방과 같은 묶음의 다음 회차가 된다. 새로 만든 대화방은 항상 새 묶음의 1회차다.
+
+| 날짜 | 한 일 | 결과 |
+|---|---|---|
+| 10/12 | "토스 서버 면접" 대화방을 만들어 연습 → 종료 | 1회차 피드백: 구조 2, 근거 3, 간결성 2, 의도 파악 3 |
+| 10/14 | 피드백 화면에서 "다시 연습하기" → 같은 면접관들과 연습 → 종료 | 2회차 피드백: 구조 3, 근거 3, 간결성 3, 의도 파악 4 |
+| 10/16 | 다시 "다시 연습하기" | 3회차 피드백 + 1~3회차 그래프 |
+
+- **무엇을 그리나:** 피드백을 만들 때 항목별로 1~5점을 매긴다. 회차끼리 비교할 수 있어야 하므로 **채점 항목은 모드·언어마다 고정된 목록**을 쓴다. 회차마다 항목이 바뀌면 점수를 비교할 수 없다.
+
+| 연습 종류 | 채점 항목 |
+|---|---|
+| 면접 (한국어) | 구조, 근거, 간결성, 질문 의도 파악 |
+| 면접 (영어 등 외국어) | 위 4개 + 문법, 자연스러움 |
+| 토론 | 논리, 반박 대응, 근거, 상대 논점 인정 |
+| 잡담 | 그래프 없음 (가볍게 쓰는 모드라 점수를 매기지 않는다) |
+
+- **어디서 보나:** 2회차부터 피드백 화면 아래에 그래프가 붙는다. 가로축은 회차, 세로축은 점수, 항목마다 선 하나다.
 
 ```
-토스 서버 면접 연습 (5회차)
- 5 ┤                         ●  구조
- 4 ┤            ●────●──────●   근거
- 3 ┤   ●───●───╱
- 2 ┤  ╱
- 1 ┤ ●
-   └──1회───2회───3회───4회───5회
+토스 서버 면접 (3회차)
+ 5 ┤
+ 4 ┤               ●  의도 파악
+ 3 ┤ ●────●────●     근거
+ 2 ┤ ●───╱    ╱      구조
+ 1 ┤
+   └─1회──2회──3회
 ```
 
-- 그래프 아래에는 회차별 `nextPractice`를 나란히 보여 줘서 "지난번에 고치라던 걸 이번엔 고쳤나"를 바로 볼 수 있게 한다.
-- 차트는 KMP를 지원하는 Vico를 쓰거나, 선 그래프 하나라 Compose `Canvas`로 직접 그린다.
+- 그래프 아래에는 **지난 회차의 "다음 연습 제안"을 이번에 고쳤는지**를 함께 보여 준다. 예) "1회차 제안: '우리' 대신 '나'로 말하기 → 2회차: '우리' 5번 → 1번"
+- 차트는 선 그래프 하나라 Compose `Canvas`로 직접 그린다.
 
 ### 5) 다국어 (FR-8)
 - 대화방마다 `language`를 둔다. 초안 생성 때 프롬프트에서 추론한다. 예) "구글 영어 면접 연습" → `en`
@@ -272,7 +274,7 @@ spar/
 |---|---|---|
 | 내가 말한 걸 텍스트로 바꾸기 (길게 눌러 말하기) | `gpt-transcribe` | M3 |
 | AI 참여자 발언을 참여자별 목소리로 읽어 주기 (ON/OFF) | `gpt-4o-mini-tts` | M3 |
-| 1:1 면접 실시간 음성 모드 (서로 끊고 들어오기 가능) | `gpt-live-1` | M5 |
+| 1:1 면접 실시간 음성 모드 (서로 끊고 들어오기 가능) | `gpt-live-1` | M4 |
 
 - 대화방 초안, 페르소나 대사, 종료 피드백은 텍스트 모델만 쓴다. 음성으로 한 발언도 텍스트로 바뀐 뒤 피드백에 들어간다.
 
@@ -328,13 +330,13 @@ spar/
 - TTS는 읽어 주는 분량에 비례하므로 실제 사용량을 보고 다시 계산한다. 앱에 대화방별 토큰·비용 표시를 넣어 추정치를 실측으로 바꾼다.
 
 ## 키 관리
-- PoC라서 서버를 두지 않는다. 이전 앱처럼 설정 화면에 키를 넣고, Android Keystore / iOS Keychain으로 암호화해 저장한다.
+- PoC라서 서버를 두지 않는다. 이전 앱처럼 설정 화면에 키를 넣고, Android Keystore로 암호화해 저장한다.
 - 키가 새어도 피해가 작도록 OpenAI 대시보드에서 **이 앱 전용 프로젝트와 월 사용 한도**를 건다.
 - 나중에 다른 사람에게 배포하게 되면 그때 얇은 프록시(키는 서버에만, 앱에는 기기별 토큰)를 붙인다.
 - 대화 내용은 기기에만 저장한다. OpenAI로는 요청할 때만 보낸다.
 
 ## 개발 방식: 전부 Claude Code로
-- 코드 작성, 빌드, 테스트, 에뮬레이터·시뮬레이터 실행, 커밋까지 Claude Code가 한다. 나는 설계 리뷰와 실기기 확인만 한다.
+- 코드 작성, 빌드, 테스트, 에뮬레이터 실행, 커밋까지 Claude Code가 한다. 나는 설계 리뷰와 실기기 확인만 한다.
 - 브라우저 작업은 Claude가 **Claude in Chrome 스킬**로 직접 Chrome을 조작한다.
   - OpenAI 대시보드에서 프로젝트·API 키 생성, 사용량 한도 설정
   - Kling, ElevenLabs 웹에서 쇼츠 소스 생성 (아래)
@@ -343,27 +345,18 @@ spar/
 - **테스트 전략** (이전 앱 방식 그대로)
   - `FakeBackend`: 테스트 빌드에서는 OpenAI 호출을 가짜 응답으로 바꾼다. 초안 JSON, 페르소나 대사, 피드백 JSON, STT 결과를 고정값으로 돌려준다.
   - 시나리오 문서(`docs/test-scenarios.md`)에 ID를 붙이고 테스트 이름을 시나리오 ID로 시작한다.
-  - 공통 로직 단위 테스트: `shared` 모듈 `commonTest` (진행자 규칙, 롤링 요약 시점, 피드백 JSON 파싱)
-  - 스크린샷 테스트: Android는 Roborazzi
-  - E2E: **Maestro**는 Android와 iOS 시뮬레이터를 같은 흐름 파일로 돌릴 수 있다.
+  - 단위 테스트: 진행자 규칙, 롤링 요약 시점, 피드백 JSON 파싱, 회차 묶기
+  - 스크린샷 테스트: Roborazzi
+  - E2E: Maestro (에뮬레이터)
   - 실제 모델 품질 확인: `LIVE_LLM=1`일 때만 실제 호출하는 평가 테스트. 예) "토론 모드에서 반대 측 참여자가 3턴 연속 같은 입장을 유지하는가"를 LLM 채점으로 확인
 
 ## 마일스톤
-- [ ] **M0** 준비: Xcode 설치, KMP 프로젝트 생성, OpenAI 프로젝트·키 발급(Chrome), spec-docs에 스펙 등록
-  ```bash
-  # App Store에서 Xcode 설치 후
-  sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-  sudo xcodebuild -license accept
-  sudo xcodebuild -runFirstLaunch    # 시뮬레이터 등 필수 부품 설치 (빠뜨리면 다음 줄이 CoreSimulator 오류로 실패)
-  xcodebuild -downloadPlatform iOS   # iOS 시뮬레이터
-  xcodebuild -version                # 확인
-  ```
-- [ ] **M1** 텍스트 대화방: 초안 생성 → 편집 → 대화(진행자 + 페르소나) → 로컬 저장 (Android)
+- [ ] **M0** 준비: Android 프로젝트 생성, OpenAI 프로젝트·키 발급(Chrome), spec-docs에 스펙 등록
+- [ ] **M1** 텍스트 대화방: 초안 생성 → 편집 → 대화(진행자 + 페르소나) → 로컬 저장
 - [ ] **M2** 히스토리 + 종료 피드백 리포트 + 다시 연습하기·회차별 그래프
 - [ ] **M3** 음성 1단계: push-to-talk STT, 참여자별 TTS, 다국어(영어 면접) 확인
-- [ ] **M4** iOS: 같은 기능을 시뮬레이터에서 Maestro로 검증, 내 아이폰에 설치
-- [ ] **M5** 음성 2단계: `gpt-live-1` 1:1 실시간 모드
-- [ ] **M6** 쇼츠 영상 제작
+- [ ] **M4** 음성 2단계: `gpt-live-1` 1:1 실시간 모드
+- [ ] **M5** 쇼츠 영상 제작
 
 ## 유튜브 쇼츠 계획
 - 이전처럼 **Kling**으로 영상 클립, **ElevenLabs**로 한국어 내레이션을 만들고, 실제 앱 화면 녹화(에뮬레이터 `screenrecord`)를 섞는다. 길이는 50초 안쪽.
@@ -382,8 +375,8 @@ spar/
 
 | 항목 | 결정 |
 |---|---|
-| 배포 범위 | 나 혼자 쓰는 PoC. 서버 없음, 키는 기기에 암호화 저장 |
-| 회차별 그래프 | 넣는다. 같은 설정으로 다시 연습한 대화방을 시리즈로 묶어 점수 추이를 보여 준다. |
+| 배포 범위 | 나 혼자 쓰는 안드로이드 PoC. 서버 없음, 키는 기기에 암호화 저장 |
+| 회차별 그래프 | 넣는다. "다시 연습하기"로 이어 간 대화방끼리 묶어 항목별 점수 추이를 보여 준다. |
 | 실시간 모드 | 1:1만 지원한다. |
 | 다국어 | 넣는다. 대화방별 언어 설정, 영어 면접을 우선 확인한다. |
 
