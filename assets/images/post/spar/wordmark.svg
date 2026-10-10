@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <rect width="1200" height="400" fill="#0B0B10"/>
+  <g transform="translate(90,72) scale(0.5)">
+    <circle cx="206" cy="226" r="118" fill="#C6FF3D"/>
+    <path d="M118 300 L92 380 L178 330 Z" fill="#C6FF3D"/>
+    <circle cx="306" cy="286" r="118" fill="#7C5CFF"/>
+    <path d="M394 360 L420 440 L334 390 Z" fill="#7C5CFF"/>
+    <clipPath id="lb"><circle cx="206" cy="226" r="118"/></clipPath>
+    <circle cx="306" cy="286" r="118" fill="#FFFFFF" clip-path="url(#lb)"/>
+  </g>
+  <text x="400" y="250" font-family="'Helvetica Neue', Inter, Pretendard, sans-serif" font-size="190" font-weight="800" letter-spacing="-8" fill="#FFFFFF">spar<tspan fill="#C6FF3D">.</tspan></text>
+  <text x="408" y="320" font-family="'Helvetica Neue', Inter, Pretendard, 'Apple SD Gothic Neo', sans-serif" font-size="40" font-weight="500" fill="#8A8A99">AI 스파링 파트너와 말로 붙는 연습장</text>
+</svg>
