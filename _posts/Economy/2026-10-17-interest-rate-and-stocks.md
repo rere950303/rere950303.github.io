@@ -1,6 +1,6 @@
 ---
 title: "[Economy] 금리가 주식에 미치는 영향 — 반도체·기술주와 금융주를 중심으로 (주식 초보용)"
-last_modified_at: 2026-10-17T 18:00 +09:00
+last_modified_at: 2026-10-17T 21:00 +09:00
 header:
   overlay_color: "#0B1F3A"
 categories:
@@ -12,6 +12,8 @@ tags:
   - 금융주
   - 은행
   - 보험
+  - 핀테크
+  - BNPL
   - 투자 기초
 toc: true
 toc_sticky: true
@@ -23,7 +25,7 @@ toc_sticky: true
   - 미국 10년 만기 국채 금리는 10월 7일 장중 **5.36%**까지 올랐다. 2002년 이후 가장 높은 수준이다.
 - 그런데 같은 시기에 **은행주는 오히려 외국인이 사 모은 종목**이었다. 10월 1~15일 외국인이 코스피에서 가장 많이 순매수한 종목이 우리금융지주다.
 - 같은 "금리 상승"인데 왜 반도체는 떨어지고 은행은 버틸까? 보험주는 금리가 오르면 좋다고 들었는데, 왜 이번엔 목표주가가 내려갈까?
-- 이 글은 **주식을 처음 시작하는 사람도 이해할 수 있도록** 금리와 주가의 관계를 처음부터 정리한 포스팅이다. 특히 **반도체·기술주**와 **금융주(은행·보험·증권·카드)**에 금리가 어떻게 영향을 주는지 깊게 다룬다.
+- 이 글은 **주식을 처음 시작하는 사람도 이해할 수 있도록** 금리와 주가의 관계를 처음부터 정리한 포스팅이다. 특히 **반도체·기술주**와 **금융주(은행·보험·증권·카드, 그리고 SEZL·PGY 같은 미국 핀테크 대출주)**에 금리가 어떻게 영향을 주는지 깊게 다룬다.
 
 > 이 글은 공부용 정리이고 특정 종목을 사거나 팔라는 추천이 아니다. 숫자와 상황은 작성 시점(2026-10-17) 기준이다.
 
@@ -250,7 +252,77 @@ toc_sticky: true
 - 금리가 오르면 **조달 비용이 바로 오르는데**, 카드 수수료나 대출 금리는 규제 때문에 바로 올리기 어렵다. 금리 상승이 **마진 축소**로 이어지기 쉽다.
 - 같은 "금융주"라도 은행과 정반대로 움직일 수 있다는 점을 기억하자.
 
-### 5-5. 금융주 한눈에 보기
+### 5-5. 미국 핀테크 대출주 (SEZL, PGY, AFRM, UPST): 금리에 가장 예민한 금융주
+미국 주식을 하다 보면 **세즐(SEZL)**, **페이가야(PGY)** 같은 종목을 자주 보게 된다. 이름은 금융주인데 은행과는 금리에 정반대로 반응하는 경우가 많다.
+
+**이런 종목을 뭐라고 부르나**
+- 한 단어로 정해진 이름은 없고, 보통 아래처럼 부른다.
+  - **핀테크 대출주 (Fintech Lenders)**: 기술(앱, AI 심사)로 개인에게 돈을 빌려주거나 대출을 중개하는 회사
+  - **소비자 대출주 (Consumer Lending Stocks)**: 미국 기사에서 업프스타트(UPST), 어펌(AFRM), 소파이(SOFI) 등을 묶어 부를 때 가장 많이 쓰는 표현
+  - **BNPL주 (Buy Now, Pay Later, 선구매 후결제)**: 결제 금액을 몇 번에 나눠 내게 해 주는 회사. SEZL, AFRM, 클라나(KLAR) 등
+  - **마켓플레이스 대출 (Marketplace Lending) / AI 대출 네트워크**: 대출을 직접 들고 있기보다 심사만 하고 투자자에게 넘기는 모델. PGY, UPST
+- 시장에서는 이들을 **"금리 인하 수혜주"**, **"고베타(high-beta) 핀테크"**로 묶어 부르기도 한다. 금리와 경기 뉴스에 시장 전체보다 훨씬 크게 움직인다는 뜻이다.
+
+| 티커 | 회사 | 모델 | 돈을 어떻게 구하나 |
+|---|---|---|---|
+| **SEZL** | Sezzle | BNPL. 결제를 보통 6주 동안 4번에 나눠 내게 해 주고 가맹점 수수료와 구독료로 번다 | 대출 채권을 담보로 한 **신용한도(크레딧 라인)**, SOFR 연동 변동금리 |
+| **PGY** | Pagaya | AI로 대출을 심사해 은행·핀테크 파트너에 제공하고, 대출 채권은 **자산유동화증권(ABS)이나 선도매매(forward flow)로 투자자에게 넘긴다** | ABS 발행, 기관투자자와의 forward flow 계약 |
+| **AFRM** | Affirm | BNPL과 할부 대출 | 창고 대출(warehouse line), ABS, forward flow |
+| **UPST** | Upstart | AI 대출 심사 마켓플레이스 | 대출 대부분을 외부 투자자에게 판매 |
+| **SOFI** | SoFi | 대출 + **은행 라이선스 보유** | 예금 (그래서 위 종목들보다 조달이 안정적) |
+
+**은행과 무엇이 다른가: 예금이 없다**
+- 은행은 이자를 조금만 줘도 되는 **예금**으로 돈을 모은다. 그래서 금리가 올라도 조달 비용이 천천히 오른다.
+- 핀테크 대출사는 대부분 예금이 없다. **시장에서 그때그때 금리로 돈을 빌리거나, 만든 대출을 투자자에게 팔아서** 다음 대출 자금을 마련한다. 그래서 금리 상승이 **조달 비용으로 바로 이어진다.**
+- 결과적으로 금리가 오르면 은행은 마진이 넓어질 수 있지만, 핀테크 대출사는 **마진이 줄어드는 쪽**에 가깝다.
+
+**금리가 이들 주가에 영향을 주는 4가지 경로**
+
+① **조달 비용과 투자자의 매입 의지 (가장 중요)**
+- PGY, UPST처럼 대출을 투자자에게 넘기는 회사는 **"투자자가 얼마에, 얼마나 사 주느냐"**가 사업의 생명줄이다.
+- 국채 금리가 5%면 투자자는 위험한 소비자 대출 ABS에 그보다 훨씬 높은 수익률을 요구한다. 그러면 회사가 대출을 팔 때 받는 값이 낮아진다.
+  - 2022~2023년 금리 인상기에 서브프라임 소비자 대출 ABS의 조달 비용은 2022년 중반보다 **최대 200bp(2%p)** 올랐다(Reuters, FinSight 데이터).
+  - 페이가야는 ABS 가격이 100bp 불리해지면 선취 수수료가 약 1,000만 달러 줄어드는 구조라고 설명했다는 분석이 있다. 2025년에는 자본시장 거래 관련 수수료가 연간 약 −2,100만 달러였다.
+  - 그래서 페이가야는 2026년 ABS 발행(상반기까지 55억 달러)과 함께 Neuberger(최대 7억 달러), Sound Point(최대 7.2억 달러) 같은 기관과 **forward flow 계약**을 늘려 조달 경로를 넓히고 있다.
+- 투자자가 소비자 대출을 덜 사려고 하면 회사는 **대출을 덜 만들 수밖에 없다** → 매출 성장 둔화.
+
+② **대출 승인 대상이 줄어든다**
+- 기준금리가 오르면 소비자에게 매기는 대출 금리도 올라야 한다. 그런데 금리 상한 규제나 상품 설계 때문에 무한정 올릴 수 없다.
+- 금리를 올린 만큼 **"이 금리라면 갚을 수 있는 사람"**이 줄어들어 승인 건수가 줄어든다. 업스타트의 실적이 금리 인상기에 크게 흔들린 이유 중 하나다.
+
+③ **신용 리스크: 고객이 금리와 물가에 가장 약한 층**
+- 이들의 고객은 은행 대출을 받기 어려운 **서브프라임·니어프라임** 소비자가 많다. 금리와 물가가 오르면 생활비 부담이 커져서 **연체가 먼저 늘어나는 층**이다.
+- 세즐은 올해 대손충당금(신용손실 비용)이 거래액(GMV)의 2.5~3% 정도일 것으로 안내했다. 연체가 이 범위를 넘으면 이익이 바로 줄어든다.
+
+④ **밸류에이션과 투자 심리 (고베타)**
+- 고성장주라서 4장에서 본 **할인율 효과**도 그대로 받는다.
+- 공매도 비중도 높은 편이다. 세즐은 유통주식의 약 25%가 공매도라는 집계가 있다. 나쁜 뉴스에 더 크게 빠지고, 좋은 뉴스에 더 크게 튄다.
+
+**같은 BNPL이라도 금리 민감도가 다르다: SEZL vs PGY**
+- **세즐(SEZL)**: "4회 분할(Pay-in-4)" 상품은 보통 6주 안에 상환이 끝난다. 돈이 빨리 돌기 때문에 **조달 금리 상승의 직접 타격은 비교적 작다.**
+  - 2025년 사업보고서(10-K) 기준, SOFR이 1%p 오르면 연간 이자 비용이 약 120만 달러 늘어나는 수준이다. 2026년 회사 가이던스인 조정 순이익 1.85억 달러와 비교하면 작다.
+  - 세즐에게 더 중요한 금리 경로는 **소비 위축과 연체(③)**, 그리고 **투자 심리(④)**다.
+- **페이가야(PGY)**: 사업 자체가 **대출을 만들어 자본시장에 파는 구조**다. 그래서 국채 금리, 신용 스프레드, ABS 시장 분위기에 **직접** 연결된다(①). 금리 급등기에 가장 먼저 영향을 받는 유형이다.
+
+**실제로는 어떻게 움직였나**
+- **2022년 금리 인상기**: 업스타트는 연간 약 −82%, 어펌도 약 −80% 수준으로 폭락했다. 같은 해 S&P 500 금융 섹터는 약 −11%였다. "금융주"라는 이름만 같을 뿐 전혀 다른 자산처럼 움직였다.
+- **2026년 9월 23일**: 금리와 소비자 신용 우려가 커지자 업스타트와 어펌은 하루에 약 4% 떨어졌다. 같은 날 금융 섹터 ETF(XLF)는 0.25% 정도만 빠졌다. 시장이 **소비자 신용 전체의 가격을 다시 매기고 있다**는 해석이 나왔다. 은행 라이선스로 예금을 조달하는 소파이는 2% 하락에 그쳤다.
+- **세즐**: 2026년 초 약 65달러에서 7월 사상 최고가 약 196달러까지 올랐다가, 8월 실적 발표 다음 날 하루에 **약 34%** 빠졌다. 실적은 예상보다 좋았는데도(매출 +51.7%) 주가가 크게 흔들렸다. 이런 종목에서는 금리 같은 거시 변수와 기대치 관리가 주가를 크게 좌우한다.
+
+**핀테크 대출주를 볼 때 체크할 지표**
+
+| 지표 | 왜 보나 |
+|---|---|
+| 미국 2년물·10년물 금리, SOFR | 조달 비용의 출발점 |
+| 하이일드·소비자 대출 ABS 스프레드 | 투자자가 소비자 대출을 얼마나 원하는지 |
+| 회사의 **forward flow 계약, ABS 발행** 소식 | 조달 경로가 안정적인지 |
+| 연체율, 대손충당금(신용손실) 비율 | 고객 신용이 나빠지는지 |
+| 미국 소비 지표, 실업률 | 고객의 상환 능력 |
+| 공매도 비중 | 변동성의 크기 |
+
+- **페이가야는 10월 29일**에 3분기 실적을 발표할 예정이다. ABS 가격 조건과 자본시장 수수료가 좋아졌는지 확인하면, 지금 같은 고금리 환경에서 조달이 버티고 있는지 볼 수 있다.
+
+### 5-6. 금융주 한눈에 보기
 
 | 업종 | 금리 상승 시 | 금리 하락 시 | 핵심 체크 포인트 |
 |---|---|---|---|
@@ -258,16 +330,17 @@ toc_sticky: true
 | 보험 | 장기 유리, **급등 시 단기 평가손실** | 불리 (부채 부담, K-ICS 하락) | 금리 상승 속도, K-ICS 비율, 투자손익 |
 | 증권 | 대체로 불리 (채권 손실, 증시 위축) | 대체로 유리 | 거래대금, 채권 평가, 부동산 PF |
 | 카드·캐피탈 | 불리 (조달 비용 증가) | 유리 | 여전채 금리, 연체율 |
+| 미국 핀테크 대출주 (SEZL, PGY 등) | **크게 불리** (조달 비용↑, 투자자 매입↓, 연체↑) | **크게 유리** | ABS 스프레드, forward flow, 연체율 |
 
 ## 6. 상황별 시나리오 정리
 금리가 **왜** 움직이느냐에 따라 업종 반응을 정리하면 아래와 같다. 절대 법칙이 아니라 **경향**이다.
 
-| 시나리오 | 반도체·기술주 | 은행 | 보험 | 증권 |
-|---|---|---|---|---|
-| **경기 호황 + 완만한 금리 상승** | 이익 증가가 이겨서 강세 가능 | 강세 (마진↑, 부실 적음) | 강세 | 보통~강세 |
-| **물가 불안 + 급격한 금리 상승** (지금과 비슷) | **약세** (할인율↑ + 투자 둔화 우려) | 혼조 (마진↑ vs 조달비용·부실 우려) | **단기 약세** (평가손실) | 약세 |
-| **경기 침체 + 금리 인하** | 처음엔 약세, 이후 금리 하락이 먼저 반영되며 반등 | 약세 (마진↓ + 부실↑) | 약세 | 약세 → 회복 |
-| **물가 안정 + 완만한 금리 인하** | **강세** (할인율↓) | 약세~보통 | 약세~보통 | 강세 (거래대금↑) |
+| 시나리오 | 반도체·기술주 | 은행 | 보험 | 증권 | 핀테크 대출주 |
+|---|---|---|---|---|---|
+| **경기 호황 + 완만한 금리 상승** | 이익 증가가 이겨서 강세 가능 | 강세 (마진↑, 부실 적음) | 강세 | 보통~강세 | 보통 (대출 수요↑ vs 조달 비용↑) |
+| **물가 불안 + 급격한 금리 상승** (지금과 비슷) | **약세** (할인율↑ + 투자 둔화 우려) | 혼조 (마진↑ vs 조달비용·부실 우려) | **단기 약세** (평가손실) | 약세 | **가장 약세** (조달·연체·할인율 모두 악재) |
+| **경기 침체 + 금리 인하** | 처음엔 약세, 이후 금리 하락이 먼저 반영되며 반등 | 약세 (마진↓ + 부실↑) | 약세 | 약세 → 회복 | 약세 (조달은 좋아져도 연체 급증) |
+| **물가 안정 + 완만한 금리 인하** | **강세** (할인율↓) | 약세~보통 | 약세~보통 | 강세 (거래대금↑) | **가장 강세** (조달 비용↓ + 소비 회복) |
 
 ## 7. 초보자를 위한 실전 체크리스트
 ### 금리 뉴스를 볼 때 스스로 물어볼 것
@@ -298,6 +371,7 @@ toc_sticky: true
 - 금리는 **돈의 가격**이고, 주식은 **미래에 벌 돈의 현재 가격**이다. 그래서 둘은 떼려야 뗄 수 없다.
 - **반도체·기술주**는 먼 미래 기대가 커서 할인율에 민감하고, 고객의 투자가 빚으로 이뤄지는 만큼 금리가 수요까지 흔든다. 한국에서는 외국인 수급까지 겹쳐 변동성이 더 크다.
 - **금융주**는 금리가 오르면 이자 마진이 좋아지는 게 기본이지만, 조달 비용, 수익률 곡선, 채권 평가손실, 부실이라는 함정이 있다. 보험·증권·카드는 은행과 또 다르게 움직인다.
+- **SEZL, PGY 같은 미국 핀테크 대출주**는 이름만 금융주일 뿐 금리에 대해서는 은행과 거의 반대다. 예금이 없어서 시장에서 돈을 조달하고, 고객도 금리에 약한 층이라 **금리 상승에 가장 약하고 금리 인하에 가장 강한** 쪽에 속한다.
 - 가장 중요한 건 **"금리가 얼마냐"보다 "왜, 얼마나 빨리, 예상 대비 어떻게 움직이느냐"**를 보는 습관이다.
 
 ## 참고 자료
@@ -315,6 +389,16 @@ toc_sticky: true
 - [금융 Weekly Insight: 금리 상승 관련 흐름 변화 (삼성증권, 2026-06-08)](https://samsungpop.com/common.do?cmd=down&contentType=application%2Fpdf&fileName=2020%2F2026060809200259K_02_03.pdf&inlineYn=Y&saveKey=research.pdf)
 - [Bank earnings October 2026 (CNBC)](https://www.cnbc.com/2026/10/13/bank-earnings-live-updates.html)
 - [Bank Stocks News: Q3 2026 Earnings and the Fed Rate Hike](https://www.heygotrade.com/en/market-outlook/bank-stocks-q3-2026-earnings/)
+- [Sensitive Sector: Why Are Upstart, Affirm, and SoFi Dropping Faster Than the Broader Equities Market? (24/7 Wall St., 2026-09-23)](https://247wallst.com/investing/2026/09/23/sensitive-sector-why-are-upstart-affirm-and-sofi-dropping-faster-than-the-broader-equities-market/)
+- [Sezzle's BNPL Growth Is Working, But the Stock Comes With a Catch (MarketBeat)](https://www.marketbeat.com/articles/sezzles-bnpl-growth-is-working-but-the-stock-comes-with-a-catch/)
+- [Sezzle Inc. Form 10-K FY2025 (SEC)](https://www.sec.gov/Archives/edgar/data/1662991/000166299126000016/szl-20251231.htm)
+- [Pagaya Deep Research Report: Funding Costs vs AI Ambition (DeepValue)](https://www.deepvalue.tech/research/pagaya-technologies-ltd-pgy-deep-research-report-funding-costs-vs-ai-ambition-what-2026-investors-need-to-see-first)
+- [Pagaya (PGY) Stock Climbs As ABS Deals, BNPL Push Fuel Bullish Momentum (StocksToTrade)](https://stockstotrade.com/news/pagaya-technologies-ltd-pgy-news-2026_06_30/)
+- [Pagaya expands auto funding with Neuberger's $700M forward flow (MarketChameleon)](https://marketchameleon.com/articles/b/2026/9/16/pgy-neuberger-700m-auto-forward-flow-committed-capital-strategy)
+- [Pagaya News Releases](https://investor.pagaya.com/news-events/news-releases)
+- [Tough road ahead for U.S. fintech lenders as default risk rises (Reuters via Investing.com)](https://investing.com/news/stock-market-news/tough-road-ahead-for-us-fintech-lenders-as-default-risk-rises-2980368)
+- [Upstart stock getting attractive after an 82% sell-off (MarketBeat)](https://www.marketbeat.com/articles/upstart-stock-getting-attractive-after-an-82-sell-off/)
+- [Upstart and Affirm shares plunge (Sherwood)](https://sherwood.news/snacks/upstart-and-affirm-shares-plunge/)
 - [The AI buildout comes to the bond market (Vanguard)](https://corporate.vanguard.com/content/corporatesite/us/en/corp/vemo/ai-buildout-comes-to-bond-market.html)
 - [How sensitive is your portfolio to interest rates? (Saxo)](https://home.saxo/en-ch/content/articles/equities/how-sensitive-is-your-portfolio-to-interest-rates-06012022)
 - [How do changes in US real yields impact asset classes? (Saxo)](https://home.saxo/content/articles/equities/how-do-changes-in-us-real-yields-impact-asset-classes-10082020)
