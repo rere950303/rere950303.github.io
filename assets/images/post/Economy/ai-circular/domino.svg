@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 250" font-family="-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#cf222e"/></marker></defs>
+  <rect width="760" height="250" fill="#ffffff"/>
+  <text x="380" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#0B1F3A">고리 하나가 약해지면: 위험이 퍼지는 순서</text>
+  <g font-size="13" text-anchor="middle">
+    <rect x="15" y="60" width="130" height="110" rx="10" fill="#fff1f0" stroke="#cf222e"/>
+    <text x="80" y="92" font-weight="700" fill="#cf222e">① 최종 수요 부족</text>
+    <text x="80" y="117" fill="#24292f">AI 매출이</text>
+    <text x="80" y="135" fill="#24292f">계약 금액을</text>
+    <text x="80" y="153" fill="#24292f">못 따라감</text>
+
+    <rect x="165" y="60" width="130" height="110" rx="10" fill="#fff1f0" stroke="#cf222e"/>
+    <text x="230" y="92" font-weight="700" fill="#cf222e">② AI 기업</text>
+    <text x="230" y="117" fill="#24292f">OpenAI 등이</text>
+    <text x="230" y="135" fill="#24292f">컴퓨팅 계약을</text>
+    <text x="230" y="153" fill="#24292f">줄이거나 미룸</text>
+
+    <rect x="315" y="60" width="130" height="110" rx="10" fill="#fff1f0" stroke="#cf222e"/>
+    <text x="380" y="92" font-weight="700" fill="#cf222e">③ 데이터센터</text>
+    <text x="380" y="117" fill="#24292f">빚 내서 지은</text>
+    <text x="380" y="135" fill="#24292f">센터가 비고</text>
+    <text x="380" y="153" fill="#24292f">이자 못 갚음</text>
+
+    <rect x="465" y="60" width="130" height="110" rx="10" fill="#fff1f0" stroke="#cf222e"/>
+    <text x="530" y="92" font-weight="700" fill="#cf222e">④ 엔비디아</text>
+    <text x="530" y="117" fill="#24292f">GPU 주문 감소</text>
+    <text x="530" y="135" fill="#24292f">+ 보증·투자금</text>
+    <text x="530" y="153" fill="#24292f">손실 (이중 타격)</text>
+
+    <rect x="615" y="60" width="130" height="110" rx="10" fill="#fff1f0" stroke="#cf222e"/>
+    <text x="680" y="92" font-weight="700" fill="#cf222e">⑤ 공급망·금융</text>
+    <text x="680" y="117" fill="#24292f">HBM(SK하이닉스</text>
+    <text x="680" y="135" fill="#24292f">·삼성), TSMC,</text>
+    <text x="680" y="153" fill="#24292f">은행·사모대출</text>
+  </g>
+  <g stroke="#cf222e" stroke-width="2.5" marker-end="url(#m)">
+    <line x1="145" y1="115" x2="162" y2="115"/><line x1="295" y1="115" x2="312" y2="115"/>
+    <line x1="445" y1="115" x2="462" y2="115"/><line x1="595" y1="115" x2="612" y2="115"/>
+  </g>
+  <text x="380" y="210" text-anchor="middle" font-size="14" fill="#57606a">평소에는 서로의 매출을 키워 주던 구조가, 거꾸로 돌면 서로의 손실을 키운다</text>
+</svg>
